@@ -1,0 +1,27 @@
+{
+  "name": "go-proposal-review-meeting",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:css": "unocss 'internal/**/*.templ' -c uno.config.mjs -o dist/styles.css",
+    "build:js": "esbuild web/components/index.ts --bundle --outfile=dist/components.js --format=esm --minify --sourcemap",
+    "build": "npm run build:css && npm run build:js",
+    "watch:css": "unocss 'internal/**/*.templ' -c uno.config.mjs -o dist/styles.css --watch",
+    "watch:js": "esbuild web/components/index.ts --bundle --outfile=dist/components.js --format=esm --sourcemap --watch"
+  },
+  "devDependencies": {
+    "@unocss/cli": "^0.60.0",
+    "@unocss/core": "^0.60.0",
+    "@unocss/preset-icons": "^0.60.0",
+    "@unocss/preset-typography": "^0.60.0",
+    "@unocss/preset-uno": "^0.60.0",
+    "@unocss/transformer-directives": "^0.60.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0",
+    "unocss": "^0.60.0"
+  },
+  "dependencies": {
+    "lit": "^3.2.0"
+  }
+}
