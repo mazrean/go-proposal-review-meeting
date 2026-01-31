@@ -5,6 +5,7 @@ node = "24.12.0"
 "npm:@playwright/mcp" = "0.0.55"
 "npm:chrome-devtools-mcp" = "0.12.1"
 "npm:cc-sdd" = "2.0.5"
+"npm:skills" = "1.0.18"
 
 python = "3.14.2"
 uv = "0.9.24"
