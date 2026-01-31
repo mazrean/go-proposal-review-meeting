@@ -1,0 +1,87 @@
+**2021-08-04 / @rsc, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #47527 **bufio: add Writer.AvailableBuffer**
+  - added to minutes
+- #46758 **bufio: add a new method "Handover" for Writer and Reader**
+  - no change in consensus; **declined**
+- #44815 **bufio: use underlying ReadFrom even when data is buffered**
+  - **likely accept**; last call for comments ⏳
+- #39155 **change standard library to check for io.EOF using errors.Is**
+  - no change in consensus; **declined**
+- #46787 **cmd/cgo: provide a safe way to pin Go Pointer for the period of a C function call**
+  - added to minutes
+- #47373 **cmd/compile: add support for RISC-V B-extension**
+  - added to minutes
+- #47529 **cmd/compile: no bound check compiler directive**
+  - added to minutes
+- #46731 **cmd/compile: replace \`//go:notinheap\` with runtime/internal/sys.NotInHeap**
+  - added to minutes
+- #47398 **cmd/cover: add flag to print total coverage number**
+  - added to minutes
+- #47257 **cmd/dist: remove precompiled .a files from binary distributions**
+  - commented
+- #38687 **cmd/go: add 'go generate -skip'**
+  - added to minutes
+- #46917 **cmd/go: add SPDX license list to go.mod file**
+  - added to minutes
+- #45713 **cmd/go: add a workspace mode**
+  - discussion ongoing
+- #46774 **cmd/go: add pkgspec support to -toolexec**
+  - no change in consensus; **declined**
+- #37995 **cmd/go: build tag for detecting go modules usage**
+  - no change in consensus; **declined**
+- #38509 **cmd/go: command line flag to add icon for windows executable**
+  - no change in consensus; **declined**
+- #40580 **cmd/go: deprecate direct fallback in GOPROXY**
+  - no change in consensus; **declined**
+- #44550 **cmd/go: make major versions optional in import paths**
+  - **likely decline**; last call for comments ⏳
+- #46533 **cmd/vet: report strings.Trim/TrimLeft/TrimRight with duplicate runes in cutset**
+  - **likely accept**; last call for comments ⏳
+- #47528 **cmd/vet: warn when errors.As target has type \*error**
+  - added to minutes
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - discussion ongoing at #47319
+- #44751 **context: add Scoped**
+  - **likely decline**; last call for comments ⏳
+- #42713 **crypto/rand: use private reader, not Reader, in Read**
+  - commented
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #43401 **encoding/csv: add Reader.InputOffset method**
+  - **likely accept**; last call for comments ⏳
+- #39167 **errors: Is(err, target) should allow err to decide even when target is nil**
+  - no change in consensus; **declined**
+- #44650 **go/printer: align multiple struct tags per field for readability**
+  - no change in consensus; **declined**
+- #40720 **log:  wrap testlog.SetLogger() Visible to the public in package log.**
+  - **likely decline**; last call for comments ⏳
+- #47164 **log: define nil \*Logger is valid, discards all output**
+  - **likely accept**; last call for comments ⏳
+- #44394 **math: add Iter**
+  - **likely decline**; last call for comments ⏳
+- #43025 **mime/multipart: access to Form.Value map**
+  - **likely decline**; last call for comments ⏳
+- #38583 **net/http: NewRequest should take url.URL as target**
+  - **likely decline**; last call for comments ⏳
+- #46518 **net/netaddr: add new IP address type, netaddr package**
+  - discussion ongoing at #​​47323
+  - prototype at https://golang.org/cl/339309
+- #42694 **net: report temporary/deprecated status of addresses in net.Interface**
+  - commented
+- #44254 **regexp: add "parse until delimiter" operation**
+  - commented
+- #47216 **runtime/metrics: additional metrics**
+  - added to minutes
+- #44026 **runtime: allow programs to handle deadlock events**
+  - no change in consensus; **declined**
+- #45955 **slices: new package to provide generic slice functions**
+  - **likely accept**; last call for comments ⏳
+- #43429 **spec: allow append(string, ...) returning \[]byte**
+  - no change in consensus; **declined**
+- #46505 **spec: allow conversion from slice to array**
+  - commented
+- #47459 **spec: allow omitting type parameters in methods that don't use them**
+  - added to minutes
+- #47510 **x/net/idna: add pre-defined profile for non-transitional IDNA2008**
+  - added to minutes

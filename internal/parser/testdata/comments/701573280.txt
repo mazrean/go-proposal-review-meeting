@@ -1,0 +1,46 @@
+**2020-09-30 / @rsc, @griesemer, @ianlancetaylor, @andybons, @spf13**
+
+- #40827 **annotate which error values should never be wrapped**
+  - discussion ongoing
+- #40276 **cmd/go: 'go install' should install executables in module mode outside a module**
+  - discussion ongoing
+- #40870 **cmd/go: build option to set env variable defaults**
+  - **likely decline**; last call for comments ⏳
+- #37519 **cmd/go: deprecate -insecure on go get**
+  - no change in consensus; **accepted** 🎉
+- #40364 **cmd/go: enable listing direct dependency updates**
+  - discussion ongoing
+- #40171 **crypto: import fiat-crypto implementations**
+  - no change in consensus; **accepted** 🎉
+- #41198 **errors: add ErrUnsupported**
+  - **likely accept**; last call for comments ⏳
+- #40138 **flag: function to add long and short version of a flag**
+  - no change in consensus; **declined**
+- #39057 **log: export log.std as log.Default**
+  - discussion ongoing
+- #41324 **net/http/pprof: provide a mechanism to render on /debug/pprof profiles than those that invoke pprof.NewProfile**
+  - commented
+- #41048 **net/http: add Transport.GetProxyConnectHeader**
+  - no change in consensus; **accepted** 🎉
+- #41182 **net/http: automatically set Content-Length from Len method on Body**
+  - **likely decline**; last call for comments ⏳
+- #40860 **os/exec: method Cmd.String print Env**
+  - **likely decline**; last call for comments ⏳
+- #41467 **os: add ReadDir method for lightweight directory reading**
+  - discussion ongoing
+- #41265 **os: fast, comprehensive directory API**
+  - no change in consensus; **declined**
+- #37113 **path/filepath: add a function to canonicalize paths**
+  - discussion ongoing
+- #40198 **regexp: add Replace and ReplaceString**
+  - **likely decline**; last call for comments ⏳
+- #40238 **runtime: add mechanism to configure format used to write out unhandled panics**
+  - **likely decline**; last call for comments ⏳
+- #39214 **testing: add CPU name to standard benchmark labels**
+  - no change in consensus; **accepted** 🎉
+- #41260 **testing: add TB.Setenv()**
+  - **likely accept**; last call for comments ⏳
+- #40984 **testing: middleware for testing.TB (?)**
+  - discussion ongoing
+- #41438 **x/net: add xsrftoken.ValidFor**
+  - **likely accept**; last call for comments ⏳

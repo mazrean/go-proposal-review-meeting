@@ -1,0 +1,44 @@
+**2021-01-13 / @rsc, @griesemer, @ianlancetaylor, @andybons, @spf13**
+
+- #42469 **cmd/cgo: unsafe FFI calls**
+  - no change in consensus; **declined**
+- #42088 **cmd/go: 'go run' should run executables in module mode outside a module**
+  - **likely accept**; last call for comments ⏳
+- #40405 **cmd/go: detect proxy redirect loops**
+  - commented
+- #40405 **cmd/go: detect proxy redirect loops**
+  - discussion ongoing
+- #26535 **compress/lzw: add Resetter interface to allow encoders to be reused**
+  - commented, cc’ed owners
+- #40521 **crypto/tls: support TLS 1.3 post-handshake authentication**
+  - discussion ongoing
+- #26950 **crypto/x509: add functions to download certificates from windows update, and retrieve certificates from windows x509stores**
+  - cc’ed owners
+- #42460 **database/sql: define a SQL driver unwrapper interface and helper function**
+  - no change in consensus; **declined**
+- #43217 **embed: remove import restriction**
+  - **likely decline**; last call for comments ⏳
+- #43602 **embed: remove type spelling restrictions**
+  - no change in consensus; **accepted** 🎉
+- #43168 **encoding/xml: round-trip safe mode \[freeze exception]**
+  - no change in consensus; **declined**
+- #34875 **go/doc: allow custom formatters via an interface**
+  - commented
+- #43223 **io/fs, net/http: define interface for automatic ETag serving**
+  - commented
+- #41625 **net/mail: allow AddressParser helper code to signal invalid character set**
+  - **likely decline**; last call for comments ⏳
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #43651 **spec: add generic programming using type parameters**
+  - discussion ongoing
+- #43030 **testing: add (\*PB).NextIndex() (int, bool) method**
+  - no change in consensus; **declined**
+- #36145 **time: support Colon for fractional seconds**
+  - commented
+- #27599 **x/crypto: add support for AES Key Wrap**
+  - cc’ed owners
+- #42166 **x/net/xsrftoken: add new, less error-prone API**
+  - commented
+- #28089 **x/tools/go/generated: parser for https://golang.org/s/generatedcode format**
+  - commented

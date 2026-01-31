@@ -1,0 +1,87 @@
+**2020-03-04 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @spf13**
+
+- #37503 **all: add bare metal ARM support**
+  - commented
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - discussion ongoing
+- #34527 **cmd/go: add GOMODCACHE**
+  - discussion ongoing
+- #35667 **cmd/go: add compiler flags, relevant env vars to 'go version -m' output**
+  - no change in consensus; **accepted** 🎉
+- #37519 **cmd/go: deprecate -insecure on go get**
+  - discussion ongoing
+- #36134 **cmd/go: invalidate cache entries for test runs using different timeouts**
+  - evicted
+- #36460 **cmd/go: lazy module loading**
+  - discussion ongoing
+- #37641 **cmd/go: reserve specific path prefixes for local (user-defined) modules**
+  - discussion ongoing
+- #37475 **cmd/go: stamp git/vcs current HEAD hash/commit hash/dirty bit in binaries**
+  - discussion ongoing
+- #28835 **cmd/go: subcommands to add and remove modules from the module cache**
+  - discussion ongoing
+- #34594 **crypto/cipher: Specify nonce and tag sizes for GCM**
+  - no change in consensus; **declined**
+- #34648 **crypto/elliptic: automatically upgrade CurveParams for known curves and deprecate custom ones**
+  - cc’ed owners
+- #34105 **crypto/elliptic: handle compressed formats in new MarshalCompressed, UnmarshalCompressed**
+  - no change in consensus; **accepted** 🎉
+- #35499 **crypto/tls expose names for CurveID and SignatureScheme**
+  - **likely accept**; last call for comments ⏳
+- #36337 **crypto/tls: Export list of Supported TLS Client Extensions**
+  - no change in consensus; **declined**
+- #36736 **crypto/tls: add Config.VerifyConnection callback**
+  - discussion ongoing
+- #22836 **crypto/tls: add GetConfigForServer callback to \*tls.Config**
+  - no change in consensus; **declined**
+- #35428 **crypto/x509: add API to create RFC-compliant CRLs**
+  - no change in consensus; **accepted** 🎉
+- #33888 **crypto/x509: implement TextMarshaler for \*Certificate**
+  - no change in consensus; **declined**
+- #37172 **crypto/x509: parse additional fields in CertificateRequest**
+  - **likely accept**; last call for comments ⏳
+- #33430 **crypto: implement Hash.String**
+  - no change in consensus; **accepted** 🎉
+- #37168 **crypto: new assembly policy**
+  - discussion ongoing
+- #37250 **errors: add new function Temporary(error) bool**
+  - discussion ongoing
+- #37094 **exec: add (\*Cmd).ExtraInPipe and ExtraOutPipe**
+  - no change in consensus; **declined**
+- #37533 **flag: exit 0 for default -h/-help option**
+  - cc’ed owners
+  - commented
+- #33457 **image: add generic metadata support for jpeg, gif, png**
+  - no change in consensus; **declined**
+- #37344 **io: default ByteReader from Reader**
+  - discussion ongoing
+- #35562 **net/http: mention Context and Client.Do in docs for Get, Head, Post, PostForm**
+  - no change in consensus; **accepted** 🎉
+- #37255 **os/signal: add WithContext function**
+  - discussion ongoing
+- #36821 **runtime/pprof: add PMU-based profiles**
+  - cc’ed owners
+- #36141 **runtime: "real time" timer semantics**
+  - discussion ongoing
+- #37112 **runtime: API for unstable metrics**
+  - discussion ongoing
+- #37642 **runtime: make print/println print interfaces**
+  - commented
+- #37023 **runtime: panicmem should expose the address it's panicking about.**
+  - no change in consensus; **accepted** 🎉
+- #37033 **runtime: provide centralized facility for managing (c)go pointer handles**
+  - **likely accept**; last call for comments ⏳
+- #36887 **sort: add InvertSlice**
+  - **likely decline**; last call for comments ⏳
+- #31107 **text/template,html/template: add ExecuteContext methods**
+  - commented
+- #37495 **wiki: CodeReviewComments change**
+  - **likely decline**; last call for comments ⏳
+- #29540 **x/crypto/acme/autocert: Enable custom port / IP binding**
+  - no change in consensus; **declined**
+- #35481 **x/crypto/argon2: support secret value and associated data**
+  - no change in consensus; **declined**
+- #37132 **x/crypto/ssh: add methods to marshal private keys to the OpenSSH format**
+  - no change in consensus; **accepted** 🎉
+- #37278 **x/crypto/ssh: support RSA SHA-2 host key signatures**
+  - no change in consensus; **accepted** 🎉

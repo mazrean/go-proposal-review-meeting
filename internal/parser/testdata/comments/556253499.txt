@@ -1,0 +1,35 @@
+**2019-11-20 / @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - commented
+- #34707 **cmd/go: add `go test -long`**
+  - retitled
+  - **likely decline; last call for comments**
+- #35699 **cmd/go: add go cli version to the User-Agent string**
+  - commented
+- #35258 **cmd/go: add simplify (-s) flag from gofmt to go fmt**
+  - **likely decline; last call for comments**
+- #35283 **cmd/go: allow replace directives in go.mod to work for standard libraries**
+  - **likely decline; last call for comments**
+- #29062 **cmd/go: fail tests that invoke os.Exit(0) explicitly**
+  - discussion ongoing
+- #31064 **cmd/vet: require explicit variable shadowing**
+  - **likely decline; last call for comments**
+- #20544 **crypto/ecdsa: add SignASN1, VerifyASN1**
+  - **likely accept; last call for comments**
+- #34293 **go docs in diverse formats like json instead of just plain text**
+  - commented
+- #34680 **html/template: add ability to modify FuncMap after template parse**
+  - commented
+- #34502 **net: add BufferedPipe (buffered Pipe)**
+  - discussion ongoing
+- #29678 **net: add MarshalText/UnmarshalText to HardwareAddr**
+  - discussion ongoing
+- #33701 **runtime/pprof: add new WithLabels\* function that requires fewer allocations**
+  - placed on hold
+- #34681 **syscall: define Windows O_ALLOW_DELETE for use in os.OpenFile**
+  - commented
+- #34698 **time: Long/Short day and month names should start with Upper case to allow customization**
+  - **likely decline; last call for comments**
+- #34684 **unsafe: clarify unsafe.Pointer rules for package syscall**
+  - discussion ongoing

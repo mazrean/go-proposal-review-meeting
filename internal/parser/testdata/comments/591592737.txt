@@ -1,0 +1,74 @@
+**2020-02-26 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #34527 **cmd/go: add GOMODCACHE**
+  - discussion ongoing
+- #35667 **cmd/go: add compiler flags, relevant env vars to 'go version -m' output**
+  - **likely accept**; last call for comments ⏳
+- #36134 **cmd/go: invalidate cache entries for test runs using different timeouts**
+  - commented
+- #36460 **cmd/go: lazy module loading**
+  - discussion ongoing
+- #37475 **cmd/go: stamp git/vcs current HEAD hash/commit hash/dirty bit in binaries**
+  - discussion ongoing
+- #37399 **cmd/gofmt: minimize adjacent whitespace changes on struct layout edits**
+  - closed (infeasible, conflicts with core design)
+- #34594 **crypto/cipher: Specify nonce and tag sizes for GCM**
+  - **likely decline**; last call for comments ⏳
+- #34648 **crypto/elliptic: automatically upgrade CurveParams for known curves and deprecate custom ones**
+  - commented
+- #34105 **crypto/elliptic: handle compressed formats in new MarshalCompressed, UnmarshalCompressed**
+  - **likely accept**; last call for comments ⏳
+- #35499 **crypto/tls expose names for CurveID and SignatureScheme**
+  - commented
+- #31773 **crypto/tls: Authority Information Access support**
+  - no change in consensus; **declined**
+- #36337 **crypto/tls: Export list of Supported TLS Client Extensions**
+  - **likely decline**; last call for comments ⏳
+- #36736 **crypto/tls: Provide access to stapled OCSP response in VerifyPeerCertificate callback**
+  - commented
+- #22836 **crypto/tls: add GetConfigForServer callback to \*tls.Config**
+  - **likely decline**; last call for comments ⏳
+- #35428 **crypto/x509: add API to create RFC-compliant CRLs**
+  - **likely accept**; last call for comments ⏳
+- #23282 **crypto/x509: add support to get SSL context from certificate store on windows**
+  - no change in consensus; **declined**
+- #33888 **crypto/x509: implement TextMarshaler for \*Certificate**
+  - **likely decline**; last call for comments ⏳
+- #33430 **crypto: implement Hash.String**
+  - **likely accept**; last call for comments ⏳
+- #37344 **default implementation of io.ByteReader from io.Reader**
+  - commented
+- #37094 **exec: add (\*Cmd).ExtraInPipe and ExtraOutPipe**
+  - **likely decline**; last call for comments ⏳
+- #33457 **image: add generic metadata support for jpeg, gif, png**
+  - **likely decline**; last call for comments ⏳
+- #34624 **io, net: implement WriterTo for pipes**
+  - no change in consensus; **declined**
+- #35562 **net/http: mention Context and Client.Do in docs for Get, Head, Post, PostForm**
+  - **likely accept**; last call for comments ⏳
+- #37168 **new cryptographic assembly policy**
+  - discussion ongoing
+- #37166 **package tools**
+  - no change in consensus; **declined**
+- #23044 **runtime: add a mechanism for specifying a minimum target heap size**
+  - closed as duplicate of #29696.
+- #37452 **runtime: mechanism for monitoring system memory**
+  - closed as duplicate of #29696.
+- #37023 **runtime: panicmem should expose the address it's panicking about.**
+  - **likely accept**; last call for comments ⏳
+- #37033 **runtime: provide centralized facility for managing (c)go pointer handles**
+  - commented
+- #31107 **text/template,html/template: add ExecuteContext methods**
+  - discussion ongoing
+- #29540 **x/crypto/acme/autocert: Enable custom port / IP binding**
+  - **likely decline**; last call for comments ⏳
+- #35481 **x/crypto/argon2: support secret value and associated data**
+  - **likely decline**; last call for comments ⏳
+- #36646 **x/crypto/poly1305: deprecate public package**
+  - no change in consensus; **accepted** 🎉
+- #31044 **x/crypto/ssh/terminal: move all APIs to x/term and deprecate**
+  - no change in consensus; **accepted** 🎉
+- #37132 **x/crypto/ssh: add methods to marshal private keys to the OpenSSH format**
+  - **likely accept**; last call for comments ⏳
+- #37278 **x/crypto/ssh: support RSA SHA-2 host key signatures**
+  - **likely accept**; last call for comments ⏳

@@ -1,0 +1,84 @@
+**2021-05-12 / @rsc, @griesemer, @bradfitz, @andybons**
+
+- #45453 **all: add GOAMD64 environment variable**
+  - **likely accept**; last call for comments ⏳
+- #45963 **cmd/go/internal/test: add -vet=all sentinel**
+  - commented
+- #45713 **cmd/go: add a workspace mode**
+  - discussion ongoing
+- #45611 **cmd/go: allow GOPRIVATE to provide source repository URI**
+  - discussion ongoing
+- #46050 **cmd/go: generate allow arguments to span multiple lines**
+  - commented
+- #44435 **cmd/go: narrow 'mod download' default set**
+  - added to minutes
+- #45454 **cmd/go: provide build tags for architecture environment variables**
+  - **likely accept**; last call for comments ⏳
+- #45733 **cmd/go: test -json include file and line info**
+  - commented
+- #45961 **cmd/vet: time.Time should not compared**
+  - commented
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - discussion ongoing
+- #29257 **crypto/tls: allow access to net.Conn underneath tls.Conn**
+  - no change in consensus; **accepted** 🎉
+- #46057 **crypto/x509: add CertPool.Equal**
+  - commented
+- #21865 **crypto: add facility for key erasure**
+  - discussion ongoing
+- #45815 **embed: read file contents directly from FS during fs.WalkDir**
+  - **likely decline**; last call for comments ⏳
+- #46065 **encoding/json: add FlexObject for encoding/decoding between JSON and flex Go types.**
+  - added to minutes
+- #45669 **encoding/json: add omitzero option**
+  - hold for #22480
+- #45449 **encoding/json: add support of wrapped error in addErrorContext function**
+  - discussion ongoing
+- #45628 **encoding/xml: add Decoder.InputPos**
+  - no change in consensus; **accepted** 🎉
+- #45754 **flag: add TextVar to handle types that implement encoding.TextUnmarshaler**
+  - discussion ongoing
+- #46121 **html/template: make FuncMap an alias for text/template.FuncMap**
+  - added to minutes
+- #45899 **io: add OffsetWriter, NewOffsetWriter**
+  - commented
+- #45455 **math/bits: add Deposit and Extract functions**
+  - **likely decline**; last call for comments ⏳
+- #45915 **math32: add float32 math package**
+  - **likely decline**; last call for comments ⏳
+- #39290 **net/http/httptest: Recorder.Result() should always set Response.Body to http.NoBody when response is empty**
+  - **likely decline**; last call for comments ⏳
+- #45973 **net/http: add AllowQuerySemicolons**
+  - **likely accept**; last call for comments ⏳
+- #45460 **net/http: allow customizing proxy CONNECT url**
+  - no change in consensus; **accepted** 🎉
+- #46059 **net/url: distinguish empty and not present authority**
+  - commented
+- #45729 **net: deprecate Temporary error status**
+  - added to minutes
+- #46131 **reflect: add MapIter.SetKey, SetValue, and friends**
+  - added to minutes
+- #42888 **runtime/debug: add SetCrashOutput(file \*os.File)**
+  - no change in consensus; **accepted** 🎉
+- #45955 **slices: new package to provide generic slice functions**
+  - discussion ongoing
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - pending implementation
+- #45435 **sync: add Mutex.TryLock**
+  - commented
+- #45650 **testing: add conditional-error helpers to T and B**
+  - no change in consensus; **declined**
+- #45752 **text/template: add table action**
+  - discussion ongoing
+- #36141 **time: add ExternalNow, etc for external time and timers**
+  - **likely accept**; last call for comments ⏳
+- #45571 **time: context-aware time Ticker and Timer**
+  - no change in consensus; **declined**
+- #45898 **unicode/utf8: distinguish between bona fide encoding error and insufficient bytes**
+  - **likely decline**; last call for comments ⏳
+- #45833 **x/pkgsite: support showing identifiers that are constrained by build tags**
+  - removed from proposal process
+- #46084 **x/sys/unix: add System V shared memory functions**
+  - added to minutes
+- #46060 **x/sys/unix: add IoctlSetIntPtr**
+  - commented

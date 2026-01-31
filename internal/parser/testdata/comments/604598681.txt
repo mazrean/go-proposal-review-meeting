@@ -1,0 +1,57 @@
+**2020-03-25 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+[_**These are only a day late. Progress!**_]
+
+- #25348 **allow && and || operators and parentheses in build tags**
+  - commented
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - put on hold
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - discussion ongoing
+- #34527 **cmd/go: add GOMODCACHE**
+  - commented
+- #37519 **cmd/go: deprecate -insecure on go get**
+  - commented
+  - put on hold
+- #36460 **cmd/go: lazy module loading**
+  - no change in consensus; **accepted** 🎉
+- #37641 **cmd/go: reserve specific path prefixes for local (user-defined) modules**
+  - discussion ongoing
+- #37475 **cmd/go: stamp git/vcs current HEAD hash/commit hash/dirty bit in binaries**
+  - commented
+- #37255 **context: add WithCancelSignal function**
+  - **likely accept**; last call for comments ⏳
+- #24171 **crypto/cipher: allow short tags in NewGCMWithNonceAndTagSize**
+  - discussion ongoing
+- #34648 **crypto/elliptic: automatically upgrade CurveParams for known curves and deprecate custom ones**
+  - no change in consensus; **accepted** 🎉
+- #36736 **crypto/tls: add Config.VerifyConnection callback**
+  - no change in consensus; **accepted** 🎉
+- #31520 **crypto/tls: allow registration of additional key exchanges**
+  - **likely decline**; last call for comments ⏳
+- #31933 **crypto/tls: support DHE**
+  - **likely decline**; last call for comments ⏳
+- #37168 **crypto: new assembly policy**
+  - discussion ongoing
+- #32779 **encoding/json: memoize strings during decode?**
+  - **likely accept**; last call for comments ⏳
+- #37533 **flag: exit 0 for default -h/-help option**
+  - **likely accept**; last call for comments ⏳
+- #37344 **io: default ByteReader from Reader**
+  - no change in consensus; **declined**
+- #37776 **net/url: add URL.RawFragment, like RawPath**
+  - commented
+- #36821 **runtime/pprof: add PMU-based profiles**
+  - commented
+- #37112 **runtime: API for unstable metrics**
+  - discussion ongoing
+- #36771 **strconv: add ParseComplex**
+  - commented
+- #35998 **testing: add TB.TempDir() string**
+  - **likely accept**; last call for comments ⏳
+- #31107 **text/template,html/template: add ExecuteContext methods**
+  - commented
+- #38017 **time: add time/tzdata package and timetzdata tag to embed tzdata in program**
+  - commented
+- #29390 **x/crypto: add implementation of Diffie-Hellman x448**
+  - discussion ongoing

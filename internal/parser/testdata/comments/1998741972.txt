@@ -1,0 +1,98 @@
+**2024-03-13 / @aclements, @adonovan, @bradfitz, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+[We will skip next week and pick up again on 2024-03-27.]
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **cmd/go: separate default GODEBUGs from go language version** [#65573](https://go.dev/issue/65573)
+  - no change in consensus; **accepted** 🎉
+- **cmd/vet: report use of too-new standard library symbols** [#46136](https://go.dev/issue/46136)
+  - no change in consensus; **accepted** 🎉
+- **crypto/tls: support Encrypted Client Hello in clients** [#63369](https://go.dev/issue/63369)
+  - no change in consensus; **accepted** 🎉
+- **slices: add Repeat function** [#65238](https://go.dev/issue/65238)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/cfg: add CFG.Dot method** [#65754](https://go.dev/issue/65754)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **spec: range over nil function values should not panic** [#65629](https://go.dev/issue/65629)
+  - no change in consensus; **declined**
+- **unicode/utf16: add DecodeRuneBytes** [#65511](https://go.dev/issue/65511)
+  - declined as infeasible
+
+**Likely Accept**
+
+- **net/http: support partitioned cookies** [#62490](https://go.dev/issue/62490)
+  - **likely accept**; last call for comments ⏳
+- **net: add Underlying field and Unwrap method to \*DNSError** [#63116](https://go.dev/issue/63116)
+  - **likely accept**; last call for comments ⏳
+- **reflect: add SliceAt function** [#61308](https://go.dev/issue/61308)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/ssh: implement CryptoPublicKey on sk keys** [#62518](https://go.dev/issue/62518)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **fmt: add a function to detect formatting directives in string** [#64657](https://go.dev/issue/64657)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **build: promote windows/arm64 to first class port** [#65284](https://go.dev/issue/65284)
+  - discussion ongoing
+- **cmd/go: add a way to query for non-defaults in the env** [#34208](https://go.dev/issue/34208)
+  - commented
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **crypto/x509: make OID have text, binary marshal methods** [#66249](https://go.dev/issue/66249)
+  - added to minutes
+- **debug/elf: add SHT\_GNU\_VERDEF section parsing** [#63952](https://go.dev/issue/63952)
+  - commented
+- **net/http: add ParseCookie, ParseSetCookie** [#66008](https://go.dev/issue/66008)
+  - discussion ongoing
+- **net/http: add field Cookie.Quoted bool** [#46443](https://go.dev/issue/46443)
+  - commented
+- **reflect: add Type.CanRange and Value.Range methods** [#66056](https://go.dev/issue/66056)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **runtime: provide a way to format output in unhandled panics** [#63455](https://go.dev/issue/63455)
+  - added to minutes
+  - commented
+- **spec: add builtin func 'is\[T any](any) bool'** [#65846](https://go.dev/issue/65846)
+  - added to minutes
+  - commented
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **text/template: range over func and int** [#66107](https://go.dev/issue/66107)
+  - discussion ongoing
+- **x/crypto/ssh: add support for hostkeys@openssh.com** [#37245](https://go.dev/issue/37245)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - discussion ongoing
+- **x/tools/go/analysis: add field Pass.ReadFile func** [#62292](https://go.dev/issue/62292)
+  - discussion ongoing
+- **x/tools/go/analysis: identify test-only packages** [#65749](https://go.dev/issue/65749)
+  - discussion ongoing
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+

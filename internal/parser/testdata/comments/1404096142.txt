@@ -1,0 +1,54 @@
+**2023-01-25 / @aclements, @adonovan, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **testing: optionally include full (or relative) path name** [#37708](https://go.dev/issue/37708)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **add a (\*go/token.File).Lines method** [#57708](https://go.dev/issue/57708)
+  - **likely accept**; last call for comments ⏳
+- **archive/zip: add (\*Writer).AddFS** [#54898](https://go.dev/issue/54898)
+  - **likely accept**; last call for comments ⏳
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - **likely accept**; last call for comments ⏳
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - **likely accept**; last call for comments ⏳
+- **maps: new standard library package based on x/exp/maps** [#57436](https://go.dev/issue/57436)
+  - **likely accept**; last call for comments ⏳
+- **x/exp/slices: Allow different types for haystack/needle in BinarySearchFunc** [#57348](https://go.dev/issue/57348)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - commented
+- **context: add WithoutCancel** [#40221](https://go.dev/issue/40221)
+  - retitled
+- **encoding/json: add (\*Decoder).SetLimit** [#56733](https://go.dev/issue/56733)
+  - commented
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **reflect: deprecate SliceHeader and StringHeader** [#56906](https://go.dev/issue/56906)
+  - commented
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - commented
+- **slices: new standard library package based on x/exp/slices** [#57433](https://go.dev/issue/57433)
+  - commented
+- **spec: define initialization order more precisely** [#57411](https://go.dev/issue/57411)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - commented
+- **x/tools/go/analysis: add Analyzer.URL and Diagnostic.URL fields** [#57906](https://go.dev/issue/57906)
+  - commented

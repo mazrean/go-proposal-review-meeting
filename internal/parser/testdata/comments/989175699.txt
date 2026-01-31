@@ -1,0 +1,83 @@
+**2021-12-08 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+**Accepted**
+
+- **cmd/go: support compiling all tests without running** [#15513](https://golang.org/issue/15513)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **context: add WithCancelReason** [#46273](https://golang.org/issue/46273)
+  - no change in consensus; **declined**
+- **mime/multipart: allow specifying content type in Writer.CreateFormFile** [#49329](https://golang.org/issue/49329)
+  - duplicate of #46771
+- **strings: missing mirror functions** [#46514](https://golang.org/issue/46514)
+  - no change in consensus; **declined**
+- **syscall: add landlock support on Linux** [#47049](https://golang.org/issue/47049)
+  - proposal retracted by author; **declined**
+- **x/net/http2: support http.Hijacker** [#46319](https://golang.org/issue/46319)
+  - no change in consensus; **declined**
+- **x/tools/go/analysis/passes/errorstringcompare: new check that warns when programmers compare against Error() strings** [#49356](https://golang.org/issue/49356)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/compile: clarify whether "-l" and "-N" compiler flags are actually supported** [#49390](https://golang.org/issue/49390)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: add VersionName function to return a string version of the TLS Version** [#46308](https://golang.org/issue/46308)
+  - **likely accept**; last call for comments ⏳
+- **x/sys/windows/namedpipe: new package** [#49650](https://golang.org/issue/49650)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **go test -errfuzz flag to randomize error strings** [#49358](https://golang.org/issue/49358)
+  - **likely decline**; last call for comments ⏳
+- **runtime: allow N goroutines to be simultaneously locked to the same OS thread** [#49848](https://golang.org/issue/49848)
+  - **likely decline**; last call for comments ⏳
+- **spec: add comparable w/o interfaces** [#49587](https://golang.org/issue/49587)
+  - **likely decline**; last call for comments ⏳
+- **strings: add a Join method to Builder** [#49546](https://golang.org/issue/49546)
+  - **likely decline**; last call for comments ⏳
+- **sync: add method Mutex.Locked(func())** [#49563](https://golang.org/issue/49563)
+  - **likely decline**; last call for comments ⏳
+- **x/crypto/bcrypt: make compatible with OpenBSD** [#46940](https://golang.org/issue/46940)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - discussion ongoing
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - discussion ongoing
+- **crypto: include support for DTLS in stdlib or x/crypto** [#46915](https://golang.org/issue/46915)
+  - discussion ongoing
+- **io/fs: add ReadLinkFS interface** [#49580](https://golang.org/issue/49580)
+  - commented
+- **net/netip: add Unmap() to netip.Is4()** [#49970](https://golang.org/issue/49970)
+  - added to minutes
+- **net: add Listen and Dial for TCP and UDP that takes an AddrPort** [#49522](https://golang.org/issue/49522)
+  - commented
+- **net: add context-aware Dialer methods DialTCP, DialUDP, DialIP, DialUnix** [#49097](https://golang.org/issue/49097)
+  - commented
+- **reflect: add \`Value.CallInto\`** [#49340](https://golang.org/issue/49340)
+  - commented
+- **runtime: add block/wake function** [#46431](https://golang.org/issue/46431)
+  - commented
+- **runtime: automatically bump RLIMIT\_NOFILE on Linux?** [#46279](https://golang.org/issue/46279)
+  - commented
+- **runtime: enable WER dumps for Windows under certain circumstances** [#49471](https://golang.org/issue/49471)
+  - commented
+- **time: export zone and zoneTrans, and add a function to generate a Location** [#49951](https://golang.org/issue/49951)
+  - added to minutes
+- **x/crypto/ssh: add NewSharedClientConn** [#32958](https://golang.org/issue/32958)
+  - discussion ongoing
+- **x/crypto: yescrypt support** [#49898](https://golang.org/issue/49898)
+  - added to minutes
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - commented
+- **x/time/rate: expose the number of remaining tokens** [#50035](https://golang.org/issue/50035)
+  - added to minutes
+- **x/tools: move cmd/internal/edit to a public package** [#29824](https://golang.org/issue/29824)
+  - discussion ongoing
+

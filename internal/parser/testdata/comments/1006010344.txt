@@ -1,0 +1,74 @@
+[Welcome back!]
+
+**2022-01-05 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+**Accepted**
+
+- **net: add context-aware Dialer methods DialTCP, DialUDP, DialIP, DialUnix** [#49097](https://golang.org/issue/49097)
+  - no change in consensus; **accepted** 🎉
+- **runtime: automatically bump RLIMIT\_NOFILE on Unix** [#46279](https://golang.org/issue/46279)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **net/netip: add Unmap() to netip.Is4()** [#49970](https://golang.org/issue/49970)
+  - no change in consensus; **declined**
+- **runtime: add block/wake function** [#46431](https://golang.org/issue/46431)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- none
+
+**Likely Decline**
+
+- **net/http: add Unregister method to ServeMux** [#50056](https://golang.org/issue/50056)
+  - **likely decline**; last call for comments ⏳
+- **net: add Listen and Dial for TCP and UDP that takes an AddrPort** [#49522](https://golang.org/issue/49522)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **archive/tar: add FileInfoHeaderNoNames** [#50102](https://golang.org/issue/50102)
+  - commented
+- **constraints: rename package to "of"** [#50348](https://golang.org/issue/50348)
+  - added to minutes
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - cc’ed owners
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - cc’ed owners
+- **crypto: include support for DTLS in stdlib or x/crypto** [#46915](https://golang.org/issue/46915)
+  - cc’ed owners
+- **io/fs: add ReadLinkFS interface** [#49580](https://golang.org/issue/49580)
+  - commented
+- **net: make LookupCNAME consistent between Unix and Windows, document** [#50101](https://golang.org/issue/50101)
+  - commented
+- **os/exec: add fields for managing termination signals and pipes** [#50436](https://golang.org/issue/50436)
+  - added to minutes
+- **reflect: add \`Value.CallInto\`** [#49340](https://golang.org/issue/49340)
+  - commented
+- **runtime: enable WER dumps for Windows under certain circumstances** [#49471](https://golang.org/issue/49471)
+  - commented
+- **spec: safe multidimensional array conversion** [#50118](https://golang.org/issue/50118)
+  - commented
+- **syscall/js: Reinstate js.Wrapper interface** [#50310](https://golang.org/issue/50310)
+  - commented
+- **time: export Location.lookup() as Location.Lookup()** [#50062](https://golang.org/issue/50062)
+  - commented
+- **time: export zone and zoneTrans, and add a function to generate a Location** [#49951](https://golang.org/issue/49951)
+  - commented
+- **x/crypto/ssh: add NewSharedClientConn** [#32958](https://golang.org/issue/32958)
+  - cc’ed owners
+- **x/crypto: kbkdf** [#50136](https://golang.org/issue/50136)
+  - cc’ed owners
+- **x/crypto: yescrypt support** [#49898](https://golang.org/issue/49898)
+  - cc’ed owners
+- **x/exp/typeparams: a new module with a transitional API for tools** [#50447](https://golang.org/issue/50447)
+  - added to minutes
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - discussion ongoing
+- **x/time/rate: expose the number of remaining tokens** [#50035](https://golang.org/issue/50035)
+  - commented
+- **x/tools: move cmd/internal/edit to a public package** [#29824](https://golang.org/issue/29824)
+  - commented
+

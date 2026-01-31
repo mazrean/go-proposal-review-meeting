@@ -1,0 +1,103 @@
+**2023-06-21 / @aclements, @adonovan, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **math/rand/v2: a new API for math/rand and a first v2 for std** [#60751](https://go.dev/issue/60751)
+- **net/http: add methods and path variables to ServeMux patterns** [#60227](https://go.dev/issue/60227)
+- **cmd/go: add package forwarding** [#60696](https://go.dev/issue/60696)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+
+**Accepted**
+
+- **cmd/go: add GOMIPS32, GOMIPS64 ISA levels (i, ii, iii, iv, v, r1, r2, r3, r5, r6)** [#60072](https://go.dev/issue/60072)
+  - no change in consensus; **accepted** 🎉
+- **encoding: provide append-like variants** [#53693](https://go.dev/issue/53693)
+  - no change in consensus; **accepted** 🎉
+- **reflect:  deprecate PtrTo** [#59599](https://go.dev/issue/59599)
+  - no change in consensus; **accepted** 🎉
+- **slices: Use ~\[]E throughout** [#60546](https://go.dev/issue/60546)
+  - no change in consensus; **accepted** 🎉
+- **slices: add Concat** [#56353](https://go.dev/issue/56353)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/vcs: deprecate, isolate, tag, and delete package** [#57051](https://go.dev/issue/57051)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **Go 2: add \`??\` operator to select first non-zero value** [#37165](https://go.dev/issue/37165)
+  - obsoleted by #60204
+- **Go 2: sync/atomic: type modifiers as an addition to types** [#29501](https://go.dev/issue/29501)
+  - obsoleted by #50860
+- **Securing Go vendor packaging** [#20885](https://go.dev/issue/20885)
+  - obsoleted by Go modules
+- **log: change Logger to be an interface** [#13182](https://go.dev/issue/13182)
+  - obsoleted by #56345
+- **make rune be a new type of concrete type int32, not an alias** [#29012](https://go.dev/issue/29012)
+  - declined as infeasible
+
+**Likely Accept**
+
+- **cmp: add Or** [#60204](https://go.dev/issue/60204)
+  - **likely accept**; last call for comments ⏳
+- **database/sql: add generic Null\[T]** [#60370](https://go.dev/issue/60370)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **all: add GOARM64=v8.1 and so on** [#60905](https://go.dev/issue/60905)
+  - added to minutes
+- **benchmarks or benchstat: should question timings less than 1ns** [#59926](https://go.dev/issue/59926)
+  - added to minutes
+- **cmd/go: add global ignore mechanism for Go tooling ecosystem** [#42965](https://go.dev/issue/42965)
+  - commented
+- **cmd/go: go test -fullpath should include full paths for build errors too** [#60451](https://go.dev/issue/60451)
+  - commented
+- **cmd/go: mod init: option to infer module name from git origin** [#60635](https://go.dev/issue/60635)
+  - added to minutes
+- **cmd/go: preserve basic GOPATH mode indefinitely** [#60915](https://go.dev/issue/60915)
+  - added to minutes
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - commented
+- **cmd/vet:  add a new analyzer  for check missing values after append** [#60448](https://go.dev/issue/60448)
+  - commented
+- **container: add a comparable collection type** [#36702](https://go.dev/issue/36702)
+  - added to minutes
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - added to minutes
+- **hash: make the Sum method less confusing** [#21070](https://go.dev/issue/21070)
+  - added to minutes
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - commented
+- **io: require io.Reader to return either n > 0 or an error** [#27531](https://go.dev/issue/27531)
+  - added to minutes
+- **make rune be a new type of concrete type int32, not an alias** [#29012](https://go.dev/issue/29012)
+  - added to minutes
+- **reflect: add MakeType** [#60088](https://go.dev/issue/60088)
+  - discussion ongoing
+- **runtime/metrics: add goroutine state counts, total goroutines created, total threads** [#15490](https://go.dev/issue/15490)
+  - commented
+- **spec: less error-prone loop variable scoping** [#60078](https://go.dev/issue/60078)
+  - discussion ongoing
+- **start using semantic versions for Go releases** [#32450](https://go.dev/issue/32450)
+  - added to minutes
+  - commented
+- **sync: remove the Cond type** [#21165](https://go.dev/issue/21165)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **text/template, html/template: Add ExecuteFuncMap and ExecuteTemplateFuncMap** [#54450](https://go.dev/issue/54450)
+  - discussion ongoing
+- **unsafe: add Unreachable** [#30582](https://go.dev/issue/30582)
+  - added to minutes
+- **unsafe: allow conversion of uintptr to unsafe.Pointer when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - commented
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - commented
+- **x/crypto: add AES-GCM-SIV** [#54364](https://go.dev/issue/54364)
+  - discussion ongoing
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - discussion ongoing

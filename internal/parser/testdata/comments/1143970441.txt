@@ -1,0 +1,100 @@
+**2022-06-01 / @rsc, @griesemer, @bradfitz, @andybons**
+
+**Accepted**
+
+- **crypto/ecdh: new package** [#52221](https://golang.org/issue/52221)
+  - no change in consensus; **accepted** 🎉
+- **os/exec: add fields for managing termination signals and pipes** [#50436](https://golang.org/issue/50436)
+  - no change in consensus; **accepted** 🎉
+- **x/sys/unix: add RecvmsgBuffers and SendmsgBuffers** [#52885](https://golang.org/issue/52885)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **encoding/json: allow returning nil from MarshalJSON to omit the field** [#50480](https://golang.org/issue/50480)
+  - duplicate of #45669
+- **encoding/json: dynamic field omission** [#52803](https://golang.org/issue/52803)
+  - duplicate of #45669
+- **errors: add With(err, other error) error** [#52607](https://golang.org/issue/52607)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/go: \`go list -e -m -json all\` to start displaying hashes of modules** [#52792](https://golang.org/issue/52792)
+  - **likely accept**; last call for comments ⏳
+- **net/http: support for the 103 status code** [#51914](https://golang.org/issue/51914)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmd/go: GOWORK env var should be off by default** [#51967](https://golang.org/issue/51967)
+  - **likely decline**; last call for comments ⏳
+- **strconv: export unquote and appendQuotedWith** [#51887](https://golang.org/issue/51887)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: add -reproducible flag** [#51812](https://golang.org/issue/51812)
+  - added to minutes
+- **cmd/go: partial vendoring** [#52604](https://golang.org/issue/52604)
+  - commented
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - commented
+- **crypto/cipher: please export xorBytes** [#53021](https://golang.org/issue/53021)
+  - commented
+- **crypto/x509: provide method for generating conformant serial numbers** [#52444](https://golang.org/issue/52444)
+  - added to minutes
+- **crypto: implement CMAC** [#52931](https://golang.org/issue/52931)
+  - discussion ongoing
+- **database/sql: add SetMaxBadConnRetries** [#52886](https://golang.org/issue/52886)
+  - discussion ongoing
+- **do something smart with virtual machine forks & crypto** [#52544](https://golang.org/issue/52544)
+  - discussion ongoing
+- **encoding/json: add omitzero option** [#45669](https://golang.org/issue/45669)
+  - taken off hold
+  - commented
+- **fmt: add flags to control printing of slices** [#52936](https://golang.org/issue/52936)
+  - commented
+- **io/fs: add writable interfaces** [#45757](https://golang.org/issue/45757)
+  - discussion ongoing
+- **math/big: add Int.AddInt64, Int.CmpInt64** [#29951](https://golang.org/issue/29951)
+  - commented
+- **net/http/httputil: replace Director with Rewrite** [#53002](https://golang.org/issue/53002)
+  - discussion ongoing
+- **net/http: add ServeFSFile** [#51971](https://golang.org/issue/51971)
+  - discussion ongoing
+- **net/http: context based graceful server shutdown** [#52805](https://golang.org/issue/52805)
+  - commented
+- **net/netip: add IPv6LinkLocalAllRouters** [#51766](https://golang.org/issue/51766)
+  - added to minutes
+- **net/netip: add IPv6Loopback** [#51777](https://golang.org/issue/51777)
+  - added to minutes
+- **net/netip: add To6 to wrap an IPv4 address into an IPv6 one** [#51833](https://golang.org/issue/51833)
+  - added to minutes
+- **net/url: implement TextMarshaler/TextUnmarshaler interfaces for url.URL** [#52638](https://golang.org/issue/52638)
+  - added to minutes
+- **reflect: add Value.SetZero** [#52376](https://golang.org/issue/52376)
+  - added to minutes
+- **strings: add func CommonPrefixLen(x, y string) int** [#53120](https://golang.org/issue/53120)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://golang.org/issue/52751)
+  - commented
+- **text/template: add "return" action** [#53015](https://golang.org/issue/53015)
+  - discussion ongoing
+- **time: add format constants for date and date+time** [#52746](https://golang.org/issue/52746)
+  - commented
+- **unicode/utf16: add AppendRune** [#51896](https://golang.org/issue/51896)
+  - added to minutes
+- **unsafe: add functions to replace reflect.StringHeader and reflect.SliceHeader** [#53003](https://golang.org/issue/53003)
+  - commented
+- **x/crypto/ssh: add  ServerConfig.HostKeyAlgorithms** [#52132](https://golang.org/issue/52132)
+  - commented
+- **x/net/html: Allow getting raw HTML attribute values on Tokenizer** [#52911](https://golang.org/issue/52911)
+  - discussion ongoing
+
+**Hold**
+
+- **spec: allow explicit conversion from function to 1-method interface** [#47487](https://golang.org/issue/47487)
+  - hold for prototype
+- **x/net: Accept client-provided logger for http2 debug logs in addition to GODEBUG=http2debug=1,2** [#52734](https://golang.org/issue/52734)
+  - hold for log

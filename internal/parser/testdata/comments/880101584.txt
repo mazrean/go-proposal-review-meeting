@@ -1,0 +1,63 @@
+[GitHub has changed the way issue comments render, at least to me: now the issue title shows up when you type #nnn, not just the number. I've adjusted the minutes generator to avoid printing the issue title a second time, but I'm not planning to fix up all the old minutes. They'll just keep looking awful.]
+
+**2021-07-14 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #46229
+  - **likely accept**; last call for comments ⏳
+- #45964
+  - **likely accept**; last call for comments ⏳
+- #46336
+  - no change in consensus; **accepted** 🎉
+- #45713
+  - pending implementation
+- #45963
+  - no change in consensus; **accepted** 🎉
+- #44936
+  - commented
+- #46533
+  - commented
+- #45458
+  - pending implementation
+- #21865
+  - commented
+- #39357
+  - commented
+- #37848
+  - **likely decline**; last call for comments ⏳
+- #46648
+  - no change in consensus; **accepted** 🎉
+- #46370
+  - commented
+- #46518
+  - discussion ongoing
+- #46293
+  - no change in consensus; **accepted** 🎉
+- #46746
+  - **likely accept**; last call for comments ⏳
+- #46159
+  - commented
+- #45955
+  - commented
+  - opened discussion #47203
+- #46505
+  - commented
+- #45346
+  - **likely accept**; last call for comments ⏳
+- #43729
+  - likely decline (duplicate of #513, #958, #1085)
+- #46385
+  - **likely decline**; last call for comments ⏳
+- #46552
+  - **likely accept**; last call for comments ⏳
+- #42161
+  - **likely decline**; last call for comments ⏳
+- #40227
+  - commented
+- #39565
+  - duplicate of #31135
+- #46588
+  - no change in consensus; **declined**
+- #46742
+  - **likely accept**; last call for comments ⏳
+- #46232
+  - discussion ongoing

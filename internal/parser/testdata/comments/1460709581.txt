@@ -1,0 +1,87 @@
+**2023-03-08 / @aclements, @adonovan, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **bytes: add Buffer.Available and Buffer.AvailableBuffer** [#53685](https://go.dev/issue/53685)
+  - no change in consensus; **accepted** 🎉
+- **cmd/cgo: add #cgo noescape/nocallback annotations** [#56378](https://go.dev/issue/56378)
+  - no change in consensus; **accepted** 🎉
+- **testing: add func Testing() bool** [#52600](https://go.dev/issue/52600)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **cmd/compile: A GOOS=wasi GOARCH=wasm compilation target** [#58141](https://go.dev/issue/58141)
+  - **likely accept**; last call for comments ⏳
+- **crypto/x509: support SCT/OCSP passthrough when using platform verifiers** [#58251](https://go.dev/issue/58251)
+  - **likely accept**; last call for comments ⏳
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - **likely accept**; last call for comments ⏳
+- **use a zero for third digit for major release, such as 'go1.23.0'** [#57631](https://go.dev/issue/57631)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/analysis: add Analyzer.URL and Diagnostic.URL fields** [#57906](https://go.dev/issue/57906)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmd/cgo: get rid of CFType, JNI, EGL unsafe.Pointer => uintptr special cases** [#41337](https://go.dev/issue/41337)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: add opt-in transparent telemetry to Go toolchain** [#58894](https://go.dev/issue/58894)
+  - added to minutes
+- **all: remove GOARM=5** [#58686](https://go.dev/issue/58686)
+  - discussion ongoing
+- **cmd/compile: A GOOS=wasi GOARCH=wasm compilation target** [#58141](https://go.dev/issue/58141)
+  - commented
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - added to minutes
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - waiting on #57928
+- **context: notification callback for cancelled/expired contexts** [#57928](https://go.dev/issue/57928)
+  - commented
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - discussion ongoing
+- **crypto/x509: add android user trusted CA folder as a possible source for certificate retrieval** [#58922](https://go.dev/issue/58922)
+  - added to minutes
+- **crypto/x509: support code-constrained roots** [#57178](https://go.dev/issue/57178)
+  - commented
+- **flag: Add IgnoreOnError ErrorHandling** [#58839](https://go.dev/issue/58839)
+  - added to minutes
+- **net/http: add ErrSchemeMismatch** [#44855](https://go.dev/issue/44855)
+  - added to minutes
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - commented
+- **path/filepath: add IsReserved to identify Windows reserved filenames** [#57152](https://go.dev/issue/57152)
+  - commented
+- **runtime: use WER for GOTRACEBACK=crash on Windows** [#57441](https://go.dev/issue/57441)
+  - commented
+- **slices: add difference function** [#58730](https://go.dev/issue/58730)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **x/crypto/x509roots: new module** [#57792](https://go.dev/issue/57792)
+  - discussion ongoing
+- **x/exp/slices: DeleteFunc** [#54768](https://go.dev/issue/54768)
+  - commented
+  - added to minutes
+- **x/net/http2: add IdleConnTimeout to http2.Transport** [#57893](https://go.dev/issue/57893)
+  - commented
+- **x/oauth2: Add RFC 6749 error fields to RetrieveError** [#58125](https://go.dev/issue/58125)
+  - discussion ongoing
+- **x/sync/singleflight: add generic version** [#53427](https://go.dev/issue/53427)
+  - discussion ongoing
+- **x/tools/diff: a package for computing text differences** [#58893](https://go.dev/issue/58893)
+  - added to minutes
+- **x/tools/go/types/objectpath: add Encoder type, to amortize Scope.Names** [#58668](https://go.dev/issue/58668)
+  - added to minutes
+
+**Hold**
+
+- **archive/tar, archive/zip: add NewReaderOptions with directory traversal defenses** [#57850](https://go.dev/issue/57850)
+  - hold for more information

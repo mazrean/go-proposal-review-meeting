@@ -1,0 +1,101 @@
+**2021-11-03 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+**Accepted**
+
+- **cmd/vet: check for time formats with 2006-02-01** [#48801](https://golang.org/issue/48801)
+  - no change in consensus; **accepted** 🎉
+- **cmd/vet: printf: warn about verbs that don’t match a type parameter’s type set** [#49038](https://golang.org/issue/49038)
+  - no change in consensus; **accepted** 🎉
+- **mime: allow duplicate media parameters with equal values** [#48866](https://golang.org/issue/48866)
+  - no change in consensus; **accepted** 🎉
+- **net: add tcp WriteTo func to enable splice socket data to file** [#48530](https://golang.org/issue/48530)
+  - no change in consensus; **accepted** 🎉
+- **runtime/debug: soft memory limit** [#48409](https://golang.org/issue/48409)
+  - no change in consensus; **accepted** 🎉
+- **runtime: provide Pinner API for object pinning** [#46787](https://golang.org/issue/46787)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/go: add "go test -compile" option to just compile tests, not link or run them** [#46712](https://golang.org/issue/46712)
+  - duplicate of #15513
+- **cmd/go: remove -buildmode=shared (not c-shared)** [#47788](https://golang.org/issue/47788)
+  - no change in consensus; **declined**
+- **os/user: add iterators over users and groups** [#47907](https://golang.org/issue/47907)
+  - no change in consensus; **declined**
+- **text/template: execute "parent" template when inheriting** [#48266](https://golang.org/issue/48266)
+  - no change in consensus; **declined**
+- **x/crypto: include shamir secret sharing algorithm** [#47033](https://golang.org/issue/47033)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **reflect: add reflect.Value.Grow** [#48000](https://golang.org/issue/48000)
+  - **likely accept**; last call for comments ⏳
+- **reflect: permit Value.Bytes (but not SetBytes) on addressable byte arrays** [#47066](https://golang.org/issue/47066)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/acme: delete a bunch of ACMEv1 code** [#46654](https://golang.org/issue/46654)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **errors: add Like for testing that error values appear as expected** [#49172](https://golang.org/issue/49172)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **add shape package to stdlib for holding gcshape instance types** [#49268](https://golang.org/issue/49268)
+  - added to minutes
+- **cmd/go: make go get leave go.sum in a tidy state** [#49300](https://golang.org/issue/49300)
+  - added to minutes
+- **cmd/go: support compiling all tests without running** [#15513](https://golang.org/issue/15513)
+  - added to minutes
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://golang.org/issue/48429)
+  - discussion ongoing
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - discussion ongoing
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - discussion ongoing
+- **database/sql: Add MaxRepreparedStatements and MaxRetries to DBStats** [#49078](https://golang.org/issue/49078)
+  - cc’ed owners
+- **go/test: add a package to facilitate test tooling** [#47101](https://golang.org/issue/47101)
+  - commented
+- **include support for DTLS in stdlib or x/crypto** [#46915](https://golang.org/issue/46915)
+  - added to minutes
+  - cc’ed owners
+- **mime/multipart: add FileContentDisposition** [#46771](https://golang.org/issue/46771)
+  - commented
+- **net/http: define and export RequestBodyTooLargeError** [#30715](https://golang.org/issue/30715)
+  - discussion ongoing
+- **net/url: add JoinPath, URL.JoinPath** [#47005](https://golang.org/issue/47005)
+  - retitled
+  - commented
+- **net: add context-aware Dialer methods DialTCP, DialUDP, DialIP, DialUnix** [#49097](https://golang.org/issue/49097)
+  - retitled
+- **net: customize dnsConfig** [#49096](https://golang.org/issue/49096)
+  - added to minutes
+- **os/exec: allow setting Context in Cmd** [#46699](https://golang.org/issue/46699)
+  - added to minutes
+- **reflect: add Overflows method on reflect.Value** [#46772](https://golang.org/issue/46772)
+  - commented
+- **syscall: add landlock support on Linux** [#47049](https://golang.org/issue/47049)
+  - pinged author
+- **testing: a less error-prone API for benchmark iteration** [#48768](https://golang.org/issue/48768)
+  - discussion ongoing
+- **x/crypto/bcrypt: make compatible with OpenBSD** [#46940](https://golang.org/issue/46940)
+  - cc’ed owners
+- **x/crypto/ssh: add NewSharedClientConn** [#32958](https://golang.org/issue/32958)
+  - discussion ongoing
+- **x/net/html: add PrependChild and InsertAfter to Node** [#46960](https://golang.org/issue/46960)
+  - commented
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - discussion ongoing
+
+**Hold**
+
+- **context: add generic Key type** [#49189](https://golang.org/issue/49189)
+  - hold for generics
+- **spec: allow type assertion on type parameter value** [#49206](https://golang.org/issue/49206)
+  - hold for generics
+- **testing: a less error-prone API for benchmark iteration** [#48768](https://golang.org/issue/48768)
+  - put on hold

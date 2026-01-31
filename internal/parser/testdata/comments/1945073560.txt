@@ -1,0 +1,87 @@
+**2024-02-14 / @adonovan, @bradfitz, @cherrymui, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **crypto/tls: improved 0-RTT QUIC APIs** [#63691](https://go.dev/issue/63691)
+  - no change in consensus; **accepted** 🎉
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - no change in consensus; **accepted** 🎉
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - no change in consensus; **accepted** 🎉
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - no change in consensus; **accepted** 🎉
+- **os,path/filepath: make os.Readlink and filepath.EvalSymlinks on Windows (mostly) only evaluate symlinks** [#63703](https://go.dev/issue/63703)
+  - no change in consensus; **accepted** 🎉
+- **os: treat all non-symlink reparse points as ModeIrregular on Windows** [#61893](https://go.dev/issue/61893)
+  - no change in consensus; **accepted** 🎉
+- **runtime: deprecate func GOROOT** [#51473](https://go.dev/issue/51473)
+  - no change in consensus; **accepted** 🎉
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/cfg: add AST information to Blocks** [#53367](https://go.dev/issue/53367)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **archive/zip: support for encrypted archives** [#12081](https://go.dev/issue/12081)
+  - no change in consensus; **declined**
+- **slices: add At function** [#65530](https://go.dev/issue/65530)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - **likely accept**; last call for comments ⏳
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **io: add ReadPeeker and implement Peek in bytes.Reader** [#63548](https://go.dev/issue/63548)
+  - **likely decline**; last call for comments ⏳
+- **slices: add Divide (split into equally sized chunks)** [#65523](https://go.dev/issue/65523)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: add a way to query for non-defaults in the env** [#34208](https://go.dev/issue/34208)
+  - active
+- **cmd/go: separate default GODEBUGs from go language version** [#65573](https://go.dev/issue/65573)
+  - commented
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **debug/elf: add SHT\_GNU\_VERDEF section parsing** [#63952](https://go.dev/issue/63952)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/debug: add SetCrashHeader function** [#64590](https://go.dev/issue/64590)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **slices: add Repeat function** [#65238](https://go.dev/issue/65238)
+  - commented
+- **spec: support int(bool) conversions** [#64825](https://go.dev/issue/64825)
+  - commented
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **x/crypto/cryptobyte: support reading implicitly-tagged values** [#64811](https://go.dev/issue/64811)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - commented
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - hold for tests and docs

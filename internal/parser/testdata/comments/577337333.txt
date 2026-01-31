@@ -1,0 +1,50 @@
+**2020-01-22 / @rsc, @ianlancetaylor, @griesemer, @bradfitz, @spf13**
+
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - commented
+- #36681 **cmd/vet: flag accidental integer division inside float casts**
+  - commented
+- #34798 **cmd/vet: magic comment to check that variable is stack allocated**
+  - no change in consensus; **declined**
+- #14757 **crypto, hash: add WriteString support**
+  - no change in consensus; **declined**
+- #23514 **crypto/cipher: ability to use AEAD mode as block mode**
+  - no change in consensus; **declined**
+- #33564 **crypto/ecdsa: make PublicKey implement encoding.TextMarshaler/TextUnmarshaler using PEM**
+  - retitled
+  - no change in consensus; **accepted** 🎉
+- #18482 **crypto/tls: add Dialer with Dial, DialContext methods**
+  - no change in consensus; **accepted** 🎉
+- #21704 **crypto: add Equal(PublicKey) bool method to PublicKey implementations**
+  - retitled
+  - commented
+- #35697 **database/sql: expose convertAssign functionality in an Any type**
+  - no change in consensus; **declined**
+- #5901 **encoding/json: allow per-Encoder/per-Decoder registration of marshal/unmarshal functions**
+  - commented
+- #34624 **io, net: implement WriterTo for pipes**
+  - commented
+- #35061 **net: add LookupSOA function**
+  - no change in consensus; **declined**
+- #33136 **reflect: optimize v.Set(reflect.Zero(v.Type())) to not allocate**
+  - **likely accept**; last call for comments ⏳
+- #32115 **runtime: KeepAlive should perhaps keep things from being moved**
+  - no change in consensus; **declined**
+- #29982 **sizeof: new package with constants for Int, Uint, Uintptr, Int8, Float64, etc**
+  - **likely accept**; last call for comments ⏳
+- #36290 **strings: add (\*Reader).String()**
+  - withdrawn
+- #34306 **testing: flag show skipped**
+  - **likely decline**; last call for comments ⏳
+- #33184 **time: add Ticker.Reset**
+  - no change in consensus; **accepted** 🎉
+- #29289 **wiki: CodeReviewComments change: Discourage duplicate imports with different names**
+  - commented
+  - **likely decline**; last call for comments ⏳
+- #36634 **x/crypto/argon2: add API variants to support a buffer pool**
+  - commented
+  - put on hold
+- #33629 **x/playground: allow selecting supported versions of Go**
+  - no change in consensus; **accepted** 🎉
+- #35947 **x/tools/cmd/godoc: GORDO enriched Go documentation format.**
+  - **likely decline**; last call for comments ⏳

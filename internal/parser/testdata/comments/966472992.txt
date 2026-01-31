@@ -1,0 +1,4 @@
+Forgot to mention in yesterday's minutes: 
+Next week, the Go team has a Google-internal conflict most of the week,
+so we have cancelled the proposal review meeting.
+The next proposal review meeting will be November 24. 

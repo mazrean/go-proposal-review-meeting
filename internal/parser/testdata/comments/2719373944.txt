@@ -1,0 +1,78 @@
+**2025-03-12 / @aclements, @adonovan, @andybons, @bradfitz, @cherrymui, @griesemer, @ianlancetaylor, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **discussion: spec: reduce error handling boilerplate using ?** [#71460](https://go.dev/issue/71460)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- **encoding/xml: add flag for stricter XML char parsing** [#69503](https://go.dev/issue/69503)
+  - no change in consensus; **accepted** 🎉
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **all: remove support for windows/arm** [#71671](https://go.dev/issue/71671)
+  - **likely accept**; last call for comments ⏳
+- **encoding/json/v2: add new JSON API behind a GOEXPERIMENT=jsonv2 guard** [#71845](https://go.dev/issue/71845)
+  - **likely accept**; last call for comments ⏳
+- **x/exp/stats: new package with Mean, Median, more** [#69264](https://go.dev/issue/69264)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/go: add go mod verify -tag** [#68669](https://go.dev/issue/68669)
+  - skip
+- **go/types: add Select function** [#70737](https://go.dev/issue/70737)
+  - commented
+- **hash: standardize the hash function** [#70471](https://go.dev/issue/70471)
+  - commented
+- **net: add MarshalText/UnmarshalText to HardwareAddr** [#29678](https://go.dev/issue/29678)
+  - commented
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - skip
+- **testing: store test artifacts** [#71287](https://go.dev/issue/71287)
+  - commented
+- **testing: structured output for test attributes** [#43936](https://go.dev/issue/43936)
+  - skip
+- **time: make UnmarshalText, UnmarshalJSON enforce strict RFC 3339 semantics** [#57912](https://go.dev/issue/57912)
+  - skip
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - skip
+- **x/sys/unix: add methods to convert between time.Time and unix.PtpClockTime on Linux** [#70032](https://go.dev/issue/70032)
+  - commented
+- **x/term: expose history** [#68780](https://go.dev/issue/68780)
+  - commented
+- **x/tools/cmd/auth: tag and delete** [#70872](https://go.dev/issue/70872)
+  - skip
+- **x/tools/go/ast/inspector: add Cursor, to enable partial and multi-level traversals** [#70859](https://go.dev/issue/70859)
+  - discussion ongoing
+
+**Hold**
+
+- **container/unordered: a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - hold for #70471
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **go/types: add Hash function** [#69420](https://go.dev/issue/69420)
+  - hold for #70471
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - hold for experience
+
+

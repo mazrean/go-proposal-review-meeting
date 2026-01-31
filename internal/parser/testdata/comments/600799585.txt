@@ -1,0 +1,61 @@
+**2020-03-11 / @rsc, @griesemer, @ianlancetaylor, @bradfitz**
+
+[_**These are a week late.
+The meeting happened last Wednesday,
+but world events intervened and I forgot to post them.
+We're skipping this week and picking up next week.
+Sorry!**_]
+
+- #37503 **all: add bare metal ARM support**
+  - commented
+- #25348 **allow && and || operators and parentheses in build tags**
+  - commented
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - commented
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - commented
+- #35544 **cmd/doc: module documentation**
+  - put on hold
+- #37519 **cmd/go: deprecate -insecure on go get**
+  - discussion ongoing
+- #36460 **cmd/go: lazy module loading**
+  - **likely accept**; last call for comments ⏳
+- #37641 **cmd/go: reserve specific path prefixes for local (user-defined) modules**
+  - discussion ongoing
+- #37475 **cmd/go: stamp git/vcs current HEAD hash/commit hash/dirty bit in binaries**
+  - discussion ongoing
+- #34648 **crypto/elliptic: automatically upgrade CurveParams for known curves and deprecate custom ones**
+  - **likely accept**; last call for comments ⏳
+- #35499 **crypto/tls expose names for CurveID and SignatureScheme**
+  - no change in consensus; **accepted** 🎉
+- #36736 **crypto/tls: add Config.VerifyConnection callback**
+  - **likely accept**; last call for comments ⏳
+- #37172 **crypto/x509: parse additional fields in CertificateRequest**
+  - no change in consensus; **accepted** 🎉
+- #37250 **errors: add new function Temporary(error) bool**
+  - put on hold
+- #37533 **flag: exit 0 for default -h/-help option**
+  - commented
+- #37344 **io: default ByteReader from Reader**
+  - **likely decline**; last call for comments ⏳
+- #37255 **os/signal: add WithContext function**
+  - commented
+- #36821 **runtime/pprof: add PMU-based profiles**
+  - commented
+- #36141 **runtime: "real time" timer semantics**
+  - commented
+- #37112 **runtime: API for unstable metrics**
+  - commented
+- #37642 **runtime: make print/println print interfaces**
+  - proposal retracted by author; **declined**
+- #37033 **runtime: provide centralized facility for managing (c)go pointer handles**
+  - no change in consensus; **accepted** 🎉
+- #36887 **sort: add InvertSlice**
+  - no change in consensus; **declined**
+- #35998 **testing: add TB.TempDir() string**
+  - commented
+- #37770 **testing: export all test case into human friendly format.**
+  - infeasible
+  - no change in consensus; **declined**
+- #37495 **wiki: CodeReviewComments change**
+  - no change in consensus; **declined**

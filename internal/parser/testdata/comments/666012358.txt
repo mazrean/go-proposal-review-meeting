@@ -1,0 +1,21 @@
+**2020-07-29 / @rsc, @griesemer, @bradfitz, @andybons 🎂, @spf13**
+
+- #40270 **add "umbrella" label for issues about issues**
+  - commented ☂
+- #40481 **add unsafe.Add**
+  - commented
+- #40255 **all: drop GO386=387 support in Go 1.16**
+  - commented
+- #23142 **cmd/vet: detect values assigned but not used**
+  - commented
+- #40337 **crypto/dsa: deprecate and remove from crypto/x509 and x/crypto/ssh**
+  - commented
+- #40025 **io/ioutil: move Discard, NopCloser, ReadAll to io**
+  - no change in consensus; **accepted** 🎉
+- #40281 **reflect: allow multiple keys in key:value pair in struct tag**
+  - commented
+- #395 **spec: derive array pointer from slice**
+  - commented
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - **likely accept**; last call for comments ⏳
+  - waiting on #395 and #40481

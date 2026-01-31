@@ -1,0 +1,114 @@
+**2021-12-01 / @rsc, @griesemer, @bradfitz**
+
+**Accepted**
+
+- **mime/multipart: add FileContentDisposition** [#46771](https://golang.org/issue/46771)
+  - no change in consensus; **accepted** 🎉
+- **net/http: define and export RequestBodyTooLargeError** [#30715](https://golang.org/issue/30715)
+  - no change in consensus; **accepted** 🎉
+- **net/url: add JoinPath, URL.JoinPath** [#47005](https://golang.org/issue/47005)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/go: make go get leave go.sum in a tidy state** [#49300](https://golang.org/issue/49300)
+  - no change in consensus; **declined**
+- **cmd/go: record build tags in build info (for debug.ReadBuildInfo)** [#44560](https://golang.org/issue/44560)
+  - proposal retracted by author; **declined**
+- **cmd/go: use the \`go\` version declared in the \`go.mod\` file to determine module boundaries and checksums** [#30369](https://golang.org/issue/30369)
+  - proposal retracted by author; **declined**
+- **database/sql: Add MaxRepreparedStatements and MaxRetries to DBStats** [#49078](https://golang.org/issue/49078)
+  - no change in consensus; **declined**
+- **database/sql: use a stack-based instead of a queue-based approach for connection pool** [#43173](https://golang.org/issue/43173)
+  - proposal retracted by author; **declined**
+- **encoding/json: option to clear output before unmarshal** [#49334](https://golang.org/issue/49334)
+  - proposal retracted by author; **declined**
+- **go/test: add a package to facilitate test tooling** [#47101](https://golang.org/issue/47101)
+  - no change in consensus; **declined**
+- **go2: constraint for type with particular type parameter** [#49460](https://golang.org/issue/49460)
+  - proposal retracted by author; **declined**
+- **net: customize dnsConfig** [#49096](https://golang.org/issue/49096)
+  - no change in consensus; **declined**
+- **os/exec: allow setting Context in Cmd** [#46699](https://golang.org/issue/46699)
+  - no change in consensus; **declined**
+- **reflect: add Overflows method on reflect.Value** [#46772](https://golang.org/issue/46772)
+  - no change in consensus; **declined**
+- **reflect: add allocation-free variant of Value.Call** [#43732](https://golang.org/issue/43732)
+  - duplicate of #49340
+- **x/net/html: add PrependChild and InsertAfter to Node** [#46960](https://golang.org/issue/46960)
+  - no change in consensus; **declined**
+- **x/sync: add panicgroup struct to deal with panic in the sub-goroutine** [#49802](https://golang.org/issue/49802)
+  - duplicate of #40484
+
+**Likely Accept**
+
+- **cmd/go: support compiling all tests without running** [#15513](https://golang.org/issue/15513)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **context: add WithCancelReason** [#46273](https://golang.org/issue/46273)
+  - **likely decline**; last call for comments ⏳
+- **strings: missing mirror functions** [#46514](https://golang.org/issue/46514)
+  - **likely decline**; last call for comments ⏳
+- **x/net/http2: support http.Hijacker** [#46319](https://golang.org/issue/46319)
+  - **likely decline**; last call for comments ⏳
+- **x/tools/go/analysis/passes/errorstringcompare: new check that warns when programmers compare against Error() strings** [#49356](https://golang.org/issue/49356)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/compile: clarify whether "-l" and "-N" compiler flags are actually supported** [#49390](https://golang.org/issue/49390)
+  - commented
+- **crypto/tls: add VersionName function to return a string version of the TLS Version** [#46308](https://golang.org/issue/46308)
+  - cc’ed owners
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - commented
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - cc’ed owners
+- **crypto: include support for DTLS in stdlib or x/crypto** [#46915](https://golang.org/issue/46915)
+  - cc’ed owners
+- **go test -errfuzz flag to randomize error strings** [#49358](https://golang.org/issue/49358)
+  - added to minutes
+- **io/fs: add ReadLinkFS interface** [#49580](https://golang.org/issue/49580)
+  - added to minutes
+- **mime/multipart: allow specifying content type in Writer.CreateFormFile** [#49329](https://golang.org/issue/49329)
+  - commented
+- **net: add Listen and Dial for TCP and UDP that takes an AddrPort** [#49522](https://golang.org/issue/49522)
+  - merged into #49097
+- **net: add context-aware Dialer methods DialTCP, DialUDP, DialIP, DialUnix** [#49097](https://golang.org/issue/49097)
+  - commented
+- **reflect: add \`Value.CallInto\`** [#49340](https://golang.org/issue/49340)
+  - commented
+- **runtime: add block/wake function** [#46431](https://golang.org/issue/46431)
+  - commented
+- **runtime: allow N goroutines to be simultaneously locked to the same OS thread** [#49848](https://golang.org/issue/49848)
+  - added to minutes
+- **runtime: automatically bump RLIMIT\_NOFILE on Linux?** [#46279](https://golang.org/issue/46279)
+  - commented
+- **runtime: enable WER dumps for Windows under certain circumstances** [#49471](https://golang.org/issue/49471)
+  - added to minutes
+- **spec: add comparable w/o interfaces** [#49587](https://golang.org/issue/49587)
+  - added to minutes
+- **strings: add a Join method to Builder** [#49546](https://golang.org/issue/49546)
+  - added to minutes
+- **sync: add method Mutex.Locked(func())** [#49563](https://golang.org/issue/49563)
+  - added to minutes
+- **syscall: add landlock support on Linux** [#47049](https://golang.org/issue/47049)
+  - commented
+- **x/crypto/bcrypt: make compatible with OpenBSD** [#46940](https://golang.org/issue/46940)
+  - cc’ed owners
+- **x/crypto/ssh: add NewSharedClientConn** [#32958](https://golang.org/issue/32958)
+  - cc’ed owners
+- **x/sys/windows/namedpipe: new package** [#49650](https://golang.org/issue/49650)
+  - added to minutes
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - commented
+- **x/tools: move cmd/internal/edit to a public package** [#29824](https://golang.org/issue/29824)
+  - added to minutes
+
+**Hold**
+
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://golang.org/issue/48429)
+  - hold for Go 1.18
+

@@ -1,0 +1,59 @@
+**2020-10-28 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #34974 **archive/zip: add File.OpenRaw, Writer.CreateRaw, Writer.Copy**
+  - no change in consensus; **accepted** 🎉
+- #40724 **cmd/compile: switch to a register-based calling convention for Go functions**
+  - **likely accept**; last call for comments ⏳
+- #41583 **cmd/go: add go test -skip to skip specific tests**
+  - **likely accept**; last call for comments ⏳
+- #41730 **cmd/go: allow users to control VCS usage**
+  - no change in consensus; **accepted** 🎉
+- #41696 **cmd/go: deprecate the -i flag**
+  - no change in consensus; **accepted** 🎉
+- #40405 **cmd/go: detect proxy redirect loops**
+  - discussion ongoing
+- #40364 **cmd/go: enable listing direct dependency updates**
+  - **likely accept**; last call for comments ⏳
+- #42040 **container/list: add trimming APIs**
+  - no change in consensus; **declined**
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo and CertificateRequestInfo**
+  - commented
+- #40521 **crypto/tls: support TLS 1.3 post-handshake authentication**
+  - discussion ongoing
+- #41790 **database/sql: close driver.Connector if it implements an io.Closer**
+  - commented
+- #40127 **encoding/json: add Encoder.EncodeToken method**
+  - commented
+- #42009 **encoding/json: add EvalJSONPointer function to support RFC 6901**
+  - discussion ongoing
+- #40128 **encoding/json: garbage-free reading of tokens**
+  - commented
+- #41792 **flag: validate the name of the flag**
+  - discussion ongoing
+- #40765 **net/http: accept "x-gzip" content encoding value**
+  - **likely decline**; last call for comments ⏳
+- #41773 **net/http: add Server.OptionsHandler to allow custom handling of OPTIONS \***
+  - **likely accept**; last call for comments ⏳
+- #42173 **net/http: handle Seek error in range request by sending entire file**
+  - discussion ongoing
+- #41625 **net/mail: allow AddressParser helper code to signal invalid character set**
+  - discussion ongoing
+- #41733 **net/url: add URL.Clone method**
+  - commented
+- #42026 **os: add ReadDir, ReadFile, WriteFile, CreateTemp, MkdirTemp & deprecate io/ioutil**
+  - discussion ongoing
+- #42201 **path/filepath: add Resolve, replacing EvalSymlinks**
+  - moved from #37113
+  - discussion ongoing
+- #42027 **path/filepath: add WalkDir (Walk using DirEntry)**
+  - **likely accept**; last call for comments ⏳
+- #41896 **reflect: add Type.IsEmptyInterface**
+  - **likely decline**; last call for comments ⏳
+- #42099 **reflect: add Type.QualifiedString**
+  - **likely decline**; last call for comments ⏳
+- #42098 **syscall: add SysProcAttr.NoInheritHandles on Windows**
+  - **likely accept**; last call for comments ⏳
+- #41980 **testing: show diffs for incorrect output from Example tests**
+  - retitled
+- #42102 **time: add Time.IsDST() bool method**
+  - commented

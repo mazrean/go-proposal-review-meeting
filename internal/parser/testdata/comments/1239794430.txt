@@ -1,0 +1,70 @@
+**2022-09-07 / @rsc, @griesemer, @bradfitz, @aclements**
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- **net: add func(IP) Unmap() IP to help when using net/netip** [#54234](https://go.dev/issue/54234)
+  - duplicate of #53607
+
+**Likely Accept**
+
+- **errors: add support for wrapping multiple errors** [#53435](https://go.dev/issue/53435)
+  - **likely accept**; last call for comments ⏳
+- **net: add UDPMsg, (\*UDPConn).ReadUDPMsgs, (\*UDPConn).WriteUDPMsgs** [#45886](https://go.dev/issue/45886)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/cryptobyte: non allocating AddUint\*LengthPrefixed and AddASN1 API** [#54059](https://go.dev/issue/54059)
+  - **likely accept**; last call for comments ⏳
+- **x/sync/errgroup: propagate panics and Goexits through Wait** [#53757](https://go.dev/issue/53757)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **runtime/race: add const Enabled** [#36477](https://go.dev/issue/36477)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **build: adopt Go 1.20 as bootstrap toolchain for Go 1.22** [#54265](https://go.dev/issue/54265)
+  - commented
+- **crypto/cipher: detached mode AEAD Seal/Open** [#24990](https://go.dev/issue/24990)
+  - discussion ongoing
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - cc’ed owners
+- **crypto/x509: expose hash algorithm for SignatureAlgorithm** [#33317](https://go.dev/issue/33317)
+  - discussion ongoing
+- **crypto: add SignContext** [#28427](https://go.dev/issue/28427)
+  - discussion ongoing
+- **crypto: add crypto engines** [#33281](https://go.dev/issue/33281)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **go/ast: record start and end of file in File.{Start,End}Pos** [#53202](https://go.dev/issue/53202)
+  - off hold
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **math/rand: seed global generator randomly** [#54880](https://go.dev/issue/54880)
+  - added to minutes
+- **net/http: ResponseController to manipulate per-request timeouts (and other behaviors)** [#54136](https://go.dev/issue/54136)
+  - added to minutes
+- **net/http: add ServeFSFile** [#51971](https://go.dev/issue/51971)
+  - discussion ongoing
+- **net: UDPAddr/TCPAddr AddrPort should map 4in6 addresses to IPv4 netip.Addrs** [#53607](https://go.dev/issue/53607)
+  - commented
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - added to minutes
+- **runtime: add HeapMarked to MemStats** [#51966](https://go.dev/issue/51966)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **x/text: expose MIBenum via identifier package** [#47577](https://go.dev/issue/47577)
+  - discussion ongoing
+
+**Hold**
+
+- **x/net/http2: distinguish no body from empty body** [#53894](https://go.dev/issue/53894)
+  - hold for more analysis

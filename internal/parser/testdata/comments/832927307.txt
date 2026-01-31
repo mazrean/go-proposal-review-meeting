@@ -1,0 +1,74 @@
+**2021-05-05 / @rsc, @griesemer, @bradfitz, @andybons, @spf13**
+
+- #45453 **all: add GOAMD64 environment variable**
+  - commented
+- #45038 **bytes, strings: add Clone**
+  - no change in consensus; **accepted** 🎉
+- #45846 **cmd/cover: add flags to print coverage percentages over packages or files**
+  - put on hold
+- #45713 **cmd/go: add a workspace mode**
+  - commented
+- #45611 **cmd/go: allow GOPRIVATE to provide source repository URI**
+  - discussion ongoing
+- #44649 **cmd/go: introduce 'module GOPATH' to allow transition from GOPATH to modules**
+  - no change in consensus; **declined**
+- #44435 **cmd/go: narrow 'mod download' default set**
+  - added to minutes
+- #45454 **cmd/go: provide build tags for architecture environment variables**
+  - commented
+- #45108 **cmd/vet: diagnose marshal of field of type error**
+  - no change in consensus; **declined**
+- #40356 **cmd/vet: ensure errors implement Is, As, and Unwrap anonymous interfaces**
+  - no change in consensus; **accepted** 🎉
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - discussion ongoing
+- #29257 **crypto/tls: allow access to net.Conn underneath tls.Conn**
+  - **likely accept**; last call for comments ⏳
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #45815 **embed: read file contents directly from FS during fs.WalkDir**
+  - commented
+- #45449 **encoding/json: add support of wrapped error in addErrorContext function**
+  - commented
+- #45628 **encoding/xml: add Decoder.InputPos**
+  - **likely accept**; last call for comments ⏳
+- #45754 **flag: add TextVar to handle types that implement encoding.TextUnmarshaler**
+  - cc’ed owners
+- #44808 **image, image/draw: add interfaces for using RGBA64 directly**
+  - no change in consensus; **accepted** 🎉
+- #45899 **io: Provide concurrent helper functions**
+  - commented
+- #45455 **math/bits: add Deposit and Extract functions**
+  - commented
+- #45915 **math32: add float32 math package**
+  - commented
+- #39290 **net/http/httptest: Recorder.Result() should always set Response.Body to http.NoBody when response is empty**
+  - commented
+- #45469 **net/http/httputil: add a ModifyRequest method to ReverseProxy**
+  - no change in consensus; **declined**
+- #45973 **net/http: add AllowQuerySemicolons**
+  - added to minutes
+- #45460 **net/http: allow customizing proxy CONNECT url**
+  - **likely accept**; last call for comments ⏳
+- #25192 **net/url: don't parse ';' as a separator in query string**
+  - no change in consensus; **accepted** 🎉
+- #42888 **runtime/debug: add SetCrashOutput(file \*os.File)**
+  - **likely accept**; last call for comments ⏳
+- #45955 **slices: new package to provide generic slice functions**
+  - added to minutes
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - discussion ongoing
+- #45435 **sync: add Mutex.TryLock**
+  - commented
+- #45562 **testing: add TB.WriteFile(name string, data string) string**
+  - no change in consensus; **declined**
+- #45650 **testing: add conditional-error helpers to T and B**
+  - **likely decline**; last call for comments ⏳
+- #45752 **text/template: add table action**
+  - commented
+- #36141 **time: add ExternalNow, etc for external time and timers**
+  - retitled
+- #45571 **time: context-aware time Ticker and Timer**
+  - **likely decline**; last call for comments ⏳
+- #45898 **unicode/utf8: distinguish between bona fide encoding error and insufficient bytes**
+  - commented

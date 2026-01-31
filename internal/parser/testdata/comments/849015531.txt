@@ -1,0 +1,64 @@
+[We spent a while paging in SysV shared memory and didn't get to everything in active this week. Next time!]
+
+**2021-05-26 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #46268 **add package containing fuzz function helpers**
+  - commented
+- #46229 **all: port to linux/loongarch64**
+  - comment
+- #45964 **all: raise minimum required Linux kernel version**
+  - commented
+- #46226 **cmd/cgo: pkg-config support default pc file**
+  - **likely decline**; last call for comments ⏳
+- #45963 **cmd/go/internal/test: add -vet=all sentinel**
+  - discussion ongoing
+- #44435 **cmd/go: narrow 'mod download' default set**
+  - commented
+- #45733 **cmd/go: test -json include file and line info**
+  - no change in consensus; **declined**
+- #45961 **cmd/vet: time.Time should not compared**
+  - no change in consensus; **declined**
+- #45961 **cmd/vet: time.Time should not compared**
+  - no change in consensus; **declined**
+- #46057 **crypto/x509: add CertPool.Equal**
+  - commented
+- #46287 **crypto/x509: use platform verifier on Windows, macOS and iOS**
+  - added to minutes
+- #46065 **encoding/json: add FlexObject for encoding/decoding between JSON and flex Go types.**
+  - no change in consensus; **declined**
+- #45754 **flag: add TextVar to handle types that implement encoding.TextUnmarshaler**
+  - no change in consensus; **accepted** 🎉
+- #46190 **fmt: add Printlnf, Fprintlnf, etc**
+  - **likely decline**; last call for comments ⏳
+- #46121 **html/template: make FuncMap an alias for text/template.FuncMap**
+  - no change in consensus; **accepted** 🎉
+- #45899 **io: add OffsetWriter, NewOffsetWriter**
+  - no change in consensus; **accepted** 🎉
+- #46059 **net/url: add OmitHost bool to URL**
+  - no change in consensus; **accepted** 🎉
+- #45729 **net: deprecate Temporary error status**
+  - commented
+- #46131 **reflect: add MapIter.SetKey, SetValue, and friends**
+  - commented
+- #46093 **reflect: add alloc-free way retrieve value from Value**
+  - proposal retracted by author; **declined**
+- #46159 **regexp: support encoding.TextMarshaler**
+  - commented
+- #39377 **spec: Formal Seal Model & Support for Go Features and Libraries including from the Go Community**
+  - no change in consensus; **declined**
+- #45435 **sync: add Mutex.TryLock**
+  - **likely accept**; last call for comments ⏳
+- #46184 **syscall: ReleaseCallback for Windows**
+  - commented
+- #46259 **syscall: add Jail param to SysProcAttr for FreeBSD to allow running Command in jail**
+  - comment
+- #46258 **syscall: add Pdeathsig to SysProcAttr for FreeBSD**
+  - **likely accept**; last call for comments ⏳
+- #36141 **time: add ExternalNow, etc for external time and timers**
+  - **likely accept**; last call for comments ⏳
+- #46232 **x/crypto/ssh: expose supported Kex algorithms**
+  - cc’ed owners
+- #46060 **x/sys/unix: add IoctlSetIntPtr**
+  - no change in consensus; **accepted** 🎉
+- #46084 **x/sys/unix: add System V shared memory functions**
+  - commented

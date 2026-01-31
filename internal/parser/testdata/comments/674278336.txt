@@ -1,0 +1,70 @@
+**2020-08-12 / @rsc, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+[Minutes late coming out, sorry.]
+
+- #40270 **add "umbrella" label for issues about issues**
+  - no change in consensus; **accepted** 🎉
+- #40255 **all: drop GO386=387 support in Go 1.16**
+  - no change in consensus; **accepted** 🎉
+- #34974 **archive/zip: add already compressed files**
+  - commented
+- #38777 **cmd/go: add -debug flag (default true) to control DWARF/etc info in binary**
+  - **likely accept**; last call for comments ⏳
+- #40189 **cmd/go: add a sub command to manage authentication**
+  - discussion ongoing
+- #40357 **cmd/go: deprecate a major module version**
+  - commented
+- #40718 **cmd/go: disallow Hangul filler codepoints in import paths**
+  - commented
+  - proposal retracted by author; **declined**
+- #40323 **cmd/go: notify about newer major versions**
+  - commented
+- #18022 **cmd/vet: add check for sync.WaitGroup abuse**
+  - commented
+- #40701 **cmd/vet: warn about variables/values of type reflect.{Slice,String}Header**
+  - commented
+- #36503 **context: add Merge**
+  - commented
+- #40337 **crypto/dsa: deprecate and remove from crypto/x509 and x/crypto/ssh**
+  - no change in consensus; **accepted** 🎉
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo, CertificateRequestInfo**
+  - discussion ongoing
+- #40171 **crypto: import fiat-crypto implementations**
+  - discussion ongoing
+- #40082 **database/sql: add NullInt16 support**
+  - commented
+- #40674 **errors: Is resolve nil error problem**
+  - **likely decline**; last call for comments ⏳
+- #40675 **errors: allow implementing err.Is(err) == false**
+  - **likely decline**; last call for comments ⏳
+- #40673 **errors: allow implementing err.Is(nil) == true**
+  - **likely decline**; last call for comments ⏳
+- #38776 **hash, crypto: add WriteByte, WriteString method to hash implementations**
+  - commented
+- #40663 **math: add Tau in constants**
+  - **likely decline**; last call for comments ⏳
+- #40034 **net/smtp: add Client.TLSConfig field and Client.SendMail method**
+  - no change in consensus; **accepted** 🎉
+- #40239 **net/url: url manipulation after creation/parsing**
+  - commented
+  - proposal retracted by author; **declined**
+- #40281 **reflect: allow multiple keys in key:value pair in struct tag**
+  - no change in consensus; **accepted** 🎉
+- #40717 **spec: disallow Hangul filler codepoints in Go identifiers**
+  - duplicate of #20115
+- #395 **spec: use (\*\[4]int)(x) to convert slice x into array pointer**
+  - commented
+- #39863 **sync: add WaitGroup.Go method**
+  - **likely decline**; last call for comments ⏳
+- #39904 **testing: change -run regexp to make / have usual precedence**
+  - no change in consensus; **accepted** 🎉
+- #39903 **testing: expose testing.T constructor so a test with subtests can be verified to fail**
+  - **likely decline**; last call for comments ⏳
+- #39726 **time: Duration should have .Ceil method**
+  - discussion ongoing
+- #40481 **unsafe: add Add**
+  - **likely accept**; last call for comments ⏳
+  - waiting on #395
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - **likely accept**; last call for comments ⏳
+  - waiting on #395

@@ -1,0 +1,11 @@
+[Continued from previous post; two were not in the proposal project yet and my program didn't like that.]
+
+**2022-09-07 / @rsc, @griesemer, @bradfitz, @aclements**
+
+**Active**
+
+- **math/rand: add Reader variable** [#16776](https://go.dev/issue/16776)
+  - added to minutes
+- **math/rand: disambiguate Read from crypto/rand.Read** [#20661](https://go.dev/issue/20661)
+  - added to minutes
+  - commented

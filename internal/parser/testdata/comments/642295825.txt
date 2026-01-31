@@ -1,0 +1,37 @@
+**2020-06-10 / @rsc, @griesemer, @ianlancetaylor, @andybons**
+
+- #34974 **archive/zip: add already compressed files**
+  - commented
+- #20322 **cmd/go: add \*\_unix.go recognition (and presumably unix build tag)**
+  - no change in consensus; **accepted** 🎉
+- #39056 **cmd/go: add flag \`go test -no-cache\`**
+  - no change in consensus; **declined**
+- #36503 **context: Add Merge**
+  - commented
+- #32406 **crypto/tls: add request context to Conn, ClientHelloInfo, CertificateRequestInfo and ConnectionState**
+  - discussion ongoing
+- #39493 **errors: add String**
+  - commented
+- #39444 **os: export errFinished**
+  - commented
+- #38298 **pointer package**
+  - no change in consensus; **declined**
+- #38831 **reflect: add a KindCount constant in Kind constants declaration**
+  - **likely decline**; last call for comments ⏳
+- #38641 **reflect: support tab and newline as tag separator**
+  - no change in consensus; **declined**
+- #39413 **regexp: add Regexp.ProgramSize method similar to C++ RE2::ProgramSize**
+  - commented
+- #29696 **runtime: add way for applications to respond to GC backpressure**
+  - commented
+- #8606 **spec: define that structs are compared field-by-field as listed in source code**
+  - retitled
+  - no change in consensus; **accepted** 🎉
+- #39351 **sync/atomic: add Value.LoadOrStore**
+  - commented
+- #38891 **sync: Add UnlockToRLock() to RWMutex**
+  - **likely decline**; last call for comments ⏳
+- #38781 **testing/iotest: add ErrReader**
+  - no change in consensus; **accepted** 🎉
+- #37196 **time: make Timer/Ticker channels not receivable with old values after Stop or Reset returns**
+  - commented

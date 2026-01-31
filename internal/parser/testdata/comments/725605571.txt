@@ -1,0 +1,60 @@
+**2020-11-11 / @rsc, @griesemer, @ianlancetaylor, @bradfitz**
+
+- #42168 **add first-class Cross Site Request Forgery protection**
+  - discussion ongoing
+- #42328 **cmd/go: avoid surprising inclusion of "hidden" files when using //go:embed**
+  - commented
+- #42477 **cmd/go: build tag in filename suffix for matching of syso files**
+  - commented
+- #40405 **cmd/go: detect proxy redirect loops**
+  - discussion ongoing
+- #41824 **cmd/go: run benchmarks for one iteration when testing**
+  - commented
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo and CertificateRequestInfo**
+  - no change in consensus; **accepted** 🎉
+- #40521 **crypto/tls: support TLS 1.3 post-handshake authentication**
+  - cc’ed owners
+- #41790 **database/sql: close driver.Connector if it implements an io.Closer**
+  - no change in consensus; **accepted** 🎉
+- #40127 **encoding/json: add Encoder.EncodeToken method**
+  - **likely accept**; last call for comments ⏳
+- #42009 **encoding/json: add EvalJSONPointer function to support RFC 6901**
+  - **likely decline**; last call for comments ⏳
+- #40128 **encoding/json: garbage-free reading of tokens**
+  - commented
+- #40155 **flag: add Strings, a default Value**
+  - commented
+- #41792 **flag: panic if flag name begins with - or contains =**
+  - commented
+- #41495 **fmt: %p should accept uintptr**
+  - **likely decline**; last call for comments ⏳
+- #42322 **io/fs: add func Sub(fsys FS, dir string) FS**
+  - commented
+- #39609 **net/http: add constant for samesite cookie mode**
+  - commented
+- #42173 **net/http: handle Seek error in range request by sending entire file**
+  - commented
+- #41625 **net/mail: allow AddressParser helper code to signal invalid character set**
+  - commented
+- #42026 **os: add ReadDir, ReadFile, WriteFile, CreateTemp, MkdirTemp & deprecate io/ioutil**
+  - no change in consensus; **accepted** 🎉
+- #42201 **path/filepath: add Resolve, replacing EvalSymlinks**
+  - commented
+- #41993 **reflect: add NewAtPtr, ValueAt**
+  - commented
+- #40592 **reflect: add func (Value) UnsafePointer() unsafe.Pointer**
+  - **likely accept**; last call for comments ⏳
+- #40168 **sizeof: add bit sizes**
+  - put on hold
+- #29982 **sizeof: new package with constants for Int, Uint, Uintptr, Int8, Float64, etc**
+  - put on hold
+- #25137 **sort: Stable with better asymptotic time complexity**
+  - proposal retracted by author; **declined**
+- #37836 **strconv: add Not**
+  - no change in consensus; **declined**
+- #40135 **strings: add Cut**
+  - commented
+- #41980 **testing: show diffs for incorrect output from Example tests**
+  - no change in consensus; **accepted** 🎉
+- #42102 **time: add Time.IsDST() bool method**
+  - no change in consensus; **accepted** 🎉

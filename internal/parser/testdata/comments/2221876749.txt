@@ -1,0 +1,8 @@
+Due to an unfortunate confluence of events, the next proposal review meeting will not be until July 25. 
+We missed July 3 due to the July 4th holiday in the US.
+We missed July 10 due to GopherCon.
+We will miss July 17 due to the scheduled Go quiet week.
+
+Apologies for the relative silence. 
+We're in the release freeze, so at least it's not holding up landing any work.
+Hope you are all having a relaxing summer.

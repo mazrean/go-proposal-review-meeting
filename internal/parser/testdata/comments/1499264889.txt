@@ -1,0 +1,148 @@
+**2023-04-05 / @adonovan, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **context: add AfterFunc** [#57928](https://go.dev/issue/57928)
+  - no change in consensus; **accepted** 🎉
+- **crypto/x509: add android user trusted CA folder as a possible source for certificate retrieval** [#58922](https://go.dev/issue/58922)
+  - no change in consensus; **accepted** 🎉
+- **go/ast, go/build/constraint: support for per-file Go versions using //go:build lines** [#59033](https://go.dev/issue/59033)
+  - no change in consensus; **accepted** 🎉
+- **net/http: add ErrSchemeMismatch** [#44855](https://go.dev/issue/44855)
+  - no change in consensus; **accepted** 🎉
+- **runtime: use WER for GOTRACEBACK=wer on Windows** [#57441](https://go.dev/issue/57441)
+  - no change in consensus; **accepted** 🎉
+- **slices: add DeleteFunc** [#54768](https://go.dev/issue/54768)
+  - no change in consensus; **accepted** 🎉
+- **x/oauth2: Add RFC 6749 error fields to RetrieveError** [#58125](https://go.dev/issue/58125)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/types/objectpath: add Encoder type, to amortize Scope.Names** [#58668](https://go.dev/issue/58668)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **all: remove GOARM=5** [#58686](https://go.dev/issue/58686)
+  - no change in consensus; **declined**
+- **cmd/go: add "go mod audit" subcommand** [#54443](https://go.dev/issue/54443)
+  - declined as infeasible
+- **cmd/go: add go work toggle flag (impossible?)** [#57090](https://go.dev/issue/57090)
+  - declined as infeasible
+- **fmt: improve ergonomics of fmt.Print-like functions** [#57816](https://go.dev/issue/57816)
+  - proposal retracted by author; **declined**
+- **html: optimize EscapeString and UnescapeString with avx instructions** [#53410](https://go.dev/issue/53410)
+  - declined as infeasible
+- **io: io.MultiReader should read until the buffer is full or there are no Readers left** [#57750](https://go.dev/issue/57750)
+  - declined as infeasible
+- **os/exec: Add ability to limit or prohibit the use of spawning subprocess'** [#54621](https://go.dev/issue/54621)
+  - declined as infeasible
+- **unicode/utf8: rune count in a valid UTF-8 string** [#57896](https://go.dev/issue/57896)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **all: add opt-in transparent telemetry to Go toolchain** [#58894](https://go.dev/issue/58894)
+  - **likely accept**; last call for comments ⏳
+- **embed: openFile should implement ReaderAt** [#57803](https://go.dev/issue/57803)
+  - **likely accept**; last call for comments ⏳
+- **log/slog: arg to Record.Attrs should return bool** [#59060](https://go.dev/issue/59060)
+  - **likely accept**; last call for comments ⏳
+- **log/slog: drop only completely empty Attrs** [#59282](https://go.dev/issue/59282)
+  - **likely accept**; last call for comments ⏳
+- **log/slog: handle panics in LogValuer.LogValue** [#59141](https://go.dev/issue/59141)
+  - **likely accept**; last call for comments ⏳
+- **net: add func (\*TCPConn) MultipathTCP() (bool, error)** [#59166](https://go.dev/issue/59166)
+  - **likely accept**; last call for comments ⏳
+- **spec: a general approach to type inference** [#58650](https://go.dev/issue/58650)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/x509roots: new module** [#57792](https://go.dev/issue/57792)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **bash\_completions support** [#58598](https://go.dev/issue/58598)
+  - **likely decline**; last call for comments ⏳
+- **embed: treat \`/\` as module's root in \`go:embed\` directive** [#58525](https://go.dev/issue/58525)
+  - **likely decline**; last call for comments ⏳
+- **io: add NewReaderAt** [#58679](https://go.dev/issue/58679)
+  - **likely decline**; last call for comments ⏳
+- **path/filepath: add IsReserved to identify Windows reserved filenames** [#57152](https://go.dev/issue/57152)
+  - **likely decline**; last call for comments ⏳
+- **spec: define return statement's result assignment order?** [#58233](https://go.dev/issue/58233)
+  - **likely decline**; last call for comments ⏳
+- **x/exp/maps: Shrink** [#54454](https://go.dev/issue/54454)
+  - **likely decline**; last call for comments ⏳
+- **x/exp/maps: add Entries** [#54012](https://go.dev/issue/54012)
+  - **likely decline**; last call for comments ⏳
+- **x/exp/maps: add Merge** [#57191](https://go.dev/issue/57191)
+  - **likely decline**; last call for comments ⏳
+- **x/exp/slices: add Pop** [#52434](https://go.dev/issue/52434)
+  - **likely decline**; last call for comments ⏳
+- **x/exp/slices: addition of Count function** [#57798](https://go.dev/issue/57798)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: add plan9/arm64 port** [#57540](https://go.dev/issue/57540)
+  - discussion ongoing
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - commented
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - discussion ongoing
+- **crypto/x509: add support for PBES2 private keys** [#39241](https://go.dev/issue/39241)
+  - added
+- **crypto/x509: decryption of PEM file failure not being caught** [#43504](https://go.dev/issue/43504)
+  - added
+- **fmt: add an additional %j verb to wrap errors** [#58107](https://go.dev/issue/58107)
+  - added
+- **fs: standard implementations of FileInfo and DirEntry should implement fmt.Stringer** [#54451](https://go.dev/issue/54451)
+  - commented
+- **log/slog: JSONHandler should format durations as strings** [#59345](https://go.dev/issue/59345)
+  - added to minutes
+  - commented
+- **log/slog: ReplaceAttr gets PC instead of file:line** [#59280](https://go.dev/issue/59280)
+  - commented
+- **log/slog: add an 'error' field to 'Record'** [#59364](https://go.dev/issue/59364)
+  - added to minutes
+  - commented
+- **log/slog: add vet checks for variadic ...any inputs** [#59407](https://go.dev/issue/59407)
+  - added to minutes
+  - commented
+- **log/slog: builtin support for helper functions** [#59145](https://go.dev/issue/59145)
+  - discussion ongoing
+- **log/slog: change slog.Group signature to ...any** [#59204](https://go.dev/issue/59204)
+  - discussion ongoing
+- **log/slog: clean up the handler constructors** [#59339](https://go.dev/issue/59339)
+  - added to minutes
+- **log/slog: copy Logger by value instead of pointer** [#59126](https://go.dev/issue/59126)
+  - discussion ongoing
+- **log/slog: remove calls to Value.Resolve from slog core** [#59292](https://go.dev/issue/59292)
+  - added to minutes
+  - commented
+- **math: add Clamp function** [#58146](https://go.dev/issue/58146)
+  - commented
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - commented
+- **path/filepath: add IsReserved to identify Windows reserved filenames** [#57152](https://go.dev/issue/57152)
+  - discussion ongoing
+- **spec: infer type arguments from assignments of generic functions (reverse type inference)** [#59338](https://go.dev/issue/59338)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **unicode/utf8: provide generic versions of all functions** [#56948](https://go.dev/issue/56948)
+  - added to minutes
+- **unsafe: allow conversion of \`uintptr\` to \`unsafe.Pointer\` when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - added to minutes
+  - commented
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - cc’ed owners
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - cc’ed owners
+- **x/tools/diff: a package for computing text differences** [#58893](https://go.dev/issue/58893)
+  - discussion ongoing
+
+**Hold**
+
+- **x/sync/singleflight: add generic version** [#53427](https://go.dev/issue/53427)
+  - hold for #48287

@@ -1,0 +1,42 @@
+**2021-01-06 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+Happy New Year everyone! 
+
+- #43201 **bufio.Scanner make maxConsecutiveEmptyReads overridable**
+  - proposal retracted by author; **declined**
+- #42469 **cmd/cgo: unsafe FFI calls**
+  - **likely decline**; last call for comments ⏳
+- #42088 **cmd/go: 'go run' should run executables in module mode outside a module**
+  - commented
+- #40405 **cmd/go: detect proxy redirect loops**
+  - discussion ongoing
+- #42460 **database/sql: define a SQL driver unwrapper interface and helper function**
+  - **likely decline**; last call for comments ⏳
+- #43217 **embed: remove import restriction, remove type spelling restriction**
+  - **likely accept**; last call for comments ⏳
+- #43216 **embed: remove support for embedding directives on local variables**
+  - no change in consensus; **accepted** 🎉
+- #43168 **encoding/xml: round-trip safe mode \[freeze exception]**
+  - **likely decline**; last call for comments ⏳
+- #42710 **hash/maphash: add Sum**
+  - put on hold
+- #43223 **io/fs, net/http: define interface for automatic ETag serving**
+  - commented
+- #42782 **reflect: add VisibleFields function**
+  - no change in consensus; **accepted** 🎉
+- #40281 **reflect: back out multiple keys in key:value pair in struct tag**
+  - no change in consensus; **accepted** 🎉
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - discussion ongoing
+- #42502 **runtime/pprof: NewCPUProfile + cpuProfile.Start to allow profile configuration**
+  - no change in consensus; **accepted** 🎉
+- #43030 **testing: add (\*PB).NextIndex() (int, bool) method**
+  - **likely decline**; last call for comments ⏳
+- #43062 **text/template, html/template: add LookupFunc, LookupOption methods**
+  - proposal retracted by author; **declined**
+- #42516 **x/crypto/acme: add AccountKeyRollover**
+  - no change in consensus; **accepted** 🎉
+- #42437 **x/crypto/acme: add ListCertAlternates**
+  - no change in consensus; **accepted** 🎉
+- #42166 **x/net/xsrftoken: add new, less error-prone API**
+  - discussion ongoing

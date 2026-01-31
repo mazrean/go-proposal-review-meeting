@@ -1,0 +1,60 @@
+**2020-12-09 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #42469 **cmd/cgo: unsafe FFI calls**
+  - discussion ongoing
+- #42372 **cmd/compile: go:wasmexport directive**
+  - put on hold
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - discussion ongoing
+- #42343 **cmd/go: add project config to go.mod**
+  - **likely decline**; last call for comments ⏳
+- #40405 **cmd/go: detect proxy redirect loops**
+  - commented
+- #42877 **context: add C as alias for Context**
+  - **likely decline**; last call for comments ⏳
+- #40017 **crypto/x509: implement OCSP verifier**
+  - put on hold
+- #42460 **database/sql: define a SQL driver unwrapper interface and helper function**
+  - commented
+- #42710 **hash/maphash: add Sum**
+  - commented
+- #36450 **index/suffixarray: added functionality via longest common prefix array**
+  - **likely decline**; last call for comments ⏳
+- #43076 **io/fs.Hash and Hasher**
+  - discussion ongoing
+- #42387 **io: add FileInfoToDirEntry(FileInfo)**
+  - no change in consensus; **accepted** 🎉
+- #39567 **net/http: add Server.MaxBodyBytes int64 field**
+  - no change in consensus; **accepted** 🎉
+- #42173 **net/http: handle Seek error in range request by sending entire file**
+  - no change in consensus; **declined**
+- #42420 **os/exec: add LookPathAbs that refuses to return relative paths**
+  - discussion ongoing
+- #38736 **os/exec: make LookPath not look in dot implicitly on Windows**
+  - discussion ongoing
+- #42950 **os/exec: use LookPathAbs by default**
+  - discussion ongoing
+- #42782 **reflect: add VisibleFields function**
+  - commented
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #42502 **runtime/pprof: NewCPUProfile + cpuProfile.Start to allow profile configuration**
+  - commented
+- #36821 **runtime/pprof: add PMU-based profiles**
+  - put on hold
+- #43030 **testing: add (\*PB).NextIndex() (int, bool) method**
+  - commented
+- #43062 **text/template, html/template: add LookupFunc, LookupOption methods**
+  - commented
+- #42361 **x/crypto/acme/autocert cluster compatibility**
+  - proposal retracted by author; **declined**
+- #42437 **x/crypto/acme: Add support for alternative chains to support cross-signed root with Let's Encrypt**
+  - discussion ongoing
+- #42516 **x/crypto/acme: add AccountKeyRollover**
+  - discussion ongoing
+- #39683 **x/exp/mmap: expose a File-like type**
+  - no change in consensus; **declined**
+- #42128 **x/net/dns/dnsmessage: use UnknownResource for an unrecognized DNS type**
+  - no change in consensus; **accepted** 🎉
+- #42166 **x/net/xsrftoken: add new, less error-prone API**
+  - commented

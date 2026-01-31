@@ -1,0 +1,72 @@
+**2020-10-07 / @rsc, @griesemer, @ianlancetaylor, @andybons**
+
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - discussion ongoing
+- #40276 **cmd/go: 'go install' should install executables in module mode outside a module**
+  - **likely accept**; last call for comments ⏳
+- #41145 **cmd/go: allow -toolexec tools to opt in to build caching**
+  - proposal retracted by author; **declined**
+- #41730 **cmd/go: allow users to control VCS usage**
+  - discussion ongoing
+- #40870 **cmd/go: build option to set env variable defaults**
+  - no change in consensus; **declined**
+- #40728 **cmd/go: default to & improve -mod=readonly**
+  - **likely accept**; last call for comments ⏳
+- #41696 **cmd/go: deprecate the -i flag**
+  - discussion ongoing
+- #27628 **cmd/go: do not cache tool output if tools print to stdout/stderr**
+  - commented
+- #40364 **cmd/go: enable listing direct dependency updates**
+  - discussion ongoing
+- #41583 **cmd/go: make it easier to skip tests with the \`go test\` CLI**
+  - discussion ongoing
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo, CertificateRequestInfo, ConnectionState**
+  - discussion ongoing
+- #41198 **errors: add ErrUnsupported**
+  - no change in consensus; **accepted** 🎉
+- #41757 **flag: Introduce functions for defining rune flag**
+  - discussion ongoing
+- #41523 **flag: add SetHelpOutput to specify the destination for help explicitly**
+  - proposal retracted by author; **declined**
+- #41792 **flag: validate the name of the flag**
+  - discussion ongoing
+- #36450 **index/suffixarray: added functionality via longest common prefix array**
+  - discussion ongoing
+- #41190 **io/fs: add file system interfaces**
+  - **likely accept**; last call for comments ⏳
+- #40962 **io: add ReadSeekCloser interface**
+  - **likely accept**; last call for comments ⏳
+- #39057 **log: add func Default() \*Logger**
+  - commented
+- #41324 **net/http/pprof: provide a mechanism to render on /debug/pprof profiles than those that invoke pprof.NewProfile**
+  - **likely decline**; last call for comments ⏳
+- #40587 **net/http: add scheme constants**
+  - **likely decline**; last call for comments ⏳
+- #41046 **net/http: add support for the upcoming "Structured Field Values for HTTP" RFC**
+  - discussion ongoing
+- #41182 **net/http: automatically set Content-Length from Len method on Body**
+  - no change in consensus; **declined**
+- #40860 **os/exec: method Cmd.String print Env**
+  - no change in consensus; **declined**
+- #41467 **os: add ReadDir method for lightweight directory reading**
+  - **likely accept**; last call for comments ⏳
+- #37113 **path/filepath: add a function to canonicalize paths**
+  - commented
+- #41563 **reflect: add StructField.IsExported**
+  - discussion ongoing
+- #40198 **regexp: add Replace and ReplaceString**
+  - no change in consensus; **declined**
+- #40238 **runtime: add mechanism to configure format used to write out unhandled panics**
+  - no change in consensus; **declined**
+- #395 **spec: use (\*\[4]int)(x) to convert slice x into array pointer**
+  - **likely accept**; last call for comments ⏳
+- #41260 **testing: add TB.Setenv()**
+  - no change in consensus; **accepted** 🎉
+- #40984 **testing: middleware for testing.TB (?)**
+  - **likely decline**; last call for comments ⏳
+- #41748 **testing: re-print failed test names before exiting**
+  - discussion ongoing
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - **likely accept**; last call for comments ⏳
+- #41438 **x/net: add xsrftoken.ValidFor**
+  - no change in consensus; **accepted** 🎉

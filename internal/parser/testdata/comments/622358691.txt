@@ -1,0 +1,46 @@
+**2020-04-29 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+**[*Minutes are two days late. Sorry*]**
+
+- #37503 **all: add bare metal ARM support**
+  - discussion ongoing
+  - **likely decline**; last call for comments ⏳
+- #38149 **api: add mechanism for correlating deprecations with Go versions e.g. <version\_deprecated>.txt**
+  - no change in consensus; **declined**
+- #20322 **cmd/go: add \*\_unix.go recognition (and presumably unix build tag)**
+  - commented
+  - taken off hold
+- #37641 **cmd/go: reserve example/ and test/ as non-stdlib path prefixes**
+  - **likely accept**; last call for comments ⏳
+- #34544 **cmd/vet: detect defer rows.Close()**
+  - **likely decline**; last call for comments ⏳
+- #37255 **context: add WithCancelSignal function**
+  - commented
+- #37168 **crypto: new assembly policy**
+  - **likely accept**; last call for comments ⏳
+- #38158 **dep: officially deprecate the "dep" experiment**
+  - no change in consensus; **accepted** 
+- #38193 **errors: support returning a wrapped error without nil checks**
+  - no change in consensus; **declined**
+- #38270 **net/http, net/http/httptrace: add mechanism for tracing request serving**
+  - commented
+- #38079 **net/http/httputil: do not add to empty X-Forwarded-For header in ReverseProxy**
+  - **likely accept**; last call for comments ⏳
+- #38375 **net/http: toHTTPError should be public**
+  - commented
+- #38364 **refactor platform support for easier ports.**
+  - commented
+- #38248 **replace CallImport with go:wasmimport directive**
+  - commented
+- #37681 **runtime: support "strict mode" run-time checks analogous to "go vet"**
+  - commented
+- #33194 **testing: add B.Lap for phases of benchmarks**
+  - no change in consensus; **declined**
+- #16971 **x/crypto/scrypt,x/crypto/argon2: add high-level APIs**
+  - discussion ongoing
+- #29390 **x/crypto: add implementation of Diffie-Hellman x448**
+  - no change in consensus; **declined**
+- #35921 **x/tools/go/packages: add module information to the Package struct**
+  - **likely accept**; last call for comments ⏳
+- #36898 **x/website: have endpoint to query for the latest bugfix version**
+  - commented

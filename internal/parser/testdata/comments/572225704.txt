@@ -1,0 +1,41 @@
+**2020-01-08 / @rsc, @ianlancetaylor, @griesemer, @bradfitz, @andybons**
+
+- #25348 **allow && and || operators and parentheses in build tags**
+  - **likely decline**; last call for comments ⏳
+- #34375 **bytes: Introduce a FindFirstMultiByteChar API**
+  - **likely decline**; last call for comments ⏳
+- #35008 **cmd/go: add GOMIPS64=r2 for mips64r2 code generation**
+  - **likely decline**; last call for comments ⏳
+- #36266 **cmd/go: bundle GOROOT in cmd/go tool**
+  - **likely decline**; last call for comments ⏳
+- #32716 **crypto/tls: remove SSLv3 support**
+  - no change in consensus; **accepted** 🎉
+- #35804 **database/sql: add error getter on sql.Row**
+  - no change in consensus; **accepted** 🎉
+- #34536 **doc: document/reassert that last two releases are supported equally**
+  - no change in consensus; **accepted** 🎉
+- #22823 **io/ioutil: add WriteNopCloser**
+  - no change in consensus; **declined**
+- #34305 **io: add NewReaderAt interface**
+  - no change in consensus; **declined**
+- #35833 **math/big: add Int.FillBytes**
+  - no change in consensus; **accepted** 🎉
+- #33060 **reflect: add mechanisms to allocate large slices only if possible**
+  - commented
+  - **likely decline**; last call for comments ⏳
+- #29982 **sizeof: new package with constants for Int, Uint, Uintptr, Int8, Float64, etc**
+  - retitled, commented
+- #36290 **strings: add (\*Reader).String()**
+  - commented
+- #35956 **support GOOS=none GOARCH=amd64 for running Go programs without an OS**
+  - no change in consensus; **declined**
+- #36349 **sync: add (\*WaitGroup).WaitUnlock(l Locker)**
+  - **likely decline**; last call for comments ⏳
+- #34681 **syscall: define Windows O\_ALLOW\_DELETE for use in os.OpenFile**
+  - **likely decline**; last call for comments ⏳
+- #34306 **testing: flag show skipped**
+  - commented
+- #35852 **testing: support running examples in parallel**
+  - **likely decline**; last call for comments ⏳
+- #33629 **x/playground: allow selecting supported versions of Go**
+  - commented, retitled, removed likely decline

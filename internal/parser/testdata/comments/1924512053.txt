@@ -1,0 +1,91 @@
+**2024-01-31 / @aclements, @adonovan, @cherrymui, @griesemer, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **x/crypto/ssh: add a specific error for algorithm negotiation issues/errors** [#61536](https://go.dev/issue/61536)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **crypto/tls: on-disk configuration** [#60790](https://go.dev/issue/60790)
+  - no change in consensus; **declined**
+- **x/tools/go/analysis/analysisutil: publish ExtractDoc** [#61315](https://go.dev/issue/61315)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **net/http: allow multiple spaces between method and path in mux patterns** [#64910](https://go.dev/issue/64910)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/cmd/getgo: deprecate and remove it** [#60951](https://go.dev/issue/60951)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **maps: add maps.KeysSlice and maps.ValuesSlice** [#61626](https://go.dev/issue/61626)
+  - **likely decline**; last call for comments ⏳
+- **testing: add Count function to return the test.count value** [#64883](https://go.dev/issue/64883)
+  - **likely decline**; last call for comments ⏳
+- **unsafe: add Data for arbitrary type casts** [#64843](https://go.dev/issue/64843)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **archive/tar: add FileInfoNames interface** [#50102](https://go.dev/issue/50102)
+  - discussion ongoing
+- **archive/zip: support for encrypted archives** [#12081](https://go.dev/issue/12081)
+  - discussion ongoing
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - discussion ongoing
+- **cmd/go: add a way to query for non-defaults in the env** [#34208](https://go.dev/issue/34208)
+  - waiting on prototype
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - commented
+- **crypto/tls: improved 0-RTT QUIC APIs** [#63691](https://go.dev/issue/63691)
+  - commented
+- **debug/elf: add SHT\_GNU\_VERDEF section parsing** [#63952](https://go.dev/issue/63952)
+  - discussion ongoing
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - commented
+- **io: add ReadPeeker and implement Peek in bytes.Reader** [#63548](https://go.dev/issue/63548)
+  - discussion ongoing
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - commented
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - commented
+- **os,path/filepath: make os.Readlink and filepath.EvalSymlinks on Windows (mostly) only evaluate symlinks** [#63703](https://go.dev/issue/63703)
+  - commented
+- **os: treat all non-symlink reparse points as ModeIrregular on Windows** [#61893](https://go.dev/issue/61893)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **runtime: deprecate func GOROOT** [#51473](https://go.dev/issue/51473)
+  - commented
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - commented
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - commented
+- **spec: support int(bool) conversions** [#64825](https://go.dev/issue/64825)
+  - added to minutes
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/tools/go/cfg: add location information to Blocks** [#53367](https://go.dev/issue/53367)
+  - added to minutes
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation

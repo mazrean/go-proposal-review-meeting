@@ -1,0 +1,33 @@
+**2021-01-27 / @rsc, @griesemer, @ianlancetaylor, @andybons, @spf13**
+
+- #40405 **cmd/go: detect proxy redirect loops**
+  - commented
+- #26535 **compress/lzw: add Resetter interface to allow encoders to be reused**
+  - **likely accept**; last call for comments ⏳
+- #26950 **crypto/x509: add functions to download certificates from windows update, and retrieve certificates from windows x509stores**
+  - **likely decline**; last call for comments ⏳
+- #40483 **errors: add Close method for defer io.Closer**
+  - **likely decline**; last call for comments ⏳
+- #28089 **go/ast: add func IsGenerated(\*File) bool**
+  - retitled
+  - no change in consensus; **accepted** 🎉
+- #34875 **go/doc: add ToMarkdown**
+  - commented
+- #38736 **os/exec: make LookPath not look in dot implicitly on Windows**
+  - **likely decline**; last call for comments ⏳
+- #43724 **os/exec: return error when PATH lookup would use current directory**
+  - discussion ongoing
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #43651 **spec: add generic programming using type parameters**
+  - discussion ongoing
+- #43810 **spec: add native support for programming persistent memory in Go**
+  - discussion ongoing
+- #36145 **time: support Colon for fractional seconds**
+  - **likely decline**; last call for comments ⏳
+- #43823 **time: support Decimal Comma for fractional seconds**
+  - commented
+- #27599 **x/crypto: add support for AES Key Wrap**
+  - discussion ongoing
+- #42166 **x/net/xsrftoken: add new, less error-prone API**
+  - put on hold

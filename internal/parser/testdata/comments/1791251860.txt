@@ -1,0 +1,133 @@
+**2023-11-01 / @adonovan, @bradfitz, @cherrymui, @griesemer, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **all: add GORISCV64 environment variable** [#61476](https://go.dev/issue/61476)
+  - no change in consensus; **accepted** 🎉
+- **cmd: drop support for GOROOT\_FINAL** [#62047](https://go.dev/issue/62047)
+  - no change in consensus; **accepted** 🎉
+- **debug/pe: add Machine type with String method** [#60198](https://go.dev/issue/60198)
+  - no change in consensus; **accepted** 🎉
+- **log/slog: enable setting level on default log.Logger** [#62418](https://go.dev/issue/62418)
+  - no change in consensus; **accepted** 🎉
+- **reflect: Overflow methods should be on Type** [#60427](https://go.dev/issue/60427)
+  - no change in consensus; **accepted** 🎉
+- **unique: new package with unique.Handle** [#62483](https://go.dev/issue/62483)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto/cryptobyte: ReadOptionalASN1Boolean doesn't work as expected** [#43019](https://go.dev/issue/43019)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **testing: add Setargs to set os.Args** [#63607](https://go.dev/issue/63607)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **cmd/compile: create GOARCH=wasm32** [#63131](https://go.dev/issue/63131)
+  - **likely accept**; last call for comments ⏳
+- **cmd/go: add support for dealing with flaky tests** [#62244](https://go.dev/issue/62244)
+  - **likely accept**; last call for comments ⏳
+- **cmd/link, cmd/go: emit split DWARF on darwin** [#62577](https://go.dev/issue/62577)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: disable RSA key exchange cipher suites by default** [#63413](https://go.dev/issue/63413)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: make default minimum version for servers TLS 1.2** [#62459](https://go.dev/issue/62459)
+  - **likely accept**; last call for comments ⏳
+- **doc/godebug: allow carve out for GODEBUGs introduced in security releases** [#63741](https://go.dev/issue/63741)
+  - **likely accept**; last call for comments ⏳
+- **go/types: Export Info.FileVersions for access to file-specific version information** [#62605](https://go.dev/issue/62605)
+  - **likely accept**; last call for comments ⏳
+- **net/http: add Request.CookiesNamed** [#61472](https://go.dev/issue/61472)
+  - **likely accept**; last call for comments ⏳
+- **net: arrange zero-copy of os.File and TCPConn to UnixConn** [#58808](https://go.dev/issue/58808)
+  - **likely accept**; last call for comments ⏳
+- **net: more detailed TCP keep-alive configuration** [#62254](https://go.dev/issue/62254)
+  - **likely accept**; last call for comments ⏳
+- **runtime/metrics: provide histogram of all STW events** [#63340](https://go.dev/issue/63340)
+  - **likely accept**; last call for comments ⏳
+- **slices: have Delete clear the tail** [#63393](https://go.dev/issue/63393)
+  - **likely accept**; last call for comments ⏳
+- **sync/atomic: add Uint64Pair** [#61236](https://go.dev/issue/61236)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/ssh: provide Client.DialContext method** [#20288](https://go.dev/issue/20288)
+  - **likely accept**; last call for comments ⏳
+- **x/telemetry/cmd/gotelemetry: bring back 'local' vs 'off' options** [#63832](https://go.dev/issue/63832)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/analysis/checker: an importable analysis driver based on go/packages** [#61324](https://go.dev/issue/61324)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - **likely decline**; last call for comments ⏳
+- **spec: permit referring to a field shared by all elements of a type set** [#48522](https://go.dev/issue/48522)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: standardize -help behavior in go project tools** [#63659](https://go.dev/issue/63659)
+  - discussion ongoing
+- **archive/zip: support for encrypted archives** [#12081](https://go.dev/issue/12081)
+  - discussion ongoing
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - blocked on #61405
+- **bytes: add Reader methods Buffered, Peek, and Discard** [#63548](https://go.dev/issue/63548)
+  - added to minutes
+  - commented
+- **cmd/doc: support 'go doc package@version' syntax** [#63696](https://go.dev/issue/63696)
+  - discussion ongoing
+- **cmd/go: go build -json** [#62067](https://go.dev/issue/62067)
+  - waiting on concrete proposal details
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - commented
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - discussion ongoing
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - commented
+  - blocked on #61405
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - blocked on #61405
+- **maps: add maps.KeysSlice and maps.ValuesSlice** [#61626](https://go.dev/issue/61626)
+  - blocked on #61405
+- **os,path/filepath: make os.Readlink and filepath.EvalSymlinks on Windows (mostly) only evaluate symlinks** [#63703](https://go.dev/issue/63703)
+  - commented
+- **os: add CopyFS** [#62484](https://go.dev/issue/62484)
+  - commented
+- **os: treat all non-symlink reparse points as ModeIrregular on Windows** [#61893](https://go.dev/issue/61893)
+  - discussion ongoing
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - blocked on #61405
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - added to minutes
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - blocked on #61405
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - blocked on #61405
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - commented
+- **time: handle time zones better in Parse and LoadLocation** [#63345](https://go.dev/issue/63345)
+  - discussion ongoing
+- **x/crypto/ssh: add a specific error for algorithm negotiation issues/errors** [#61536](https://go.dev/issue/61536)
+  - discussion ongoing
+- **x/crypto/ssh: server side multi-step authentication** [#61447](https://go.dev/issue/61447)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - blocked on #61405
+- **x/tools/cmd/deadcode: add new command** [#63501](https://go.dev/issue/63501)
+  - discussion ongoing
+- **x/tools/go/analysis/analysisutil: publish ExtractDoc** [#61315](https://go.dev/issue/61315)
+  - discussion ongoing
+- **x/tools/txtar: add Extract function or method** [#61386](https://go.dev/issue/61386)
+  - waiting for #44158
+- **x/tools/txtar: implement fs.FS** [#44158](https://go.dev/issue/44158)
+  - commented
+

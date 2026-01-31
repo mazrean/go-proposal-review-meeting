@@ -1,0 +1,47 @@
+**2019-10-30 / @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc, @spf13**
+
+## Proposals
+
+- #34877 **cmd/go: be consistent about not giving tests direct access to the terminal**
+  - commented
+- #29062 **cmd/go: fail tests that invoke os.Exit(0) explicitly**
+  - commented
+- #30058 **cmd/go: ignore directories containing `.goignore` in file scans**
+  - commented
+  - declined
+- #35192 **cmd/link: enable Windows ASLR by default or all the time**
+  - commented
+- #33323 **create contribution guidelines for technical writers**
+  - commented
+  - likely decline; last call for comments
+- #34471 **encoding/binary: cache dataSize across invocations of Read and Write**
+  - commented
+  - likely accept; last call for comments
+- #34701 **encoding/json: new MarshalAppender interface to make custom marshallers more efficient**
+  - discussion ongoing
+- #34680 **html/template: add ability to combine/clone/rebind parsed html/template templates**
+  - commented
+- #34502 **net: add BufferedPipe (buffered Pipe)**
+  - commented
+- #34855 **net/url: add URL.Redacted to return password-free string**
+  - retitled
+  - commented
+- #34910 **os: add UserShell**
+  - commented
+- #33701 **runtime/pprof: add new WithLabels\* function that requires fewer allocations**
+  - pinged domain experts
+- #34681 **syscall: define Windows O_ALLOW_DELETE for use in os.OpenFile**
+  - discussion ongoing
+- #28592 **testing: add -shuffle and -shuffleseed to shuffle tests**
+  - commented
+  - likely accept; last call for comments
+- #34684 **unsafe: clarify unsafe.Pointer rules for package syscall**
+  - commented
+
+## Issues with NeedsDecision label
+
+- #34778 **bytes/hash: unfortunate import path**
+  - commented
+  - unblocked
+- #34708 **x/mobile: Remove gomobile dependency on gobind binary**
+  - cc’d domain experts

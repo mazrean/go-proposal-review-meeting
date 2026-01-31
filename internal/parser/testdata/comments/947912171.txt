@@ -1,0 +1,120 @@
+**2021-10-20 / @rsc, @griesemer, @bradfitz**
+
+**Accepted**
+
+- **cmd/go: add a \`go work sync\` command** [#48258](https://golang.org/issue/48258)
+  - no change in consensus; **accepted** 🎉
+- **cmd/go: add a \`go work use\` command** [#48257](https://golang.org/issue/48257)
+  - no change in consensus; **accepted** 🎉
+- **cmd/go: put workspace commands under \`go work\`** [#48256](https://golang.org/issue/48256)
+  - no change in consensus; **accepted** 🎉
+- **database/sql: use errors.Is when checking for driver.ErrBadConn** [#47142](https://golang.org/issue/47142)
+  - no change in consensus; **accepted** 🎉
+- **runtime: enable address sanitizer in Go** [#44853](https://golang.org/issue/44853)
+  - no change in consensus; **accepted** 🎉
+- **testing: benchmark unit properties** [#43744](https://golang.org/issue/43744)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **bytes: add Grow, Clip; maybe add bytes/strings Insert, Delete** [#48594](https://golang.org/issue/48594)
+  - proposal retracted by author; **declined**
+- **bytes: add Pool for buffer management** [#48535](https://golang.org/issue/48535)
+  - proposal retracted by author; **declined**
+- **byteseq: add a generic byte string manipulation package** [#48643](https://golang.org/issue/48643)
+  - no change in consensus; **declined**
+- **cmd/go: optional mode - semantic import versioning** [#47034](https://golang.org/issue/47034)
+  - proposal retracted by author; **declined**
+- **cmd/go: use go.mod file paths in workspaces** [#48259](https://golang.org/issue/48259)
+  - proposal retracted by author; **declined**
+- **cmd/link: create an information section with eface type struct addresses** [#48840](https://golang.org/issue/48840)
+  - proposal retracted by author; **declined**
+- **log: improve the existing logger without breaking any existing functionalities** [#48503](https://golang.org/issue/48503)
+  - no change in consensus; **declined**
+- **stdlib: provide a standard implementation of the Optional / Maybe generic type** [#48702](https://golang.org/issue/48702)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/go: go version to support non-executable Go binaries** [#48187](https://golang.org/issue/48187)
+  - **likely accept**; last call for comments ⏳
+- **debug/plan9obj: add ErrNoSymbols sentinel for case that no symbol section exists** [#48052](https://golang.org/issue/48052)
+  - **likely accept**; last call for comments ⏳
+- **encoding/json: add Decoder.DisallowDuplicateFields** [#48298](https://golang.org/issue/48298)
+  - **likely accept**; last call for comments ⏳
+- **strings, bytes: deprecate Title** [#48367](https://golang.org/issue/48367)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/acme: allow setting client KID directly** [#46303](https://golang.org/issue/46303)
+  - **likely accept**; last call for comments ⏳
+- **x/net/http2: add Transport.WriteByteTimeout** [#48830](https://golang.org/issue/48830)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmd/vet: check argument count of strings.NewReplacer** [#47994](https://golang.org/issue/47994)
+  - **likely decline**; last call for comments ⏳
+- **cmd/vet: report time.Tick and time.NewTicker scoped to select statements** [#48170](https://golang.org/issue/48170)
+  - **likely decline**; last call for comments ⏳
+- **cmd/vet: warn if a method receiver uses a known type-name as the name of a type parameter** [#48123](https://golang.org/issue/48123)
+  - **likely decline**; last call for comments ⏳
+- **databse/sql: add NullUint64** [#47953](https://golang.org/issue/47953)
+  - **likely decline**; last call for comments ⏳
+- **errors: add Errors as a standard way to represent multiple errors as a single error** [#47811](https://golang.org/issue/47811)
+  - **likely decline**; last call for comments ⏳
+- **go:embed interpolate go env** [#48348](https://golang.org/issue/48348)
+  - **likely decline**; last call for comments ⏳
+- **io: add ReadSome** [#48182](https://golang.org/issue/48182)
+  - **likely decline**; last call for comments ⏳
+- **os: ExpandEnv: Support Parameter Substitution and Expansion Notations** [#47187](https://golang.org/issue/47187)
+  - **likely decline**; last call for comments ⏳
+- **spec: allow slice-to-array conversion expressions to present as L-values.** [#47987](https://golang.org/issue/47987)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://golang.org/issue/48429)
+  - discussion ongoing
+- **cmd/vet: check for time formats with 2006-02-01** [#48801](https://golang.org/issue/48801)
+  - commented
+- **cmd/vet: printf: warn about verbs that don’t match a type parameter’s type set** [#49038](https://golang.org/issue/49038)
+  - added to minutes
+  - commented
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - discussion ongoing
+- **io: add counterpart to io.Discard for io.Reader** [#48897](https://golang.org/issue/48897)
+  - commented
+- **mime: handling duplicate media parameters** [#48866](https://golang.org/issue/48866)
+  - commented
+- **net/http: define and export RequestBodyTooLargeError** [#30715](https://golang.org/issue/30715)
+  - added to minutes
+  - commented
+- **net: add tcp WriteTo func to enable splice socket data to file** [#48530](https://golang.org/issue/48530)
+  - commented
+- **os/user: add iterators over users and groups** [#47907](https://golang.org/issue/47907)
+  - added to minutes
+  - commented
+- **reflect: add reflect.Value.Append** [#48000](https://golang.org/issue/48000)
+  - commented
+- **reflect: permit Value.Bytes on addressable byte arrays** [#47066](https://golang.org/issue/47066)
+  - commented
+- **runtime/debug: soft memory limit** [#48409](https://golang.org/issue/48409)
+  - commented
+- **runtime: provide Pinner API for object pinning** [#46787](https://golang.org/issue/46787)
+  - commented
+- **syscall: add landlock support on Linux** [#47049](https://golang.org/issue/47049)
+  - added to minutes
+  - commented
+- **testing: a less error-prone API for benchmark iteration** [#48768](https://golang.org/issue/48768)
+  - commented
+- **text/template: execute "parent" template when inheriting** [#48266](https://golang.org/issue/48266)
+  - discussion ongoing
+- **x/crypto/ssh: export a transport interface** [#32958](https://golang.org/issue/32958)
+  - discussion ongoing
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - discussion ongoing
+
+**Hold**
+
+- **spec: allow explicit conversion from function to 1-method interface** [#47487](https://golang.org/issue/47487)
+  - hold for Go 1.18
+

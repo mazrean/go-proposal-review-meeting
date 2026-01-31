@@ -1,0 +1,66 @@
+**2021-04-07 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #45038 **add bytes.Copy function**
+  - added to minutes
+- #43854 **cmd/go: add //go:embed all:<pattern> to allow . and \_ matches**
+  - **likely accept**; last call for comments ⏳
+- #45108 **cmd/vet: diagnose marshal of field of type error**
+  - commented
+- #28308 **cmd/vet: flag using %s:%d to construct network addresses**
+  - **likely accept**; last call for comments ⏳
+- #45051 **cmd/vet: warn about cross package struct conversion**
+  - commented
+- #43993 **cmd/vet: warn about using reflect.DeepEqual and == on reflect.Value**
+  - no change in consensus; **accepted** 🎉
+- #44992 **crypto/elliptic: bake 88 kB p256Precomputed table into binary on iOS**
+  - cc’ed owners
+- #29257 **crypto/tls: allow access to file descriptor for tls.Conn**
+  - discussion ongoing
+- #45430 **crypto/tls: deprecate PreferServerCipherSuites and CipherSuites ordering**
+  - added to minutes
+- #45428 **crypto/tls: disable client-side TLS 1.0 and TLS 1.1**
+  - added to minutes
+- #41682 **crypto/x509: stop verifying SHA-1 signatures**
+  - added to minutes
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #44221 **encoding/csv: add the ability to get the line number of a record**
+  - no change in consensus; **accepted** 🎉
+- #45124 **format all shell scripts in Go repo with shfmt**
+  - added to minutes
+- #44905 **go/doc: inline type alias documentation**
+  - commented
+- #44571 **io: change Copy error to distinguish reader from writer**
+  - **likely decline**; last call for comments ⏳
+- #45100 **net/url: add Values.Has(key)**
+  - retitled, commented
+- #25192 **net/url: don't parse ';' as a separator in query string**
+  - discussion ongoing
+- #30999 **net/url: reject leading zeros in IP address parsers**
+  - added to minutes
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #36141 **runtime: "real time" timer semantics**
+  - discussion ongoing
+- #45328 **runtime: add way to clear and reuse a map's working storage**
+  - commented
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - added to minutes
+- #45033 **strconv: add UnquoteLeading**
+  - added to minutes
+- #45200 **testing/cmp: add new package**
+  - discussion ongoing
+- #45403 **testing: add more support to automatically cleanup temporary resources or temporary changes to the global environment**
+  - commented
+- #38627 **text/template/parse: add a SkipFuncCheck Mode flag to disable function checking during parse**
+  - **likely accept**; last call for comments ⏳
+- #44940 **unicode/utf16: add RuneLen**
+  - added to minutes
+- #45264 **unicode: add emoji properties**
+  - discussion ongoing
+- #38978 **x/crypto/acme: support subproblems**
+  - **likely accept**; last call for comments ⏳
+- #29721 **x/sync/semaphore: make semaphore resizable**
+  - proposal retracted by author; **declined**
+- #45282 **x/text/rangetable: lazy construction of RangeTables**
+  - proposal retracted by author; **declined**

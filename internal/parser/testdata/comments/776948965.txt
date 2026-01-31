@@ -1,0 +1,41 @@
+**2021-02-10 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #43931 **all: merge dev.typeparams to master during Go 1.17**
+  - **likely accept**; last call for comments ⏳
+- #44143 **all: replace uses of context.Background with context.TODO**
+  - commented
+- #34055 **cmd/go: allow serving module under the subdirectory of git repository**
+  - commented
+- #40405 **cmd/go: detect proxy redirect loops**
+  - no change in consensus; **declined**
+- #37755 **cmd/go: keep GOPATH mode**
+  - **likely decline**; last call for comments ⏳
+- #43854 **cmd/go: opt-in for //go:embed to \*not\* ignore files and empty dirs**
+  - commented
+- #43698 **cmd/vet: warn about embed.FS package variables that lack go:embed directives**
+  - commented
+- #44089 **embed: bring back String and Bytes for convenience/documentation**
+  - no change in consensus; **declined**
+  - duplicate of #43217
+- #34875 **go/doc: add ToMarkdown**
+  - no change in consensus; **accepted** 🎉
+- #43223 **io/fs, net/http: define interface for automatic ETag serving**
+  - no change in consensus; **declined**
+- #44092 **io/fs: return ErrInvalid if the pattern argument of Glob is not a valid path**
+  - proposal retracted by author; **declined**
+- #44127 **net: populate source address on OpError when available**
+  - commented
+- #43724 **os/exec: return error when PATH lookup would use current directory**
+  - **likely accept**; last call for comments ⏳
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #43810 **spec: add native support for programming persistent memory in Go**
+  - no change in consensus; **declined**
+- #44011 **syscall: add additional fields to SysProcAttr on Windows**
+  - **likely accept**; last call for comments ⏳
+- #44005 **syscall: allow to pass STARTUPINFOEX to StartProcess Windows API**
+  - **likely decline**; last call for comments ⏳
+- #44196 **time: add a UnixMills() to return t in milliseconds**
+  - commented
+- #43823 **time: support Decimal Comma for fractional seconds**
+  - no change in consensus; **accepted** 🎉

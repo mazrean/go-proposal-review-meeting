@@ -1,0 +1,71 @@
+**2023-03-01 / @adonovan, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+**Accepted**
+
+- **debug/elf: add (\*File).DynValue** [#56892](https://go.dev/issue/56892)
+  - no change in consensus; **accepted** 🎉
+- **end support for macOS 10.13 and 10.14 in Go 1.21** [#57125](https://go.dev/issue/57125)
+  - no change in consensus; **accepted** 🎉
+- **net/http: add ResponseController.EnableFullDuplex** [#57786](https://go.dev/issue/57786)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **bytes: add Buffer.Available and Buffer.AvailableBuffer** [#53685](https://go.dev/issue/53685)
+  - **likely accept**; last call for comments ⏳
+- **cmd/cgo: add #cgo noescape/nocallback annotations** [#56378](https://go.dev/issue/56378)
+  - **likely accept**; last call for comments ⏳
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - **likely accept**; last call for comments ⏳
+- **testing: add func Testing() bool** [#52600](https://go.dev/issue/52600)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **all: remove GOARM=5** [#58686](https://go.dev/issue/58686)
+  - added to minutes
+- **archive/tar, archive/zip: add NewReaderOptions with directory traversal defenses** [#57850](https://go.dev/issue/57850)
+  - waiting for data
+- **cmd/cgo: get rid of CFType, JNI, EGL unsafe.Pointer => uintptr special cases** [#41337](https://go.dev/issue/41337)
+  - commented
+- **cmd/compile: A GOOS=wasi GOARCH=wasm compilation target** [#58141](https://go.dev/issue/58141)
+  - commented
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - commented
+- **context: notification callback for cancelled/expired contexts** [#57928](https://go.dev/issue/57928)
+  - commented
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - discussion ongoing
+- **crypto/x509: support SCT/OCSP passthrough when using platform verifiers** [#58251](https://go.dev/issue/58251)
+  - commented
+- **crypto/x509: support code-constrained roots** [#57178](https://go.dev/issue/57178)
+  - discussion ongoing
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - discussion ongoing
+- **path/filepath: add IsReserved to identify Windows reserved filenames** [#57152](https://go.dev/issue/57152)
+  - commented
+- **runtime: use WER for GOTRACEBACK=crash on Windows** [#57441](https://go.dev/issue/57441)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - commented
+- **use a zero for third digit for major release, such as 'go1.23.0'** [#57631](https://go.dev/issue/57631)
+  - commented
+- **x/crypto/x509roots: new module** [#57792](https://go.dev/issue/57792)
+  - commented
+- **x/net/http2: add IdleConnTimeout to http2.Transport** [#57893](https://go.dev/issue/57893)
+  - added to minutes
+- **x/oauth2: Add RFC 6749 error fields to RetrieveError** [#58125](https://go.dev/issue/58125)
+  - added to minutes
+- **x/sync/singleflight: add generic version** [#53427](https://go.dev/issue/53427)
+  - commented
+- **x/tools/go/analysis: add Analyzer.URL and Diagnostic.URL fields** [#57906](https://go.dev/issue/57906)
+  - commented
+

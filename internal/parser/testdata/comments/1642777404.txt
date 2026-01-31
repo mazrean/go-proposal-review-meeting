@@ -1,0 +1,98 @@
+**2023-07-19 / @aclements, @adonovan, @andybons, @griesemer, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+- **math/rand/v2: a new API for math/rand and a first v2 for std** [#60751](https://go.dev/issue/60751)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+
+**Accepted**
+
+- **cmd/go: support vendoring in workspace mode** [#60056](https://go.dev/issue/60056)
+  - no change in consensus; **accepted** 🎉
+- **regexp/syntax: accept (?<name>...) in addition to (?P<name>...)** [#58458](https://go.dev/issue/58458)
+  - no change in consensus; **accepted** 🎉
+- **spec: less error-prone loop variable scoping** [#60078](https://go.dev/issue/60078)
+  - no change in consensus; **accepted** 🎉
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - no change in consensus; **accepted** 🎉
+- **x/net/quic: add QUIC implementation** [#58547](https://go.dev/issue/58547)
+  - no change in consensus; **accepted** 🎉
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **builtin: add abs to get absolute value of numbers( integer and float pointers)** [#60623](https://go.dev/issue/60623)
+  - no change in consensus; **declined**
+- **context: enable first class citizenship of third party implementations (case when custom context needs to create is own done channel)** [#36448](https://go.dev/issue/36448)
+  - proposal retracted by author; **declined**
+- **net/http: add path/regex based routing** [#38636](https://go.dev/issue/38636)
+  - duplicate of #61410
+- **regexp/syntax: relax named subexpressions (capture groups) name restrictions** [#60784](https://go.dev/issue/60784)
+  - no change in consensus; **declined**
+- **testing: a less error-prone API for benchmark iteration** [#48768](https://go.dev/issue/48768)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **reflect: add TypeFor** [#60088](https://go.dev/issue/60088)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **\`go test ./.../...\` for submodule/multimodule projects** [#59480](https://go.dev/issue/59480)
+  - **likely decline**; last call for comments ⏳
+- **join channels** [#60829](https://go.dev/issue/60829)
+  - **likely decline**; last call for comments ⏳
+- **net/url: provide URIEscape method** [#41922](https://go.dev/issue/41922)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **add package 'operators'** [#58559](https://go.dev/issue/58559)
+  - commented
+- **all: port to linux/mips\_siflower** [#61254](https://go.dev/issue/61254)
+  - commented
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - added to minutes
+- **crypto/x509: introduce new robust OID type & use it for certificate policies** [#60665](https://go.dev/issue/60665)
+  - added to minutes
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - discussion ongoing
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - added to minutes
+- **go/types, types2: fix SizesFor("gc", ...) to match actual gc behavior** [#61035](https://go.dev/issue/61035)
+  - discussion ongoing
+- **internal/cpu: detect OS support for AVX-512 and CPU support for VAES and VPCLMULQDQ instructions for performance optimization of crypto ciphers** [#43925](https://go.dev/issue/43925)
+  - discussion ongoing
+- **io/fs, net/http: define interface for automatic ETag serving** [#60940](https://go.dev/issue/60940)
+  - discussion ongoing
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - commented
+- **net/http: enhanced ServeMux routing** [#61410](https://go.dev/issue/61410)
+  - added to minutes
+- **spec: add range over int, range over func** [#61405](https://go.dev/issue/61405)
+  - added to minutes
+- **spec: add untyped builtin zero** [#61372](https://go.dev/issue/61372)
+  - added to minutes
+- **sync/atomic: add OR/AND operators for unsigned types** [#61395](https://go.dev/issue/61395)
+  - added to minutes
+- **testing: Add log/slog support** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: add identity function that forces evaluation for benchmarks** [#61179](https://go.dev/issue/61179)
+  - commented
+- **text/template, html/template: add ExecuteFuncs** [#54450](https://go.dev/issue/54450)
+  - commented
+- **x/crypto/cryptobyte: expose uint48 methods** [#61275](https://go.dev/issue/61275)
+  - added to minutes
+- **x/crypto/ssh: allow to configure public key authentication algorithms on the server side** [#61244](https://go.dev/issue/61244)
+  - added to minutes
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - commented
+- **x/crypto: add AES-GCM-SIV** [#54364](https://go.dev/issue/54364)
+  - discussion ongoing
+- **x/oauth2: support PKCE** [#59835](https://go.dev/issue/59835)
+  - commented

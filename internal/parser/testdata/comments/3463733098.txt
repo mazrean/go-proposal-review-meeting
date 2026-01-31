@@ -1,0 +1,87 @@
+**2025-10-29 / @aclements, @adonovan, @bradfitz, @griesemer, @neild, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+
+**Accepted**
+
+- **bytes: add Buffer.Peek** [#73794](https://go.dev/issue/73794)
+  - no change in consensus; **accepted** 🎉
+- **crypto/rsa: deprecate PKCS #1 v1.5 encryption** [#75302](https://go.dev/issue/75302)
+  - no change in consensus; **accepted** 🎉
+- **crypto: remove in Go 1.27 GODEBUGs introduced in Go 1.23 and earlier** [#75316](https://go.dev/issue/75316)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **crypto/mlkem: support derandomized encapsulation in tests** [#73627](https://go.dev/issue/73627)
+  - **likely accept**; last call for comments ⏳
+- **crypto/sha3: make the zero value of SHA3 useable** [#75154](https://go.dev/issue/75154)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: support crypto.MessageSigner** [#75656](https://go.dev/issue/75656)
+  - **likely accept**; last call for comments ⏳
+- **crypto/x509: add ExtKeyUsage.OID** [#75325](https://go.dev/issue/75325)
+  - **likely accept**; last call for comments ⏳
+- **net/http: client connection API** [#75772](https://go.dev/issue/75772)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **all: add bare metal support** [#73608](https://go.dev/issue/73608)
+  - discussion ongoing
+- **cmd/vet: add check for using %q with integer types** [#72850](https://go.dev/issue/72850)
+  - added to minutes
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - discussion ongoing
+- **crypto/fips140: add Version** [#75301](https://go.dev/issue/75301)
+  - commented
+- **crypto/x509: document that Certificate methods are only valid for results of ParseCertificate** [#75679](https://go.dev/issue/75679)
+  - discussion ongoing
+- **debug/pe: add BigObj COFF support via new fields on File struct** [#75659](https://go.dev/issue/75659)
+  - discussion ongoing
+- **go/ast: add BasicLit.ValueEnd field** [#76031](https://go.dev/issue/76031)
+  - added to minutes
+- **go/token: add File.End method** [#75849](https://go.dev/issue/75849)
+  - added to minutes
+- **must: Do** [#54297](https://go.dev/issue/54297)
+  - discussion ongoing
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - commented
+- **spec: direct reference to embedded fields in struct literals** [#9859](https://go.dev/issue/9859)
+  - discussion ongoing
+- **x/net/http2: add support for RFC 9218 priorities** [#75500](https://go.dev/issue/75500)
+  - discussion ongoing
+
+**Hold**
+
+- **cmd/{go,cgo,compile}: change interpretation of relative //line directives** [#70478](https://go.dev/issue/70478)
+  - hold for implementation
+- **crypto/tls: dynamically reload root certificate authorities** [#64796](https://go.dev/issue/64796)
+  - put on hold
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **encoding/{base32,base64}: constant-time implementations of RFC 4648 codecs for use with cryptography keys** [#73901](https://go.dev/issue/73901)
+  - hold for implementation
+- **os: convenience function for one-off Root operations** [#73168](https://go.dev/issue/73168)
+  - put on hold
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **x/net/http2: deprecate WriteScheduler** [#67817](https://go.dev/issue/67817)
+  - hold for #75500
+- **x/net/http3: add experimental HTTP/3 implementation** [#70914](https://go.dev/issue/70914)
+  - put on hold
+
+

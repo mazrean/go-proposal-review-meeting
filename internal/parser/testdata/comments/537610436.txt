@@ -1,0 +1,58 @@
+**2019-10-02 / @rsc, @bradfitz, @ianlancetaylor, @andybons**
+
+- #30058 **cmd/doc: improve performance by excluding node_modules**
+  - commented
+  - retitled
+- #33848 **cmd/go: automatically check and use vendored packages**
+  - commented
+  - **likely accept; last call for comments**
+- #28728 **context: enable first class citizenship of third party implementations**
+  - commented
+  - **likely decline; last call for comments**
+- #34069 **encoding/pem: add DecodeStrict**
+  - commented
+  - **likely decline; last call for comments**
+- #33805 **io/ioutil: TempDir should support patterns like TempFile does**
+  - **no final comments; accepted 🎉**
+- #34502 **net: in-memory transport**
+  - commented
+- #33097 **net: Enable built-in DNS stub resolver on Windows**
+  - retitled
+  - commented
+  - **likely accept; last call for comments**
+- #32088 **os: Create/Open/OpenFile() set FILE_SHARE_DELETE on windows**
+  - commented
+  - **likely decline; last call for comments**
+- #33701 **runtime/pprof: add new WithLabels\* function that requires fewer allocations**
+  - commented
+- #34145 **strconv: add a version of QuoteToASCII that doesn't add quotes**
+  - **no final comments; declined**
+- #33762 **sync: Map should provide DeleteWithLoad which returns loaded value and boolean**
+  - retitled
+  - commented
+  - **likely accept; last call for comments**
+- #28592 **testing: let TestMain access and change the list of tests**
+  - commented
+  - retitled
+  - rescoped
+  - cc’d domain experts
+- #32111 **testing: add Defer method**
+  - commented
+  - retitled
+- #34129 **testing: TestMain should not require os.Exit**
+  - commented
+- #33328 **testing: automatically scale benchmark metrics in results output**
+  - commented
+  - **likely decline; last call for comments**
+- #32928 **x/tools/goimports: Look for .goimportsignore in modules**
+  - marked as duplicate of #30058
+- #34376 **add "Backlog" milestone**
+  - commented
+  - **likely accept; last call for comments**
+- #33974 **make the internal lockedfile package public**
+  - commented
+  - asked for design doc
+- #33459 **add standard library package for sizes**
+  - **no final comments; declined**
+- #32741 **doc: more overview of Go repo for new contributors**
+  - **closed; no concrete proposal**

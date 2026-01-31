@@ -1,0 +1,74 @@
+**2020-02-12 / @rsc, @bradfitz, @andybons**
+
+- #25348 **allow && and || operators and parentheses in build tags**
+  - commented
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - discussion ongoing
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - discussion ongoing
+- #36875 **cmd/go: refine the default language version based on context**
+  - put on hold
+- #35667 **cmd/link: Include build meta information**
+  - commented
+- #36681 **cmd/vet: flag accidental integer division inside float casts**
+  - no change in consensus; **declined**
+- #34594 **crypto/cipher: Specify nonce and tag sizes for GCM**
+  - commented
+- #34648 **crypto/elliptic: automatically upgrade CurveParams for known curves and deprecate custom ones**
+  - discussion ongoing
+- #34105 **crypto/elliptic: handle compressed formats in new MarshalCompressed, UnmarshalCompressed**
+  - commented
+- #35499 **crypto/tls expose names for CurveID and SignatureScheme**
+  - commented
+- #31773 **crypto/tls: Authority Information Access support**
+  - **likely decline**; last call for comments ⏳
+- #36337 **crypto/tls: Export list of Supported TLS Client Extensions**
+  - commented
+- #22836 **crypto/tls: add GetConfigForServer callback to \*tls.Config**
+  - discussion ongoing
+- #35428 **crypto/x509: add API to create RFC-compliant CRLs**
+  - commented
+- #23282 **crypto/x509: add support to get SSL context from certificate store on windows**
+  - **likely decline**; last call for comments ⏳
+- #33888 **crypto/x509: implement TextMarshaler for \*Certificate**
+  - commented
+- #37172 **crypto/x509: parse additional fields in CertificateRequest**
+  - commented
+- #21704 **crypto: add Equal(PublicKey) bool method to PublicKey implementations**
+  - no change in consensus; **accepted** 🎉
+- #33430 **crypto: implement Hash.String**
+  - commented
+- #5901 **encoding/json: allow per-Encoder/per-Decoder registration of marshal/unmarshal functions**
+  - no change in consensus; **accepted** 🎉
+- #33457 **image: add generic metadata support for jpeg, gif, png**
+  - discussion ongoing
+- #34624 **io, net: implement WriterTo for pipes**
+  - **likely decline**; last call for comments ⏳
+- #35562 **net/http: add new Context taking/suffixed helper functions for {Get, Head, Post, PostForm}**
+  - commented
+- #37168 **new cryptographic assembly policy**
+  - commented
+- #37166 **package tools**
+  - **likely decline**; last call for comments ⏳
+- #36189 **panic based error handling**
+  - no change in consensus; **declined**
+- #37023 **runtime: panicmem should expose the address it's panicking about.**
+  - commented
+- #37033 **runtime: provide centralized facility for managing (c)go pointer handles**
+  - commented
+- #33688 **testing: define naming convention for test functions**
+  - no change in consensus; **declined**
+- #31107 **text/template,html/template: add ExecuteContext methods**
+  - commented
+- #35480 **time: allow a user callback for dropped ticks**
+  - no change in consensus; **declined**
+- #29540 **x/crypto/acme/autocert: Enable custom port / IP binding**
+  - commented
+- #35481 **x/crypto/argon2: support secret value and associated data**
+  - commented
+- #36646 **x/crypto/poly1305: deprecate public package**
+  - **likely accept**; last call for comments ⏳
+- #31044 **x/crypto/ssh/terminal: move all APIs to x/term and deprecate**
+  - **likely accept**; last call for comments ⏳
+- #37132 **x/crypto/ssh: add methods to marshal private keys to the OpenSSH format**
+  - commented

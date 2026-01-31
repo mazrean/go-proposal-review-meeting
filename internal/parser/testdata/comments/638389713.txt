@@ -1,0 +1,34 @@
+**2020-06-03 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #38248 **cmd/compile: replace CallImport with go:wasmimport directive**
+  - no change in consensus; **accepted** 🎉
+- #20322 **cmd/go: add \*\_unix.go recognition (and presumably unix build tag)**
+  - **likely accept**; last call for comments ⏳
+- #39056 **cmd/go: add flag \`go test -no-cache\`**
+  - **likely decline**; last call for comments ⏳
+- #32406 **crypto/tls: add request context to ClientHelloInfo and CertificateRequestInfo**
+  - cc’ed owners
+- #38298 **pointer package**
+  - **likely decline**; last call for comments ⏳
+- #38831 **reflect: add a KindCount constant in Kind constants declaration**
+  - commented
+- #38641 **reflect: support tab and newline as tag separator**
+  - **likely decline**; last call for comments ⏳
+- #37681 **runtime: support "strict mode" run-time checks analogous to "go vet"**
+  - no change in consensus; **declined**
+- #8606 **spec: decide ambiguity in comparing array/structs with interface fields/elements**
+  - **likely accept**; last call for comments ⏳
+- #39351 **sync/atomic: add Value.LoadOrStore**
+  - commented
+- #38891 **sync: Add UnlockToRLock() to RWMutex**
+  - **likely decline**; last call for comments ⏳
+- #38781 **testing/iotest: add ErrReader**
+  - **likely accept**; last call for comments ⏳
+- #39064 **time: Duration String() should omit zero units**
+  - no change in consensus; **declined**
+- #38945 **time: Timer.StopAndClear method**
+  - no change in consensus; **declined**
+- #37196 **time: a Timer channel should not be receivable after its Stop method returns**
+  - commented
+- #38968 **x/lint: freeze and deprecate**
+  - no change in consensus; **accepted** 🎉

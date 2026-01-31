@@ -1,0 +1,34 @@
+**2019-08-06** / @rsc, @griesemer, @andybons
+
+- #32816 **cmd/fix: automate migrations for simple deprecations**
+  - discussion ongoing (no action taken)
+- #33388 **cmd/go: add build tags for 32-bit and 64-bit architectures**
+  - retitled, commented
+- #33203 **cmd/go: add package search functionality**
+  - commented
+- #30240 **cmd/go: automatic vendoring in module mode**
+  - discussion ongoing
+- #33375 **cmd/go: introduce go.gen file for //go:generate comments**
+  - commented
+- #33281 **crypto engines**
+  - labeled Proposal-Crypto; discussion ongoing
+- #33430 **crypto: crypto.Hash implement fmt.Stringer and export crypto.maxHash**
+  - labeled Proposal-Crypto, commented
+- #32779 **encoding/json: memoize strings during decode?**
+  - commented, commented on CL
+- #33473 **errors: generalize As to all types**
+  - retitled, commented
+- #33457 **image: add generic metadata support for jpeg, gif, png**
+  - retitled, cc’ed expert
+- #33454 **log: modify \`Logger\` struct, make it supports multi output**
+  - **closed** (backwards-incompatible change; easy implementation outside standard library; no evidence of widespread need)
+- #33498 **net/url: add (Values).AddAll(key string, values \[\]string)**
+  - retitled, commented
+- #29982 **reflect: add constants for size of int, bool, etc.**
+  - summarized
+- #33449 **text/template: make "template" action accept dynamic name as argument**
+  - commented, cc’ed expert
+- #33466 **x/tools: tool to audit diffs in dependencies**
+  - discussion ongoing
+- #33352 **x/tools/cmd/gopls: provide config option for hover documentation placement**
+  - discussion ongoing

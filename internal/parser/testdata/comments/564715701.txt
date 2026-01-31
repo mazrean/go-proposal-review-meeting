@@ -1,0 +1,44 @@
+**2019-12-11 / @rsc, @ianlancetaylor, @griesemer, @bradfitz**
+
+- #34375 **bytes: Introduce a FindFirstMultiByteChar API**
+  - commented
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - discussion ongoing
+- #35008 **cmd/go: add GOMIPS64=r2 for mips64r2 code generation**
+  - commented
+- #29062 **cmd/go: fail tests that invoke os.Exit(0) explicitly**
+  - no change in consensus; **accepted** 🎉
+- #35950 **cmd/go: support embedding static assets (files) in binaries**
+  - hold for design doc
+- #14878 **crypto/tls: add SetOCSPStaple function**
+  - no change in consensus; **declined**
+- #32716 **crypto/tls: remove SSLv3 support**
+  - **likely accept**; last call for comments ⏳
+- #35804 **database/sql: add error getter on sql.Row**
+  - **likely accept**; last call for comments ⏳
+- #35697 **database/sql: expose convertAssign functionality in an Any type**
+  - cc’ed owners
+- #34536 **document/reassert that last two releases are supported equally**
+  - **likely accept**; last call for comments ⏳
+- #22823 **io/ioutil: add WriteNopCloser**
+  - **likely decline**; last call for comments ⏳
+- #34305 **io: add NewReaderAt interface**
+  - **likely decline**; last call for comments ⏳
+- #35833 **math/big: add Int.FillBytes**
+  - **likely accept**; last call for comments ⏳
+- #29982 **reflect: add constants for size of int, bool, etc.**
+  - discussion ongoing
+- #33060 **reflect: add mechanisms to allocate large slices only if possible**
+  - commented
+- #35178 **runtime: permit setting goroutine name to appear in stack dumps**
+  - no change in consensus; **declined**
+- #35956 **support GOOS=none GOARCH=amd64 for running Go programs without an OS**
+  - **likely decline**; last call for comments ⏳
+- #34681 **syscall: define Windows O\_ALLOW\_DELETE for use in os.OpenFile**
+  - commented
+- #34626 **testing: print more precision in benchmark timings**
+  - no change in consensus; **accepted** 🎉
+- #22741 **x/crypto/ssh: add package for Key Revocation Lists**
+  - no change in consensus; **declined**
+- #33629 **x/playground: support all versions of Go**
+  - **likely decline**; last call for comments ⏳

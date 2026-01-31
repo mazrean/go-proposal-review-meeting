@@ -1,0 +1,42 @@
+**2021-02-17 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #44143 **all: document uses of context.Background by APIs**
+  - commented
+- #43931 **all: merge dev.typeparams to master during Go 1.17**
+  - no change in consensus; **accepted** 🎉
+- #34055 **cmd/go: allow serving module under the subdirectory of git repository**
+  - commented
+- #37755 **cmd/go: keep GOPATH mode**
+  - no change in consensus; **declined**
+- #43854 **cmd/go: opt-in for //go:embed to \*not\* ignore files and empty dirs**
+  - commented
+- #43698 **cmd/vet: warn about embed.FS package variables that lack go:embed directives**
+  - commented
+- #43993 **cmd/vet: warn about using reflect.DeepEqual on reflect.Value**
+  - commented
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #44127 **net: populate source address on OpError when available**
+  - commented
+- #43947 **os/exec: on Windows use NeedCurrentDirectoryForExePathW for LookPath behavior**
+  - commented
+- #43724 **os/exec: return error when PATH lookup would use current directory**
+  - no change in consensus; **accepted** 🎉
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #44018 **runtime: add SecureErase and MarkSecureEraseOnFinalize functionality**
+  - duplicate of #21865
+- #44049 **sync.RWMutex: upgradable/downgradable locking**
+  - duplicate of #38891
+- #44159 **sync: Allow (\*sync.Map).LoadOrStore uses closure to create new value like sync.Pool**
+  - commented
+- #44011 **syscall: add additional fields to SysProcAttr on Windows**
+  - no change in consensus; **accepted** 🎉
+- #44005 **syscall: allow to pass STARTUPINFOEX to StartProcess Windows API**
+  - no change in consensus; **declined**
+- #44196 **time: add Time.UnixMilli and Time.UnixMicro (like Time.UnixNano)**
+  - commented
+- #44198 **x/crypto/ssh add sshutil.ReverseProxy: a single host reverse proxy for SSH**
+  - commented
+- #27599 **x/crypto: add support for AES Key Wrap**
+  - cc’ed owners

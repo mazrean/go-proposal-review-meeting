@@ -1,0 +1,72 @@
+**2020-11-04 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #42168 **add first-class Cross Site Request Forgery protection**
+  - commented
+- #40724 **cmd/compile: switch to a register-based calling convention for Go functions**
+  - no change in consensus; **accepted** 🎉
+- #41583 **cmd/go: add go test -skip to skip specific tests**
+  - no change in consensus; **accepted** 🎉
+- #41583 **cmd/go: add go test -skip to skip specific tests**
+  - no change in consensus; **accepted** 🎉
+- #42328 **cmd/go: avoid surprising inclusion of "hidden" files when using //go:embed**
+  - discussion ongoing
+- #40405 **cmd/go: detect proxy redirect loops**
+  - discussion ongoing
+- #40364 **cmd/go: enable listing direct dependency updates**
+  - no change in consensus; **accepted** 🎉
+- #41824 **cmd/go: run benchmarks for one iteration when testing**
+  - discussion ongoing
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo and CertificateRequestInfo**
+  - **likely accept**; last call for comments ⏳
+- #40521 **crypto/tls: support TLS 1.3 post-handshake authentication**
+  - discussion ongoing
+- #41790 **database/sql: close driver.Connector if it implements an io.Closer**
+  - **likely accept**; last call for comments ⏳
+- #40127 **encoding/json: add Encoder.EncodeToken method**
+  - commented
+- #40128 **encoding/json: garbage-free reading of tokens**
+  - commented
+- #40155 **flag: add Strings, a default Value**
+  - commented
+- #41792 **flag: validate the name of the flag**
+  - commented
+- #41495 **fmt: %p should accept uintptr**
+  - commented
+- #42322 **io/fs: add func WithPrefix(string) FS**
+  - discussion ongoing
+- #40765 **net/http: accept "x-gzip" content encoding value**
+  - no change in consensus; **declined**
+- #41773 **net/http: add Server.OptionsHandler to allow custom handling of OPTIONS \***
+  - no change in consensus; **accepted** 🎉
+- #42173 **net/http: handle Seek error in range request by sending entire file**
+  - discussion ongoing
+- #41733 **net/url: add URL.Clone method**
+  - proposal retracted by author; **declined**
+- #42026 **os: add ReadDir, ReadFile, WriteFile, CreateTemp, MkdirTemp & deprecate io/ioutil**
+  - **likely accept**; last call for comments ⏳
+- #42027 **path/filepath: add WalkDir (Walk using DirEntry)**
+  - no change in consensus; **accepted** 🎉
+- #41993 **reflect: add NewAtPtr, ValueAt**
+  - commented
+- #41896 **reflect: add Type.IsEmptyInterface**
+  - no change in consensus; **declined**
+- #42099 **reflect: add Type.QualifiedString**
+  - proposal retracted by author; **declined**
+- #40592 **reflect: add func (Value) UnsafePointer() unsafe.Pointer**
+  - discussion ongoing
+- #40168 **sizeof: add bit sizes**
+  - discussion ongoing
+- #40169 **sizeof: add synthetic, pointer-like types**
+  - discussion ongoing
+- #25137 **sort: Stable with better asymptotic time complexity**
+  - **likely decline**; last call for comments ⏳
+- #37836 **strconv: add Not**
+  - **likely decline**; last call for comments ⏳
+- #40135 **strings: add PrefixUntil and SuffixAfter**
+  - commented
+- #42098 **syscall: add SysProcAttr.NoInheritHandles on Windows**
+  - no change in consensus; **accepted** 🎉
+- #41980 **testing: show diffs for incorrect output from Example tests**
+  - **likely accept**; last call for comments ⏳
+- #42102 **time: add Time.IsDST() bool method**
+  - **likely accept**; last call for comments ⏳

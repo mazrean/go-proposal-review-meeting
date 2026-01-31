@@ -1,0 +1,41 @@
+**2020-04-01 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #34527 **cmd/go: add GOMODCACHE**
+  - **likely accept**; last call for comments ⏳
+- #37475 **cmd/go: stamp git/vcs current HEAD hash/commit hash/dirty bit in binaries**
+  - **likely accept**; last call for comments ⏳
+- #37255 **context: add WithCancelSignal function**
+  - no change in consensus; **accepted** 🎉
+- #24171 **crypto/cipher: allow short tags in NewGCMWithNonceAndTagSize**
+  - **likely decline**; last call for comments ⏳
+- #31520 **crypto/tls: allow registration of additional key exchanges**
+  - no change in consensus; **declined**
+- #31933 **crypto/tls: support DHE**
+  - no change in consensus; **declined**
+- #37168 **crypto: new assembly policy**
+  - discussion ongoing; commented
+- #38158 **dep: officially deprecate the "dep" experiment**
+  - commented
+- #32779 **encoding/json: memoize strings during decode?**
+  - commented
+  - **likely accept**; last call for comments ⏳
+- #37533 **flag: exit 0 for default -h/-help option**
+  - no change in consensus; **accepted** 🎉
+- #37974 **go/doc: drop //go:\* comments from extracted docs**
+  - discussion ongoing
+- #36450 **index/suffixarray: added functionality via longest common prefix array**
+  - commented
+- #37776 **net/url: add URL.RawFragment, like RawPath**
+  - **likely accept**; last call for comments ⏳
+- #37112 **runtime: API for unstable metrics**
+  - commented
+- #36771 **strconv: add ParseComplex**
+  - **likely accept**; last call for comments ⏳
+- #35998 **testing: add TB.TempDir() string**
+  - no change in consensus; **accepted** 🎉
+- #31107 **text/template,html/template: add ExecuteContext methods**
+  - **likely decline**; last call for comments ⏳
+- #38017 **time: add time/tzdata package and timetzdata tag to embed tzdata in program**
+  - **likely accept**; last call for comments ⏳
+- #29390 **x/crypto: add implementation of Diffie-Hellman x448**
+  - commented

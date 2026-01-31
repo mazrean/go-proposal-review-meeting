@@ -1,0 +1,44 @@
+**2020-04-22 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #37503 **all: add bare metal ARM support**
+  - **likely decline**; last call for comments ⏳
+- #38149 **api: add mechanism for correlating deprecations with Go versions e.g. <version\_deprecated>.txt**
+  - **likely decline**; last call for comments ⏳
+- #37641 **cmd/go: reserve specific path prefixes for local (user-defined) modules**
+  - commented
+- #34544 **cmd/vet: detect defer rows.Close()**
+  - commented
+- #37255 **context: add WithCancelSignal function**
+  - commented
+- #37168 **crypto: new assembly policy**
+  - discussion ongoing
+- #38158 **dep: officially deprecate the "dep" experiment**
+  - **likely accept**; last call for comments ⏳
+- #38193 **errors: support returning a wrapped error without nil checks**
+  - **likely decline**; last call for comments ⏳
+- #37974 **go/doc: drop //go:\* comments from extracted docs**
+  - no change in consensus; **accepted** 🎉
+- #38270 **net/http, net/http/httptrace: add mechanism for tracing request serving**
+  - commented
+- #38079 **net/http/httputil: do not add to empty X-Forwarded-For header in ReverseProxy**
+  - commented
+- #38375 **net/http: toHTTPError should be public**
+  - commented
+- #38364 **refactor platform support for easier ports.**
+  - discussion ongoing
+- #38248 **replace CallImport with go:wasmimport directive**
+  - commented
+- #33194 **testing: add B.Lap for phases of benchmarks**
+  - **likely decline**; last call for comments ⏳
+- #34652 **text/template/parse: add CommentNode to the parse tree**
+  - no change in consensus; **accepted** 🎉
+- #33273 **text/template: allow template and block outputs to be chained**
+  - no change in consensus; **declined**
+- #16971 **x/crypto/scrypt,x/crypto/argon2: add high-level APIs**
+  - discussion ongoing
+- #29390 **x/crypto: add implementation of Diffie-Hellman x448**
+  - **likely decline**; last call for comments ⏳
+- #35921 **x/tools/go/packages: add module information to the Package struct**
+  - commented
+- #36898 **x/website: have endpoint to query for the latest bugfix version**
+  - commented

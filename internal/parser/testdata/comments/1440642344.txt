@@ -1,0 +1,61 @@
+[Lost last week due to covid. Didn't get through everything this week.]
+
+**2023-02-22 / @aclements, @adonovan, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- **go/printer: don't reformat single line if statements** [#57645](https://go.dev/issue/57645)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **debug/elf: add (\*File).DynValue** [#56892](https://go.dev/issue/56892)
+  - **likely accept**; last call for comments ⏳
+- **end support for macOS 10.13 and 10.14 in Go 1.21** [#57125](https://go.dev/issue/57125)
+  - **likely accept**; last call for comments ⏳
+- **net/http: add ResponseController.EnableFullDuplex** [#57786](https://go.dev/issue/57786)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **archive/tar, archive/zip: add NewReaderOptions with directory traversal defenses** [#57850](https://go.dev/issue/57850)
+  - commented
+- **bytes: add Buffer.Available and Buffer.AvailableBuffer** [#53685](https://go.dev/issue/53685)
+  - commented
+- **cmd/cgo: add #cgo noescape/nocallback annotations** [#56378](https://go.dev/issue/56378)
+  - commented
+- **cmd/cgo: get rid of CFType, JNI, EGL unsafe.Pointer => uintptr special cases** [#41337](https://go.dev/issue/41337)
+  - added to minutes
+  - commented
+- **cmd/compile: A GOOS=wasi GOARCH=wasm compilation target** [#58141](https://go.dev/issue/58141)
+  - commented
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - discussion ongoing
+- **context: notification callback for cancelled/expired contexts** [#57928](https://go.dev/issue/57928)
+  - commented
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - discussion ongoing
+- **crypto/x509: support SCT/OCSP passthrough when using platform verifiers** [#58251](https://go.dev/issue/58251)
+  - added to minutes
+- **crypto/x509: support code-constrained roots** [#57178](https://go.dev/issue/57178)
+  - added to minutes
+  - commented
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - commented
+- **path/filepath: add IsReserved to identify Windows reserved filenames** [#57152](https://go.dev/issue/57152)
+  - commented
+- **testing: add func Testing() bool** [#52600](https://go.dev/issue/52600)
+  - commented
+- **use a zero for third digit for major release, such as 'go1.23.0'** [#57631](https://go.dev/issue/57631)
+  - added to minutes
+  - commented

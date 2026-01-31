@@ -1,0 +1,80 @@
+**2023-03-15 / @aclements, @adonovan, @andybons, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **all: add GOOS=wasip1 GOARCH=wasm port** [#58141](https://go.dev/issue/58141)
+  - no change in consensus; **accepted** 🎉
+- **crypto/x509: support SCT/OCSP passthrough when using platform verifiers** [#58251](https://go.dev/issue/58251)
+  - no change in consensus; **accepted** 🎉
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - no change in consensus; **accepted** 🎉
+- **use a zero for third digit for major release, such as 'go1.23.0'** [#57631](https://go.dev/issue/57631)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/analysis: add Analyzer.URL and Diagnostic.URL fields** [#57906](https://go.dev/issue/57906)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/cgo: get rid of CFType, JNI, EGL unsafe.Pointer => uintptr special cases** [#41337](https://go.dev/issue/41337)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **crypto/x509: support code-constrained roots** [#57178](https://go.dev/issue/57178)
+  - **likely accept**; last call for comments ⏳
+- **x/net/http2: add IdleConnTimeout to http2.Transport** [#57893](https://go.dev/issue/57893)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **flag: Add IgnoreOnError ErrorHandling** [#58839](https://go.dev/issue/58839)
+  - **likely decline**; last call for comments ⏳
+- **slices: add difference function** [#58730](https://go.dev/issue/58730)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: add opt-in transparent telemetry to Go toolchain** [#58894](https://go.dev/issue/58894)
+  - discussion ongoing
+- **all: remove GOARM=5** [#58686](https://go.dev/issue/58686)
+  - discussion ongoing
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - waiting on #57928
+- **context: notification callback for cancelled/expired contexts** [#57928](https://go.dev/issue/57928)
+  - commented
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - discussion ongoing
+- **crypto/x509: add android user trusted CA folder as a possible source for certificate retrieval** [#58922](https://go.dev/issue/58922)
+  - discussion ongoing
+- **fmt: improve ergonomics of fmt.Print-like functions** [#57816](https://go.dev/issue/57816)
+  - added to minutes
+  - commented
+- **fs: standard implementations of FileInfo and DirEntry should implement fmt.Stringer** [#54451](https://go.dev/issue/54451)
+  - added to minutes
+  - commented
+- **go/ast, go/build/constraint: support for per-file Go versions using //go:build lines** [#59033](https://go.dev/issue/59033)
+  - added to minutes
+- **net/http: add ErrSchemeMismatch** [#44855](https://go.dev/issue/44855)
+  - commented
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - discussion ongoing
+- **path/filepath: add IsReserved to identify Windows reserved filenames** [#57152](https://go.dev/issue/57152)
+  - commented
+- **runtime: use WER for GOTRACEBACK=wer on Windows** [#57441](https://go.dev/issue/57441)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - commented
+- **x/crypto/x509roots: new module** [#57792](https://go.dev/issue/57792)
+  - commented
+- **x/exp/slices: DeleteFunc** [#54768](https://go.dev/issue/54768)
+  - commented
+- **x/oauth2: Add RFC 6749 error fields to RetrieveError** [#58125](https://go.dev/issue/58125)
+  - commented
+- **x/sync/singleflight: add generic version** [#53427](https://go.dev/issue/53427)
+  - waiting on #48287
+- **x/tools/diff: a package for computing text differences** [#58893](https://go.dev/issue/58893)
+  - commented
+- **x/tools/go/types/objectpath: add Encoder type, to amortize Scope.Names** [#58668](https://go.dev/issue/58668)
+  - commented

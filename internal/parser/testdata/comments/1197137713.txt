@@ -1,0 +1,69 @@
+**2022-07-27 / @rsc, @ianlancetaylor, @bradfitz**
+
+**Accepted**
+
+- **cmd/go: add -e flag to 'go get -u'** [#53737](https://golang.org/issue/53737)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **gofmt: allow sort** [#53777](https://golang.org/issue/53777)
+  - no change in consensus; **declined**
+- **x/exp/slices: add First and Last** [#53510](https://golang.org/issue/53510)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **flag: add BoolFunc(name, usage string, fn func(string)error)** [#53747](https://golang.org/issue/53747)
+  - **likely accept**; last call for comments ⏳
+- **x/sync/errgroup: propagate panics and Goexits through Wait** [#53757](https://golang.org/issue/53757)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **add package for using SIMD instructions** [#53171](https://golang.org/issue/53171)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: decide what can implement TextMarshaler/TextUnmarshaler** [#10275](https://golang.org/issue/10275)
+  - commented
+- **clarify Go support policy for secondary ports** [#53383](https://golang.org/issue/53383)
+  - commented
+- **compress: add AppendEncoded and AppendDecoded** [#54078](https://golang.org/issue/54078)
+  - added to minutes
+  - commented
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - commented
+- **database/sql: add SetMaxBadConnRetries** [#52886](https://golang.org/issue/52886)
+  - commented
+- **errors: add support for wrapping multiple errors** [#53435](https://golang.org/issue/53435)
+  - discussion ongoing
+- **io/fs: add writable interfaces** [#45757](https://golang.org/issue/45757)
+  - discussion ongoing
+- **net/http: add ServeFSFile** [#51971](https://golang.org/issue/51971)
+  - discussion ongoing
+- **net/http: easier access to HTTP/2 error codes** [#53896](https://golang.org/issue/53896)
+  - commented
+- **os/exec: Expose a config that allows LookPath and Command to take in relative paths** [#53962](https://golang.org/issue/53962)
+  - commented
+- **strings: add func CommonPrefixLen(x, y string) int** [#53120](https://golang.org/issue/53120)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://golang.org/issue/52751)
+  - discussion ongoing
+- **testing: add support for individual test function execution - expose testing.M.Tests** [#53701](https://golang.org/issue/53701)
+  - commented
+- **tools: add package for parsing go test JSON output** [#53893](https://golang.org/issue/53893)
+  - commented
+  - cc’ed owners
+- **x/crypto/cryptobyte: non allocating AddUint\*LengthPrefixed API** [#54059](https://golang.org/issue/54059)
+  - added to minutes
+- **x/net/http2: distinguish no body from empty body** [#53894](https://golang.org/issue/53894)
+  - commented
+- **x/sync/errgroup: allow manual management of cancel** [#54079](https://golang.org/issue/54079)
+  - added to minutes
+  - commented
+- **x/text/number: provide way to query number system** [#53872](https://golang.org/issue/53872)
+  - commented
+  - cc’ed owners
+  - back to active

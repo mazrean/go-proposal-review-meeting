@@ -1,0 +1,87 @@
+**2025-05-21 / @aclements, @adonovan, @bradfitz, @griesemer, @neild, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **discussion: spec: reduce error handling boilerplate using ?** [#71460](https://go.dev/issue/71460)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- **crypto/tls: add GetEncryptedClientHelloKeys callback** [#71920](https://go.dev/issue/71920)
+  - no change in consensus; **accepted** 🎉
+- **go/ast: deprecate FilterPackage, PackageExports, MergePackageFiles** [#73088](https://go.dev/issue/73088)
+  - no change in consensus; **accepted** 🎉
+- **go/ast: deprecate MergePackageFiles (it's not used, and buggy)** [#7124](https://go.dev/issue/7124)
+  - no change in consensus; **accepted** 🎉
+- **hash: add Clone** [#69521](https://go.dev/issue/69521)
+  - no change in consensus; **accepted** 🎉
+- **log/slog: GroupAttrs(key, attrs....Attr) Attr** [#66365](https://go.dev/issue/66365)
+  - no change in consensus; **accepted** 🎉
+- **os: add Root.ReadFile & Root.WriteFile** [#73126](https://go.dev/issue/73126)
+  - no change in consensus; **accepted** 🎉
+- **runtime: CPU limit-aware GOMAXPROCS default** [#73193](https://go.dev/issue/73193)
+  - no change in consensus; **accepted** 🎉
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - no change in consensus; **accepted** 🎉
+- **testing/synctest: replace Run with Test** [#73567](https://go.dev/issue/73567)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **go/types: add HasTypeName interface** [#66890](https://go.dev/issue/66890)
+  - proposal retracted by author; **declined**
+- **os: extend Root FS with interface io/fs.SubFS** [#72054](https://go.dev/issue/72054)
+  - no change in consensus; **declined**
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **net/http: add CrossOriginForgeryHandler** [#73626](https://go.dev/issue/73626)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **crypto/tls: dynamically reload root certificate authorities** [#64796](https://go.dev/issue/64796)
+  - discussion ongoing
+- **crypto: ignore rand io.Reader where behavior is not specified** [#70942](https://go.dev/issue/70942)
+  - discussion ongoing
+- **doc: mention "purego" build tag convention somewhere** [#23172](https://go.dev/issue/23172)
+  - discussion ongoing
+- **hash: standardize the hash function** [#70471](https://go.dev/issue/70471)
+  - commented
+- **os: add (\*Process).WithHandle** [#70352](https://go.dev/issue/70352)
+  - commented
+- **os: convenience function for one-off Root operations** [#73168](https://go.dev/issue/73168)
+  - commented
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - commented
+- **time: make UnmarshalText, UnmarshalJSON enforce strict RFC 3339 semantics** [#57912](https://go.dev/issue/57912)
+  - skip
+- **x/net/dns/dnsmessage: add support for SVCB and HTTPS records** [#43790](https://go.dev/issue/43790)
+  - commented
+- **x/sys/unix: add methods to convert between time.Time and unix.PtpClockTime on Linux** [#70032](https://go.dev/issue/70032)
+  - discussion ongoing
+- **x/tools/go/analysis: add -category=... filter flag to driver commands** [#72008](https://go.dev/issue/72008)
+  - discussion ongoing
+
+**Hold**
+
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - hold for #70471
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **go/types: add Hasher{,IgnoreTags} types** [#69420](https://go.dev/issue/69420)
+  - hold for #70471
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+
+

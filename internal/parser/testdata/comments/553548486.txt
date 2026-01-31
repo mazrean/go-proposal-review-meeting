@@ -1,0 +1,44 @@
+**2019-11-13 / @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+- #35283 **cmd/go: allow replace directives in go.mod to work for standard libraries**
+  - commented
+  - **likely decline; last call for comments**
+- #34877 **cmd/go: be consistent about not giving tests direct access to the terminal**
+  - commented
+  - **likely decline; last call for comments**
+- #35192 **cmd/go: default to -buildmode=pie on Windows**
+  - **no change in consensu; accepted 🎉**
+- #29062 **cmd/go: fail tests that invoke os.Exit(0) explicitly**
+  - commented
+- #34701 **encoding/json: new MarshalAppender interface to make custom marshallers more efficient**
+  - commented
+  - **no change in consensus; declined**
+- #34293 **go docs in diverse formats like json instead of just plain text**
+  - commented
+- #34680 **html/template: add ability to modify FuncMap after template parse**
+  - commented
+- #34502 **net: add BufferedPipe (buffered Pipe)**
+  - discussion ongoing
+- #29678 **net: add MarshalText/UnmarshalText to HardwareAddr**
+  - discussion ongoing
+- #35305 **net: prefer /etc/hosts over DNS when no /etc/nsswitch.conf is present**
+  - **likely accept; last call for comments**
+- #34855 **net/url: add URL.Redacted to return password-free string**
+  - commented
+  - **no change in consensus; accepted 🎉**
+- #32558 **os: allow Chtimes with time.Time{} to avoid setting time**
+  - commented
+  - **likely accept; last call for comments**
+- #34313 **runes: create new package analogous to bytes, for rune slices**
+  - **no change in consensus; declined**
+- #33701 **runtime/pprof: add new WithLabels\* function that requires fewer allocations**
+  - waiting for information
+- #6977 **spec: allow embedding overlapping interfaces**
+  - **no change in consensus; accepted 🎉**
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - retitled
+  - commented
+- #34681 **syscall: define Windows O_ALLOW_DELETE for use in os.OpenFile**
+  - commented
+- #34684 **unsafe: clarify unsafe.Pointer rules for package syscall**
+  - discussion ongoing

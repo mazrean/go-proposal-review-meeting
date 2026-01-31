@@ -1,0 +1,131 @@
+**2023-10-25 / @adonovan, @andybons, @bradfitz, @cherrymui, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **go/version: package for handling Go version strings** [#62039](https://go.dev/issue/62039)
+  - no change in consensus; **accepted** 🎉
+- **io/fs, net/http: define interface for automatic ETag serving** [#60940](https://go.dev/issue/60940)
+  - no change in consensus; **accepted** 🎉
+- **spec: add range over int, range over func** [#61405](https://go.dev/issue/61405)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto: add AES-GCM-SIV** [#54364](https://go.dev/issue/54364)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **all: add GORISCV64 environment variable** [#61476](https://go.dev/issue/61476)
+  - **likely accept**; last call for comments ⏳
+- **cmd: drop support for GOROOT\_FINAL** [#62047](https://go.dev/issue/62047)
+  - **likely accept**; last call for comments ⏳
+- **debug/pe: add Machine type with String method** [#60198](https://go.dev/issue/60198)
+  - **likely accept**; last call for comments ⏳
+- **reflect: Overflow methods should be on Type** [#60427](https://go.dev/issue/60427)
+  - **likely accept**; last call for comments ⏳
+- **unique: new package with unique.Handle** [#62483](https://go.dev/issue/62483)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/cryptobyte: ReadOptionalASN1Boolean doesn't work as expected** [#43019](https://go.dev/issue/43019)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **all: standardize -help behavior in go project tools** [#63659](https://go.dev/issue/63659)
+  - added to minutes
+- **archive/zip: support for encrypted archives** [#12081](https://go.dev/issue/12081)
+  - commented
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - blocked on #61405
+- **bytes: Reader should allow zero-copy operations with its byte slice** [#63548](https://go.dev/issue/63548)
+  - added to minutes
+- **cmd/compile: create GOARCH=wasm32** [#63131](https://go.dev/issue/63131)
+  - commented
+- **cmd/doc: support 'go doc package@version' syntax** [#63696](https://go.dev/issue/63696)
+  - added to minutes
+- **cmd/go: add support for dealing with flaky tests** [#62244](https://go.dev/issue/62244)
+  - commented
+- **cmd/go: go build -json** [#62067](https://go.dev/issue/62067)
+  - waiting on concrete proposal details
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **crypto/tls: make default minimum version for servers TLS 1.2** [#62459](https://go.dev/issue/62459)
+  - discussion ongoing
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - discussion ongoing
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - discussion ongoing
+- **go/types: add Info.ImportedPkgName method** [#62037](https://go.dev/issue/62037)
+  - added to minutes
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - blocked on #61405
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - blocked on #61405
+- **maps: add maps.KeysSlice and maps.ValuesSlice** [#61626](https://go.dev/issue/61626)
+  - blocked on #61405
+- **net: more detailed TCP keep-alive configuration** [#62254](https://go.dev/issue/62254)
+  - commented
+- **os,path/filepath: make os.Readlink and filepath.EvalSymlinks on Windows (mostly) only evaluate symlinks** [#63703](https://go.dev/issue/63703)
+  - added to minutes
+- **os: add CopyFS** [#62484](https://go.dev/issue/62484)
+  - commented
+- **os: treat all non-symlink reparse points as ModeIrregular on Windows** [#61893](https://go.dev/issue/61893)
+  - added to minutes
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - blocked on #61405
+- **runtime: software floating point for GOARM=6, 7 (not only GOARM=5)** [#61588](https://go.dev/issue/61588)
+  - added to minutes
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - blocked on #61405
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - blocked on #61405
+- **spec: permit referring to a field shared by all elements of a type set** [#48522](https://go.dev/issue/48522)
+  - discussion ongoing
+- **testing,cmd/test2json: distinguish error output** [#62728](https://go.dev/issue/62728)
+  - commented
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: add Setargs to set os.Args** [#63607](https://go.dev/issue/63607)
+  - added to minutes
+- **testing: report non-zero exit status in -json output** [#61839](https://go.dev/issue/61839)
+  - retitled
+  - commented
+- **time: handle time zones better in Parse and LoadLocation** [#63345](https://go.dev/issue/63345)
+  - added
+- **x/crypto/ssh: add a specific error for algorithm negotiation issues/errors** [#61536](https://go.dev/issue/61536)
+  - discussion ongoing
+- **x/crypto/ssh: export supported algorithms** [#61537](https://go.dev/issue/61537)
+  - discussion ongoing
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - discussion ongoing
+- **x/crypto/ssh: provide Client.DialContext method** [#20288](https://go.dev/issue/20288)
+  - added to minutes
+  - commented
+- **x/crypto/ssh: server side multi-step authentication** [#61447](https://go.dev/issue/61447)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - blocked on #61405
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - back to active for more discussion
+- **x/tools/cmd/deadcode: add new command** [#63501](https://go.dev/issue/63501)
+  - added to minutes
+- **x/tools/go/analysis/analysisutil: publish ExtractDoc** [#61315](https://go.dev/issue/61315)
+  - discussion ongoing
+- **x/tools/go/analysis/checker: an importable analysis driver based on go/packages** [#61324](https://go.dev/issue/61324)
+  - discussion ongoing
+- **x/tools/txtar: add Extract function or method** [#61386](https://go.dev/issue/61386)
+  - waiting for #44158
+

@@ -1,0 +1,99 @@
+**2021-05-19 / @rsc, @griesemer, @andybons, @spf13**
+
+- #46268 **add package containing fuzz function helpers**
+  - commented
+- #45453 **all: add GOAMD64 environment variable**
+  - no change in consensus; **accepted** 🎉
+- #46229 **all: port to linux/loongarch64**
+  - discussion ongoing
+- #45964 **all: raise minimum required Linux kernel version**
+  - discussion ongoing
+- #46226 **cmd/cgo: pkg-config support default pc file**
+  - commented
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - hold for #30639
+- #45963 **cmd/go/internal/test: add -vet=all sentinel**
+  - commented
+- #40189 **cmd/go: add a sub command to manage authentication**
+  - put on hold
+- #45713 **cmd/go: add a workspace mode**
+  - discussion ongoing
+- #45611 **cmd/go: allow GOPRIVATE to provide source repository URI**
+  - put on hold
+- #46050 **cmd/go: generate allow arguments to span multiple lines**
+  - proposal retracted by author; **declined**
+- #44435 **cmd/go: narrow 'mod download' default set**
+  - **likely accept**; last call for comments ⏳
+- #45454 **cmd/go: provide build tags for architecture environment variables**
+  - no change in consensus; **accepted** 🎉
+- #45733 **cmd/go: test -json include file and line info**
+  - **likely decline**; last call for comments ⏳
+- #45961 **cmd/vet: time.Time should not compared**
+  - **likely decline**; last call for comments ⏳
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - commented
+- #46057 **crypto/x509: add CertPool.Equal**
+  - cc’ed owners
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #45815 **embed: read file contents directly from FS during fs.WalkDir**
+  - no change in consensus; **declined**
+- #46065 **encoding/json: add FlexObject for encoding/decoding between JSON and flex Go types.**
+  - **likely decline**; last call for comments ⏳
+- #45449 **encoding/json: add support of wrapped error in addErrorContext function**
+  - discussion ongoing
+- #45754 **flag: add TextVar to handle types that implement encoding.TextUnmarshaler**
+  - **likely accept**; last call for comments ⏳
+- #46190 **fmt: add Printlnf, Fprintlnf, etc**
+  - commented
+- #46121 **html/template: make FuncMap an alias for text/template.FuncMap**
+  - **likely accept**; last call for comments ⏳
+- #45899 **io: add OffsetWriter, NewOffsetWriter**
+  - **likely accept**; last call for comments ⏳
+- #45455 **math/bits: add Deposit and Extract functions**
+  - no change in consensus; **declined**
+- #43552 **math/bits: need an arbitrary bit shifter for byte slices**
+  - proposal retracted by author; **declined**
+- #45915 **math32: add float32 math package**
+  - no change in consensus; **declined**
+- #39290 **net/http/httptest: Recorder.Result() should always set Response.Body to http.NoBody when response is empty**
+  - no change in consensus; **declined**
+- #45973 **net/http: add AllowQuerySemicolons**
+  - no change in consensus; **accepted** 🎉
+  - for Go 1.17
+- #46059 **net/url: add OmitHost bool to URL**
+  - **likely accept**; last call for comments ⏳
+- #45729 **net: deprecate Temporary error status**
+  - commented
+- #46131 **reflect: add MapIter.SetKey, SetValue, and friends**
+  - commented
+- #46093 **reflect: add alloc-free way retrieve value from Value**
+  - commented
+- #46159 **regexp: support encoding.TextMarshaler**
+  - discussion ongoing
+- #45955 **slices: new package to provide generic slice functions**
+  - discussion ongoing
+- #39377 **spec: Formal Seal Model & Support for Go Features and Libraries including from the Go Community**
+  - **likely decline**; last call for comments ⏳
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - pending implementation
+- #45435 **sync: add Mutex.TryLock**
+  - commented
+- #46184 **syscall: \`ReleaseCallback\` for Windows**
+  - discussion ongoing
+- #46259 **syscall: add Jail param to SysProcAttr for FreeBSD to allow running Command in jail**
+  - discussion ongoing
+- #46258 **syscall: add Pdeathsig to SysProcAttr for FreeBSD**
+  - discussion ongoing
+- #45752 **text/template: add table action**
+  - proposal retracted by author; **declined**
+- #36141 **time: add ExternalNow, etc for external time and timers**
+  - commented
+- #45898 **unicode/utf8: distinguish between bona fide encoding error and insufficient bytes**
+  - no change in consensus; **declined**
+- #46232 **x/crypto/ssh: expose supported Kex algorithms**
+  - discussion ongoing
+- #46060 **x/sys/unix: add IoctlSetIntPtr**
+  - **likely accept**; last call for comments ⏳
+- #46084 **x/sys/unix: add System V shared memory functions**
+  - discussion ongoing

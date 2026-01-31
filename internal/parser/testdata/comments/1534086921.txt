@@ -1,0 +1,76 @@
+**2023-05-03 / @aclements, @adonovan, @bradfitz, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **log/slog: JSONHandler should format everything like json.Marshal** [#59345](https://go.dev/issue/59345)
+  - no change in consensus; **accepted** 🎉
+- **log/slog: change constructors to NewXXXHandler(io.Writer, \*HandlerOptions)** [#59339](https://go.dev/issue/59339)
+  - no change in consensus; **accepted** 🎉
+- **log/slog: change slog.Group signature to ...any** [#59204](https://go.dev/issue/59204)
+  - no change in consensus; **accepted** 🎉
+- **os: make DirFS implement ReadFile, ReadDir** [#53761](https://go.dev/issue/53761)
+  - no change in consensus; **accepted** 🎉
+- **spec: infer type arguments from assignments of generic functions (reverse type inference)** [#59338](https://go.dev/issue/59338)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **all: add plan9/arm64 port** [#57540](https://go.dev/issue/57540)
+  - no change in consensus; **declined**
+- **log/slog: copy Logger by value instead of pointer** [#59126](https://go.dev/issue/59126)
+  - no change in consensus; **declined**
+- **time: new Init() and Start() methods for Timer** [#54870](https://go.dev/issue/54870)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/compile: allow the use of go:wasmimport globally** [#59149](https://go.dev/issue/59149)
+  - **likely accept**; last call for comments ⏳
+- **html/template: expose ErrJSTemplate** [#59584](https://go.dev/issue/59584)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **crypto/x509: decryption of PEM file failure not being caught** [#43504](https://go.dev/issue/43504)
+  - **likely decline**; last call for comments ⏳
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - **likely decline**; last call for comments ⏳
+- **testing/cmp: add new package** [#45200](https://go.dev/issue/45200)
+  - **likely decline**; last call for comments ⏳
+- **time:  add binning** [#54392](https://go.dev/issue/54392)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **add new package cmp, defining add Ordered, Min, Max** [#59488](https://go.dev/issue/59488)
+  - discussion ongoing
+- **cmd/go: add global ignore mechanism for Go tooling ecosystem** [#42965](https://go.dev/issue/42965)
+  - commented
+- **cmd/go: allow \`go list\` to return the content of the \`go-source\` meta tag** [#59566](https://go.dev/issue/59566)
+  - added to minutes
+- **cmd/go: let a child process implement the internal action/output cache** [#59719](https://go.dev/issue/59719)
+  - added to minutes
+- **cmd/go: support \`local\` directive in go.mod** [#51779](https://go.dev/issue/51779)
+  - added to minutes
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - discussion ongoing
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - discussion ongoing
+- **spec: lazy init imports to possibly import without side effects** [#38450](https://go.dev/issue/38450)
+  - commented
+- **strings: add new functions to deprecate strings.{Trim/TrimRight/TrimLeft} to avoid mistakes** [#50399](https://go.dev/issue/50399)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **text/template, html/template: Add ExecuteFuncMap and ExecuteTemplateFuncMap** [#54450](https://go.dev/issue/54450)
+  - discussion ongoing
+- **unsafe: allow conversion of \`uintptr\` to \`unsafe.Pointer\` when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - commented
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - discussion ongoing
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - discussion ongoing

@@ -1,0 +1,36 @@
+**2020-05-27 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #38248 **cmd/compile: replace CallImport with go:wasmimport directive**
+  - **likely accept**; last call for comments ⏳
+- #20322 **cmd/go: add \*\_unix.go recognition (and presumably unix build tag)**
+  - commented
+- #39056 **cmd/go: add flag \`go test -no-cache\`**
+  - commented
+- #39005 **cmd/go: introduce a build configurations file**
+  - discussion ongoing
+- #27889 **crypto/dsa: Implement crypto.Signer**
+  - no change in consensus; **declined**
+- #38298 **pointer package**
+  - commented
+- #38831 **reflect: add a KindCount constant in Kind constants declaration**
+  - commented
+- #38641 **reflect: support tab and newline as tag separator**
+  - commented, cc’ed more people
+- #37681 **runtime: support "strict mode" run-time checks analogous to "go vet"**
+  - **likely decline**; last call for comments ⏳
+- #8606 **spec: decide ambiguity in comparing array/structs with interface fields/elements**
+  - commented
+- #38891 **sync: Add UnlockThenRLock() to RWMutex**
+  - commented
+- #38781 **testing/iotest: add ErrReader**
+  - commented
+- #39064 **time: Duration String() should omit zero units**
+  - **likely decline**; last call for comments ⏳
+- #38945 **time: Timer.StopAndClear method**
+  - **likely decline**; last call for comments ⏳
+- #37196 **time: a Timer channel should not be receivable after its Stop method returns**
+  - commented
+- #16971 **x/crypto/scrypt,x/crypto/argon2: add high-level APIs**
+  - no change in consensus; **accepted** 🎉
+- #38968 **x/lint: freeze and deprecate**
+  - **likely accept**; last call for comments ⏳

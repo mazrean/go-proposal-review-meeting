@@ -1,0 +1,16 @@
+**2019-10-16 / @bradfitz, @griesemer**
+
+- #34502 **net: add BufferedPipe (buffered Pipe)**
+	- commented on new input
+	- removed FinalCommentPeriod label
+- #32966 **add GOINSECURE for insecure dependencies**
+	- **accepted 🎉** (no new comments)
+- #34129 **TestMain should not require os.Exit**
+	- **accepted 🎉** (no new comments)
+- #34471 **encoding/binary: cache dataSize across invocations of Read and Write**
+	- commented (added tentative code change diff and benchmark results)
+- #33323 **create contribution guidelines for technical writers**
+	- commented
+- #34751 **doc: document that Go 1.14 is last to support darwin/arm (32bit version)?**
+	- minor clarification to title
+	- commented

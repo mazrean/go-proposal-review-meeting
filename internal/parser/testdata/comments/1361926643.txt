@@ -1,0 +1,81 @@
+**2022-12-21 / @aclements, @adonovan, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **cmd/go: support a -C flag value to not use any current directory** [#56868](https://go.dev/issue/56868)
+  - no change in consensus; **accepted** 🎉
+- **crypto/rsa: deprecate GenerateMultiPrimeKey and PrecomputedValues.CRTValues** [#56921](https://go.dev/issue/56921)
+  - no change in consensus; **accepted** 🎉
+- **math: add Compare and Compare32** [#56491](https://go.dev/issue/56491)
+  - no change in consensus; **accepted** 🎉
+- **x/net/http2: support consuming PUSH\_PROMISE streams in the client** [#18594](https://go.dev/issue/18594)
+  - no change in consensus; **accepted** 🎉
+- **x/net/ipv{4,6}: adopt net/netip address types** [#54883](https://go.dev/issue/54883)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **bytes, strings: add Truncate** [#56885](https://go.dev/issue/56885)
+  - no change in consensus; **declined**
+- **database/sql: Support for generics with NullTypes Interface** [#56439](https://go.dev/issue/56439)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **crypto: add ContextSigner and use in crypto/tls** [#56508](https://go.dev/issue/56508)
+  - retitled
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - discussion ongoing
+- **cmd/go: do not download “modules” that contain no go.mod or \*.go** [#31866](https://go.dev/issue/31866)
+  - commented
+- **cmd/go: load $GOROOT/go.env before loading user go.env** [#57179](https://go.dev/issue/57179)
+  - discussion ongoing
+- **cmd/trace: support for perfetto** [#57315](https://go.dev/issue/57315)
+  - added to minutes
+- **context: add a way to detach from parent cancellation** [#40221](https://go.dev/issue/40221)
+  - commented
+- **encoding/binary: add var NativeEndian ByteOrder = LittleEndian or BigEndian** [#57237](https://go.dev/issue/57237)
+  - commented
+- **encoding/json: allow limiting Decoder.Decode read size** [#56733](https://go.dev/issue/56733)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **errors: add Errors function to undo Join** [#57358](https://go.dev/issue/57358)
+  - added to minutes
+- **extended backwards compatibility for Go** [#56986](https://go.dev/issue/56986)
+  - discussion ongoing
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - discussion ongoing
+- **io: add ZeroReader io.Reader** [#57317](https://go.dev/issue/57317)
+  - added to minutes
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **make package initialization order within a series of import statements predictable and controllable** [#57411](https://go.dev/issue/57411)
+  - added to minutes
+- **net/http: Transport tracing hooks** [#56241](https://go.dev/issue/56241)
+  - discussion ongoing
+- **reflect: add Value.Caller** [#49340](https://go.dev/issue/49340)
+  - commented
+- **reflect: deprecate SliceHeader and StringHeader** [#56906](https://go.dev/issue/56906)
+  - discussion ongoing
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - discussion ongoing
+- **spec: guarantee non-nil return value from recover** [#25448](https://go.dev/issue/25448)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **testing: optionally include full (or relative) path name** [#37708](https://go.dev/issue/37708)
+  - added to minutes
+
+**Hold**
+
+- **spec: reduce noise in return statements that contain mostly zero values** [#21182](https://go.dev/issue/21182)
+  - put on hold

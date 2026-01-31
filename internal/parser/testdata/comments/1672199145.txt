@@ -1,0 +1,151 @@
+**2023-08-09 / @aclements, @andybons, @bradfitz, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+
+**Accepted**
+
+- **cmd/compile: add new range behind GOEXPERIMENT=range** [#61717](https://go.dev/issue/61717)
+  - no change in consensus; **accepted** 🎉
+- **go/types, types2: fix SizesFor("gc", ...) to match actual gc behavior** [#61035](https://go.dev/issue/61035)
+  - no change in consensus; **accepted** 🎉
+- **internal/cpu: detect OS support for AVX-512 and CPU support for VAES and VPCLMULQDQ instructions for performance optimization of crypto ciphers** [#43925](https://go.dev/issue/43925)
+  - no change in consensus; **accepted** 🎉
+- **spec: add untyped builtin zero** [#61372](https://go.dev/issue/61372)
+  - no change in consensus; **accepted** 🎉
+- **x/sync: Use WithCancelCause for errgroup.WithContext** [#59355](https://go.dev/issue/59355)
+  - no change in consensus; **accepted** 🎉
+- **x/sys/windows/svc/mgr: Add EnumDependentServices method to Service struct** [#56766](https://go.dev/issue/56766)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **archive/tar: implement fs.FS** [#61232](https://go.dev/issue/61232)
+  - proposal retracted by author; **declined**
+- **builtin: iszero** [#61129](https://go.dev/issue/61129)
+  - duplicate of #61372
+- **builtin: zero function** [#60695](https://go.dev/issue/60695)
+  - duplicate of #61372
+- **x/debug: move core and gocore out of internal** [#44654](https://go.dev/issue/44654)
+  - duplicate of #57447
+
+**Likely Accept**
+
+- **syscall: undeprecate** [#60797](https://go.dev/issue/60797)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/ssh: allow to configure public key authentication algorithms on the server side** [#61244](https://go.dev/issue/61244)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto: add AES-GCM-SIV** [#54364](https://go.dev/issue/54364)
+  - **likely accept**; last call for comments ⏳
+- **x/oauth2: support PKCE** [#59835](https://go.dev/issue/59835)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmp: add CompareBool** [#61643](https://go.dev/issue/61643)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: Add GORISCV64 environment variable** [#61476](https://go.dev/issue/61476)
+  - added to minutes
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - added to minutes
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - commented
+- **cmd/test2json: provide stderr flag for output** [#61856](https://go.dev/issue/61856)
+  - added to minutes
+  - commented
+- **crypto/boring: add FIPS()** [#61757](https://go.dev/issue/61757)
+  - added to minutes
+- **crypto/x509: introduce new robust OID type & use it for certificate policies** [#60665](https://go.dev/issue/60665)
+  - discussion ongoing
+- **embed: add -embed=compress flag to go** [#61322](https://go.dev/issue/61322)
+  - added to minutes
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - discussion ongoing
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - discussion ongoing
+- **govulncheck-action: Output report as a SARIF file** [#61347](https://go.dev/issue/61347)
+  - added to minutes
+- **html/template: allow actions in JS template literals** [#61619](https://go.dev/issue/61619)
+  - added to minutes
+- **html/template: allow actions in JS template literals** [#61619](https://go.dev/issue/61619)
+  - added to minutes
+- **io/fs, net/http: define interface for automatic ETag serving** [#60940](https://go.dev/issue/60940)
+  - discussion ongoing
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **io: expose the parent ReaderAt and Base of SectionReader** [#61870](https://go.dev/issue/61870)
+  - added to minutes
+  - commented
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - added to minutes
+- **maps:  add maps.KeysSlice and maps.ValuesSlice** [#61626](https://go.dev/issue/61626)
+  - added to minutes
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - added to minutes
+- **math/rand/v2: revised API for math/rand** [#61716](https://go.dev/issue/61716)
+  - commented
+- **net/http: basic seek support for io.FS** [#61791](https://go.dev/issue/61791)
+  - added to minutes
+  - commented
+- **net/http: enhanced ServeMux routing** [#61410](https://go.dev/issue/61410)
+  - discussion ongoing
+- **net/netip: add Prefix.Compare and AddrPort.Compare** [#61642](https://go.dev/issue/61642)
+  - commented
+- **os: change default temporary directory on Windows** [#61585](https://go.dev/issue/61585)
+  - added to minutes
+- **reflect: Value.IsZero should report true for negative zero** [#61827](https://go.dev/issue/61827)
+  - added to minutes
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - added to minutes
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - added to minutes
+- **slices: add Shuffle** [#61612](https://go.dev/issue/61612)
+  - added to minutes
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - added to minutes
+- **spec: add range over int, range over func** [#61405](https://go.dev/issue/61405)
+  - discussion ongoing
+- **sync/atomic: add CompareAndSwapUint128** [#61236](https://go.dev/issue/61236)
+  - added to minutes
+- **sync/atomic: add OR/AND operators for unsigned types** [#61395](https://go.dev/issue/61395)
+  - API questions remain, un-accepted
+- **sync: add Map.Clear method** [#61696](https://go.dev/issue/61696)
+  - added to minutes
+- **testing/slogtest: support sub-tests** [#61758](https://go.dev/issue/61758)
+  - added to minutes
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: add Keep, to force evaluation in benchmarks** [#61179](https://go.dev/issue/61179)
+  - commented
+- **testing: add testing.B.Loop for iteration** [#61515](https://go.dev/issue/61515)
+  - discussion ongoing
+- **testing: panic on non-zero exit codes** [#61839](https://go.dev/issue/61839)
+  - added to minutes
+- **testing: shuffle seed should be different when -shuffle=on and -count flag is set** [#61256](https://go.dev/issue/61256)
+  - commented
+- **time: Add Instant type exposing Monotonic Time** [#61765](https://go.dev/issue/61765)
+  - added to minutes
+- **time: stop requiring Timer/Ticker.Stop for prompt GC** [#61542](https://go.dev/issue/61542)
+  - discussion ongoing
+- **x/crypto/ssh: add a specific error for algorithm negotiation issues/errors** [#61536](https://go.dev/issue/61536)
+  - discussion ongoing
+- **x/crypto/ssh: export supported algorithms** [#61537](https://go.dev/issue/61537)
+  - commented
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - commented
+- **x/crypto/ssh: server side multi-step authentication** [#61447](https://go.dev/issue/61447)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - added to minutes
+- **x/oauth2: Unmarshal expires\_in outside of oauth2/internal** [#61417](https://go.dev/issue/61417)
+  - commented

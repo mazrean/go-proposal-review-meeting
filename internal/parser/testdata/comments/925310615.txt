@@ -1,0 +1,77 @@
+[Next week is a [Go quiet week](https://groups.google.com/g/golang-dev/c/PwHJuavJcF8), so the next proposal review meeting will be in two weeks, October 6.]
+
+**2021-09-22 / @rsc, @griesemer, @bradfitz, @andybons, @spf13**
+
+**Accepted**
+
+- **hash/maphash: Provide a \`purego\` implementation** [#47342](https://golang.org/issue/47342)
+  - no change in consensus; **accepted** 🎉
+- **maps: new package to provide generic map functions** [#47649](https://golang.org/issue/47649)
+  - no change in consensus; **accepted** 🎉
+- **net/http: make DNS lookup timeouts return net.DNSError instead of poll.TimeoutError** [#39178](https://golang.org/issue/39178)
+  - no change in consensus; **accepted** 🎉
+- **net: add Interface.InterfaceAddrs** [#42694](https://golang.org/issue/42694)
+  - no change in consensus; **accepted** 🎉
+- **path/filepath: add SkipAll** [#47209](https://golang.org/issue/47209)
+  - no change in consensus; **accepted** 🎉
+- **reflect: add Value.CanInt, CanUint, CanFloat** [#47658](https://golang.org/issue/47658)
+  - no change in consensus; **accepted** 🎉
+- **runtime/metrics: add GOMAXPROCS, NumCgoCall, GC CPU time** [#47216](https://golang.org/issue/47216)
+  - no change in consensus; **accepted** 🎉
+- **slices: add Sort, SortStable, IsSorted, BinarySearch, and func variants** [#47619](https://golang.org/issue/47619)
+  - no change in consensus; **accepted** 🎉
+- **spec: allow 'any' for 'interface{}' in non-constraint contexts** [#33232](https://golang.org/issue/33232)
+  - no change in consensus; **accepted** 🎉
+- **spec: generics: require type parameters on aliases** [#46477](https://golang.org/issue/46477)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **go/parser: add a mode flag to disallow the new syntax for type parameters / instantiation** [#47783](https://golang.org/issue/47783)
+  - proposal retracted by author; **declined**
+- **log: add flag for displaying function name** [#47230](https://golang.org/issue/47230)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **fmt: add AppendPrint, AppendPrintf, AppendPrintln** [#47579](https://golang.org/issue/47579)
+  - **likely accept**; last call for comments ⏳
+- **net/netip: add new IP address package, use in net** [#46518](https://golang.org/issue/46518)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **bufio: add Reader.DiscardRunes(n int) and utf8: add RuneByteLen** [#47621](https://golang.org/issue/47621)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/cgo: provide a safe way to pin Go Pointer for the period of a C function call** [#46787](https://golang.org/issue/46787)
+  - discussion ongoing
+- **cmd/go: add per-test timeouts** [#48157](https://golang.org/issue/48157)
+  - commented
+- **crypto: add facility for key erasure** [#21865](https://golang.org/issue/21865)
+  - commented
+- **go/doc: support explicit hotlinking syntax** [#45533](https://golang.org/issue/45533)
+  - pending discussion #48305
+- **go/types: additions to support type parameters** [#47916](https://golang.org/issue/47916)
+  - discussion ongoing
+- **reflect: add Value.FieldByIndexErr** [#48218](https://golang.org/issue/48218)
+  - commented
+- **reflect: rename MapIter.SetKey and MapIter.SetValue** [#48294](https://golang.org/issue/48294)
+  - commented
+- **runtime: enable address sanitizer in Go** [#44853](https://golang.org/issue/44853)
+  - added to minutes
+- **spec: allow eliding interface{  } in constraint literals** [#48424](https://golang.org/issue/48424)
+  - added to minutes
+- **spec: allow explicit conversion from function to 1-method interface** [#47487](https://golang.org/issue/47487)
+  - discussion ongoing
+- **sync, sync/atomic: add PoolOf, MapOf, ValueOf** [#47657](https://golang.org/issue/47657)
+  - pending discussion #48287
+- **syscall/js: remove Wrapper type to avoid extreme allocations and improve performance** [#44006](https://golang.org/issue/44006)
+  - commented
+- **x/crypto/ssh: export a transport interface** [#32958](https://golang.org/issue/32958)
+  - discussion ongoing
+- **x/crypto/ssh: expose supported Kex algorithms** [#46232](https://golang.org/issue/46232)
+  - commented
+

@@ -1,0 +1,97 @@
+**2026-01-28 / @adonovan, @bradfitz, @cherrymui, @griesemer, @neild, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+
+**Accepted**
+
+- **all: transition ppc64/linux (big-endian) from ELFv1 to ELFv2 in Go 1.27** [#76244](https://go.dev/issue/76244)
+  - no change in consensus; **accepted** 🎉
+- **go/scanner: add \`(\*Scanner).End()\`** [#74958](https://go.dev/issue/74958)
+  - no change in consensus; **accepted** 🎉
+- **testing/synctest: add convenience function for Sleep then Wait** [#77169](https://go.dev/issue/77169)
+  - no change in consensus; **accepted** 🎉
+- **x/net/html: add NodeType.String() method** [#77006](https://go.dev/issue/77006)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/ast/inspector: add (\*Cursor).Valid() bool method** [#76361](https://go.dev/issue/76361)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **x/tools/go/astutil/inspector: add Cursor.IsChildOf** [#77195](https://go.dev/issue/77195)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **all: add bare metal support** [#73608](https://go.dev/issue/73608)
+  - commented
+- **cmd/vet: check for missing Err calls for bufio.Scanner and sql.Rows** [#17747](https://go.dev/issue/17747)
+  - commented
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - discussion ongoing
+- **crypto/tls: provide a way to access local certificate used to set up a connection** [#24673](https://go.dev/issue/24673)
+  - added to minutes
+- **crypto/uuid: add API to generate and parse UUID** [#62026](https://go.dev/issue/62026)
+  - added to minutes
+- **database/sql/driver: allow driver to entirely override Scan** [#67546](https://go.dev/issue/67546)
+  - discussion ongoing
+- **database/sql: export convertAssign as DefaultConvertAssign** [#62146](https://go.dev/issue/62146)
+  - discussion ongoing
+- **go/token: add (\*File).String method** [#76285](https://go.dev/issue/76285)
+  - commented
+- **net/url: URL.Clone, Values.Clone** [#73450](https://go.dev/issue/73450)
+  - added to minutes
+- **os/exec: add Cmd.Clone method** [#77075](https://go.dev/issue/77075)
+  - added to minutes
+- **policy for removing GODEBUG flags** [#76163](https://go.dev/issue/76163)
+  - commented
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - discussion ongoing
+- **simd: CPU feature vet check under GOEXPERIMENT=simd** [#76175](https://go.dev/issue/76175)
+  - discussion ongoing
+- **spec: generic methods for Go** [#77273](https://go.dev/issue/77273)
+  - added to minutes
+- **spec: type inferred composite literals** [#12854](https://go.dev/issue/12854)
+  - commented
+- **x/crypto/ssh: add AuthCallback to ClientConfig** [#76146](https://go.dev/issue/76146)
+  - added to minutes
+- **x/crypto/ssh: refactor signers API** [#74424](https://go.dev/issue/74424)
+  - added to minutes
+- **x/net/http2: deprecate WriteScheduler** [#67817](https://go.dev/issue/67817)
+  - commented
+
+**Hold**
+
+- **cmd/{go,cgo,compile}: change interpretation of relative //line directives** [#70478](https://go.dev/issue/70478)
+  - hold for implementation
+- **crypto/tls: dynamically reload root certificate authorities** [#64796](https://go.dev/issue/64796)
+  - put on hold
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **debug/pe: add BigObj COFF support via new fields on File struct** [#75659](https://go.dev/issue/75659)
+  - put on hold
+- **encoding/{base32,base64}: constant-time implementations of RFC 4648 codecs for use with cryptography keys** [#73901](https://go.dev/issue/73901)
+  - hold for implementation
+- **must: Do** [#54297](https://go.dev/issue/54297)
+  - hold for #77273
+- **os: convenience function for one-off Root operations** [#73168](https://go.dev/issue/73168)
+  - put on hold
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **x/net/http3: add experimental HTTP/3 implementation** [#70914](https://go.dev/issue/70914)
+  - put on hold
+
+

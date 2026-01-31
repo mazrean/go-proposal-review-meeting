@@ -1,0 +1,23 @@
+**2019-08-13** / @rsc, @griesemer, @andybons, @spf13 
+
+- #25530 **cmd/go: secure releases with transparency log**
+  - commented
+  - **likely accept; last call for comments**
+- #32405 **errors: simplified error inspection**
+  - commented
+  - **likely decline; last call for comments**
+- #31572 **net/http: add constant for content type**
+  - commented
+  - **likely decline; last call for comments**
+- #32456 **net/url: add FromFilePath and ToFilePath**
+  - asked for design doc
+  - put on hold for design doc
+- #29696 **runtime: add way for applications to respond to GC backpressure**
+  - asked owners for status
+- #32115 **runtime: KeepAlive should perhaps keep things from being moved**
+  - asked owners for feedback
+- #29165 **text/template: allow io.Reader as substitution value**
+  - suggested design doc
+- #30984 **x/net/nettest: add MakeLocalPipe to construct local listener and connections**
+  - commented
+  - pinged owners of package

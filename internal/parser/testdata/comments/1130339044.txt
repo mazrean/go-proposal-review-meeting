@@ -1,0 +1,86 @@
+**2022-05-18 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+**Accepted**
+
+- **doc: update Go memory model** [#50859](https://golang.org/issue/50859)
+  - no change in consensus; **accepted** 🎉
+- **fmt: add FormatString(State) string** [#51668](https://golang.org/issue/51668)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/go: Declare module content in \`go.files\` config** [#52807](https://golang.org/issue/52807)
+  - duplicate of #42965
+- **runtime/debug: add GCStats field to track count of marked pointers during last GC** [#52692](https://golang.org/issue/52692)
+  - proposal retracted by author; **declined**
+- **time: add time.AddMonth to add  a month without normalization** [#52775](https://golang.org/issue/52775)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **cmd/go: support for Git LFS via new VCS qualifier** [#47308](https://golang.org/issue/47308)
+  - **likely accept**; last call for comments ⏳
+- **crypto/ed25519: Implement Ed25519ph** [#31804](https://golang.org/issue/31804)
+  - **likely accept**; last call for comments ⏳
+- **go/ast: formally deprecate Object** [#52463](https://golang.org/issue/52463)
+  - **likely accept**; last call for comments ⏳
+- **x/exp/maps: Copy should use two generic map types** [#52593](https://golang.org/issue/52593)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **crypto: support bn, nums, sm2 curves** [#52778](https://golang.org/issue/52778)
+  - **likely decline**; last call for comments ⏳
+- **testing: add Unsetenv to call os.Unsetenv and then restore the value using Cleanup** [#52817](https://golang.org/issue/52817)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: \`go list -e -m -json all\` to start displaying hashes of modules** [#52792](https://golang.org/issue/52792)
+  - discussion ongoing
+- **cmd/go: partial vendoring** [#52604](https://golang.org/issue/52604)
+  - discussion ongoing
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - commented
+- **crypto/ecdh: new package** [#52221](https://golang.org/issue/52221)
+  - commented
+- **database/sql: add SetMaxBadConnRetries** [#52886](https://golang.org/issue/52886)
+  - added to minutes
+- **do something smart with virtual machine forks & crypto** [#52544](https://golang.org/issue/52544)
+  - commented
+- **encoding/json: dynamic field omission** [#52803](https://golang.org/issue/52803)
+  - discussion ongoing
+- **errors: add With(err, other error) error** [#52607](https://golang.org/issue/52607)
+  - discussion ongoing
+- **fmt: add flags to control printing of slices** [#52936](https://golang.org/issue/52936)
+  - added to minutes
+  - commented
+- **net/http: add ServeFSFile** [#51971](https://golang.org/issue/51971)
+  - discussion ongoing
+- **net/http: context based graceful server shutdown** [#52805](https://golang.org/issue/52805)
+  - commented
+- **os/exec: add fields for managing termination signals and pipes** [#50436](https://golang.org/issue/50436)
+  - commented
+- **spec: allow explicit conversion from function to 1-method interface** [#47487](https://golang.org/issue/47487)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://golang.org/issue/52751)
+  - discussion ongoing
+- **x/crypto/ssh: add  ServerConfig.HostKeyAlgorithms** [#52132](https://golang.org/issue/52132)
+  - discussion ongoing
+- **x/exp/maps: add Merge** [#52806](https://golang.org/issue/52806)
+  - commented
+- **x/net: Accept client-provided logger for http2 debug logs in addition to GODEBUG=http2debug=1,2** [#52734](https://golang.org/issue/52734)
+  - added to minutes
+- **x/sys/unix: add RecvmsgBufs ad SendmsgBufs** [#52885](https://golang.org/issue/52885)
+  - added to minutes
+
+**Hold**
+
+- **go/build: add API to pick out cgo flags** [#52222](https://golang.org/issue/52222)
+  - hold for updated API proposal
+- **go/build: add API to return embed patterns** [#52245](https://golang.org/issue/52245)
+  - hold for updated API proposal
+- **go/importer: provide a registry for x/tools importers to plug into** [#52163](https://golang.org/issue/52163)
+  - hold for concrete API proposal
+- **reflect: reflect.ValueOf(nil).IsNil() panics; let's make it return true** [#51649](https://golang.org/issue/51649)
+  - hold for prototype

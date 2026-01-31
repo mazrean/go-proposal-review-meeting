@@ -1,0 +1,96 @@
+**2022-11-30 / @rsc, @griesemer, @ianlancetaylor, @andybons, @julieqiu**
+
+**Accepted**
+
+- **crypto/ecdh: provide and/or implement an interface** [#56052](https://go.dev/issue/56052)
+  - no change in consensus; **accepted** 🎉
+- **os: TempDir should use GetTempPath2 when available on Windows** [#56899](https://go.dev/issue/56899)
+  - no change in consensus; **accepted** 🎉
+- **spec: add clear(x) builtin, to clear map, zero content of slice** [#56351](https://go.dev/issue/56351)
+  - no change in consensus; **accepted** 🎉
+- **spec: allow basic interface types to instantiate comparable type parameters** [#56548](https://go.dev/issue/56548)
+  - no change in consensus; **accepted** 🎉
+- **x/exp/slices: add ContainsFunc** [#53983](https://go.dev/issue/53983)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/cmd/cover: isolate, tag, and delete package** [#56783](https://go.dev/issue/56783)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **crypto/x509: Add support for OtherName SAN** [#55897](https://go.dev/issue/55897)
+  - no change in consensus; **declined**
+- **runtime: support to call finalizing function when \`throw()\` is called** [#56702](https://go.dev/issue/56702)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **bytes, strings: add ContainsFunc** [#54386](https://go.dev/issue/54386)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **all: end support for Windows 7, Windows Server 2008 in Go 1.21** [#57003](https://go.dev/issue/57003)
+  - added to minutes
+- **all: end support for Windows 8, Windows Server 2012 in Go 1.21 or 1.22** [#57004](https://go.dev/issue/57004)
+  - added to minutes
+- **bytes, strings: add Truncate** [#56885](https://go.dev/issue/56885)
+  - added to minutes
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - added to minutes
+- **cmd/go: do not download “modules” that contain no Go files** [#31866](https://go.dev/issue/31866)
+  - added to minutes
+- **cmd/go: support a -C flag value to not use any current directory** [#56868](https://go.dev/issue/56868)
+  - added to minutes
+- **context: add APIs for setting a cancelation cause when deadline or timer expires** [#56661](https://go.dev/issue/56661)
+  - commented
+- **crypto/rsa: deprecate GenerateMultiPrimeKey and PrecomputedValues.CRTValues** [#56921](https://go.dev/issue/56921)
+  - added to minutes
+- **crypto/x509: add String() for KeyUsage, ExtKeyUsage** [#56866](https://go.dev/issue/56866)
+  - added to minutes
+- **crypto: add SignContext and use in crypto/tls** [#56508](https://go.dev/issue/56508)
+  - commented
+- **database/sql: Support for generics with NullTypes Interface** [#56439](https://go.dev/issue/56439)
+  - commented
+- **encoding/json: allow limiting Decoder.Decode read size** [#56733](https://go.dev/issue/56733)
+  - commented
+- **extended backwards compatibility for Go** [#56986](https://go.dev/issue/56986)
+  - added to minutes
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - added to minutes
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **math: add Compare and Compare32** [#56491](https://go.dev/issue/56491)
+  - retitled
+  - commented
+- **net/http: Transport tracing hooks** [#56241](https://go.dev/issue/56241)
+  - added to minutes
+- **net: add support for MPTCP** [#56539](https://go.dev/issue/56539)
+  - commented
+- **reflect: add Value.Clear** [#55002](https://go.dev/issue/55002)
+  - commented
+- **reflect: add \`Value.CallInto\`** [#49340](https://go.dev/issue/49340)
+  - commented
+- **reflect: deprecate SliceHeader and StringHeader** [#56906](https://go.dev/issue/56906)
+  - added to minutes
+- **runtime/metrics: add live\_objects metrics** [#56857](https://go.dev/issue/56857)
+  - added to minutes
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - discussion ongoing
+- **spec: guarantee non-nil return value from recover** [#25448](https://go.dev/issue/25448)
+  - added to minutes
+- **spec: reduce noise in return statements that contain mostly zero values** [#21182](https://go.dev/issue/21182)
+  - discussion ongoing
+- **testing: t.TempDir() should return actual path on macOS** [#56259](https://go.dev/issue/56259)
+  - commented
+- **x/exp/slices: add Sorted** [#56692](https://go.dev/issue/56692)
+  - added to minutes
+- **x/net/http2: support consuming PUSH\_PROMISE streams in the client** [#18594](https://go.dev/issue/18594)
+  - commented
+- **x/net/ipv{4,6}: adopt net/netip address types** [#54883](https://go.dev/issue/54883)
+  - commented
+- **x/time/rate: make Wait return an error that Is(DeadlineExceeded) for deadline miss** [#54541](https://go.dev/issue/54541)
+  - commented

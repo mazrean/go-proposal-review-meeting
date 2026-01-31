@@ -1,0 +1,32 @@
+2019-09-03 / **@bradfitz, @griesemer, @ianlancetaylor, @spf13**
+
+- #33388 **cmd/go: add build tags for 32-bit and 64-bit architectures**
+  - **declined** (no final comments)
+- #32465 **net: add ability to read OOB data without discarding a byte**
+  - **declined** (no final comments)
+- #31880 **os: add Touch to set access/mod times to current time**
+  - **declined** (no final comments)
+- #32593 **strings: a string factory to convert `bytes` to `string`**
+  - **declined** (no final comments)
+- #33508 **x/sys/cpu: add support for ARM**
+  - **accepted** (taking additional comments into account)
+- #32153 **x/sys/unix: standardize Kevent_t Udata as integer, not pointer**
+  - **accepted** (no additional comments)
+- #34038 **move mature wiki content behind Gerrit**
+  - commented, waiting for #29206 (referenced)
+- #33974 **make the internal filelock package public**
+  - cc: @bcmills 
+- #33920 **io/ioutil: TempFile: pattern should prevent directory traversal**
+  - commented, discussion ongoing
+- #33459 **add standard library package for sizes**
+  - commented
+- #32634 **net/url: add Values.Decode**
+  - @bradfitz commented
+- #33805 **io/ioutil: TempDir should support patterns like TempFile does**
+  - commented (asking for feedback on proposed approach)
+- #33803 **make `GOMAXPROCS` cfs-aware on `GOOS=linux`**
+  - changed from proposal to feature request
+- #33637 **doc: restructure module documentation**
+  - commented (request for feedback)
+- #33740 **text/template: make "eq" support all comparable types**
+  - cc: robpike

@@ -1,0 +1,32 @@
+**2019-09-12** / @rsc, @bradfitz, @andybons, @griesemer, @ianlancetaylor
+
+- #33459 **add standard library package for sizes**
+  - commented
+- #32721 **cmd/go: allow 'go get -u' to upgrade the targets of replacements**
+  - cc’d domain experts
+- #34217 **cmd/go: ignore +incompatible versions as of Go 1.14**
+  - discussion ongoing
+- #34069 **encoding/pem: add DecodeStrict**
+  - commented
+  - cc’d domain experts
+- #34038 **move mature wiki content behind Gerrit**
+  - discussion ongoing
+- #33701 **runtime/pprof: add new WithLabels\* function that requires fewer allocations**
+  - summarized
+  - cc’d domain experts
+- #34145 **strconv: add a version of QuoteToASCII that doesn't add quotes**
+  - commented
+- #33762 **sync: Map should provide DeleteWithLoad which returns loaded value and boolean**
+  - discussion ongoing
+- #34129 **TestMain should not require os.Exit**
+  - commented
+  - cc’d domain experts
+- #32111 **testing: add Defer method**
+  - commented
+  - cc’d more domain experts
+- #33740 **text/template: make "eq" support all comparable types**
+  - commented
+  - **likely accept; last call for comments**
+- #32634 **net/url: add Values.Decode**
+  - commented
+  - **likely decline; last call for comments**

@@ -1,0 +1,103 @@
+**2022-09-28 / @rsc, @griesemer, @bradfitz, @aclements, @julieqiu**
+
+**Accepted**
+
+- **go/ast: record start and end of file in File.FileStart, File.FileEnd** [#53202](https://go.dev/issue/53202)
+  - no change in consensus; **accepted** 🎉
+- **net: add UDPMsg, (\*UDPConn).ReadUDPMsgs, (\*UDPConn).WriteUDPMsgs** [#45886](https://go.dev/issue/45886)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **crypto/x509: expose hash algorithm for SignatureAlgorithm** [#33317](https://go.dev/issue/33317)
+  - no change in consensus; **declined**
+- **crypto: add SignContext** [#28427](https://go.dev/issue/28427)
+  - no change in consensus; **declined**
+- **math/rand: add Reader variable** [#16776](https://go.dev/issue/16776)
+  - no change in consensus; **declined**
+- **runtime: add HeapMarked to MemStats** [#51966](https://go.dev/issue/51966)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **build: adopt Go 1.20 as bootstrap toolchain for Go 1.22** [#54265](https://go.dev/issue/54265)
+  - **likely accept**; last call for comments ⏳
+- **cmd/compile: profile-guided optimization** [#55022](https://go.dev/issue/55022)
+  - **likely accept**; last call for comments ⏳
+- **math/rand: deprecate Read** [#20661](https://go.dev/issue/20661)
+  - **likely accept**; last call for comments ⏳
+- **math/rand: seed global generator randomly** [#54880](https://go.dev/issue/54880)
+  - **likely accept**; last call for comments ⏳
+- **x/time/rate: add Sometimes type** [#54237](https://go.dev/issue/54237)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmd/vet: add static analysis pass to check whether bytes.Buffer should be replace by strings.Builder** [#54988](https://go.dev/issue/54988)
+  - **likely decline**; last call for comments ⏳
+- **x/text: expose MIBenum via identifier package** [#47577](https://go.dev/issue/47577)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **archive/tar, archive/zip: add ErrInsecurePath** [#55356](https://go.dev/issue/55356)
+  - added to minutes
+- **bytes, strings: \`TrimStart\` and \`TrimEnd\` replacing \`TrimLeft\` and \`TrimRight\`** [#54678](https://go.dev/issue/54678)
+  - added to minutes
+  - commented
+- **crypto/cipher: detached mode AEAD Seal/Open** [#24990](https://go.dev/issue/24990)
+  - commented
+  - back to active
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - discussion ongoing
+- **crypto: add crypto engines** [#33281](https://go.dev/issue/33281)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **hash: permit usage of encoding/binary package** [#55104](https://go.dev/issue/55104)
+  - declined as infeasible
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **net/http:  Enabling support for HTTP/2 ORIGIN Frames RFC 8336** [#55121](https://go.dev/issue/55121)
+  - added to minutes
+  - commented
+- **net/http: ResponseController to manipulate per-request timeouts (and other behaviors)** [#54136](https://go.dev/issue/54136)
+  - discussion ongoing
+- **net/http: add ServeFSFile** [#51971](https://go.dev/issue/51971)
+  - discussion ongoing
+- **net/http: add support for proxy basic authentication** [#55290](https://go.dev/issue/55290)
+  - added to minutes
+  - commented
+- **net: Add ControlContext to Dialer** [#55301](https://go.dev/issue/55301)
+  - added to minutes
+- **reflect: add (\*Value).MapClear** [#55002](https://go.dev/issue/55002)
+  - added to minutes
+- **reflect: add Value.Equal, Value.Comparable** [#46746](https://go.dev/issue/46746)
+  - added to minutes
+  - commented
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - commented
+- **sync/atomic: deprecate AddXxx, CompareAndSwapXxx, LoadXxx, StoreXxx, SwapXxx** [#55302](https://go.dev/issue/55302)
+  - added to minutes
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **time: add Ticker functions to affect the next tick** [#55129](https://go.dev/issue/55129)
+  - added to minutes
+- **x/exp/slices: add \`Replace()\`** [#55358](https://go.dev/issue/55358)
+  - added to minutes
+- **x/net/http2: Transport.MaxReadFrameSize** [#54850](https://go.dev/issue/54850)
+  - added to minutes
+- **x/tools/go/ssa: generate function bodies for parameterized functions** [#54984](https://go.dev/issue/54984)
+  - added to minutes
+
+**Hold**
+
+- **net: UDPAddr/TCPAddr AddrPort should map 4in6 addresses to IPv4 netip.Addrs** [#53607](https://go.dev/issue/53607)
+  - hold for more information
+
+
+**Other**
+
+- **design and implementation of Profile-Guided Optimization (PGO)** [#55025](https://go.dev/issue/55025)
+  - removed from proposal process

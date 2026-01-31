@@ -1,0 +1,120 @@
+**2022-05-04 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+**Accepted**
+
+- **go/types: add Object.Origin** [#51682](https://golang.org/issue/51682)
+  - no change in consensus; **accepted** 🎉
+- **io: add an \`Err\` field to \`LimitedReader\`** [#51115](https://golang.org/issue/51115)
+  - no change in consensus; **accepted** 🎉
+- **net: make LookupCNAME consistent between Unix and Windows, document** [#50101](https://golang.org/issue/50101)
+  - no change in consensus; **accepted** 🎉
+- **spec: adjust scope of type parameters declared by method receivers** [#52038](https://golang.org/issue/52038)
+  - no change in consensus; **accepted** 🎉
+- **syscall: add PidFD, CgroupFD, and UseCgroupFD options for Linux clone to SysProcAttr** [#51246](https://golang.org/issue/51246)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto/acme/autocert: add Manager.StapleOCSP** [#51064](https://golang.org/issue/51064)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto/ssh: add ServerConfig.NoClientAuthCallback** [#51994](https://golang.org/issue/51994)
+  - no change in consensus; **accepted** 🎉
+- **x/net/http2: add DialTLSContext to Transport** [#52114](https://golang.org/issue/52114)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/go: list available major versions in 'go list -u -m all'** [#51491](https://golang.org/issue/51491)
+  - no change in consensus; **declined**
+- **encoding/xml: option to treat unknown fields as an error** [#30301](https://golang.org/issue/30301)
+  - no change in consensus; **declined**
+- **math/big: support for constant-time arithmetic** [#20654](https://golang.org/issue/20654)
+  - no change in consensus; **declined**
+- **net/http/httputil: can ReverseProxy copy src header to dst header with Set() instead of Add() ?** [#50730](https://golang.org/issue/50730)
+  - no change in consensus; **declined**
+- **reflect: treat reflect.Type as a pointer where possible for generics & maps** [#52267](https://golang.org/issue/52267)
+  - no change in consensus; **declined**
+- **testing: add assertion methods** [#52555](https://golang.org/issue/52555)
+  - proposal retracted by author; **declined**
+- **x/exp/slices: Find function to select first element matching a condition** [#52006](https://golang.org/issue/52006)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/cover: extend coverage testing to include applications** [#51430](https://golang.org/issue/51430)
+  - **likely accept**; last call for comments ⏳
+- **net/http/httputil: add X-Forwarded-Proto and X-Forwarded-Host by default** [#50465](https://golang.org/issue/50465)
+  - **likely accept**; last call for comments ⏳
+- **strings: add CutPrefix and CutSuffix** [#42537](https://golang.org/issue/42537)
+  - retitled
+  - **likely accept**; last call for comments ⏳
+- **sync: add new Map methods CompareAndSwap, CompareAndDelete, Swap** [#51972](https://golang.org/issue/51972)
+  - **likely accept**; last call for comments ⏳
+- **x/sync/errgroup: add TryGo and SetLimit to control concurrency** [#27837](https://golang.org/issue/27837)
+  - retitled
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmd/go: go mod: limit version resolution to packages that are consumed** [#52296](https://golang.org/issue/52296)
+  - **likely decline**; last call for comments ⏳
+- **language: allow getting capacity of map?** [#52157](https://golang.org/issue/52157)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: partial vendoring** [#52604](https://golang.org/issue/52604)
+  - added to minutes
+- **cmd/go: support for Git LFS via new VCS qualifier** [#47308](https://golang.org/issue/47308)
+  - cc’ed owners
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - commented
+- **crypto/ed25519: Implement Ed25519ph** [#31804](https://golang.org/issue/31804)
+  - added to minutes
+- **do something smart with virtual machine forks & crypto** [#52544](https://golang.org/issue/52544)
+  - added to minutes
+  - commented
+- **doc: update Go memory model** [#50859](https://golang.org/issue/50859)
+  - discussion ongoing
+- **errors: Add With(err, other error) error** [#52607](https://golang.org/issue/52607)
+  - added to minutes
+  - commented
+- **fmt: add FormatString(State) string** [#51668](https://golang.org/issue/51668)
+  - commented
+- **go/ast: formally deprecate Object** [#52463](https://golang.org/issue/52463)
+  - added to minutes
+  - discussion ongoing
+- **go/build: add API to pick out cgo flags** [#52222](https://golang.org/issue/52222)
+  - commented
+- **go/build: add API to return embed patterns** [#52245](https://golang.org/issue/52245)
+  - commented
+- **go/importer: provide a registry for x/tools importers to plug into** [#52163](https://golang.org/issue/52163)
+  - commented
+- **net/http: add ServeFSFile** [#51971](https://golang.org/issue/51971)
+  - discussion ongoing
+- **os/exec: add fields for managing termination signals and pipes** [#50436](https://golang.org/issue/50436)
+  - commented
+- **reflect: allow Value.Set with zero Value for interface values** [#52310](https://golang.org/issue/52310)
+  - decline as duplicate of #51649
+- **reflect: reflect.ValueOf(nil).IsNil() panics; let's make it return true** [#51649](https://golang.org/issue/51649)
+  - commented
+- **regexp: support \C to match a single byte** [#52632](https://golang.org/issue/52632)
+  - declined as infeasible
+- **runtime: deprecate GOROOT() function** [#51473](https://golang.org/issue/51473)
+  - commented
+- **spec: permit values to have type "comparable"** [#51338](https://golang.org/issue/51338)
+  - discussion ongoing
+- **text/template: add reverse Execute method (parse text into struct)** [#52473](https://golang.org/issue/52473)
+  - added to minutes
+  - declined as infeasible
+- **x/crypto/ssh: add  ServerConfig.HostKeyAlgorithms** [#52132](https://golang.org/issue/52132)
+  - cc’ed owners
+- **x/exp/maps: Copy should use two generic map types** [#52593](https://golang.org/issue/52593)
+  - added to minutes
+  - commented
+
+**Hold**
+
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - put on hold
+- **fmt: add Formatter fallback** [#51195](https://golang.org/issue/51195)
+  - hold for #51668
+- **x/arch/arm64/arm64asm: all fields of potential Args structs should be exported** [#51517](https://golang.org/issue/51517)
+  - hold for more API design

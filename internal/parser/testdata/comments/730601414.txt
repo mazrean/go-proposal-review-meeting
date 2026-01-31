@@ -1,0 +1,62 @@
+**2020-11-18 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+[Meeting was yesterday, posting late. No review next week due to US Thanksgiving holiday.]
+
+- #42168 **add first-class Cross Site Request Forgery protection**
+  - commented
+- #42088 **cmd/go: 'go run' should run executables in module mode outside a module**
+  - discussion ongoing
+- #42328 **cmd/go: avoid surprising inclusion of "hidden" files when using //go:embed**
+  - **likely accept**; last call for comments ⏳
+- #42477 **cmd/go: build tag in filename suffix for matching of syso files**
+  - **likely decline**; last call for comments ⏳
+- #40405 **cmd/go: detect proxy redirect loops**
+  - ongoing discussion
+- #42343 **cmd/go: proposal add project config to go.mod**
+  - discussion ongoing
+- #41824 **cmd/go: run benchmarks for one iteration when testing**
+  - **likely decline**; last call for comments ⏳
+- #40127 **encoding/json: add Encoder.EncodeToken method**
+  - no change in consensus; **accepted** 🎉
+- #42009 **encoding/json: add EvalJSONPointer function to support RFC 6901**
+  - no change in consensus; **declined**
+- #40128 **encoding/json: garbage-free reading of tokens**
+  - commented
+- #40155 **flag: add Strings, a default Value**
+  - **likely decline**; last call for comments ⏳
+- #41792 **flag: panic if flag name begins with - or contains =**
+  - **likely accept**; last call for comments ⏳
+- #41495 **fmt: %p should accept uintptr**
+  - no change in consensus; **declined**
+- #42322 **io/fs: add func Sub(fsys FS, dir string) FS**
+  - **likely accept**; last call for comments ⏳
+- #42387 **io: add FileInfoToDirEntry(FileInfo)**
+  - discussion ongoing
+- #34038 **move mature wiki content behind Gerrit**
+  - no change in consensus; **accepted** 🎉
+- #39609 **net/http: add constant for samesite cookie mode**
+  - put on hold
+- #39567 **net/http: allow setting a MaxBytesReader on all requests in http.Server**
+  - commented
+- #42173 **net/http: handle Seek error in range request by sending entire file**
+  - commented
+- #41625 **net/mail: allow AddressParser helper code to signal invalid character set**
+  - discussion ongoing
+- #42201 **path/filepath: add Resolve, replacing EvalSymlinks**
+  - **likely decline**; last call for comments ⏳
+- #40592 **reflect: add func (Value) UnsafePointer() unsafe.Pointer**
+  - no change in consensus; **accepted** 🎉
+- #42502 **runtime/pprof: add StartCPUProfileWithRate**
+  - commented
+- #40135 **strings: add Cut**
+  - put on hold
+- #42537 **strings: add TrimPrefix2 and TrimSuffix2, variants which report whether they trimmed**
+  - discussion ongoing
+- #42584 **syscall: add DLLError.Unwrap() method**
+  - no change in consensus; **accepted** 🎉
+- #42361 **x/crypto/acme/autocert cluster compatibility**
+  - commented
+- #39683 **x/exp/mmap: expose a File-like type**
+  - commented
+- #42128 **x/net/dns/dnsmessage: use UnknownResource for an unrecognized DNS type**
+  - commented

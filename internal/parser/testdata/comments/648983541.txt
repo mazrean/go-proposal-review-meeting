@@ -1,0 +1,35 @@
+**2020-06-24 / @rsc, @ianlancetaylor, @bradfitz**
+
+- #34974 **archive/zip: add already compressed files**
+  - commented
+- #36503 **context: add Merge**
+  - discussion ongoing
+- #32406 **crypto/tls: add request context to Conn, ClientHelloInfo, CertificateRequestInfo and ConnectionState**
+  - discussion ongoing
+- #39493 **errors: add String**
+  - **likely decline**; last call for comments ⏳
+- #39539 **errors: expose Iser and Aser**
+  - commented
+- #39557 **flag: add Func**
+  - commented
+- #39798 **io: new Timeout interface implemented by errors**
+  - commented
+- #39558 **net/http: add ResponseWriterAs function**
+  - commented
+- #39444 **os: export errFinished as ErrProcessDone**
+  - commented
+  - retitled
+- #39545 **reflect: add Value.CanCall method**
+  - commented
+- #39574 **reflect: add method Type.Underlying()**
+  - **likely decline**; last call for comments ⏳
+- #39528 **reflect: allow creation of recursive types**
+  - duplicate of #39717
+- #39717 **reflect: allow creation of recursive types atomically**
+  - commented
+- #39413 **regexp: add Regexp.ProgramSize method similar to C++ RE2::ProgramSize**
+  - discussion ongoing
+- #39351 **sync/atomic: add (\*Value).Swap and (\*Value).CompareAndSwap**
+  - **likely accept**; last call for comments ⏳
+- #37196 **time: make Timer/Ticker channels not receivable with old values after Stop or Reset returns**
+  - no change in consensus; **accepted** 🎉

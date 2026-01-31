@@ -1,0 +1,118 @@
+**2024-07-24 / @aclements, @bradfitz, @cherrymui, @griesemer, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+
+**Accepted**
+
+- **crypto/tls: add Extensions to ClientHelloInfo** [#32936](https://go.dev/issue/32936)
+  - no change in consensus; **accepted** 🎉
+- **x/net/http2: add per-write timeouts (WriteByteTimeout)** [#61777](https://go.dev/issue/61777)
+  - no change in consensus; **accepted** 🎉
+- **x/net/http2: configurable server pings** [#67812](https://go.dev/issue/67812)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/ast/inspector: add Inspector.PreorderSeq and top-level func All** [#67795](https://go.dev/issue/67795)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **io: add WriteAll function** [#67921](https://go.dev/issue/67921)
+  - declined as infeasible
+- **testing: add (\*testing.T).PassNow method** [#68128](https://go.dev/issue/68128)
+  - declined as infeasible
+
+**Likely Accept**
+
+- **crypto/rand: add func Text** [#67057](https://go.dev/issue/67057)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: support kernel-provided TLS** [#44506](https://go.dev/issue/44506)
+  - **likely accept**; last call for comments ⏳
+- **database/sql: allow driver to entirely override Scan** [#67546](https://go.dev/issue/67546)
+  - **likely accept**; last call for comments ⏳
+- **net/http: HTTP version selection API** [#67814](https://go.dev/issue/67814)
+  - **likely accept**; last call for comments ⏳
+- **net/http: HTTP/2 configuration API** [#67813](https://go.dev/issue/67813)
+  - **likely accept**; last call for comments ⏳
+- **x/net/http2: move frame operations to x/net/http2/http2frame** [#67819](https://go.dev/issue/67819)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/compile: spurious promotion of methods from embedded aliases of unnamed types** [#66540](https://go.dev/issue/66540)
+  - added to minutes
+- **cmd/go: doc -http should start a pkgsite instance and open a browser** [#68106](https://go.dev/issue/68106)
+  - added to minutes
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd/vet: warn on 3-clause loops where an iterator variable contains a lock type when GoVersion>=1.22** [#66387](https://go.dev/issue/66387)
+  - added to minutes
+- **compress/zstd: add new package** [#62513](https://go.dev/issue/62513)
+  - commented
+- **encoding/json: add omitzero option** [#45669](https://go.dev/issue/45669)
+  - added to minutes
+- **errors: add All and AllAs iterators** [#66455](https://go.dev/issue/66455)
+  - commented
+- **fmt: add iterator for format tokens** [#68279](https://go.dev/issue/68279)
+  - added to minutes
+- **go/ast: add CommentGroup.Directives iterator** [#68021](https://go.dev/issue/68021)
+  - added to minutes
+- **hash/maphash: add func Comparable** [#54670](https://go.dev/issue/54670)
+  - commented
+- **io/fs: add SymlinkFS interface** [#49580](https://go.dev/issue/49580)
+  - commented
+- **net/http: customize limit on number of 1xx responses** [#65035](https://go.dev/issue/65035)
+  - commented
+- **os: safer file open functions** [#67002](https://go.dev/issue/67002)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - commented
+- **runtime: add AddCleanup and deprecate SetFinalizer** [#67535](https://go.dev/issue/67535)
+  - added to minutes
+- **runtime: add RunOnMainThread to take control of the main thread** [#64777](https://go.dev/issue/64777)
+  - added to minutes
+- **runtime: allow access to stopTheWorld/startTheWorld via go:linkname** [#68167](https://go.dev/issue/68167)
+  - added to minutes
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - discussion ongoing
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: reconsider adding Context method to testing.T** [#36532](https://go.dev/issue/36532)
+  - commented
+- **weak: new package providing weak pointers** [#67552](https://go.dev/issue/67552)
+  - added to minutes
+- **x/crypto: add crypt(3) password hash algorithms** [#14274](https://go.dev/issue/14274)
+  - added to minutes
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/net/html: add Node.All(), Node.ChildNodes(), Nodes.Parents() iterators** [#62113](https://go.dev/issue/62113)
+  - added to minutes
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - commented
+- **x/sys/unix: add support for linux' TCP\_CC\_INFO** [#68232](https://go.dev/issue/68232)
+  - added to minutes
+- **x/telemetry: expand the scope of Go Telemetry to include Delve** [#68384](https://go.dev/issue/68384)
+  - added to minutes
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **runtime: don't enable process-wide long path support on Windows** [#66560](https://go.dev/issue/66560)
+  - hold for Microsoft
+- **x/tools/go/types/typeutil: add TypeMap\[V]** [#67161](https://go.dev/issue/67161)
+  - put on hold

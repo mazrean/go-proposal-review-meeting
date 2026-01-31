@@ -1,0 +1,74 @@
+**2022-08-17 / @rsc, @griesemer, @andybons, @aclements, @julieqiu**
+
+**Accepted**
+
+- **cmd/go: go clean should not accept flags like -modcache with packages** [#53725](https://go.dev/issue/53725)
+  - no change in consensus; **accepted** 🎉
+- **x/text/number: provide way to query number system** [#53872](https://go.dev/issue/53872)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **compress: add AppendCompress and AppendDecompress** [#54078](https://go.dev/issue/54078)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **testing: add support for individual test function execution - expose testing.M.Tests** [#53701](https://go.dev/issue/53701)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **crypto/cipher: detached mode AEAD Seal/Open** [#24990](https://go.dev/issue/24990)
+  - added to minutes
+  - commented
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - cc’ed owners
+  - commented
+- **crypto/x509: expose hash algorithm for SignatureAlgorithm** [#33317](https://go.dev/issue/33317)
+  - added to minutes
+  - commented
+- **crypto: add SignContext** [#28427](https://go.dev/issue/28427)
+  - added to minutes
+  - commented
+- **crypto: add crypto engines** [#33281](https://go.dev/issue/33281)
+  - commented
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - commented
+- **errors: add support for wrapping multiple errors** [#53435](https://go.dev/issue/53435)
+  - commented
+- **net/http: add ServeFSFile** [#51971](https://go.dev/issue/51971)
+  - discussion ongoing
+- **net: add UDPMsg, (\*UDPConn).ReadUDPMsgs, (\*UDPConn).WriteUDPMsgs** [#45886](https://go.dev/issue/45886)
+  - retitled
+  - commented
+- **net: add func(IP) Unmap() IP to help when using net/netip** [#54234](https://go.dev/issue/54234)
+  - retitled
+  - commented
+- **runtime option to use cosmopolitan libc** [#51900](https://go.dev/issue/51900)
+  - discussion ongoing
+- **runtime/race: add const Enabled** [#36477](https://go.dev/issue/36477)
+  - added to minutes
+  - commented
+- **runtime: add 'created by goroutine number' to stack traces** [#38651](https://go.dev/issue/38651)
+  - commented
+- **runtime: add parameters to recover to only return specific types** [#50424](https://go.dev/issue/50424)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - commented
+- **x/net/http2: distinguish no body from empty body** [#53894](https://go.dev/issue/53894)
+  - commented
+- **x/sys/windows: Add WSALookupService** [#54232](https://go.dev/issue/54232)
+  - commented
+- **x/time/rate: add Sometimes type** [#54237](https://go.dev/issue/54237)
+  - discussion ongoing
+
+
+**Other**
+
+- **x/sys/windows: fix Accept implementation** [#54212](https://go.dev/issue/54212)
+  - removed from proposal process

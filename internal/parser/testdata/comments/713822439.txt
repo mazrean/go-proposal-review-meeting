@@ -1,0 +1,62 @@
+**2020-10-21 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #40827 **annotate which error values should never be wrapped**
+  - no change in consensus; **declined**
+- #34974 **archive/zip: add File.OpenRaw, Writer.CreateRaw, Writer.Copy**
+  - **likely accept**; last call for comments ⏳
+- #42100 **build: add ios/amd64 as a GOOS/GOARCH**
+  - no change in consensus; **accepted** 🎉
+- #40724 **cmd/compile: switch to a register-based calling convention for Go functions**
+  - commented
+- #40189 **cmd/go: add a sub command to manage authentication**
+  - discussion ongoing
+- #41583 **cmd/go: add go test -skip to skip specific tests**
+  - discussion ongoing
+- #41730 **cmd/go: allow users to control VCS usage**
+  - **likely accept**; last call for comments ⏳
+- #41696 **cmd/go: deprecate the -i flag**
+  - **likely accept**; last call for comments ⏳
+- #27628 **cmd/go: do not cache tool output if tools print to stdout/stderr**
+  - no change in consensus; **accepted** 🎉
+- #40364 **cmd/go: enable listing direct dependency updates**
+  - commented
+- #42040 **container/list: add trimming APIs**
+  - **likely decline**; last call for comments ⏳
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo and CertificateRequestInfo**
+  - discussion ongoing
+- #41790 **database/sql: close driver.Connector if it implements an io.Closer**
+  - discussion ongoing
+- #41757 **flag: Introduce functions for defining rune flag**
+  - proposal retracted by author; **declined**
+- #41792 **flag: validate the name of the flag**
+  - discussion ongoing
+- #41974 **io/fs, filepath: add more efficient Walk alternative**
+  - proposal retracted by author; **declined**
+- #39057 **log: add func Default() \*Logger**
+  - no change in consensus; **accepted** 🎉
+- #40765 **net/http: accept "x-gzip" content encoding value**
+  - commented
+- #41773 **net/http: add Server.OptionsHandler to allow custom handling of OPTIONS \***
+  - commented
+- #41046 **net/http: add support for the upcoming "Structured Field Values for HTTP" RFC**
+  - put on hold
+- #41733 **net/url: add URL.Clone method**
+  - commented
+- #37113 **path/filepath: add Resolve, replacing EvalSymlinks**
+  - discussion ongoing
+- #42027 **path/filepath: add WalkDir (Walk using DirEntry)**
+  - discussion ongoing
+- #42027 **path/filepath: add WalkDir (Walk using DirEntry)**
+  - discussion ongoing
+- #41563 **reflect: add StructField.IsExported and Method.IsExported**
+  - no change in consensus; **accepted** 🎉
+- #41896 **reflect: add Type.IsEmptyInterface**
+  - commented
+- #42099 **reflect: add Type.QualifiedString**
+  - commented
+- #42098 **syscall: add SysProcAttr.NoInheritHandles on Windows**
+  - commented
+- #41980 **testing: Provide ability to inspect output of Example tests**
+  - commented
+- #42102 **time: add Time.IsDST() bool method**
+  - discussion ongoing

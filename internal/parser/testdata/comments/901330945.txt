@@ -1,0 +1,102 @@
+**2021-08-18 / @rsc, @griesemer, @bradfitz, @andybons**
+
+- [#46802](https://golang.org/issue/46802) **all: add bare metal ARM support**
+  - added to minutes
+- [#47527](https://golang.org/issue/47527) **bufio: add Writer.AvailableBuffer**
+  - **likely accept**; last call for comments ⏳
+- [#46787](https://golang.org/issue/46787) **cmd/cgo: provide a safe way to pin Go Pointer for the period of a C function call**
+  - comment
+- [#47373](https://golang.org/issue/47373) **cmd/compile: add support for RISC-V B-extension**
+  - no change in consensus; **declined**
+- [#47529](https://golang.org/issue/47529) **cmd/compile: no bound check compiler directive**
+  - no change in consensus; **declined**
+- [#46731](https://golang.org/issue/46731) **cmd/compile: replace \`//go:notinheap\` with runtime/internal/sys.NotInHeap**
+  - discussion ongoing
+- [#47398](https://golang.org/issue/47398) **cmd/cover: add flag to print total coverage number**
+  - **likely decline**; last call for comments ⏳
+- [#47257](https://golang.org/issue/47257) **cmd/dist: remove precompiled .a files from binary distributions**
+  - **likely accept**; last call for comments ⏳
+- [#38687](https://golang.org/issue/38687) **cmd/go: add 'go generate -skip'**
+  - no change in consensus; **accepted** 🎉
+- [#46917](https://golang.org/issue/46917) **cmd/go: add SPDX license list to go.mod file**
+  - no change in consensus; **declined**
+- [#45713](https://golang.org/issue/45713) **cmd/go: add a workspace mode**
+  - **likely accept**; last call for comments ⏳
+- [#37724](https://golang.org/issue/37724) **cmd/go: add ignore directive to go.mod to drop files from module**
+  - added to minutes
+- [#39247](https://golang.org/issue/39247) **cmd/go: add way to force ignoring vendor directory**
+  - proposal retracted by author; **declined**
+- [#38964](https://golang.org/issue/38964) **cmd/go: configurable extra vcs paths**
+  - comment
+- [#39426](https://golang.org/issue/39426) **cmd/go: make "go test" exit 0 if \*.go files exist but none match context**
+  - added to minutes
+- [#47788](https://golang.org/issue/47788) **cmd/go: remove -buildmode=shared**
+  - added to minutes
+- [#47528](https://golang.org/issue/47528) **cmd/vet: warn when errors.As target has type \*error**
+  - no change in consensus; **accepted** 🎉
+- [#45458](https://golang.org/issue/45458) **constraints: new package to define standard type parameter constraints**
+  - no change in consensus; **accepted** 🎉
+- [#42713](https://golang.org/issue/42713) **crypto/rand: use private reader, not Reader, in Read**
+  - no change in consensus; **declined**
+- [#21865](https://golang.org/issue/21865) **crypto: add facility for key erasure**
+  - comment
+- [#47579](https://golang.org/issue/47579) **fmt: Sprintf-into-bytes**
+  - comment
+- [#47678](https://golang.org/issue/47678) **io: add ReaderFunc and WriterFunc**
+  - hold for #47487
+- [#47164](https://golang.org/issue/47164) **log: optimize SetOutput(io.Discard)**
+  - comment
+- [#47649](https://golang.org/issue/47649) **maps: new package to provide generic map functions**
+  - discussion ongoing at #47330
+- [#39178](https://golang.org/issue/39178) **net/http: make DNS lookup timeouts return net.DNSError instead of poll.TimeoutError**
+  - added to minutes
+- [#46001](https://golang.org/issue/46001) **net/http: use nontransitional IDNA processing**
+  - comment
+- [#46518](https://golang.org/issue/46518) **net/netaddr: add new IP address type, netaddr package**
+  - discussion ongoing
+- [#47425](https://golang.org/issue/47425) **net/url: provide AllowQuerySemicolons functionality for net/url rather than net/http**
+  - **likely decline**; last call for comments ⏳
+- [#42694](https://golang.org/issue/42694) **net: report temporary/deprecated status of addresses in net.Interface**
+  - discussion ongoing
+- [#39436](https://golang.org/issue/39436) **os: add ErrNotSupported**
+  - added to minutes
+- [#39436](https://golang.org/issue/39436) **os: add ErrNotSupported**
+  - comment
+- [#40200](https://golang.org/issue/40200) **provide std lib pkg Clone function to copy a string efficiently without memory sharing**
+  - duplicate of #45038
+- [#39165](https://golang.org/issue/39165) **read eval print loop facilities**
+  - closed as infeasible
+- [#47651](https://golang.org/issue/47651) **reflect: add Pointer**
+  - added to minutes
+- [#47099](https://golang.org/issue/47099) **reflect: improve the speed of getting field name from struct and elements from slice**
+  - proposal retracted by author; **declined**
+- [#44254](https://golang.org/issue/44254) **regexp/syntax: add Cut**
+  - **likely accept**; last call for comments ⏳
+- [#47593](https://golang.org/issue/47593) **regexp: add (\*Regexp).MustSubexpIndex**
+  - **likely decline**; last call for comments ⏳
+- [#40431](https://golang.org/issue/40431) **runtime.Pin() to protect against hypothetical moving GC in the future**
+  - duplicate of #46787
+- [#47216](https://golang.org/issue/47216) **runtime/metrics: additional metrics**
+  - discussion ongoing
+- [#47567](https://golang.org/issue/47567) **runtime: add GOEXE**
+  - **likely decline**; last call for comments ⏳
+- [#46505](https://golang.org/issue/46505) **spec: allow conversion from slice to array**
+  - no change in consensus; **accepted** 🎉
+- [#47487](https://golang.org/issue/47487) **spec: allow explicit conversion from function to 1-method interface**
+  - added to minutes
+- [#47459](https://golang.org/issue/47459) **spec: allow omitting type parameters in methods that don't use them**
+  - no change in consensus; **declined**
+- [#46477](https://golang.org/issue/46477) **spec: generics: type parameters on aliases**
+  - added to minutes
+- [#45003](https://golang.org/issue/45003) **strings: add ReplaceBetween function**
+  - added to minutes
+- [#47657](https://golang.org/issue/47657) **sync, sync/atomic: add PoolOf, MapOf, ValueOf**
+  - added to minutes
+- [#47581](https://golang.org/issue/47581) **text/template: allow comments in operands**
+  - **likely decline**; last call for comments ⏳
+- [#47609](https://golang.org/issue/47609) **unicode/utf8: add AppendRune**
+  - **likely accept**; last call for comments ⏳
+- [#46232](https://golang.org/issue/46232) **x/crypto/ssh: expose supported Kex algorithms**
+  - commented
+- [#47510](https://golang.org/issue/47510) **x/net/idna: add pre-defined profile for non-transitional IDNA2008**
+  - comment

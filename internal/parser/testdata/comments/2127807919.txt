@@ -1,0 +1,97 @@
+**2024-05-23 / @aclements, @adonovan, @andybons, @cherrymui, @griesemer, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **all: require Linux 3.17 kernel for Go 1.24** [#67001](https://go.dev/issue/67001)
+  - no change in consensus; **accepted** 🎉
+- **cmd/vet: report printf calls with non-const format and no args** [#60529](https://go.dev/issue/60529)
+  - no change in consensus; **accepted** 🎉
+- **crypto/tls: make 3DES opt-in** [#66214](https://go.dev/issue/66214)
+  - no change in consensus; **accepted** 🎉
+- **encoding: add AppendText and AppendBinary** [#62384](https://go.dev/issue/62384)
+  - no change in consensus; **accepted** 🎉
+- **reflect: add TypeAssert** [#62121](https://go.dev/issue/62121)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/ssa: defer into stack frame** [#66601](https://go.dev/issue/66601)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/vet: enable nilness checker by default** [#59714](https://go.dev/issue/59714)
+  - declined as infeasible
+
+**Likely Accept**
+
+- **x/net/http2: add Framer.WriteDataN method** [#66655](https://go.dev/issue/66655)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **time: optimize algorithms by restricting valid year range** [#63844](https://go.dev/issue/63844)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/go: list deprecations and newer available major, minor versions** [#67420](https://go.dev/issue/67420)
+  - added to minutes
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **compress/zstd: add new package** [#62513](https://go.dev/issue/62513)
+  - discussion ongoing
+- **crypto/rand: add String** [#67057](https://go.dev/issue/67057)
+  - discussion ongoing
+- **crypto/tls: support kernel-provided TLS** [#44506](https://go.dev/issue/44506)
+  - discussion ongoing
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - discussion ongoing
+- **errors: add All and AllAs iterators** [#66455](https://go.dev/issue/66455)
+  - discussion ongoing
+- **hash/maphash: add func Comparable** [#54670](https://go.dev/issue/54670)
+  - added to minutes
+- **io/fs: add SymlinkFS interface** [#49580](https://go.dev/issue/49580)
+  - discussion ongoing
+- **math/rand: make global Seed a no-op** [#67273](https://go.dev/issue/67273)
+  - discussion ongoing
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **runtime: add WaitIdle function** [#65336](https://go.dev/issue/65336)
+  - commented
+- **runtime: don't enable process-wide long path support on Windows** [#66560](https://go.dev/issue/66560)
+  - discussion ongoing
+- **spec: allow range-over-func to omit iteration variables** [#65236](https://go.dev/issue/65236)
+  - discussion ongoing
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - added to minutes
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: add TB.Chdir** [#62516](https://go.dev/issue/62516)
+  - commented
+- **testing: add testing.T.Volatile to exempt test functions from result caching** [#67568](https://go.dev/issue/67568)
+  - added to minutes
+- **x/crypto/ssh: allow to change allowed authentication methods** [#66815](https://go.dev/issue/66815)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - commented
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - discussion ongoing
+- **x/tools/go/analysis: identify test-only packages** [#65749](https://go.dev/issue/65749)
+  - commented
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **x/tools/go/types/typeutil: add TypeMap\[V]** [#67161](https://go.dev/issue/67161)
+  - put on hold

@@ -1,0 +1,32 @@
+**2019-10-16 / @andybons, @bradfitz, @griesemer, @ianlancetaylor**
+
+- #32966 **cmd/go: add GOINSECURE for insecure dependencies**
+  - commented
+  - **likely accept; last call for comments**
+- #34877 **cmd/go: be consistent about not giving tests direct access to the terminal**
+  - discussion ongoing
+- #30058 **cmd/go: ignore directories containing `.goignore` in file scans**
+  - commented
+  - left open for further discussion
+- #34924 **cmd/go/internal/modfile: Expose modfile parsing as importable module**
+  - commented
+  - cc’d domain experts
+- #34868 **compile-time boolean assertions**
+  - commented
+- #34471 **encoding/binary: cache dataSize across invocations of Read and Write**
+  - commented
+- #34701 **encoding/json: new MarshalAppender interface to make custom marshallers more efficient**
+  - discussion ongoing
+- #34680 **html/template: add ability to combine/clone/rebind parsed html/template templates**
+  - commented
+  - asked for clarification
+- #34502 **net: add BufferedPipe (buffered Pipe)**
+  - **UPDATE: final comment period extended as new title was not used in previous meeting notes**
+  - **likely accept; last call for comments**
+- #34855 **net/url: add URL.Mask() method that hides the password**
+  - commented
+- #34910 **os: add UserShell**
+  - commented
+  - asked for clarification
+- #32111 **testing: add Cleanup method**
+  - **no objections aside from some naming comments; accepted 🎉**

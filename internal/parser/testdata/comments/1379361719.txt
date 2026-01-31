@@ -1,0 +1,70 @@
+**2023-01-11 / @aclements, @adonovan, @andybons, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **cmd/go: do not download “modules” that contain no go.mod or \*.go** [#31866](https://go.dev/issue/31866)
+  - no change in consensus; **accepted** 🎉
+- **cmd/trace: support for perfetto** [#57315](https://go.dev/issue/57315)
+  - no change in consensus; **accepted** 🎉
+- **reflect: add Value.Caller** [#49340](https://go.dev/issue/49340)
+  - no change in consensus; **accepted** 🎉
+- **spec: guarantee non-nil return value from recover** [#25448](https://go.dev/issue/25448)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **cmd/go: load $GOROOT/go.env before loading user go.env** [#57179](https://go.dev/issue/57179)
+  - **likely accept**; last call for comments ⏳
+- **encoding/binary: add var NativeEndian; also x/sys/cpu.IsBigEndian** [#57237](https://go.dev/issue/57237)
+  - **likely accept**; last call for comments ⏳
+- **extended backwards compatibility for Go** [#56986](https://go.dev/issue/56986)
+  - **likely accept**; last call for comments ⏳
+  - a few comments remain
+- **math/big: add Int.Float64 conversion (was initially: {ToInt64,ToUint64,Float64})** [#56984](https://go.dev/issue/56984)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **errors: add Errors function to undo Join** [#57358](https://go.dev/issue/57358)
+  - **likely decline**; last call for comments ⏳
+- **io: add ZeroReader io.Reader** [#57317](https://go.dev/issue/57317)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **add a (\*go/token.File).Lines method** [#57708](https://go.dev/issue/57708)
+  - added to minutes
+- **archive/zip: add Dir to zip a directory** [#54898](https://go.dev/issue/54898)
+  - added to minutes
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - commented
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - added to minutes
+- **context: add a way to detach from parent cancellation** [#40221](https://go.dev/issue/40221)
+  - commented
+- **encoding/json: allow limiting Decoder.Decode read size** [#56733](https://go.dev/issue/56733)
+  - discussion ongoing
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - discussion ongoing
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **maps: new standard library package based on x/exp/maps** [#57436](https://go.dev/issue/57436)
+  - commented
+- **reflect: deprecate SliceHeader and StringHeader** [#56906](https://go.dev/issue/56906)
+  - discussion ongoing
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - discussion ongoing
+- **slices: new standard library package based on x/exp/slices** [#57433](https://go.dev/issue/57433)
+  - commented
+- **spec: define initialization order more precisely** [#57411](https://go.dev/issue/57411)
+  - commented
+- **spec: generics: type switch on parametric types** [#45380](https://go.dev/issue/45380)
+  - discussion ongoing
+- **testing: optionally include full (or relative) path name** [#37708](https://go.dev/issue/37708)
+  - commented
+- **x/exp/slices: Allow different types for haystack/needle in BinarySearchFunc** [#57348](https://go.dev/issue/57348)
+  - added to minutes

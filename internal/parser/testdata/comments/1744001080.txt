@@ -1,0 +1,89 @@
+[There was no meeting 2023-09-14 due to the quiet week, and no meeting 2023-09-27 due to GopherCon. On 2023-09-20, I appear to have forgotten to run and post the notes. So these are from then, despite being posted on 2023-10-02. My apologies. -rsc]
+
+**2023-09-20 / @adonovan, @andybons, @griesemer, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **convert govulncheck output to sarif format** [#61347](https://go.dev/issue/61347)
+  - no change in consensus; **accepted** 🎉
+- **io: add SectionReader.Outer method** [#61870](https://go.dev/issue/61870)
+  - no change in consensus; **accepted** 🎉
+- **math/rand/v2: revised API for math/rand** [#61716](https://go.dev/issue/61716)
+  - no change in consensus; **accepted** 🎉
+- **testing: add testing.B.Loop for iteration** [#61515](https://go.dev/issue/61515)
+  - no change in consensus; **accepted** 🎉
+- **testing: shuffle seed should be different when -shuffle=on and -count flag is set** [#61256](https://go.dev/issue/61256)
+  - no change in consensus; **accepted** 🎉
+- **wiki: move to x/website** [#61940](https://go.dev/issue/61940)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **io/fs: add SymlinkFS interface** [#49580](https://go.dev/issue/49580)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/types/objectpath: remove sorting of Named type methods** [#61443](https://go.dev/issue/61443)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **\`intern\` package** [#62483](https://go.dev/issue/62483)
+  - commented
+- **all: Add GORISCV64 environment variable** [#61476](https://go.dev/issue/61476)
+  - back to active
+  - commented
+- **cmd/go: add support for dealing with flaky tests** [#62244](https://go.dev/issue/62244)
+  - discussion ongoing
+- **cmd/go: go build -json** [#62067](https://go.dev/issue/62067)
+  - added to minutes
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd: drop support for GOROOT\_FINAL** [#62047](https://go.dev/issue/62047)
+  - added to minutes
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - discussion ongoing
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - discussion ongoing
+- **go/types: Export Info.FileVersions for access to file-specific version information** [#62605](https://go.dev/issue/62605)
+  - added to minutes
+- **go/types: Export \`UntypedZero\` and \`Value\`** [#62124](https://go.dev/issue/62124)
+  - added to minutes
+- **io/fs, net/http: define interface for automatic ETag serving** [#60940](https://go.dev/issue/60940)
+  - commented
+- **os: add CopyFS** [#62484](https://go.dev/issue/62484)
+  - discussion ongoing
+- **spec: add range over int, range over func** [#61405](https://go.dev/issue/61405)
+  - commented
+- **sync/atomic: add Uint64Pair** [#61236](https://go.dev/issue/61236)
+  - back to active
+  - commented
+- **testing,cmd/test2json: distinguish error output** [#62728](https://go.dev/issue/62728)
+  - added to minutes
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **x/crypto/cryptobyte: ReadOptionalASN1Boolean doesn't work as expected** [#43019](https://go.dev/issue/43019)
+  - discussion ongoing
+- **x/crypto: add AES-GCM-SIV** [#54364](https://go.dev/issue/54364)
+  - commented
+- **x/mod: add API to parse Go distribution version strings** [#62039](https://go.dev/issue/62039)
+  - added to minutes
+- **x/oauth2: Unmarshal expires\_in outside of oauth2/internal** [#61417](https://go.dev/issue/61417)
+  - discussion ongoing
+- **x/tools/txtar: add Extract function or method** [#61386](https://go.dev/issue/61386)
+  - discussion ongoing
+- **x/tools/txtar: implement fs.FS** [#44158](https://go.dev/issue/44158)
+  - added to minutes

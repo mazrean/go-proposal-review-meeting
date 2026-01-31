@@ -1,0 +1,80 @@
+**2020-09-23 / @rsc, @griesemer, @bradfitz, @ianlancetaylor, @andybons**
+
+- #41385 **all: add macOS ARM64 port**
+  - no change in consensus; **accepted** 🎉
+- #40995 **all: add openbsd/mips64 port**
+  - no change in consensus; **accepted** 🎉
+- #40827 **annotate which error values should never be wrapped**
+  - commented
+- #41337 **cmd/cgo: get rid of CFType, JNI, EGL unsafe.Pointer => uintptr special cases**
+  - hold for GOPATH removal
+- #40276 **cmd/go: 'go install' should install executables in module mode outside a module**
+  - discussion ongoing
+- #41145 **cmd/go: allow -toolexec tools to opt in to build caching**
+  - proposal retracted by author; **declined**
+- #40870 **cmd/go: build option to set env variable defaults**
+  - discussion ongoing
+- #37519 **cmd/go: deprecate -insecure on go get**
+  - **likely accept**; last call for comments ⏳
+- #27628 **cmd/go: do not cache tool output when using -toolexec**
+  - discussion ongoing
+- #40364 **cmd/go: enable listing direct dependency updates**
+  - discussion ongoing
+- #40323 **cmd/go: notify about newer major versions**
+  - put on hold
+- #41184 **cmd/go: start conversion to bug-resistant //go:build constraints**
+  - no change in consensus; **accepted** 🎉
+- #40701 **cmd/vet: warn about variables/values of type reflect.{Slice,String}Header**
+  - no change in consensus; **accepted** 🎉
+- #41066 **crypto/tls: export/replace errClosed**
+  - no change in consensus; **accepted** 🎉
+- #40171 **crypto: import fiat-crypto implementations**
+  - **likely accept**; last call for comments ⏳
+- #41196 **doc: require auto-generated DO NOT EDIT comment at top of file**
+  - no change in consensus; **accepted** 🎉
+- #41191 **embed, cmd/go: add support for embedded files**
+  - no change in consensus; **accepted** 🎉
+- #41198 **errors: add ErrUnsupported**
+  - **likely accept**; last call for comments ⏳
+- #40138 **flag: function to add long and short version of a flag**
+  - **likely decline**; last call for comments ⏳
+- #41190 **io/fs: add file system interfaces**
+  - commented
+- #40962 **io: add ReadSeekCloser interface**
+  - discussion ongoing
+- #39057 **log: export log.std as log.Default**
+  - discussion ongoing
+- #41324 **net/http/pprof: provide a mechanism to render on /debug/pprof profiles than those that invoke pprof.NewProfile**
+  - discussion ongoing
+- #41048 **net/http: add Transport.GetProxyConnectHeader**
+  - **likely accept**; last call for comments ⏳
+- #41182 **net/http: automatically set Content-Length from Len method on Body**
+  - discussion ongoing
+- #40860 **os/exec: method Cmd.String print Env**
+  - discussion ongoing
+- #41467 **os: add ReadDir method for lightweight directory reading**
+  - commented
+- #41265 **os: fast, comprehensive directory API**
+  - **likely decline**; last call for comments ⏳
+- #41188 **os: make Readdir return lazy FileInfo implementations**
+  - proposal retracted by author; **declined**
+- #40352 **os: new Readdirentries method to read directory entries and efficiently expose file metadata**
+  - hold for #41467
+- #37113 **path/filepath: add a function to canonicalize paths**
+  - commented
+- #40198 **regexp: add Replace and ReplaceString**
+  - discussion ongoing
+- #40238 **runtime: add mechanism to configure format used to write out unhandled panics**
+  - discussion ongoing
+- #41054 **runtime: allow termination of blocked syscalls**
+  - no change in consensus; **declined**
+- #39214 **testing: add CPU name to standard benchmark labels**
+  - **likely accept**; last call for comments ⏳
+- #41260 **testing: add TB.Setenv()**
+  - discussion ongoing
+- #40984 **testing: middleware for testing.TB (?)**
+  - discussion ongoing
+- #39726 **time: Duration should have .Ceil method**
+  - no change in consensus; **declined**
+- #41438 **x/net: add xsrftoken.ValidFor**
+  - discussion ongoing

@@ -1,0 +1,31 @@
+**2019-08-27** / @rsc, @bradfitz, @spf13, @andybons, @griesemer, @ianlancetaylor
+
+- #33388 **cmd/go: add build tags for 32-bit and 64-bit architectures**
+  - commented
+  - **likely decline; last call for comments**
+- #33375 **cmd/go: introduce go.gen file for //go:generate comments**
+  - **no final comments; declined**
+- #32465 **net: add ability to read OOB data without discarding a byte**
+  - commented
+  - **likely decline; last call for comments**
+- #33498 **net/url: add (Values).AddAll(key string, values []string)**
+  - **no final comments; declined**
+- #32634 **net/url: add Values.Decode**
+  - commented
+- #31880 **os: add Touch to set access/mod times to current time**
+  - commented
+  - **likely decline; last call for comments**
+- #32558 **os: allow Chtimes with time.Time{} to avoid setting time**
+  - commented
+- #33136 **reflect: add Value.SetZero**
+  - discussion ongoing
+- #32593 **strings: a string factory to convert `bytes` to `string`**
+  - commented
+  - **likely decline; last call for comments**
+- #33508 **x/sys/cpu -- add support for ARM**
+  - retitled
+  - commented
+  - **likely accept; last call for comments**
+- #32153 **x/sys/unix: standardize Kevent_t Udata as integer, not pointer**
+  - commented
+  - **likely accept; last call for comments**

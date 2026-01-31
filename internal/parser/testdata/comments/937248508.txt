@@ -1,0 +1,86 @@
+**2021-10-06 / @rsc, @griesemer, @ianlancetaylor, @bradfitz**
+
+**Accepted**
+
+- **fmt: add AppendPrint, AppendPrintf, AppendPrintln** [#47579](https://golang.org/issue/47579)
+  - no change in consensus; **accepted** 🎉
+- **net/netip: add new IP address package, use in net** [#46518](https://golang.org/issue/46518)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **bufio: add Reader.DiscardRunes(n int) and utf8: add RuneByteLen** [#47621](https://golang.org/issue/47621)
+  - proposal retracted by author; **declined**
+- **cmd/go: allow GOPRIVATE, GONOSUMDB, GONOPROXY to be defined in go.mod** [#48441](https://golang.org/issue/48441)
+  - duplicate of #42343
+- **cmd/go: forward to custom commands** [#48411](https://golang.org/issue/48411)
+  - declined as infeasible
+- **errors: change New to return a type that implements Is** [#48639](https://golang.org/issue/48639)
+  - proposal retracted by author; **declined**
+- **net/http: add Request.SetContext** [#48811](https://golang.org/issue/48811)
+  - declined as infeasible
+- **type parameter lists - extended syntax for relationships/defaults amongst type parameters** [#48630](https://golang.org/issue/48630)
+  - declined as infeasible
+- **use channels as iterators** [#48567](https://golang.org/issue/48567)
+  - declined as infeasible
+
+**Likely Accept**
+
+- **cmd/go: add per-test timeouts** [#48157](https://golang.org/issue/48157)
+  - **likely accept**; last call for comments ⏳
+- **crypto: add facility for key erasure** [#21865](https://golang.org/issue/21865)
+  - **likely accept**; last call for comments ⏳
+- **go/types: additions to support type parameters** [#47916](https://golang.org/issue/47916)
+  - **likely accept**; last call for comments ⏳
+- **reflect: add Value.FieldByIndexErr** [#48218](https://golang.org/issue/48218)
+  - **likely accept**; last call for comments ⏳
+- **reflect: rename MapIter.SetKey -> Value.SetIterKey, and also s/Key/Value/** [#48294](https://golang.org/issue/48294)
+  - **likely accept**; last call for comments ⏳
+- **spec: allow eliding interface{  } in constraint literals** [#48424](https://golang.org/issue/48424)
+  - **likely accept**; last call for comments ⏳
+- **spec: allow explicit conversion from function to 1-method interface** [#47487](https://golang.org/issue/47487)
+  - **likely accept**; last call for comments ⏳
+- **syscall/js: remove Wrapper type to avoid extreme allocations and improve performance** [#44006](https://golang.org/issue/44006)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **x/crypto/ssh: expose supported Kex algorithms** [#46232](https://golang.org/issue/46232)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **bytes: add Grow, Clip; maybe add bytes/strings Insert, Delete** [#48594](https://golang.org/issue/48594)
+  - added to minutes
+- **bytes: add Pool for buffer management** [#48535](https://golang.org/issue/48535)
+  - added to minutes
+- **byteseq: add a generic byte string manipulation package** [#48643](https://golang.org/issue/48643)
+  - added to minutes
+- **cmd/cgo: provide a safe way to pin Go Pointer for the period of a C function call** [#46787](https://golang.org/issue/46787)
+  - commented
+- **cmd/go: add a \`go mod addwork\` command** [#48257](https://golang.org/issue/48257)
+  - added to minutes
+- **cmd/go: add a \`go mod syncwork\` command** [#48258](https://golang.org/issue/48258)
+  - added to minutes
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://golang.org/issue/48429)
+  - added to minutes
+- **cmd/go: use go.mod file paths in workspaces** [#48259](https://golang.org/issue/48259)
+  - added to minutes
+- **cmd/vet: check for time formats with 2006-02-01** [#48801](https://golang.org/issue/48801)
+  - commented
+- **database/sql: use errors.Is when checking for driver.ErrBadConn** [#47142](https://golang.org/issue/47142)
+  - added to minutes
+- **log: improve the existing logger without breaking any existing functionalities** [#48503](https://golang.org/issue/48503)
+  - added to minutes
+- **net: add tcp WriteTo func to enable splice socket data to file** [#48530](https://golang.org/issue/48530)
+  - added to minutes
+- **runtime/debug: soft memory limit** [#48409](https://golang.org/issue/48409)
+  - added to minutes
+- **runtime: enable address sanitizer in Go** [#44853](https://golang.org/issue/44853)
+  - commented
+- **stdlib: provide a standard implementation of the Optional / Maybe generic type** [#48702](https://golang.org/issue/48702)
+  - added to minutes
+- **testing: a less error-prone API for benchmark iteration** [#48768](https://golang.org/issue/48768)
+  - added to minutes
+- **testing: benchmark unit properties** [#43744](https://golang.org/issue/43744)
+  - added to minutes

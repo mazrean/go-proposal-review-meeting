@@ -1,0 +1,32 @@
+**2020-06-17 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #34974 **archive/zip: add already compressed files**
+  - commented
+- #36503 **context: add Merge**
+  - commented
+- #32406 **crypto/tls: add request context to Conn, ClientHelloInfo, CertificateRequestInfo and ConnectionState**
+  - discussion ongoing
+- #39493 **errors: add String**
+  - proposal retracted by author; **declined**
+- #39557 **flag: add Func**
+  - commented
+- #39558 **net/http: add ResponseWriterAs function**
+  - discussion ongoing
+- #39444 **os: make errFinished satisfy errors.Is(..., ErrNotExist)**
+  - commented
+- #39545 **reflect: add Value.CanCall method**
+  - commented
+- #38831 **reflect: add a KindCount constant in Kind constants declaration**
+  - no change in consensus; **declined**
+- #39574 **reflect: add method Type.Underlying()**
+  - commented
+- #39413 **regexp: add Regexp.ProgramSize method similar to C++ RE2::ProgramSize**
+  - commented
+- #29696 **runtime: add way for applications to respond to GC backpressure**
+  - put on hold
+- #39351 **sync/atomic: add Value.LoadOrStore**
+  - commented
+- #38891 **sync: Add UnlockToRLock() to RWMutex**
+  - no change in consensus; **declined**
+- #37196 **time: make Timer/Ticker channels not receivable with old values after Stop or Reset returns**
+  - **likely accept**; last call for comments ⏳

@@ -1,0 +1,64 @@
+**2023-02-08 / @aclements, @adonovan, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+[We didn't get to everything today due to long discussions about a few of the proposals we did get to. Also, people following proposals may be interested in this discussion (not proposal): **telemetry in the Go toolchain** #58409.]
+
+**Accepted**
+
+- **archive/tar: add (\*Writer).AddFS** [#58000](https://go.dev/issue/58000)
+  - no change in consensus; **accepted** 🎉
+- **archive/zip: add (\*Writer).AddFS** [#54898](https://go.dev/issue/54898)
+  - no change in consensus; **accepted** 🎉
+- **cmd/compile: add GOEXPERIMENT=loopvar** [#57969](https://go.dev/issue/57969)
+  - no change in consensus; **accepted** 🎉
+- **context: add WithoutCancel** [#40221](https://go.dev/issue/40221)
+  - no change in consensus; **accepted** 🎉
+- **encoding/json: add (\*Decoder).SetLimit** [#56733](https://go.dev/issue/56733)
+  - no change in consensus; **accepted** 🎉
+- **reflect: deprecate SliceHeader and StringHeader** [#56906](https://go.dev/issue/56906)
+  - no change in consensus; **accepted** 🎉
+- **slices: new standard library package based on x/exp/slices** [#57433](https://go.dev/issue/57433)
+  - no change in consensus; **accepted** 🎉
+- **spec: define initialization order more precisely** [#57411](https://go.dev/issue/57411)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- none
+
+**Likely Decline**
+
+- **go/printer: don't reformat single line if statements** [#57645](https://go.dev/issue/57645)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **archive/tar, archive/zip: add NewReaderOptions with directory traversal defenses** [#57850](https://go.dev/issue/57850)
+  - commented
+- **bytes: add Buffer.AvailableBuffer** [#53685](https://go.dev/issue/53685)
+  - commented
+- **cmd/cgo: add "//go:cgo\_unsafe\_stack\_pointer" to avoid escaping** [#56378](https://go.dev/issue/56378)
+  - commented
+- **cmd/compile: A GOOS=wasi GOARCH=wasm compilation target** [#58141](https://go.dev/issue/58141)
+  - commented
+- **cmd/go: Add a build tag for tests** [#52600](https://go.dev/issue/52600)
+  - commented
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - discussion ongoing
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - added to minutes
+- **debug/elf: add functionality for retrieving contents of DynTags that are not string values** [#56892](https://go.dev/issue/56892)
+  - added to minutes
+- **end support for macOS 10.13 and 10.14 in Go 1.21** [#57125](https://go.dev/issue/57125)
+  - added to minutes
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **net/http: ResponseController.EnableFullDuplex to support concurrent Request.Body reads and ResponseWriter.Writes** [#57786](https://go.dev/issue/57786)
+  - commented
+- **x/crypto/x509roots: new module** [#57792](https://go.dev/issue/57792)
+  - added to minutes
+- **x/sync/singleflight: add generic version** [#53427](https://go.dev/issue/53427)
+  - added to minutes

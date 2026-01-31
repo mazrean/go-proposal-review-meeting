@@ -1,0 +1,51 @@
+**2020-02-05 / @rsc, @ianlancetaylor, @griesemer, @andybons**
+
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - active discussion
+- #35544 **cmd/doc: module documentation**
+  - commented
+- #36875 **cmd/go: refine the default language version based on context**
+  - active discussion
+- #35667 **cmd/link: Include build meta information**
+  - commented
+- #36681 **cmd/vet: flag accidental integer division inside float casts**
+  - **likely decline**; last call for comments ⏳
+- #31773 **crypto/tls: Authority Information Access support**
+  - commented
+- #22836 **crypto/tls: add GetConfigForServer callback to \*tls.Config**
+  - commented
+- #23282 **crypto/x509: add support to get SSL context from certificate store on windows**
+  - commented
+- #21704 **crypto: add Equal(PublicKey) bool method to PublicKey implementations**
+  - **likely accept**; last call for comments ⏳
+- #5901 **encoding/json: allow per-Encoder/per-Decoder registration of marshal/unmarshal functions**
+  - **likely accept**; last call for comments ⏳
+- #33457 **image: add generic metadata support for jpeg, gif, png**
+  - active discussion
+- #34624 **io, net: implement WriterTo for pipes**
+  - commented
+- #36189 **panic based error handling**
+  - **likely decline**; last call for comments ⏳
+- #33136 **reflect: optimize v.Set(reflect.Zero(v.Type())) to not allocate**
+  - no change in consensus; **accepted** 🎉
+- #29982 **sizeof: new package with constants for Int, Uint, Uintptr, Int8, Float64, etc**
+  - no change in consensus; **accepted** 🎉
+- #36290 **strings: add (\*Reader).String()**
+  - retracted
+  - no change in consensus; **declined**
+- #33688 **testing: define naming convention for test functions**
+  - **likely decline**; last call for comments ⏳
+- #34306 **testing: flag show skipped**
+  - no change in consensus; **declined**
+- #31107 **text/template,html/template: add ExecuteContext methods**
+  - commented
+- #35480 **time: allow a user callback for dropped ticks**
+  - **likely decline**; last call for comments ⏳
+- #29289 **wiki: CodeReviewComments change: Discourage duplicate imports with different names**
+  - no change in consensus; **declined**
+- #36646 **x/crypto/poly1305: deprecate public package**
+  - commented
+- #31044 **x/crypto/ssh/terminal: move all APIs to x/term and deprecate**
+  - commented
+- #35947 **x/tools/cmd/godoc: GORDO enriched Go documentation format.**
+  - no change in consensus; **declined**

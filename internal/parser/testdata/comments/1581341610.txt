@@ -1,0 +1,81 @@
+**2023-06-07 / @aclements, @adonovan, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+**Accepted**
+
+- **cmd/vet: time.Since should not be used in defer statement** [#60048](https://go.dev/issue/60048)
+  - no change in consensus; **accepted** 🎉
+- **spec: when unifying against interface types, consider common methods** [#60353](https://go.dev/issue/60353)
+  - no change in consensus; **accepted** 🎉
+- **x/sys/unix: add Mremap** [#60409](https://go.dev/issue/60409)
+  - no change in consensus; **accepted** 🎉
+- **x/sys/windows/svc/mgr: add Service.RecoveryActionsOnNonCrashFailures and Service.SetRecoveryActionsOnNonCrashFailures** [#59016](https://go.dev/issue/59016)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **MIPS32: pass ISA level with GOMIPS** [#59415](https://go.dev/issue/59415)
+  - duplicate of #60072
+- **net, os: API to interrupt Read/Write() for polled objects** [#36402](https://go.dev/issue/36402)
+  - declined as infeasible
+
+**Likely Accept**
+
+- **cmd/go: GOAMD64=local to compile for local machine** [#60338](https://go.dev/issue/60338)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: expose SessionState extra information** [#60539](https://go.dev/issue/60539)
+  - **likely accept**; last call for comments ⏳
+- **x/net/websocket: add Config.DialContext** [#57953](https://go.dev/issue/57953)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **go/printer: don't reformat single line switch cases** [#57667](https://go.dev/issue/57667)
+  - **likely decline**; last call for comments ⏳
+- **reflect:  deprecate PtrTo** [#59599](https://go.dev/issue/59599)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: add GOMIPS32, GOMIPS64 ISA levels (i, ii, iii, iv, v, r1, r2, r3, r5, r6)** [#60072](https://go.dev/issue/60072)
+  - added to minutes
+  - commented
+- **cmd/go: add global ignore mechanism for Go tooling ecosystem** [#42965](https://go.dev/issue/42965)
+  - discussion ongoing
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **cmp: add Or** [#60204](https://go.dev/issue/60204)
+  - commented
+- **database/sql: add generic Null\[T]** [#60370](https://go.dev/issue/60370)
+  - commented
+- **encoding: provide append-like variants** [#53693](https://go.dev/issue/53693)
+  - added to minutes
+- **fmt: add Formatter fallback** [#51195](https://go.dev/issue/51195)
+  - declined in favor of #51668
+- **go/doc: add illustrations to documentation pages** [#39513](https://go.dev/issue/39513)
+  - declined based on #51082 discussion
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **math/rand: Expose constructor for \`lockedSource\`** [#24121](https://go.dev/issue/24121)
+  - declined in favor of #54880
+- **reflect: add MakeType** [#60088](https://go.dev/issue/60088)
+  - discussion ongoing
+- **runtime/metrics: add more scheduler-related metrics** [#15490](https://go.dev/issue/15490)
+  - take off hold
+- **runtime: add support for the Arm’s ArmV8.5-A Memory Tagging Extension (MTE) in Go** [#59090](https://go.dev/issue/59090)
+  - discussion ongoing
+- **slices: add Concat** [#56353](https://go.dev/issue/56353)
+  - commented
+- **spec: less error-prone loop variable scoping** [#60078](https://go.dev/issue/60078)
+  - discuss (see https://go.dev/wiki/LoopvarExperiment)
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **text/template, html/template: Add ExecuteFuncMap and ExecuteTemplateFuncMap** [#54450](https://go.dev/issue/54450)
+  - discussion ongoing
+- **unsafe: allow conversion of uintptr to unsafe.Pointer when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - discussion ongoing
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - commented
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - discussion ongoing
+- **x/tools/go/vcs: deprecate, isolate, tag, and delete package** [#57051](https://go.dev/issue/57051)
+  - added to minutes

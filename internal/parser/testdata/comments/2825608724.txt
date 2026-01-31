@@ -1,0 +1,65 @@
+**2025-04-23 / @aclements, @adonovan, @bradfitz, @griesemer, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **discussion: spec: reduce error handling boilerplate using ?** [#71460](https://go.dev/issue/71460)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **go/types: add Hasher{,IgnoreTags} types** [#69420](https://go.dev/issue/69420)
+  - **likely accept**; last call for comments ⏳
+- **log/slog: export Source method in Record to support custom handler implementations** [#70280](https://go.dev/issue/70280)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/ast/inspector: add Cursor, to enable partial and multi-level traversals** [#70859](https://go.dev/issue/70859)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - discussion ongoing
+- **doc: mention "purego" build tag convention somewhere** [#23172](https://go.dev/issue/23172)
+  - discussion ongoing
+- **hash: standardize the hash function** [#70471](https://go.dev/issue/70471)
+  - added to minutes
+- **log/slog: GroupAttrs(key, attrs....Attr) Attr** [#66365](https://go.dev/issue/66365)
+  - commented
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - commented
+- **runtime: CPU limit-aware GOMAXPROCS default** [#73193](https://go.dev/issue/73193)
+  - added to minutes
+- **time: make UnmarshalText, UnmarshalJSON enforce strict RFC 3339 semantics** [#57912](https://go.dev/issue/57912)
+  - skip
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - skip
+- **x/net/dns/dnsmessage: add support for SVCB and HTTPS records** [#43790](https://go.dev/issue/43790)
+  - commented
+- **x/sys/unix: add methods to convert between time.Time and unix.PtpClockTime on Linux** [#70032](https://go.dev/issue/70032)
+  - commented
+
+**Hold**
+
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - hold for experience
+
+

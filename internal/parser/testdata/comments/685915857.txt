@@ -1,0 +1,55 @@
+[A few major proposals added today; look for 🔔 below.]
+
+**2020-09-02 / @rsc, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #41130 **builtin: delete returns bool**
+  - discussion ongoing
+- #41145 **cmd/go: allow -toolexec tools to opt in to build caching**
+  - commented
+- #40357 **cmd/go: deprecate a major module version**
+  - no change in consensus; **accepted** 🎉
+- #27628 **cmd/go: do not cache tool output when using -toolexec**
+  - commented
+- #40323 **cmd/go: notify about newer major versions**
+  - discussion ongoing
+- #41184 **cmd/go: start conversion to bug-resistant //go:build constraints** 🔔
+  - discussion ongoing
+- #18022 **cmd/vet: add check for sync.WaitGroup abuse**
+  - put on hold
+- #40701 **cmd/vet: warn about variables/values of type reflect.{Slice,String}Header**
+  - commented
+- #36503 **context: add Merge**
+  - put on hold
+- #41066 **crypto/tls: export/replace errClosed**
+  - commented
+- #40171 **crypto: import fiat-crypto implementations**
+  - discussion ongoing
+- #40511 **database/sql: ScannerContext, ValuerContext support**
+  - **likely decline**; last call for comments ⏳
+- #40082 **database/sql: add NullInt16 support**
+  - no change in consensus; **accepted** 🎉
+- #41196 **doc: require auto-generated DO NOT EDIT comment at top of file**
+  - discussion ongoing
+- #41191 **embed, cmd/go: add support for embedded files** 🔔
+  - discussion ongoing
+- #38776 **hash, crypto: add WriteByte, WriteString method to hash implementations**
+  - no change in consensus; **accepted** 🎉
+- #41190 **io/fs: add file system interfaces** 🔔
+  - discussion ongoing
+- #41048 **net/http: add Transport.GetProxyConnectHeader**
+  - discussion ongoing
+- #41188 **os: make Readdir return lazy FileInfo implementations**
+  - discussion ongoing
+- #41054 **runtime: allow termination of blocked syscalls**
+  - commented
+- #395 **spec: use (\*\[4]int)(x) to convert slice x into array pointer**
+  - discussion ongoing
+- #39726 **time: Duration should have .Ceil method**
+  - commented
+- #40481 **unsafe: add Add**
+  - no change in consensus; **accepted** 🎉
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - discussion ongoing
+  - moved out of likely accept
+- #41049 **unsafe: allow Offsetof slice/array index expression**
+  - proposal retracted by author; **declined**

@@ -1,0 +1,67 @@
+**2025-06-11 / @aclements, @adonovan, @bradfitz, @cherrymui, @griesemer, @neild, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **hash: standardize the hash function** [#70471](https://go.dev/issue/70471)
+  - **likely accept**; last call for comments ⏳
+- **os: add (\*Process).WithHandle** [#70352](https://go.dev/issue/70352)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **time: make UnmarshalText, UnmarshalJSON enforce strict RFC 3339 semantics** [#57912](https://go.dev/issue/57912)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/fix: remove all functionality** [#73605](https://go.dev/issue/73605)
+  - added to minutes
+- **crypto/tls: dynamically reload root certificate authorities** [#64796](https://go.dev/issue/64796)
+  - discussion ongoing
+- **crypto: ignore rand io.Reader where behavior is not specified** [#70942](https://go.dev/issue/70942)
+  - commented
+- **doc: mention "purego" build tag convention somewhere** [#23172](https://go.dev/issue/23172)
+  - discussion ongoing
+- **encoding/xml: add omitzero option** [#69857](https://go.dev/issue/69857)
+  - added to minutes
+- **os: stop manually setting sticky bit on file creation on \*BSD, Solaris** [#68664](https://go.dev/issue/68664)
+  - added to minutes
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - commented
+- **syscall: add O\_OVERLAPPED on Windows** [#73676](https://go.dev/issue/73676)
+  - discussion ongoing
+- **x/crypto/x509roots/fallback: export certificate bundle** [#69898](https://go.dev/issue/69898)
+  - discussion ongoing
+
+**Hold**
+
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - hold for #70471
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **go/types: add Hasher{,IgnoreTags} types** [#69420](https://go.dev/issue/69420)
+  - hold for #70471
+- **os: convenience function for one-off Root operations** [#73168](https://go.dev/issue/73168)
+  - put on hold
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **x/sys/unix: add methods to convert between time.Time and unix.PtpClockTime on Linux** [#70032](https://go.dev/issue/70032)
+  - put on hold
+
+

@@ -1,0 +1,69 @@
+**2020-10-14 / @rsc, @bradfitz, @ianlancetaylor, @andybons, @spf13**
+
+[Minutes late coming out, sorry.]
+
+- #40827 **annotate which error values should never be wrapped**
+  - **likely decline**; last call for comments ⏳
+- #34974 **archive/zip: add File.OpenRaw, Writer.CreateRaw, Writer.Copy**
+  - commented
+- #36606 **cmd/compile: make 64-bit fields be 64-bit aligned on 32-bit systems, add //go:packed directive on structs**
+  - commented
+  - put on hold
+- #40276 **cmd/go: 'go install' should install executables in module mode outside a module**
+  - no change in consensus; **accepted** 🎉
+- #40189 **cmd/go: add a sub command to manage authentication**
+  - discussion ongoing
+- #41583 **cmd/go: add go test -skip to skip specific tests**
+  - commented
+- #41730 **cmd/go: allow users to control VCS usage**
+  - commented
+- #40728 **cmd/go: default to & improve -mod=readonly**
+  - no change in consensus; **accepted** 🎉
+- #41696 **cmd/go: deprecate the -i flag**
+  - commented
+- #27628 **cmd/go: do not cache tool output if tools print to stdout/stderr**
+  - **likely accept**; last call for comments ⏳
+- #40364 **cmd/go: enable listing direct dependency updates**
+  - discussion ongoing
+- #39005 **cmd/go: introduce a build configurations file**
+  - proposal retracted by author; **declined**
+- #28835 **cmd/go: subcommands to add and remove modules from the module cache**
+  - put on hold
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo and CertificateRequestInfo**
+  - commented
+- #41757 **flag: Introduce functions for defining rune flag**
+  - commented
+- #41792 **flag: validate the name of the flag**
+  - commented
+- #41974 **io/fs, filepath: add more efficient Walk alternative**
+  - discussion ongoing
+- #41190 **io/fs: add file system interfaces**
+  - no change in consensus; **accepted** 🎉
+- #40962 **io: add ReadSeekCloser interface**
+  - no change in consensus; **accepted** 🎉
+- #39057 **log: add func Default() \*Logger**
+  - **likely accept**; last call for comments ⏳
+- #41324 **net/http/pprof: provide a mechanism to render on /debug/pprof profiles than those that invoke pprof.NewProfile**
+  - no change in consensus; **declined**
+- #41773 **net/http: add Server.OptionsHandler to allow custom handling of OPTIONS \***
+  - discussion ongoing
+- #40587 **net/http: add scheme constants**
+  - no change in consensus; **declined**
+- #41046 **net/http: add support for the upcoming "Structured Field Values for HTTP" RFC**
+  - commented
+- #41733 **net/url: add URL.Clone method**
+  - commented
+- #41467 **os: add ReadDir method for lightweight directory reading**
+  - no change in consensus; **accepted** 🎉
+- #37113 **path/filepath: add Resolve, replacing EvalSymlinks**
+  - **likely accept**; last call for comments ⏳
+- #41563 **reflect: add StructField.IsExported and Method.IsExported**
+  - **likely accept**; last call for comments ⏳
+- #395 **spec: use (\*\[4]int)(x) to convert slice x into array pointer**
+  - no change in consensus; **accepted** 🎉
+- #40984 **testing: middleware for testing.TB (?)**
+  - no change in consensus; **declined**
+- #41748 **testing: re-print failed test names before exiting**
+  - proposal retracted by author; **declined**
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - no change in consensus; **accepted** 🎉

@@ -1,0 +1,128 @@
+**2021-10-13 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+**Accepted**
+
+- **cmd/go: add per-test timeouts** [#48157](https://golang.org/issue/48157)
+  - no change in consensus; **accepted** 🎉
+- **crypto: add facility for key erasure** [#21865](https://golang.org/issue/21865)
+  - no change in consensus; **accepted** 🎉
+- **go/types: additions to support type parameters** [#47916](https://golang.org/issue/47916)
+  - no change in consensus; **accepted** 🎉
+- **reflect: add Value.FieldByIndexErr** [#48218](https://golang.org/issue/48218)
+  - no change in consensus; **accepted** 🎉
+- **reflect: rename MapIter.SetKey/SetValue -> Value.SetIterKey/SetIterValue** [#48294](https://golang.org/issue/48294)
+  - no change in consensus; **accepted** 🎉
+- **spec: allow eliding interface{  } in constraint literals** [#48424](https://golang.org/issue/48424)
+  - no change in consensus; **accepted** 🎉
+- **syscall/js: remove Wrapper type to avoid extreme allocations and improve performance** [#44006](https://golang.org/issue/44006)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/compile: add a optimization flag** [#47174](https://golang.org/issue/47174)
+  - proposal retracted by author; **declined**
+- **errors: add NewJoinedErrors** [#48831](https://golang.org/issue/48831)
+  - duplicate of #47811
+- **x/crypto/ssh: expose supported Kex algorithms** [#46232](https://golang.org/issue/46232)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/go: add a \`go mod syncwork\` command** [#48258](https://golang.org/issue/48258)
+  - **likely accept**; last call for comments ⏳
+- **cmd/go: add a \`go work use\` command** [#48257](https://golang.org/issue/48257)
+  - **likely accept**; last call for comments ⏳
+- **cmd/go: put workspace commands in their own namespace** [#48256](https://golang.org/issue/48256)
+  - **likely accept**; last call for comments ⏳
+- **database/sql: use errors.Is when checking for driver.ErrBadConn** [#47142](https://golang.org/issue/47142)
+  - **likely accept**; last call for comments ⏳
+- **runtime: enable address sanitizer in Go** [#44853](https://golang.org/issue/44853)
+  - **likely accept**; last call for comments ⏳
+- **spec: allow explicit conversion from function to 1-method interface** [#47487](https://golang.org/issue/47487)
+  - **likely accept**; last call for comments ⏳
+- **testing: benchmark unit properties** [#43744](https://golang.org/issue/43744)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **bytes: add Grow, Clip; maybe add bytes/strings Insert, Delete** [#48594](https://golang.org/issue/48594)
+  - **likely decline**; last call for comments ⏳
+- **byteseq: add a generic byte string manipulation package** [#48643](https://golang.org/issue/48643)
+  - **likely decline**; last call for comments ⏳
+- **log: improve the existing logger without breaking any existing functionalities** [#48503](https://golang.org/issue/48503)
+  - **likely decline**; last call for comments ⏳
+- **stdlib: provide a standard implementation of the Optional / Maybe generic type** [#48702](https://golang.org/issue/48702)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **bytes: add Pool for buffer management** [#48535](https://golang.org/issue/48535)
+  - commented
+- **cmd/go: go version to support non-executable Go binaries** [#48187](https://golang.org/issue/48187)
+  - added to minutes
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://golang.org/issue/48429)
+  - discussion ongoing
+- **cmd/go: use go.mod file paths in workspaces** [#48259](https://golang.org/issue/48259)
+  - discussion ongoing
+- **cmd/link: create an information section with eface type struct addresses** [#48840](https://golang.org/issue/48840)
+  - added to minutes
+- **cmd/vet: check argument count of strings.NewReplacer** [#47994](https://golang.org/issue/47994)
+  - added to minutes
+- **cmd/vet: check for time formats with 2006-02-01** [#48801](https://golang.org/issue/48801)
+  - commented
+- **cmd/vet: report time.Tick and time.NewTicker scoped to select statements** [#48170](https://golang.org/issue/48170)
+  - added to minutes
+- **cmd/vet: warn if a method receiver uses a known type-name as the name of a type parameter** [#48123](https://golang.org/issue/48123)
+  - added to minutes
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - added to minutes
+- **databse/sql: add NullUint64** [#47953](https://golang.org/issue/47953)
+  - added to minutes
+- **debug/plan9obj: add ErrNoSymbols sentinel for case that no symbol section exists** [#48052](https://golang.org/issue/48052)
+  - added to minutes
+- **encoding/json: add Decoder.DisallowDuplicateFields** [#48298](https://golang.org/issue/48298)
+  - added to minutes
+- **errors: add Errors as a standard way to represent multiple errors as a single error** [#47811](https://golang.org/issue/47811)
+  - added to minutes
+- **go:embed interpolate go env** [#48348](https://golang.org/issue/48348)
+  - added to minutes
+- **io: add ReadSome** [#48182](https://golang.org/issue/48182)
+  - added to minutes
+- **io: add counterpart to io.Discard for io.Reader** [#48897](https://golang.org/issue/48897)
+  - added to minutes
+- **mime: handling duplicate media parameters** [#48866](https://golang.org/issue/48866)
+  - added to minutes
+- **net: add tcp WriteTo func to enable splice socket data to file** [#48530](https://golang.org/issue/48530)
+  - discussion ongoing
+- **os: ExpandEnv: Support Parameter Substitution and Expansion Notations** [#47187](https://golang.org/issue/47187)
+  - declined as infeasible
+- **reflect: add reflect.Value.Append** [#48000](https://golang.org/issue/48000)
+  - added to minutes
+- **reflect: permit Value.Bytes on addressable byte arrays** [#47066](https://golang.org/issue/47066)
+  - added to minutes
+- **runtime/debug: soft memory limit** [#48409](https://golang.org/issue/48409)
+  - commented
+- **runtime: provide object pinning API** [#46787](https://golang.org/issue/46787)
+  - commented
+- **spec: allow slice-to-array conversion expressions to present as L-values.** [#47987](https://golang.org/issue/47987)
+  - added to minutes
+- **strings, bytes: deprecate Title** [#48367](https://golang.org/issue/48367)
+  - added to minutes
+- **testing: a less error-prone API for benchmark iteration** [#48768](https://golang.org/issue/48768)
+  - discussion ongoing
+- **text/template: execute "parent" template when inheriting** [#48266](https://golang.org/issue/48266)
+  - added to minutes
+- **x/crypto/acme: allow setting client KID directly** [#46303](https://golang.org/issue/46303)
+  - added to minutes
+- **x/crypto/ssh: export a transport interface** [#32958](https://golang.org/issue/32958)
+  - discussion ongoing
+- **x/net/http2: add Transport.WriteTimeout** [#48830](https://golang.org/issue/48830)
+  - added to minutes
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - added to minutes
+
+
+**Other**
+
+- **x/crypto/ssh: return error if other side version is older** [#46951](https://golang.org/issue/46951)
+  - removed from proposal process

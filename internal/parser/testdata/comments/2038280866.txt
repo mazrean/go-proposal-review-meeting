@@ -1,0 +1,88 @@
+**2024-04-04 / @aclements, @adonovan, @andybons, @bradfitz, @cherrymui, @griesemer, @ianlancetaylor, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **cmd/go: add a way to query for non-defaults in the env** [#34208](https://go.dev/issue/34208)
+  - no change in consensus; **accepted** 🎉
+- **crypto/x509: make OID have text, binary marshal methods** [#66249](https://go.dev/issue/66249)
+  - no change in consensus; **accepted** 🎉
+- **debug/elf: add SHT\_GNU\_VERDEF section parsing** [#63952](https://go.dev/issue/63952)
+  - no change in consensus; **accepted** 🎉
+- **net/http: add support for SETTINGS\_ENABLE\_CONNECT\_PROTOCOL** [#53208](https://go.dev/issue/53208)
+  - no change in consensus; **accepted** 🎉
+- **net/http: support partitioned cookies** [#62490](https://go.dev/issue/62490)
+  - no change in consensus; **accepted** 🎉
+- **net: add UnwrapErr field and Unwrap method to \*DNSError** [#63116](https://go.dev/issue/63116)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto/ssh: add support for hostkeys@openssh.com** [#37245](https://go.dev/issue/37245)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **spec: add builtin func 'is\[T any](any) bool'** [#65846](https://go.dev/issue/65846)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **net/http: add ParseCookie, ParseSetCookie** [#66008](https://go.dev/issue/66008)
+  - **likely accept**; last call for comments ⏳
+- **net/http: add field Cookie.Quoted bool** [#46443](https://go.dev/issue/46443)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **build: promote windows/arm64 to first class port** [#65284](https://go.dev/issue/65284)
+  - cc’ed owners
+- **cmd/cgo: add -ldflags to augment CGO\_LDFLAGS** [#66456](https://go.dev/issue/66456)
+  - added to minutes
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **encoding/binary: add func Append** [#60023](https://go.dev/issue/60023)
+  - added to minutes
+- **encoding/json: add mechanism to mark fields as required** [#19858](https://go.dev/issue/19858)
+  - added to minutes
+- **go/types: add iterator methods** [#66626](https://go.dev/issue/66626)
+  - added to minutes
+- **net/http: delete inappropriate headers in func Error** [#66343](https://go.dev/issue/66343)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **runtime: provide a way to format output in unhandled panics** [#63455](https://go.dev/issue/63455)
+  - commented
+- **structs: add HostLayout "directive" type** [#66408](https://go.dev/issue/66408)
+  - added to minutes
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **text/template: range over func and int** [#66107](https://go.dev/issue/66107)
+  - discussion ongoing
+- **x/crypto/ssh: add BannerError** [#64962](https://go.dev/issue/64962)
+  - added to minutes
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - discussion ongoing
+- **x/tools/go/analysis: add Pass.Module field** [#66315](https://go.dev/issue/66315)
+  - added to minutes
+- **x/tools/go/analysis: identify test-only packages** [#65749](https://go.dev/issue/65749)
+  - discussion ongoing
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation

@@ -1,0 +1,66 @@
+**2021-04-28 / @rsc, @griesemer, @ianlancetaylor, @bradfitz**
+
+- #45453 **all: add GOAMD64 environment variable**
+  - commented
+- #45038 **bytes, strings: add Clone**
+  - **likely accept**; last call for comments ⏳
+- #45713 **cmd/go: add a workspace mode**
+  - added to minutes
+- #45611 **cmd/go: allow GOPRIVATE to provide source repository URI**
+  - commented
+- #44649 **cmd/go: introduce 'module GOPATH' to allow transition from GOPATH to modules**
+  - **likely decline**; last call for comments ⏳
+- #45454 **cmd/go: provide build tags for architecture environment variables**
+  - commented
+- #45108 **cmd/vet: diagnose marshal of field of type error**
+  - **likely decline**; last call for comments ⏳
+- #40356 **cmd/vet: ensure errors implement Is, As, and Unwrap anonymous interfaces**
+  - **likely accept**; last call for comments ⏳
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - added to minutes
+- #29257 **crypto/tls: allow access to net.Conn underneath tls.Conn**
+  - commented
+- #45428 **crypto/tls: disable client-side TLS 1.0 and TLS 1.1**
+  - no change in consensus; **accepted** 🎉
+- #41682 **crypto/x509: reject SHA-1 signatures in Verify**
+  - no change in consensus; **accepted** 🎉
+- #21865 **crypto: add facility for key erasure**
+  - discussion ongoing
+- #45628 **encoding/xml: expose decoder line number**
+  - commented
+- #44905 **go/doc: inline type alias documentation**
+  - no change in consensus; **declined**
+- #44808 **image, image/draw: add interfaces for using RGBA64 directly**
+  - **likely accept**; last call for comments ⏳
+- #45455 **math/bits: add Deposit and Extract functions**
+  - commented
+- #45469 **net/http/httputil: add a ModifyRequest method to ReverseProxy**
+  - **likely decline**; last call for comments ⏳
+- #45460 **net/http: allow customizing proxy CONNECT url**
+  - commented
+- #45100 **net/url: add Values.Has(key)**
+  - no change in consensus; **accepted** 🎉
+- #25192 **net/url: don't parse ';' as a separator in query string**
+  - **likely accept**; last call for comments ⏳
+- #30999 **net: reject leading zeros in IP address parsers**
+  - no change in consensus; **accepted** 🎉
+- #42888 **runtime/debug: add SetCrashOutput(file \*os.File)**
+  - commented
+- #36141 **runtime: "real time" timer semantics**
+  - commented
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - discussion ongoing
+- #45033 **strconv: add QuotedPrefix**
+  - no change in consensus; **accepted** 🎉
+- #45200 **testing/cmp: add new package**
+  - discussion ongoing
+- #45562 **testing: add TB.WriteFile(name string, data string) string**
+  - **likely decline**; last call for comments ⏳
+- #45650 **testing: add conditional-error helpers to T and B**
+  - commented
+- #45645 **time: also support 31 as day in time layout**
+  - no change in consensus; **declined**
+- #45571 **time: context-aware time Ticker and Timer**
+  - commented
+- #45264 **unicode: add emoji properties**
+  - no change in consensus; **declined**

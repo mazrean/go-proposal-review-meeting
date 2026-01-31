@@ -1,0 +1,77 @@
+**2022-12-07 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @julieqiu**
+
+**Accepted**
+
+- **bytes, strings: add ContainsFunc** [#54386](https://go.dev/issue/54386)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **all: end support for Windows 7, Windows Server 2008 in Go 1.21** [#57003](https://go.dev/issue/57003)
+  - **likely accept**; last call for comments ⏳
+- **all: end support for Windows 8, Windows Server 2012 in Go 1.21 or 1.22** [#57004](https://go.dev/issue/57004)
+  - **likely accept**; last call for comments ⏳
+- **context: add APIs for setting a cancelation cause when deadline or timer expires** [#56661](https://go.dev/issue/56661)
+  - **likely accept**; last call for comments ⏳
+- **crypto/x509: add String() for KeyUsage, ExtKeyUsage** [#56866](https://go.dev/issue/56866)
+  - **likely accept**; last call for comments ⏳
+- **net: add support for MPTCP** [#56539](https://go.dev/issue/56539)
+  - **likely accept**; last call for comments ⏳
+- **reflect: add Value.Clear** [#55002](https://go.dev/issue/55002)
+  - **likely accept**; last call for comments ⏳
+- **runtime/metrics: add /gc/heap/live:bytes** [#56857](https://go.dev/issue/56857)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **testing: t.TempDir() should return actual path on macOS** [#56259](https://go.dev/issue/56259)
+  - **likely decline**; last call for comments ⏳
+- **x/exp/slices: add Sorted** [#56692](https://go.dev/issue/56692)
+  - **likely decline**; last call for comments ⏳
+- **x/time/rate: make Wait return an error that Is(DeadlineExceeded) for deadline miss** [#54541](https://go.dev/issue/54541)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **bytes, strings: add Truncate** [#56885](https://go.dev/issue/56885)
+  - commented
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - discussion ongoing
+- **cmd/go: do not download “modules” that contain no Go files** [#31866](https://go.dev/issue/31866)
+  - commented
+- **cmd/go: support a -C flag value to not use any current directory** [#56868](https://go.dev/issue/56868)
+  - commented
+- **crypto/rsa: deprecate GenerateMultiPrimeKey and PrecomputedValues.CRTValues** [#56921](https://go.dev/issue/56921)
+  - commented
+- **crypto: add SignContext and use in crypto/tls** [#56508](https://go.dev/issue/56508)
+  - discussion ongoing
+- **database/sql: Support for generics with NullTypes Interface** [#56439](https://go.dev/issue/56439)
+  - commented
+- **encoding/json: allow limiting Decoder.Decode read size** [#56733](https://go.dev/issue/56733)
+  - commented
+- **extended backwards compatibility for Go** [#56986](https://go.dev/issue/56986)
+  - discussion ongoing
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - discussion ongoing
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **math: add Compare and Compare32** [#56491](https://go.dev/issue/56491)
+  - commented
+- **net/http: Transport tracing hooks** [#56241](https://go.dev/issue/56241)
+  - cc’ed owners
+- **reflect: add \`Value.CallInto\`** [#49340](https://go.dev/issue/49340)
+  - commented
+- **reflect: deprecate SliceHeader and StringHeader** [#56906](https://go.dev/issue/56906)
+  - commented
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - discussion ongoing
+- **spec: guarantee non-nil return value from recover** [#25448](https://go.dev/issue/25448)
+  - commented
+- **spec: reduce noise in return statements that contain mostly zero values** [#21182](https://go.dev/issue/21182)
+  - discussion ongoing
+- **x/net/ipv{4,6}: adopt net/netip address types** [#54883](https://go.dev/issue/54883)
+  - commented

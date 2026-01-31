@@ -1,0 +1,63 @@
+[It appears that I never executed and posted the minutes after the August 31 proposal review meeting. I've just executed them now (and here is the post). Because of this mistake, we'll hold any Likely Accept / Likely Decline for an extra week to give any minutes readers a chance to weigh in. My apologies!]
+
+**2022-08-31 / @rsc, @griesemer, @bradfitz, @andybons, @aclements, @julieqiu, @ianlancetaylor**
+
+**Accepted**
+
+- **compress: add AppendCompress and AppendDecompress** [#54078](https://go.dev/issue/54078)
+  - no change in consensus; **accepted** 🎉
+- **x/sys/windows: Add WSALookupService** [#54232](https://go.dev/issue/54232)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **testing: add support for individual test function execution - expose testing.M.Tests** [#53701](https://go.dev/issue/53701)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **runtime: add 'created by goroutine number' to stack traces** [#38651](https://go.dev/issue/38651)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **runtime: add parameters to recover to only return specific types** [#50424](https://go.dev/issue/50424)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **crypto/cipher: detached mode AEAD Seal/Open** [#24990](https://go.dev/issue/24990)
+  - discussion ongoing
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - commented
+- **crypto/x509: expose hash algorithm for SignatureAlgorithm** [#33317](https://go.dev/issue/33317)
+  - discussion ongoing
+- **crypto: add SignContext** [#28427](https://go.dev/issue/28427)
+  - discussion ongoing
+- **crypto: add crypto engines** [#33281](https://go.dev/issue/33281)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **errors: add support for wrapping multiple errors** [#53435](https://go.dev/issue/53435)
+  - commented
+- **net: UDPAddr/TCPAddr AddrPort should map 4in6 addresses to IPv4 netip.Addrs** [#53607](https://go.dev/issue/53607)
+  - commented
+- **net: add func(IP) Unmap() IP to help when using net/netip** [#54234](https://go.dev/issue/54234)
+  - commented
+- **runtime/race: add const Enabled** [#36477](https://go.dev/issue/36477)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - commented
+- **x/crypto/cryptobyte: non allocating AddUint\*LengthPrefixed API** [#54059](https://go.dev/issue/54059)
+  - commented
+- **x/net/http2: distinguish no body from empty body** [#53894](https://go.dev/issue/53894)
+  - commented
+- **x/sync/errgroup: propagate panics and Goexits through Wait** [#53757](https://go.dev/issue/53757)
+  - commented
+- **x/time/rate: add Sometimes type** [#54237](https://go.dev/issue/54237)
+  - commented
+
+**Hold**
+
+- **all: add GOOS=cosmo port for Cosmopolitan Libc** [#51900](https://go.dev/issue/51900)
+  - hold for implementation

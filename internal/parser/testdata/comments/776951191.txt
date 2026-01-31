@@ -1,0 +1,6 @@
+One more thing...
+
+**2021-02-10 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #43651 **spec: add generic programming using type parameters**
+  - no change in consensus; **accepted** 🎉

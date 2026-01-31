@@ -1,0 +1,85 @@
+**2024-09-25 / @aclements, @adonovan, @andybons, @bradfitz, @griesemer, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- **x/crypto: support OpenSSH variant of ChaCha20Poly1305** [#57699](https://go.dev/issue/57699)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/compile: relax wasm/wasm32 function import signature type constraints** [#66984](https://go.dev/issue/66984)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/go: add go mod verify -tag** [#68669](https://go.dev/issue/68669)
+  - discussion ongoing
+- **cmd/go: change go test to FAIL if \`-run\` is specified but no tests match** [#64500](https://go.dev/issue/64500)
+  - discussion ongoing
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/link: add wasminitmem and wasmmaxmem params** [#69018](https://go.dev/issue/69018)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd/vet: warn about structs marked json omitempty** [#51261](https://go.dev/issue/51261)
+  - discussion ongoing
+- **crypto/rsa: allow hash.Hash for OAEP and MGF1 to be specified independently for encryption** [#65716](https://go.dev/issue/65716)
+  - discussion ongoing
+- **crypto/x509: support Inhibit Any-policy and Policy Constraints** [#68484](https://go.dev/issue/68484)
+  - discussion ongoing
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - discussion ongoing
+- **go/ast: add CommentGroup.Directives iterator** [#68021](https://go.dev/issue/68021)
+  - commented
+- **io/fs: add SymlinkFS interface** [#49580](https://go.dev/issue/49580)
+  - commented
+- **log/slog: add \`slog.DiscardHandler\`** [#62005](https://go.dev/issue/62005)
+  - discussion ongoing
+- **net/http: customize limit on number of 1xx responses** [#65035](https://go.dev/issue/65035)
+  - commented
+- **os: safer file open functions** [#67002](https://go.dev/issue/67002)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - commented
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - discussion ongoing
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - discussion ongoing
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **x/crypto/acme: Client.AcceptWithPayload to support device attestation extension** [#68674](https://go.dev/issue/68674)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/net/html: add Node methods Ancestors, Children, Descendants** [#62113](https://go.dev/issue/62113)
+  - commented
+- **x/tools/go/gcexportdata: Read to support only 2 Go releases + tip** [#68898](https://go.dev/issue/68898)
+  - commented
+- **x/tools/go/ssa/ssautil: Reachable: conservative approximation to reachable functions, runtime types** [#69291](https://go.dev/issue/69291)
+  - commented
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **runtime: don't enable process-wide long path support on Windows** [#66560](https://go.dev/issue/66560)
+  - hold for Microsoft

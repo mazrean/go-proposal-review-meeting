@@ -1,0 +1,91 @@
+**2023-05-17 / @aclements, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- **bytes: trim cap on Buffer.Bytes result** [#59570](https://go.dev/issue/59570)
+  - proposal retracted by author; **declined**
+- **cmd/go: add -testlabel to print a label on the test package names** [#60128](https://go.dev/issue/60128)
+  - proposal retracted by author; **declined**
+- **reflect: add generic variants of \`TypeOf()\` and \`ValueOf()\`** [#50741](https://go.dev/issue/50741)
+  - duplicate of #60088
+- **spec: lazy init imports to possibly import without side effects** [#38450](https://go.dev/issue/38450)
+  - no change in consensus; **declined**
+- **text/template: add nil literal** [#57773](https://go.dev/issue/57773)
+  - declined as infeasible
+
+**Likely Accept**
+
+- **cmd/go: add GOEXPERIMENT=gocacheprog to let a child process implement the internal action/output cache** [#59719](https://go.dev/issue/59719)
+  - **likely accept**; last call for comments ⏳
+- **cmp: new package with Ordered, Compare, Less; min, max as builtins** [#59488](https://go.dev/issue/59488)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - **likely accept**; last call for comments ⏳
+- **go/ast: add 'func Unparen(Expr) Expr'** [#60061](https://go.dev/issue/60061)
+  - **likely accept**; last call for comments ⏳
+- **html/template: refuse to parse complex JS template literals** [#60055](https://go.dev/issue/60055)
+  - **likely accept**; last call for comments ⏳
+- **slices: add Reverse** [#58565](https://go.dev/issue/58565)
+  - **likely accept**; last call for comments ⏳
+- **slices: add sorting and comparison functions** [#60091](https://go.dev/issue/60091)
+  - **likely accept**; last call for comments ⏳
+- **spec: type inference should be more lenient about untyped numeric literals** [#58671](https://go.dev/issue/58671)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/pointer: isolate, tag, and delete the pointer analysis** [#59676](https://go.dev/issue/59676)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **bufio: add Writer.UnwrittenData** [#59106](https://go.dev/issue/59106)
+  - **likely decline**; last call for comments ⏳
+- **cmd/go: allow \`go list\` to return the content of the \`go-source\` meta tag** [#59566](https://go.dev/issue/59566)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: add global ignore mechanism for Go tooling ecosystem** [#42965](https://go.dev/issue/42965)
+  - discussion ongoing
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **context: reconsider semantics for AfterFunc stop function** [#60156](https://go.dev/issue/60156)
+  - added to minutes
+  - commented
+- **crypto/tls: QUIC 0-RTT APIs** [#60107](https://go.dev/issue/60107)
+  - commented
+- **crypto/tls: advanced sessions APIs** [#60105](https://go.dev/issue/60105)
+  - commented
+- **crypto/tls: implement RFC7627** [#43922](https://go.dev/issue/43922)
+  - commented
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **net/netip: add \`Map()\` to \`netip.Addr\`** [#54365](https://go.dev/issue/54365)
+  - added to minutes
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - commented
+- **reflect: add MakeType** [#60088](https://go.dev/issue/60088)
+  - added to minutes
+- **runtime: add support for the Arm’s ArmV8.5-A Memory Tagging Extension (MTE) in Go** [#59090](https://go.dev/issue/59090)
+  - commented
+- **spec: less error-prone loop variable scoping** [#60078](https://go.dev/issue/60078)
+  - discussion ongoing
+- **strings: add First** [#60204](https://go.dev/issue/60204)
+  - added to minutes
+- **strings: add new functions to deprecate strings.{Trim/TrimRight/TrimLeft} to avoid mistakes** [#50399](https://go.dev/issue/50399)
+  - discussion ongoing
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - commented
+- **text/template, html/template: Add ExecuteFuncMap and ExecuteTemplateFuncMap** [#54450](https://go.dev/issue/54450)
+  - discussion ongoing
+- **text/template: add "else with" like "else if"** [#57646](https://go.dev/issue/57646)
+  - added to minutes
+  - commented
+- **unsafe: allow conversion of \`uintptr\` to \`unsafe.Pointer\` when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - commented
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - discussion ongoing
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - discussion ongoing

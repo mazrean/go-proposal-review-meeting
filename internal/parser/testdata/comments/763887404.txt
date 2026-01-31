@@ -1,0 +1,42 @@
+**2021-01-20 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - commented
+- #42088 **cmd/go: 'go run' should run executables in module mode outside a module**
+  - no change in consensus; **accepted** 🎉
+- #40405 **cmd/go: detect proxy redirect loops**
+  - discussion ongoing
+- #26535 **compress/lzw: add Resetter interface to allow encoders to be reused**
+  - commented
+- #40521 **crypto/tls: support TLS 1.3 post-handshake authentication**
+  - put on hold
+- #26950 **crypto/x509: add functions to download certificates from windows update, and retrieve certificates from windows x509stores**
+  - commented
+- #43217 **embed: remove import restriction**
+  - no change in consensus; **declined**
+- #40483 **errors: add Close method for defer io.Closer**
+  - commented
+- #34875 **go/doc: add ToMarkdown**
+  - commented
+- #43223 **io/fs, net/http: define interface for automatic ETag serving**
+  - commented
+- #41625 **net/mail: allow AddressParser helper code to signal invalid character set**
+  - no change in consensus; **declined**
+- #42420 **os/exec: add LookPathAbs that refuses to return relative paths**
+  - proposal retracted by author; **declined**
+- #38736 **os/exec: make LookPath not look in dot implicitly on Windows**
+  - commented
+- #43724 **os/exec: return error when PATH lookup would use current directory**
+  - new
+- #42950 **os/exec: use LookPathAbs by default**
+  - proposal retracted by author; **declined**
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #43651 **spec: add generic programming using type parameters**
+  - discussion ongoing
+- #36145 **time: support Colon for fractional seconds**
+  - commented
+- #42166 **x/net/xsrftoken: add new, less error-prone API**
+  - commented
+- #28089 **x/tools/go/generated: parser for https://golang.org/s/generatedcode format**
+  - **likely accept**; last call for comments ⏳

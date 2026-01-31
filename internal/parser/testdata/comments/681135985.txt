@@ -1,0 +1,45 @@
+**2020-08-26 / @rsc, @ianlancetaylor, @bradfitz, @andybons**
+
+- #38777 **cmd/go: add -debug flag (default true) to control DWARF/etc info in binary**
+  - no change in consensus; **accepted** 🎉
+- #40189 **cmd/go: add a sub command to manage authentication**
+  - discussion ongoing
+- #40357 **cmd/go: deprecate a major module version**
+  - **likely accept**; last call for comments ⏳
+- #40323 **cmd/go: notify about newer major versions**
+  - commented
+- #18022 **cmd/vet: add check for sync.WaitGroup abuse**
+  - commented
+- #40701 **cmd/vet: warn about variables/values of type reflect.{Slice,String}Header**
+  - commented
+- #36503 **context: add Merge**
+  - discussion ongoing
+- #40171 **crypto: import fiat-crypto implementations**
+  - commented
+- #40082 **database/sql: add NullInt16 support**
+  - **likely accept**; last call for comments ⏳
+- #40674 **errors: Is resolve nil error problem**
+  - no change in consensus; **declined**
+- #40675 **errors: allow implementing err.Is(err) == false**
+  - no change in consensus; **declined**
+- #40673 **errors: allow implementing err.Is(nil) == true**
+  - no change in consensus; **declined**
+- #38776 **hash, crypto: add WriteByte, WriteString method to hash implementations**
+  - **likely accept**; last call for comments ⏳
+- #40663 **math: add Tau in constants**
+  - no change in consensus; **declined**
+- #395 **spec: use (\*\[4]int)(x) to convert slice x into array pointer**
+  - commented
+- #39863 **sync: add WaitGroup.Go method**
+  - no change in consensus; **declined**
+- #39903 **testing: expose testing.T constructor so a test with subtests can be verified to fail**
+  - no change in consensus; **declined**
+- #39726 **time: Duration should have .Ceil method**
+  - commented
+- #40481 **unsafe: add Add**
+  - **likely accept**; holding for #395; last call for comments ⏳
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - commented
+  - **likely accept**; holding for #395; last call for comments ⏳
+- #41049 **unsafe: allow Offsetof slice/array index expression**
+  - commented

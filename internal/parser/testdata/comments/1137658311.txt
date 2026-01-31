@@ -1,0 +1,90 @@
+**2022-05-25 / @rsc, @griesemer, @ianlancetaylor, @andybons**
+
+**Accepted**
+
+- **cmd/go: support for Git LFS via new VCS qualifier** [#47308](https://golang.org/issue/47308)
+  - no change in consensus; **accepted** 🎉
+- **crypto/ed25519: Implement Ed25519ph** [#31804](https://golang.org/issue/31804)
+  - no change in consensus; **accepted** 🎉
+- **go/ast: formally deprecate Object** [#52463](https://golang.org/issue/52463)
+  - no change in consensus; **accepted** 🎉
+- **x/exp/maps: Copy should use two generic map types** [#52593](https://golang.org/issue/52593)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **crypto: support bn, nums, sm2 curves** [#52778](https://golang.org/issue/52778)
+  - proposal retracted by author; **declined**
+- **testing: add Unsetenv to call os.Unsetenv and then restore the value using Cleanup** [#52817](https://golang.org/issue/52817)
+  - no change in consensus; **declined**
+- **type parameters are comparable unless they exclude comparable types** [#52614](https://golang.org/issue/52614)
+  - proposal retracted by author; **declined**
+- **x/exp/maps: add Merge** [#52806](https://golang.org/issue/52806)
+  - proposal retracted by author; **declined**
+- **x/tools/go/packages: Provide an AST loader for single binary applications** [#52974](https://golang.org/issue/52974)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **crypto/ecdh: new package** [#52221](https://golang.org/issue/52221)
+  - **likely accept**; last call for comments ⏳
+- **os/exec: add fields for managing termination signals and pipes** [#50436](https://golang.org/issue/50436)
+  - **likely accept**; last call for comments ⏳
+- **x/sys/unix: add RecvmsgBuffers and SendmsgBuffers** [#52885](https://golang.org/issue/52885)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **errors: add With(err, other error) error** [#52607](https://golang.org/issue/52607)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: \`go list -e -m -json all\` to start displaying hashes of modules** [#52792](https://golang.org/issue/52792)
+  - discussion ongoing
+- **cmd/go: partial vendoring** [#52604](https://golang.org/issue/52604)
+  - discussion ongoing
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - commented
+- **crypto/cipher: please export xorBytes** [#53021](https://golang.org/issue/53021)
+  - added to minutes
+  - commented
+- **crypto: implement CMAC** [#52931](https://golang.org/issue/52931)
+  - added to minutes
+- **database/sql: add SetMaxBadConnRetries** [#52886](https://golang.org/issue/52886)
+  - discussion ongoing
+- **do something smart with virtual machine forks & crypto** [#52544](https://golang.org/issue/52544)
+  - commented
+- **encoding/json: dynamic field omission** [#52803](https://golang.org/issue/52803)
+  - commented
+- **fmt: add flags to control printing of slices** [#52936](https://golang.org/issue/52936)
+  - commented
+- **io/fs: add writable interfaces** [#45757](https://golang.org/issue/45757)
+  - added to minutes
+- **math/big: add Int.AddInt64, Int.CmpInt64** [#29951](https://golang.org/issue/29951)
+  - added to minutes
+  - commented
+- **net/http/httputil: replace Director with Rewrite** [#53002](https://golang.org/issue/53002)
+  - added to minutes
+- **net/http: add ServeFSFile** [#51971](https://golang.org/issue/51971)
+  - discussion ongoing
+- **net/http: context based graceful server shutdown** [#52805](https://golang.org/issue/52805)
+  - discussion ongoing
+- **spec: allow explicit conversion from function to 1-method interface** [#47487](https://golang.org/issue/47487)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://golang.org/issue/52751)
+  - commented
+- **text/template: add "return" action** [#53015](https://golang.org/issue/53015)
+  - added to minutes
+- **time: add format constants for date and date+time** [#52746](https://golang.org/issue/52746)
+  - discussion ongoing
+- **unsafe: add functions to replace reflect.StringHeader and reflect.SliceHeader** [#53003](https://golang.org/issue/53003)
+  - added to minutes
+  - commented
+- **x/crypto/ssh: add  ServerConfig.HostKeyAlgorithms** [#52132](https://golang.org/issue/52132)
+  - commented
+- **x/net/html: Allow getting raw HTML attribute values on Tokenizer** [#52911](https://golang.org/issue/52911)
+  - added to minutes
+  - discussion ongoing
+- **x/net: Accept client-provided logger for http2 debug logs in addition to GODEBUG=http2debug=1,2** [#52734](https://golang.org/issue/52734)
+  - commented

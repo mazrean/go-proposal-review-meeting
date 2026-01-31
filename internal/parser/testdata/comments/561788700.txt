@@ -1,0 +1,48 @@
+**2019-12-04 / @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc, @spf13**
+
+- #35593 **all: make linux/arm64 a first-class port**
+  - **no change in consensus; accepted 🎉**
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - discussion ongoing
+- #35400 **cmd/go: add .proxy endpoint to the module proxy spec**
+  - put on hold
+- #35699 **cmd/go: add go cli version to the User-Agent string**
+  - **no final comments; declined**
+- #34293 **cmd/go: add go doc -json**
+  - **no change in consensus; accepted 🎉**
+- #35008 **cmd/go: add GOMIPS64=r2 for mips64r2 code generation**
+  - commented
+- #29062 **cmd/go: fail tests that invoke os.Exit(0) explicitly**
+  - **likely accept; last call for comments**
+- #35510 **cmd/go: have `go get`... look in vendored caches for dependencies**
+  - **no change in consensus; declined**
+- #14878 **crypto/tls: add SetOCSPStaple function**
+  - **likely decline; last call for comments**
+- #35697 **database/sql: expose convertAssign functionality in an Any type**
+  - discussion ongoing
+- #34593 **database/sql: sql.IsNull**
+  - **no change in consensus; declined**
+- #22823 **io/ioutil: add WriteNopCloser**
+  - discussion ongoing
+- #33920 **io/ioutil: reject path separators in TempDir, TempFile pattern**
+  - **no change in consensus; accepted 🎉**
+- #34416 **log: add flag to display ISO 8601 date and time format**
+  - **no change in consensus; declined**
+- #35696 **os: add function to return environment var with default value**
+  - **no change in consensus; declined**
+- #29982 **reflect: add constants for size of int, bool, etc.**
+  - commented
+- #35178 **runtime: permit setting goroutine name to appear in stack dumps**
+  - **likely decline; last call for comments**
+- #34681 **syscall: define Windows O_ALLOW_DELETE for use in os.OpenFile**
+  - commented
+- #34626 **testing: print more precision in benchmark timings**
+  - **likely accept; last call for comments**
+- #35567 **testing: move Internal types to internal package**
+  - **no change in consensus; accepted 🎉**
+- #35643 **time: add a channel to time.Ticker to detect stopped tickers**
+  - **no change in consensus; declined**
+- #35346 **x/crypto/nacl: Support for libsodium "sealed box"**
+  - **no change in consensus; accepted 🎉**
+- #22741 **x/crypto/ssh: add package for Key Revocation Lists** 
+  - **likely decline; last call for comments**

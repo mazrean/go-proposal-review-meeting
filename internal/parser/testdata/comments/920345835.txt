@@ -1,0 +1,62 @@
+**2021-09-15 / @rsc, @ianlancetaylor, @bradfitz, @spf13**
+
+- [#47621](https://golang.org/issue/47621) **bufio: add Reader.DiscardRunes(n int) and utf8: add RuneByteLen**
+  - commented
+- [#46731](https://golang.org/issue/46731) **cmd/compile: replace \`//go:notinheap\` with runtime/internal/sys.NotInHeap**
+  - no change in consensus; **accepted** 🎉
+- [#48157](https://golang.org/issue/48157) **cmd/go: add per-test timeouts**
+  - discussion ongoing
+- [#38964](https://golang.org/issue/38964) **cmd/go: configurable extra vcs paths**
+  - put on hold
+- [#48019](https://golang.org/issue/48019) **cmd/vet: warn for passing invalid arguments to runtime.SetFinalizer**
+  - proposal retracted by author; **declined**
+- [#47579](https://golang.org/issue/47579) **fmt: add AppendPrint, AppendPrintf, AppendPrintln**
+  - commented
+- [#47781](https://golang.org/issue/47781) **go/ast, go/token: additions to support type parameters**
+  - no change in consensus; **accepted** 🎉
+- [#47783](https://golang.org/issue/47783) **go/parser: add a mode flag to disallow the new syntax for type parameters / instantiation**
+  - proposal retracted by author; **declined**
+- [#47916](https://golang.org/issue/47916) **go/types: additions to support type parameters**
+  - discussion ongoing
+- [#47342](https://golang.org/issue/47342) **hash/maphash: Provide a \`purego\` implementation**
+  - **likely accept**; last call for comments ⏳
+- [#47230](https://golang.org/issue/47230) **log: add flag for displaying function name**
+  - **likely decline**; last call for comments ⏳
+- [#47649](https://golang.org/issue/47649) **maps: new package to provide generic map functions**
+  - **likely accept**; last call for comments ⏳
+- [#39178](https://golang.org/issue/39178) **net/http: make DNS lookup timeouts return net.DNSError instead of poll.TimeoutError**
+  - **likely accept**; last call for comments ⏳
+- [#46001](https://golang.org/issue/46001) **net/http: use nontransitional IDNA processing**
+  - no change in consensus; **accepted** 🎉
+- [#46518](https://golang.org/issue/46518) **net/netip: add new IP address package, use in net**
+  - commented
+- [#42694](https://golang.org/issue/42694) **net: add Interface.InterfaceAddrs**
+  - **likely accept**; last call for comments ⏳
+- [#47209](https://golang.org/issue/47209) **path/filepath: add SkipAll**
+  - **likely accept**; last call for comments ⏳
+- [#47658](https://golang.org/issue/47658) **reflect: add Value.CanInt, CanUint, CanFloat**
+  - commented
+  - **likely accept**; last call for comments ⏳
+- [#48218](https://golang.org/issue/48218) **reflect: add Value.FieldByIndexErr**
+  - discussion ongoing
+- [#48294](https://golang.org/issue/48294) **reflect: rename MapIter.SetKey and MapIter.SetValue**
+  - added to minutes
+- [#47216](https://golang.org/issue/47216) **runtime/metrics: add GOMAXPROCS, NumCgoCall, GC CPU time**
+  - **likely accept**; last call for comments ⏳
+- [#47619](https://golang.org/issue/47619) **slices: add Sort, SortStable, IsSorted, BinarySearch, and func variants**
+  - **likely accept**; last call for comments ⏳
+- [#33232](https://golang.org/issue/33232) **spec: allow 'any' for 'interface{}' in non-constraint contexts**
+  - **likely accept**; last call for comments ⏳
+- [#47487](https://golang.org/issue/47487) **spec: allow explicit conversion from function to 1-method interface**
+  - commented
+- [#46477](https://golang.org/issue/46477) **spec: generics: type parameters on aliases**
+  - **likely accept**; last call for comments ⏳
+- [#47657](https://golang.org/issue/47657) **sync, sync/atomic: add PoolOf, MapOf, ValueOf**
+  - awaiting #48287
+- [#44006](https://golang.org/issue/44006) **syscall/js: remove Wrapper type to avoid extreme allocations and improve performance**
+  - added to minutes
+- [#32958](https://golang.org/issue/32958) **x/crypto/ssh: export a transport interface**
+  - added to minutes
+  - cc’ed owners
+- [#47510](https://golang.org/issue/47510) **x/net/idna: add pre-defined profile for non-transitional IDNA2008**
+  - no change in consensus; **accepted** 🎉

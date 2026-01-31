@@ -1,0 +1,46 @@
+**2020-08-05 / @rsc, @ianlancetaylor, @bradfitz, @andybons**
+
+[Lots of likely accepts this week!]
+
+- #40270 **add "umbrella" label for issues about issues**
+  - **likely accept**; last call for comments ⏳
+- #40255 **all: drop GO386=387 support in Go 1.16**
+  - **likely accept**; last call for comments ⏳
+- #34974 **archive/zip: add already compressed files**
+  - commented
+- #38777 **cmd/go: add -debug or -dwarf flag**
+  - commented
+  - experiment wanted
+- #18022 **cmd/vet: add check for sync.WaitGroup abuse**
+  - commented
+- #23142 **cmd/vet: detect values assigned but not used**
+  - put on hold
+- #36503 **context: add Merge**
+  - commented
+- #40337 **crypto/dsa: deprecate and remove from crypto/x509 and x/crypto/ssh**
+  - **likely accept**; last call for comments ⏳
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo, CertificateRequestInfo**
+  - commented
+- #38776 **hash, crypto: add WriteByte, WriteString method to hash implementations**
+  - commented, expanded to add WriteString
+- #40034 **net/smtp: add Client.TLSConfig field and Client.SendMail method**
+  - **likely accept**; last call for comments ⏳
+- #39717 **reflect: allow creation of recursive types atomically**
+  - put on hold
+- #40281 **reflect: allow multiple keys in key:value pair in struct tag**
+  - **likely accept**; last call for comments ⏳
+- #395 **spec: use (\*\[4]int)(x) to convert slice x into array pointer**
+  - commented
+- #39863 **sync: add WaitGroup.Go method**
+  - commented
+- #39904 **testing: change -run regexp to make / have usual precedence**
+  - **likely accept**; last call for comments ⏳
+- #39903 **testing: expose testing.T constructor so a test with subtests can be verified to fail**
+  - commented
+- #40481 **unsafe: add Add**
+  - **likely accept**; last call for comments ⏳
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - **likely accept**; last call for comments ⏳
+  - (waiting for #40481 and #395)
+- #40053 **x/tools/go/packages: add no-network package lookup**
+  - put on hold

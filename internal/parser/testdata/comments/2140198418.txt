@@ -1,0 +1,91 @@
+**2024-05-29 / @aclements, @adonovan, @bradfitz, @cherrymui, @griesemer, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **x/net/http2: add Framer.WriteDataN method** [#66655](https://go.dev/issue/66655)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **time: optimize algorithms by restricting valid year range** [#63844](https://go.dev/issue/63844)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **crypto/rand: crash process on error reading randomness** [#66821](https://go.dev/issue/66821)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **runtime: add WaitIdle function** [#65336](https://go.dev/issue/65336)
+  - **likely decline**; last call for comments ⏳
+- **testing: add testing.T.Volatile to exempt test functions from result caching** [#67568](https://go.dev/issue/67568)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/go: list deprecations and newer available major, minor versions** [#67420](https://go.dev/issue/67420)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd/vet: consider reporting invalid/ignored Go versions in build tags** [#64127](https://go.dev/issue/64127)
+  - approve
+- **compress/zstd: add new package** [#62513](https://go.dev/issue/62513)
+  - discussion ongoing
+- **crypto/rand: add String** [#67057](https://go.dev/issue/67057)
+  - discussion ongoing
+- **crypto/tls: support kernel-provided TLS** [#44506](https://go.dev/issue/44506)
+  - discussion ongoing
+- **crypto/x509: generate serial number for nil template SerialNumber** [#67675](https://go.dev/issue/67675)
+  - added to minutes
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - discussion ongoing
+- **errors: add All and AllAs iterators** [#66455](https://go.dev/issue/66455)
+  - discussion ongoing
+- **hash/maphash: add func Comparable** [#54670](https://go.dev/issue/54670)
+  - commented
+- **io/fs: add SymlinkFS interface** [#49580](https://go.dev/issue/49580)
+  - discussion ongoing
+- **os: safer file open functions** [#67002](https://go.dev/issue/67002)
+  - added to minutes
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **spec: allow range-over-func to omit iteration variables** [#65236](https://go.dev/issue/65236)
+  - discussion ongoing
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - discussion ongoing
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: add TB.Chdir** [#62516](https://go.dev/issue/62516)
+  - discussion ongoing
+- **x/crypto/ssh: allow to change allowed authentication methods** [#66815](https://go.dev/issue/66815)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - discussion ongoing
+- **x/sys: add unsafe mmap** [#56123](https://go.dev/issue/56123)
+  - added to minutes
+- **x/tools/go/analysis: identify test-only packages** [#65749](https://go.dev/issue/65749)
+  - commented
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **runtime: don't enable process-wide long path support on Windows** [#66560](https://go.dev/issue/66560)
+  - hold for Microsoft
+- **x/tools/go/types/typeutil: add TypeMap\[V]** [#67161](https://go.dev/issue/67161)
+  - put on hold

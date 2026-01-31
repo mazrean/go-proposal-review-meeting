@@ -1,0 +1,83 @@
+**2024-04-10 / @aclements, @adonovan, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **net/http: add ParseCookie, ParseSetCookie** [#66008](https://go.dev/issue/66008)
+  - no change in consensus; **accepted** 🎉
+- **net/http: add field Cookie.Quoted bool** [#46443](https://go.dev/issue/46443)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **cmd/cgo: add -ldflags to augment CGO\_LDFLAGS** [#66456](https://go.dev/issue/66456)
+  - **likely accept**; last call for comments ⏳
+- **go/types: add Alias.Rhs method** [#66559](https://go.dev/issue/66559)
+  - **likely accept**; last call for comments ⏳
+- **reflect: add Type.CanSeq/CanSeq2 and Value.Seq/Seq2 methods** [#66056](https://go.dev/issue/66056)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/analysis: add field Pass.ReadFile func** [#62292](https://go.dev/issue/62292)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **encoding/json: add mechanism to mark fields as required** [#19858](https://go.dev/issue/19858)
+  - **likely decline**; last call for comments ⏳
+- **runtime: provide a way to format output in unhandled panics** [#63455](https://go.dev/issue/63455)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd/vet: report printf calls with non-const format and no args** [#60529](https://go.dev/issue/60529)
+  - added to minutes
+- **encoding/binary: add func Append** [#60023](https://go.dev/issue/60023)
+  - commented
+- **go/ast: add DepthFirst iterator** [#66339](https://go.dev/issue/66339)
+  - added to minutes
+- **net/http: delete inappropriate headers in func Error** [#66343](https://go.dev/issue/66343)
+  - commented
+- **net/http: expose matched pattern in Request** [#66405](https://go.dev/issue/66405)
+  - added to minutes
+- **reflect: add AssertTo** [#62121](https://go.dev/issue/62121)
+  - added to minutes
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **text/template: range over func and int** [#66107](https://go.dev/issue/66107)
+  - discussion ongoing
+- **x/crypto/ssh: add BannerError** [#64962](https://go.dev/issue/64962)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - discussion ongoing
+- **x/tools/go/analysis: identify test-only packages** [#65749](https://go.dev/issue/65749)
+  - discussion ongoing
+- **x/tools/go/ssa: defer into stack frame** [#66601](https://go.dev/issue/66601)
+  - added to minutes
+
+**Hold**
+
+- **build: promote windows/arm64 to first class port** [#65284](https://go.dev/issue/65284)
+  - put on hold
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+

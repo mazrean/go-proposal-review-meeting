@@ -1,0 +1,85 @@
+**2022-11-02 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @aclements**
+
+**Accepted**
+
+- **net/http: ResponseController to manipulate per-request timeouts (and other behaviors)** [#54136](https://go.dev/issue/54136)
+  - no change in consensus; **accepted** 🎉
+- **openbsd/ppc64 port** [#56001](https://go.dev/issue/56001)
+  - no change in consensus; **accepted** 🎉
+- **x/net/http2: add support for SETTINGS\_HEADER\_TABLE\_SIZE** [#56054](https://go.dev/issue/56054)
+  - no change in consensus; **accepted** 🎉
+- **x/sys/unix: add ParseOneSocketControlMessage** [#54714](https://go.dev/issue/54714)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **x/exp/maps: additional functionality, also a new package x/exp/sets** [#56128](https://go.dev/issue/56128)
+  - no change in consensus; **declined**
+- **x/tools/cmd/goimports: ability to exclude specific directory, like vendor** [#54706](https://go.dev/issue/54706)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **cmd/go: add a flag to use stdin as a cancellation side-channel** [#56163](https://go.dev/issue/56163)
+  - **likely accept**; last call for comments ⏳
+- **cmd/go: standard-library vendoring in module mode** [#30241](https://go.dev/issue/30241)
+  - **likely accept**; last call for comments ⏳
+- **go/analysis: specify that all facts are encoded in one gulp, preserving topology** [#54661](https://go.dev/issue/54661)
+  - **likely accept**; last call for comments ⏳
+- **net: add UDPMsg, (\*UDPConn).ReadUDPMsgs, (\*UDPConn).WriteUDPMsgs** [#45886](https://go.dev/issue/45886)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **net/netip: Add function Network() for netip Addr to make it support the interface of net.Addr** [#56286](https://go.dev/issue/56286)
+  - commented
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **bufio: allow terminating Scanner early cleanly without a final token or an error** [#56381](https://go.dev/issue/56381)
+  - commented
+- **bytes, strings: add ContainsFunc** [#54386](https://go.dev/issue/54386)
+  - added to minutes
+  - waiting for #53983
+- **crypto/ecdh: provide and/or implement an interface** [#56052](https://go.dev/issue/56052)
+  - commented
+- **crypto/ecdsa: add methods to convert keys to crypto/ecdh format** [#56088](https://go.dev/issue/56088)
+  - commented
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - commented
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **encoding: add ScalarMarshaler and ScalarUnmarshaler** [#56235](https://go.dev/issue/56235)
+  - commented
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **math/rand: deprecate Seed** [#56319](https://go.dev/issue/56319)
+  - commented
+- **net/http: add ServeFileFS, FileServerFS, NewFileTransportFS** [#51971](https://go.dev/issue/51971)
+  - retitled
+  - commented
+- **os/exec: add GODEBUG flag to print a line to STDERR for each command started** [#56301](https://go.dev/issue/56301)
+  - commented
+- **path/filepath: Sanitize** [#56219](https://go.dev/issue/56219)
+  - commented
+- **reflect: add (\*Value).MapClear** [#55002](https://go.dev/issue/55002)
+  - waiting for #56351
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - commented
+- **spec: add clear(x) builtin, to clear map, zero content of slice, ptr-to-array** [#56351](https://go.dev/issue/56351)
+  - commented
+- **spec: disallow anonymous interface cycles** [#56103](https://go.dev/issue/56103)
+  - commented
+- **sync: add OnceFunc** [#56102](https://go.dev/issue/56102)
+  - commented
+- **syscall/js: add Scope function** [#56084](https://go.dev/issue/56084)
+  - commented
+- **x/exp/slices: add ContainsFunc** [#53983](https://go.dev/issue/53983)
+  - commented
+
+
+**Other**
+
+- **runtime/pprof: make the CPU profile maximum stack size configurable** [#56029](https://go.dev/issue/56029)
+  - removed from proposal process

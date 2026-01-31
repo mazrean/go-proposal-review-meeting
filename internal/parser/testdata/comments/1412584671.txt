@@ -1,0 +1,92 @@
+**2023-02-01 / @aclements, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **add a (\*go/token.File).Lines method** [#57708](https://go.dev/issue/57708)
+  - no change in consensus; **accepted** 🎉
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - no change in consensus; **accepted** 🎉
+- **debug/elf: add DT\_FLAGS\_1 (dynamic flags) constants** [#56887](https://go.dev/issue/56887)
+  - no change in consensus; **accepted** 🎉
+- **debug/elf: add missing PPC64 ELFv2 1.5 relocation constants** [#54345](https://go.dev/issue/54345)
+  - no change in consensus; **accepted** 🎉
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - no change in consensus; **accepted** 🎉
+- **maps: new standard library package based on x/exp/maps** [#57436](https://go.dev/issue/57436)
+  - no change in consensus; **accepted** 🎉
+- **x/exp/slices: Allow different types for haystack/needle in BinarySearchFunc** [#57348](https://go.dev/issue/57348)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **archive/tar: add (\*Writer).AddFS** [#58000](https://go.dev/issue/58000)
+  - **likely accept**; last call for comments ⏳
+- **archive/zip: add (\*Writer).AddFS** [#54898](https://go.dev/issue/54898)
+  - **likely accept**; last call for comments ⏳
+- **cmd/compile: add GOEXPERIMENT=loopvar** [#57969](https://go.dev/issue/57969)
+  - **likely accept**; last call for comments ⏳
+- **context: add WithoutCancel** [#40221](https://go.dev/issue/40221)
+  - **likely accept**; last call for comments ⏳
+- **encoding/json: add (\*Decoder).SetLimit** [#56733](https://go.dev/issue/56733)
+  - **likely accept**; last call for comments ⏳
+- **reflect: deprecate SliceHeader and StringHeader** [#56906](https://go.dev/issue/56906)
+  - **likely accept**; last call for comments ⏳
+- **slices: new standard library package based on x/exp/slices** [#57433](https://go.dev/issue/57433)
+  - **likely accept**; last call for comments ⏳
+- **spec: define initialization order more precisely** [#57411](https://go.dev/issue/57411)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **archive/tar, archive/zip: add NewReaderOptions with directory traversal defenses** [#57850](https://go.dev/issue/57850)
+  - added to minutes
+- **bytes: add Buffer.Extend** [#53685](https://go.dev/issue/53685)
+  - commented
+  - added to minutes
+- **cmd/cgo: add "//go:cgo\_unsafe\_stack\_pointer" to avoid escaping** [#56378](https://go.dev/issue/56378)
+  - commented
+  - added to minutes
+- **cmd/compile: A GOOS=wasi GOARCH=wasm compilation target** [#58141](https://go.dev/issue/58141)
+  - added to minutes
+- **cmd/go: Add a build tag for tests** [#52600](https://go.dev/issue/52600)
+  - commented
+  - added to minutes
+- **context: notification callback for cancelled/expired contexts** [#57928](https://go.dev/issue/57928)
+  - added to minutes
+- **go/printer: don't reformat single line if statements** [#57645](https://go.dev/issue/57645)
+  - commented
+  - added to minutes
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **net/http: ResponseController.SetBidi to support concurrent Request.Body reads and ResponseWriter.Writes** [#57786](https://go.dev/issue/57786)
+  - commented
+  - added to minutes
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - commented
+  - added to minutes
+- **path/filepath: add IsReserved to identify Windows reserved filenames** [#57152](https://go.dev/issue/57152)
+  - commented
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **x/tools/go/analysis: add Analyzer.URL and Diagnostic.URL fields** [#57906](https://go.dev/issue/57906)
+  - commented
+
+**Hold**
+
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - hold for draft implementation
+
+**Other**
+
+- **math/rand: reconsider lock-free source** [#49892](https://go.dev/issue/49892)
+  - removed from process

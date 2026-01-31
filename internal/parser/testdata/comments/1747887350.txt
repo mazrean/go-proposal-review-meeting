@@ -1,0 +1,111 @@
+[Because the last meeting's updates and minutes were delayed, the issues marked "likely accept" last time will stay "likely accept" for another week. -rsc]
+
+**2023-10-04 / @aclements, @adonovan, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- **go/types: Export \`UntypedZero\` and \`Value\`** [#62124](https://go.dev/issue/62124)
+  - proposal retracted by author; **declined**
+
+**Likely Accept**
+
+- **io/fs: add SymlinkFS interface** [#49580](https://go.dev/issue/49580)
+  - **likely accept**; last call for comments ⏳
+- **testing: add Keep, to force evaluation in benchmarks** [#61179](https://go.dev/issue/61179)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/types/objectpath: remove sorting of Named type methods** [#61443](https://go.dev/issue/61443)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **\`intern\` package** [#62483](https://go.dev/issue/62483)
+  - commented
+- **all: Add GORISCV64 environment variable** [#61476](https://go.dev/issue/61476)
+  - discussion ongoing
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - blocked on #61405
+- **cmd/go: add support for dealing with flaky tests** [#62244](https://go.dev/issue/62244)
+  - discussion ongoing
+- **cmd/go: go build -json** [#62067](https://go.dev/issue/62067)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd: drop support for GOROOT\_FINAL** [#62047](https://go.dev/issue/62047)
+  - discussion ongoing
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - discussion ongoing
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - discussion ongoing
+- **go/types: Export Info.FileVersions for access to file-specific version information** [#62605](https://go.dev/issue/62605)
+  - commented
+- **io/fs, net/http: define interface for automatic ETag serving** [#60940](https://go.dev/issue/60940)
+  - commented
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - blocked on #61405
+- **maps:  add maps.KeysSlice and maps.ValuesSlice** [#61626](https://go.dev/issue/61626)
+  - blocked on #61405
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - blocked on #61405
+- **os: add CopyFS** [#62484](https://go.dev/issue/62484)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - blocked on #61405
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - blocked on #61405
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - blocked on #61405
+- **spec: add range over int, range over func** [#61405](https://go.dev/issue/61405)
+  - discussion ongoing
+- **spec: add range over int, range over func** [#61405](https://go.dev/issue/61405)
+  - discussion ongoing
+- **spec: permit referring to a field shared by all elements of a type set** [#48522](https://go.dev/issue/48522)
+  - added to minutes
+- **sync/atomic: add Uint64Pair** [#61236](https://go.dev/issue/61236)
+  - commented
+- **testing,cmd/test2json: distinguish error output** [#62728](https://go.dev/issue/62728)
+  - commented
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: panic on non-zero exit codes** [#61839](https://go.dev/issue/61839)
+  - discussion ongoing
+- **x/crypto/cryptobyte: ReadOptionalASN1Boolean doesn't work as expected** [#43019](https://go.dev/issue/43019)
+  - discussion ongoing
+- **x/crypto/ssh: add a specific error for algorithm negotiation issues/errors** [#61536](https://go.dev/issue/61536)
+  - discussion ongoing
+- **x/crypto/ssh: export supported algorithms** [#61537](https://go.dev/issue/61537)
+  - discussion ongoing
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - discussion ongoing
+- **x/crypto/ssh: server side multi-step authentication** [#61447](https://go.dev/issue/61447)
+  - discussion ongoing
+- **x/crypto: add AES-GCM-SIV** [#54364](https://go.dev/issue/54364)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - blocked on #61405
+- **x/mod: add API to parse Go distribution version strings** [#62039](https://go.dev/issue/62039)
+  - commented
+- **x/oauth2: Unmarshal expires\_in outside of oauth2/internal** [#61417](https://go.dev/issue/61417)
+  - commented
+- **x/tools/go/analysis/analysisutil: publish ExtractDoc** [#61315](https://go.dev/issue/61315)
+  - discussion ongoing
+- **x/tools/go/analysis/checker: an importable analysis driver based on go/packages** [#61324](https://go.dev/issue/61324)
+  - discussion ongoing
+- **x/tools/txtar: add Extract function or method** [#61386](https://go.dev/issue/61386)
+  - blocked on os.CopyFS
+- **x/tools/txtar: implement fs.FS** [#44158](https://go.dev/issue/44158)
+  - discussion ongoing

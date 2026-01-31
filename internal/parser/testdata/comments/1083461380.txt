@@ -1,0 +1,113 @@
+**2022-03-30 / @rsc, @ianlancetaylor, @griesemer, @bradfitz**
+
+**Accepted**
+
+- **cmd/link: generate external DWARF debuginfo archives directly** [#51692](https://golang.org/issue/51692)
+  - no change in consensus; **accepted** 🎉
+- **debug/pe: add APIs to support reading COMDAT info for sections** [#51868](https://golang.org/issue/51868)
+  - no change in consensus; **accepted** 🎉
+- **encoding/binary: add AppendUvarint and AppendVarint** [#51644](https://golang.org/issue/51644)
+  - no change in consensus; **accepted** 🎉
+- **hash/maphash: add Bytes and String** [#42710](https://golang.org/issue/42710)
+  - no change in consensus; **accepted** 🎉
+- **math/big: Rat: add FloatPrec() (int, bool)** [#50489](https://golang.org/issue/50489)
+  - no change in consensus; **accepted** 🎉
+- **net: make errCanceled and errTimeout be "errors.Is" context.Canceled and context.DeadlineExceeded** [#51428](https://golang.org/issue/51428)
+  - no change in consensus; **accepted** 🎉
+- **regexp: add ErrNestingDepth error** [#51684](https://golang.org/issue/51684)
+  - no change in consensus; **accepted** 🎉
+- **x/website: add dark (night) theme** [#34601](https://golang.org/issue/34601)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **crypto/elliptic: Add Sub() method to Curve interface** [#51815](https://golang.org/issue/51815)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/vet: check for missing Err calls for bufio.Scanner and sql.Rows** [#17747](https://golang.org/issue/17747)
+  - **likely accept**; last call for comments ⏳
+- **crypto/x509: add CertPool.Clone** [#35044](https://golang.org/issue/35044)
+  - **likely accept**; last call for comments ⏳
+- **io: make NopCloser forward WriterTo calls to underlying reader** [#51566](https://golang.org/issue/51566)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **ErrorOr type wrapping (T, error)** [#51931](https://golang.org/issue/51931)
+  - **likely decline**; last call for comments ⏳
+- **context: add Root as an alias for Background** [#51573](https://golang.org/issue/51573)
+  - **likely decline**; last call for comments ⏳
+- **intmath: new package** [#51563](https://golang.org/issue/51563)
+  - **likely decline**; last call for comments ⏳
+- **reflect: add DeepCopy** [#51520](https://golang.org/issue/51520)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **arena:  new package providing memory arenas** [#51317](https://golang.org/issue/51317)
+  - commented
+- **cmd/cover: extend coverage testing to include applications** [#51430](https://golang.org/issue/51430)
+  - commented
+- **cmd/go: list available major versions in 'go list -u -m all'** [#51491](https://golang.org/issue/51491)
+  - discussion ongoing
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - commented
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - discussion ongoing
+- **crypto: include support for DTLS in stdlib or x/crypto** [#46915](https://golang.org/issue/46915)
+  - discussion ongoing
+- **doc: update Go memory model** [#50859](https://golang.org/issue/50859)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://golang.org/issue/49313)
+  - discussion ongoing
+- **encoding/xml: option to treat unknown fields as an error** [#30301](https://golang.org/issue/30301)
+  - commented
+- **fmt: add Formatter fallback** [#51195](https://golang.org/issue/51195)
+  - discussion ongoing
+- **fmt: add String method to fmt.pp, which implements fmt.State** [#51668](https://golang.org/issue/51668)
+  - discussion ongoing
+- **go/types: add Object.Origin** [#51682](https://golang.org/issue/51682)
+  - moved back to active
+- **io: add an \`Err\` field to \`LimitedReader\`** [#51115](https://golang.org/issue/51115)
+  - added to minutes
+- **net/http/httputil: better support for forwarded headers** [#50465](https://golang.org/issue/50465)
+  - commented
+- **net/http/httputil: can ReverseProxy copy src header to dst header with Set() instead of Add() ?** [#50730](https://golang.org/issue/50730)
+  - commented
+- **net/http: Add ServeFSFile and ServeFSContent** [#51971](https://golang.org/issue/51971)
+  - added to minutes
+- **net: make LookupCNAME consistent between Unix and Windows, document** [#50101](https://golang.org/issue/50101)
+  - commented
+- **reflect: reflect.ValueOf(nil).IsNil() panics; let's make it return true** [#51649](https://golang.org/issue/51649)
+  - discussion ongoing
+- **runtime: deprecate GOROOT() function** [#51473](https://golang.org/issue/51473)
+  - discussion ongoing
+- **spec: adjust scope of type parameters declared by method receivers** [#52038](https://golang.org/issue/52038)
+  - added to minutes
+- **spec: permit values to have type "comparable"** [#51338](https://golang.org/issue/51338)
+  - discussion ongoing
+- **strings: add TrimmedPrefix and TrimmedSuffix which report whether they trimmed** [#42537](https://golang.org/issue/42537)
+  - added to minutes
+  - commented
+- **sync: add new Map method Swap** [#51972](https://golang.org/issue/51972)
+  - added to minutes
+- **syscall: add PidFD, CgroupFD, and UseCgroupFD options for Linux clone to SysProcAttr** [#51246](https://golang.org/issue/51246)
+  - commented
+- **testing/cmp: add new package** [#45200](https://golang.org/issue/45200)
+  - discussion ongoing
+- **x/arch/arm64/arm64asm: all fields of potential Args structs should be exported** [#51517](https://golang.org/issue/51517)
+  - commented
+- **x/crypto/acme/autocert: Staple OCSP** [#51064](https://golang.org/issue/51064)
+  - commented
+- **x/crypto/ssh: add ServerConfig.NoClientAuthCallback** [#51994](https://golang.org/issue/51994)
+  - added to minutes
+  - cc’ed owners
+- **x/exp/slices: Find function to select first element matching a condition** [#52006](https://golang.org/issue/52006)
+  - added to minutes
+  - commented
+- **x/sync/errgroup: add functionality to limit the number of simultaneous execution** [#27837](https://golang.org/issue/27837)
+  - discussion ongoing
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - discussion ongoing

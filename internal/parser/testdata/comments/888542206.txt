@@ -1,0 +1,77 @@
+**2021-07-28 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #46758 **bufio: add a new method "Handover" for Writer and Reader**
+  - **likely decline**; last call for comments ⏳
+- #44815 **bufio: use underlying ReadFrom even when data is buffered**
+  - added to minutes
+- #39155 **change standard library to check for io.EOF using errors.Is**
+  - **likely decline**; last call for comments ⏳
+- #45713 **cmd/go: add a workspace mode**
+  - discussion ongoing
+  - prototype available!
+- #46774 **cmd/go: add pkgspec support to -toolexec**
+  - **likely decline**; last call for comments ⏳
+- #44936 **cmd/go: allow multiple checksum databases in GOSUMDB**
+  - no change in consensus; **declined**
+- #37995 **cmd/go: build tag for detecting go modules usage**
+  - **likely decline**; last call for comments ⏳
+- #38509 **cmd/go: command line flag to add icon for windows executable**
+  - **likely decline**; last call for comments ⏳
+- #44086 **cmd/go: cross-package test imports**
+  - duplicate of #39565
+- #40580 **cmd/go: deprecate direct fallback in GOPROXY**
+  - **likely decline**; last call for comments ⏳
+- #44550 **cmd/go: make major versions optional in import paths**
+  - added
+- #44338 **cmd/gofmt: treat one line if-statements as it does one line function definitions**
+  - duplicate of #4363 #27135 #33113
+- #46533 **cmd/vet: report strings.Trim/TrimLeft/TrimRight with duplicate runes in cutset**
+  - retitled
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - discussion ongoing at #47319
+- #44751 **context: add Scoped**
+  - added to minutes
+- #42713 **crypto/rand: Read should use an unexported reader and not Reader directly, to mitigate rogue dependencies swapping it by simple replacement/assignment**
+  - added to minutes
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #43401 **encoding/csv: add Reader.InputOffset method**
+  - added to minutes
+- #39357 **encoding/xml: Unmarshal comment with tag**
+  - no change in consensus; **declined**
+- #39167 **errors: Is(err, target) should allow err to decide even when target is nil**
+  - **likely decline**; last call for comments ⏳
+- #44650 **go/printer: align multiple struct tags per field for readability**
+  - **likely decline**; last call for comments ⏳
+- #40720 **log:  wrap testlog.SetLogger() Visible to the public in package log.**
+  - added to minutes
+- #47164 **log: define nil \*Logger is valid, discards all output**
+  - added to minutes
+- #44394 **math: add Iter**
+  - added to minutes
+- #43025 **mime/multipart: access to Form.Value map**
+  - added to minutes
+- #38583 **net/http: NewRequest should take url.URL as target**
+  - added to minutes
+- #46370 **net/http: add Cookie.Valid method**
+  - no change in consensus; **accepted** 🎉
+- #46518 **net/netaddr: add new IP address type, netaddr package**
+  - discussion ongoing at #46518
+- #42694 **net: report temporary/deprecated status of addresses in net.Interface**
+  - added to minutes
+- #44254 **regexp: add "parse until delimiter" operation**
+  - added to minutes
+- #46159 **regexp: support encoding.TextMarshaler**
+  - no change in consensus; **accepted** 🎉
+- #44026 **runtime: allow programs to handle deadlock events**
+  - **likely decline**; last call for comments ⏳
+- #45955 **slices: new package to provide generic slice functions**
+  - discussion ongoing at #47203
+- #43429 **spec: allow append(string, ...) returning \[]byte**
+  - **likely decline**; last call for comments ⏳
+- #43729 **spec: make unused variables not an error**
+  - no change in consensus; **declined**
+- #40227 **testing: allow B to use real execution duration to decide N**
+  - no change in consensus; **declined**
+- #46232 **x/crypto/ssh: expose supported Kex algorithms**
+  - cc’ed owners

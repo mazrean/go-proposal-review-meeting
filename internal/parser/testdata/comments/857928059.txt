@@ -1,0 +1,60 @@
+**2021-06-09 / @rsc, @ianlancetaylor, @bradfitz, @andybons**
+
+- #46268 **add package containing fuzz function helpers**
+  - **likely decline**; last call for comments ⏳
+- #46229 **all: port to linux/loongarch64**
+  - discussion ongoing
+- #45964 **all: raise minimum required Linux kernel version**
+  - commented
+- #46336 **bytes, strings: add Cut**
+  - discussion ongoing
+- #45963 **cmd/go/internal/test: add -vet=all sentinel**
+  - commented
+- #45713 **cmd/go: add a workspace mode**
+  - commented
+- #44435 **cmd/go: narrow 'mod download' default set**
+  - **likely accept**; last call for comments ⏳
+- #46533 **cmd/vet: report suspicious constant string arguments**
+  - added to minutes
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - pending implementation
+- #46057 **crypto/x509: add CertPool.Equal**
+  - no change in consensus; **accepted** 🎉
+- #46287 **crypto/x509: use platform verifier on Windows, macOS and iOS**
+  - no change in consensus; **accepted** 🎉
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #46485 **go/parser: add a SkipObjectResolution mode flag**
+  - **likely accept**; last call for comments ⏳
+- #46648 **go/types: add a Config.GoVersion field to set the target language version**
+  - commented
+- #46370 **net/http: add Cookie.Valid method**
+  - added to minutes
+- #46518 **net/netaddr: add new IP address type, netaddr package**
+  - discussion ongoing
+- #45729 **net: deprecate Temporary error status**
+  - no change in consensus; **accepted** 🎉
+- #46293 **reflect: add MapIter.Reset**
+  - commented
+- #46131 **reflect: add MapIter.SetKey, SetValue, and friends**
+  - no change in consensus; **accepted** 🎉
+- #46159 **regexp: support encoding.TextMarshaler**
+  - **likely decline**; last call for comments ⏳
+- #45955 **slices: new package to provide generic slice functions**
+  - commented
+- #46505 **spec: allow conversion from slice to array**
+  - commented
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - pending implementation
+- #46385 **strings: provide ContainsOnly function**
+  - added to minutes
+- #46184 **syscall: ReleaseCallback for Windows**
+  - no change in consensus; **declined**
+- #46259 **syscall: add Jail int32 to SysProcAttr on FreeBSD**
+  - no change in consensus; **accepted** 🎉
+- #46552 **syscall: add Syscall21 and Syscall24**
+  - added to minutes
+- #46588 **text/template: allow multiple actions within \`{{}}\`**
+  - commented
+- #46084 **x/sys/unix: add System V shared memory functions**
+  - no change in consensus; **accepted** 🎉

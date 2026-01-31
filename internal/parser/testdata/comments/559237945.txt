@@ -1,0 +1,63 @@
+**2019-11-27 / @ianlancetaylor, @rsc**
+
+- #35593 **all: make linux/arm64 a first-class port**
+  - **likely accept; last call for comments**
+- #34409 **cmd/doc: add "// Unstable:" prefix convention**
+  - discussion ongoing
+- #35008 **cmd/go: add GOMIPS64=r2 for mips64r2 code generation**
+  - discussion ongoing
+- #35699 **cmd/go: add go cli version to the User-Agent string**
+  - **likely decline; last call for comments**
+- #34293 **cmd/go: add go doc -json**
+  - **likely accept; last call for comments**
+- #35258 **cmd/go: add go fmt -s**
+  - **no change in consensus; declined**
+- #34707 **cmd/go: add go test -long**
+  - **no change in consensus; declined**
+- #35400 **cmd/go: add .proxy endpoint to the module proxy spec**
+  - commented
+- #35283 **cmd/go: allow replace directives in go.mod to work for standard libraries**
+  - **no change in consensus; declined**
+- #35510 **cmd/go: have `go get`... look in vendored caches for dependencies**
+  - **likely decline; last call for comments**
+- #20544 **crypto/ecdsa: add SignASN1, VerifyASN1**
+  - **no change in consensus; accepted 🎉**
+- #35697 **database/sql: expose convertAssign functionality in an Any type**
+  - cc’ed domain owners
+- #34593 **database/sql: sql.IsNull**
+  - **likely decline; last call for comments**
+- #35761 **flag: support comma-separated flag aliasing**
+  - commented
+- #34680 **html/template: document ability to modify FuncMap after template parse by calling Funcs again**
+  - moved out of proposal process (now a documentation issue)
+- #22823 **io/ioutil: add WriteNopCloser**
+  - commented
+- #33920 **io/ioutil: reject path separators in TempDir, TempFile pattern**
+  - **likely accept; last call for comments**
+- #34416 **log: add flag to display ISO 8601 date and time format**
+  - **likely decline; last call for comments**
+- #34502 **net: add BufferedPipe (buffered Pipe)**
+  - placed on hold
+- #29678 **net: add MarshalText/UnmarshalText to HardwareAddr**
+  - placed on hold
+- #35696 **os: add function to return environment var with default value**
+  - **likely decline; last call for comments**
+- #29982 **reflect: add constants for size of int, bool, etc.**
+  - commented
+- #35178 **runtime: permit setting goroutine name to appear in stack dumps**
+  - discussion ongoing
+- #34681 **syscall: define Windows O\_ALLOW\_DELETE for use in os.OpenFile**
+  - commented
+- #35567 **testing: move Internal types to internal package**
+  - **likely accept; last call for comments**
+- #34626 **testing: print more precision in benchmark timings**
+  - commented
+- #35643 **time: add a channel to time.Ticker to detect stopped tickers**
+  - **likely decline; last call for comments**
+- #34698 **time: Long/Short day and month names should start with Upper case to allow customization**
+  - **no change in consensus; declined**
+- #34684 **unsafe: clarify unsafe.Pointer rules for package syscall**
+  - placed on hold
+- #35346 **x/crypto/nacl: Support for libsodium "sealed box"**
+  - **likely accept; last call for comments**
+

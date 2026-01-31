@@ -1,0 +1,52 @@
+**2020-04-08 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #37503 **all: add bare metal ARM support**
+  - commented
+- #34527 **cmd/go: add GOMODCACHE**
+  - no change in consensus; **accepted** 🎉
+- #25348 **cmd/go: allow && and || operators and parentheses in build tags**
+  - put on hold
+- #37641 **cmd/go: reserve specific path prefixes for local (user-defined) modules**
+  - discussion ongoing
+- #37475 **cmd/go: stamp git/vcs current HEAD hash/commit hash/dirty bit in binaries**
+  - no change in consensus; **accepted** 🎉
+- #34544 **cmd/vet: detect defer rows.Close()**
+  - cc’ed owners
+- #37168 **crypto: new assembly policy**
+  - discussion ongoing
+- #24171 **crypto/cipher: allow short tags in NewGCMWithNonceAndTagSize**
+  - no change in consensus; **declined**
+- #38158 **dep: officially deprecate the "dep" experiment**
+  - commented
+- #32779 **encoding/json: memoize strings during decode**
+  - no change in consensus; **accepted** 🎉
+- #37974 **go/doc: drop //go:\* comments from extracted docs**
+  - commented
+- #36450 **index/suffixarray: added functionality via longest common prefix array**
+  - discussion ongoing
+- #37776 **net/url: add URL.RawFragment, like RawPath**
+  - no change in consensus; **accepted** 🎉
+- #36141 **runtime: "real time" timer semantics**
+  - commented
+- #37112 **runtime: API for unstable metrics**
+  - **likely accept**; last call for comments ⏳
+- #36771 **strconv: add ParseComplex**
+  - no change in consensus; **accepted** 🎉
+- #33194 **testing: add B.Lap for phases of benchmarks**
+  - commented
+- #31107 **text/template, html/template: add ExecuteContext methods**
+  - no change in consensus; **declined**
+- #34652 **text/template/parse: add CommentNode to the parse tree**
+  - cc’ed owners
+- #33273 **text/template: allow template and block outputs to be chained**
+  - commented
+- #38017 **time: add time/tzdata package and timetzdata tag to embed tzdata in program**
+  - no change in consensus; **accepted** 🎉
+- #29390 **x/crypto: add implementation of Diffie-Hellman x448**
+  - discussion ongoing
+- #34508 **x/tools/go/analysis: add tags or codes to diagnostics**
+  - cc’ed owners
+- #35921 **x/tools/go/packages: add modinfo.ModulePublic to packages.Package**
+  - cc’ed owners
+- #33595 **x/tools/gopls: support for per-.go file builds**
+  - commented

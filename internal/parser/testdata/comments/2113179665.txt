@@ -1,0 +1,116 @@
+**2024-05-15 / @aclements, @adonovan, @andybons, @cherrymui, @griesemer, @ianlancetaylor, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **cmd/go: add go telemetry subcommand** [#67111](https://go.dev/issue/67111)
+  - no change in consensus; **accepted** 🎉
+- **crypto/ecdsa: generate RFC 6979 signatures if rand is nil** [#64802](https://go.dev/issue/64802)
+  - no change in consensus; **accepted** 🎉
+- **crypto/tls: implement and enable X25519Kyber768Draft00** [#67061](https://go.dev/issue/67061)
+  - no change in consensus; **accepted** 🎉
+- **crypto/tls: set Certificate.Leaf from \[Load]X509KeyPair** [#67065](https://go.dev/issue/67065)
+  - no change in consensus; **accepted** 🎉
+- **go/ast: add Preorder iterator** [#66339](https://go.dev/issue/66339)
+  - no change in consensus; **accepted** 🎉
+- **go/types: add Alias parameter methods** [#67143](https://go.dev/issue/67143)
+  - no change in consensus; **accepted** 🎉
+- **math/rand/v2: add ChaCha8.Read** [#67059](https://go.dev/issue/67059)
+  - no change in consensus; **accepted** 🎉
+- **net/http: expose matched pattern in Request** [#66405](https://go.dev/issue/66405)
+  - no change in consensus; **accepted** 🎉
+- **runtime/debug: add SetCrashOutput options** [#67182](https://go.dev/issue/67182)
+  - no change in consensus; **accepted** 🎉
+- **testing: normalize line endings in example output comparisons** [#51269](https://go.dev/issue/51269)
+  - no change in consensus; **accepted** 🎉
+- **text/template: range over func and int** [#66107](https://go.dev/issue/66107)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/go: notify about newer major versions** [#40323](https://go.dev/issue/40323)
+  - no change in consensus; **declined**
+- **net/http/httptest: add support for http.ResponseController to ResponseRecorder** [#60229](https://go.dev/issue/60229)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **all: require Linux 3.17 kernel for Go 1.24** [#67001](https://go.dev/issue/67001)
+  - **likely accept**; last call for comments ⏳
+- **cmd/vet: report printf calls with non-const format and no args** [#60529](https://go.dev/issue/60529)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: make 3DES opt-in** [#66214](https://go.dev/issue/66214)
+  - **likely accept**; last call for comments ⏳
+- **encoding: add AppendText and AppendBinary** [#62384](https://go.dev/issue/62384)
+  - **likely accept**; last call for comments ⏳
+- **reflect: add TypeAssert** [#62121](https://go.dev/issue/62121)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/ssa: defer into stack frame** [#66601](https://go.dev/issue/66601)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **compress/zstd: add new package** [#62513](https://go.dev/issue/62513)
+  - discussion ongoing
+- **crypto/rand: add String** [#67057](https://go.dev/issue/67057)
+  - discussion ongoing
+- **crypto/rand: crash process on error reading randomness** [#66821](https://go.dev/issue/66821)
+  - commented
+- **crypto/tls: allow 256kB certificate messages** [#50773](https://go.dev/issue/50773)
+  - removed from proposal process
+- **crypto/tls: support kernel-provided TLS** [#44506](https://go.dev/issue/44506)
+  - discussion ongoing
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - added to minutes
+- **errors: add All and AllAs iterators** [#66455](https://go.dev/issue/66455)
+  - commented
+- **hash/maphash: add func Comparable** [#54670](https://go.dev/issue/54670)
+  - added to minutes
+- **io/fs: add SymlinkFS interface** [#49580](https://go.dev/issue/49580)
+  - discussion ongoing
+- **math/rand: make global Seed a no-op** [#67273](https://go.dev/issue/67273)
+  - added to minutes
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **runtime: add WaitIdle function** [#65336](https://go.dev/issue/65336)
+  - added to minutes
+- **runtime: don't enable process-wide long path support on Windows** [#66560](https://go.dev/issue/66560)
+  - commented
+- **spec: allow range-over-func to omit iteration variables** [#65236](https://go.dev/issue/65236)
+  - added to minutes
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **time: optimize algorithms by restricting valid year range** [#63844](https://go.dev/issue/63844)
+  - added to minutes
+- **x/crypto/ssh: allow to change allowed authentication methods** [#66815](https://go.dev/issue/66815)
+  - added to minutes
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - commented
+- **x/oauth2: add Token.ExpiresIn struct field** [#61417](https://go.dev/issue/61417)
+  - discussion ongoing
+- **x/tools/go/analysis: identify test-only packages** [#65749](https://go.dev/issue/65749)
+  - discussion ongoing
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **x/tools/go/types/typeutil: add TypeMap\[V]** [#67161](https://go.dev/issue/67161)
+  - hold for more thought

@@ -1,0 +1,42 @@
+**2020-07-15 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+[_Sorry, posting these a day late._]
+
+- #34974 **archive/zip: add already compressed files**
+  - commented
+- #39893 **context: add Context.IsCanceled method**
+  - **likely decline**; last call for comments ⏳
+- #36503 **context: add Merge**
+  - commented
+- #32406 **crypto/tls: add request context to Conn, ClientHelloInfo, CertificateRequestInfo and ConnectionState**
+  - cc’ed owners
+- #39863 **errgroup.Group-like Go method for sync.WaitGroup**
+  - commented
+- #39539 **errors: expose Iser and Aser**
+  - **likely decline**; last call for comments ⏳
+- #39557 **flag: add Func**
+  - no change in consensus; **accepted** 🎉
+- #40025 **io/ioutil: move Discard, NopCloser, ReadAll to io**
+  - commented
+- #39798 **io: new Timeout interface implemented by errors**
+  - **likely decline**; last call for comments ⏳
+- #39558 **net/http: add ResponseWriterAs function**
+  - proposal retracted by author; **declined**
+- #40034 **net/smtp: allow for better control over Client**
+  - commented
+- #39444 **os: export errFinished as ErrProcessDone**
+  - no change in consensus; **accepted** 🎉
+- #39545 **reflect: add Value.CanCall method**
+  - no change in consensus; **declined**
+- #39717 **reflect: allow creation of recursive types atomically**
+  - commented
+- #39413 **regexp: add Regexp.ProgramSize method similar to C++ RE2::ProgramSize**
+  - no change in consensus; **declined**
+- #40026 **sync: add Mutex.LockContext**
+  - **likely decline**; last call for comments ⏳
+- #39903 **testing: expose testing.T constructor so a test with subtests can be verified to fail**
+  - commented
+- #19367 **unsafe: add Slice and String types, conversions to replace reflect.{Slice,String}Header**
+  - commented
+- #40053 **x/tools/go/packages: add no-network package lookup**
+  - discussion ongoing

@@ -1,0 +1,77 @@
+**2025-09-03 / @aclements, @adonovan, @bradfitz, @cherrymui, @neild, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- **x/crypto/acme: include problem as error in OrderError type** [#74430](https://go.dev/issue/74430)
+  - no change in consensus; **accepted** 🎉
+- **x/net/http2: allow allocation-free frame reading** [#73560](https://go.dev/issue/73560)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **errors: As with type parameters** [#51945](https://go.dev/issue/51945)
+  - **likely accept**; last call for comments ⏳
+- **x/net/context: deprecate package or symbols in package, and potentially tag/delete** [#49506](https://go.dev/issue/49506)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - discussion ongoing
+- **crypto/tls: add QUICEvent.Err** [#75108](https://go.dev/issue/75108)
+  - commented
+- **crypto/tls: expose \`testingOnlyDidHRR\` from ConnectionState** [#74425](https://go.dev/issue/74425)
+  - commented
+- **maphash: drop purego version and establish stronger runtime boundary** [#74285](https://go.dev/issue/74285)
+  - discussion ongoing
+- **reflect: Add Type.Fields() iter.Seq\[StructField] and Type.Methods() iter.Seq\[Method]** [#66631](https://go.dev/issue/66631)
+  - commented
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - commented
+- **runtime: expose \`goid\` and \`gopc\` in \`GoroutineProfile\`** [#59663](https://go.dev/issue/59663)
+  - discussion ongoing
+- **spec: expression to create pointer to simple types** [#45624](https://go.dev/issue/45624)
+  - discussion ongoing
+- **x/net/http2: deprecate WriteScheduler** [#67817](https://go.dev/issue/67817)
+  - commented
+
+**Hold**
+
+- **cmd/{go,cgo,compile}: change interpretation of relative //line directives** [#70478](https://go.dev/issue/70478)
+  - hold for implementation
+- **crypto/tls: dynamically reload root certificate authorities** [#64796](https://go.dev/issue/64796)
+  - put on hold
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **encoding/{base32,base64}: constant-time implementations of RFC 4648 codecs for use with cryptography keys** [#73901](https://go.dev/issue/73901)
+  - hold for implementation
+- **os: convenience function for one-off Root operations** [#73168](https://go.dev/issue/73168)
+  - put on hold
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **x/net/http3: add experimental HTTP/3 implementation** [#70914](https://go.dev/issue/70914)
+  - put on hold
+- **x/sys/unix: add methods to convert between time.Time and unix.PtpClockTime on Linux** [#70032](https://go.dev/issue/70032)
+  - put on hold
+
+**Other**
+
+- **runtime: support general dynamic thread local storage model** [#71953](https://go.dev/issue/71953)
+  - removed from proposal process
+

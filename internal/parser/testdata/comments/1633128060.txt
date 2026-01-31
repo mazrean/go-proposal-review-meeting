@@ -1,0 +1,99 @@
+**2023-07-12 / @adonovan, @bradfitz, @ianlancetaylor, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+- **math/rand/v2: a new API for math/rand and a first v2 for std** [#60751](https://go.dev/issue/60751)
+- **net/http: add methods and path variables to ServeMux patterns** [#60227](https://go.dev/issue/60227)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+
+**Accepted**
+
+- **all: add GOARM64=v8.1 and so on** [#60905](https://go.dev/issue/60905)
+  - no change in consensus; **accepted** 🎉
+- **go/types: add Package.GoVersion method** [#61175](https://go.dev/issue/61175)
+  - no change in consensus; **accepted** 🎉
+- **log/slog:  change XXXCtx function names to XXXContext** [#61200](https://go.dev/issue/61200)
+  - no change in consensus; **accepted** 🎉
+- **runtime: change mutex profile to scale contention by number of blocked goroutines** [#61015](https://go.dev/issue/61015)
+  - no change in consensus; **accepted** 🎉
+- **runtime: enforce standard descriptors are open on initialization** [#60641](https://go.dev/issue/60641)
+  - no change in consensus; **accepted** 🎉
+- **unsafe: allow conversion of uintptr to unsafe.Pointer when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/analysis: add Config.GoVersion field** [#61176](https://go.dev/issue/61176)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **hash: make the Sum method less confusing** [#21070](https://go.dev/issue/21070)
+  - no change in consensus; **declined**
+- **io: require io.Reader to return either n > 0 or an error** [#27531](https://go.dev/issue/27531)
+  - no change in consensus; **declined**
+- **sync: remove the Cond type** [#21165](https://go.dev/issue/21165)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/go: support vendoring in workspace mode** [#60056](https://go.dev/issue/60056)
+  - **likely accept**; last call for comments ⏳
+- **cmd/vet: flag benchmarks that don’t use b** [#38677](https://go.dev/issue/38677)
+  - **likely accept**; last call for comments ⏳
+- **regexp/syntax: accept (?<name>...) in addition to (?P<name>...)** [#58458](https://go.dev/issue/58458)
+  - **likely accept**; last call for comments ⏳
+- **spec: less error-prone loop variable scoping** [#60078](https://go.dev/issue/60078)
+  - **likely accept**; last call for comments ⏳
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - **likely accept**; last call for comments ⏳
+- **x/net/quic: add QUIC implementation** [#58547](https://go.dev/issue/58547)
+  - **likely accept**; last call for comments ⏳
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **builtin: add abs to get absolute value of numbers( integer and float pointers)** [#60623](https://go.dev/issue/60623)
+  - **likely decline**; last call for comments ⏳
+- **regexp/syntax: relax named subexpressions (capture groups) name restrictions** [#60784](https://go.dev/issue/60784)
+  - **likely decline**; last call for comments ⏳
+- **testing: a less error-prone API for benchmark iteration** [#48768](https://go.dev/issue/48768)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **\`go test ./.../...\` for submodule/multimodule projects** [#59480](https://go.dev/issue/59480)
+  - added to minutes
+- **add package operators** [#58559](https://go.dev/issue/58559)
+  - added to minutes
+- **all: port to linux/mips\_siflower** [#61254](https://go.dev/issue/61254)
+  - added to minutes
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **context: enable first class citizenship of third party implementations (case when custom context needs to create is own done channel)** [#36448](https://go.dev/issue/36448)
+  - added to minutes
+- **fmt: don't recover panics except for dereferencing nil fmt.Stringer receivers** [#28150](https://go.dev/issue/28150)
+  - discussion ongoing
+- **go/types, types2: fix SizesFor("gc", ...) to match actual gc behavior** [#61035](https://go.dev/issue/61035)
+  - commented
+- **internal/cpu: detect OS support for AVX-512 and CPU support for VAES and VPCLMULQDQ instructions for performance optimization of crypto ciphers** [#43925](https://go.dev/issue/43925)
+  - added to minutes
+- **io/fs, net/http: define interface for automatic ETag serving** [#60940](https://go.dev/issue/60940)
+  - added to minutes
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **join channels** [#60829](https://go.dev/issue/60829)
+  - added to minutes
+- **net/url: provide URIEscape method** [#41922](https://go.dev/issue/41922)
+  - commented
+- **reflect: add MakeType** [#60088](https://go.dev/issue/60088)
+  - discussion ongoing
+- **testing: Add log/slog support** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: add identity function that forces evaluation for benchmarks** [#61179](https://go.dev/issue/61179)
+  - discussion ongoing
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - commented
+- **x/crypto: add AES-GCM-SIV** [#54364](https://go.dev/issue/54364)
+  - discussion ongoing
+- **x/oauth2: support PKCE** [#59835](https://go.dev/issue/59835)
+  - added to minutes

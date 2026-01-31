@@ -1,0 +1,83 @@
+**2022-06-08 / @rsc, @griesemer, @ianlancetaylor, @bradfitz**
+
+**Accepted**
+
+- **cmd/go: \`go list -e -m -json all\` to start displaying hashes of modules** [#52792](https://golang.org/issue/52792)
+  - no change in consensus; **accepted** 🎉
+- **net/http: support for the 103 status code** [#51914](https://golang.org/issue/51914)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/go: GOWORK env var should be off by default** [#51967](https://golang.org/issue/51967)
+  - no change in consensus; **declined**
+- **do something smart with virtual machine forks & crypto** [#52544](https://golang.org/issue/52544)
+  - proposal retracted by author; **declined**
+- **strconv: export unquote and appendQuotedWith** [#51887](https://golang.org/issue/51887)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **net/netip: add IPv6LinkLocalAllRouters** [#51766](https://golang.org/issue/51766)
+  - **likely accept**; last call for comments ⏳
+- **net/netip: add IPv6Loopback** [#51777](https://golang.org/issue/51777)
+  - **likely accept**; last call for comments ⏳
+- **time: add DateTime, DateOnly, TimeOnly format constants** [#52746](https://golang.org/issue/52746)
+  - **likely accept**; last call for comments ⏳
+- **unicode/utf16: add AppendRune** [#51896](https://golang.org/issue/51896)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **errors: add new function Temporary(error) bool** [#37250](https://golang.org/issue/37250)
+  - **likely decline**; last call for comments ⏳
+- **fmt: add flags to control printing of slices** [#52936](https://golang.org/issue/52936)
+  - **likely decline**; last call for comments ⏳
+- **x/net/html: Allow getting raw HTML attribute values on Tokenizer** [#52911](https://golang.org/issue/52911)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/go: add -reproducible flag** [#51812](https://golang.org/issue/51812)
+  - discussion ongoing
+- **cmd/go: partial vendoring** [#52604](https://golang.org/issue/52604)
+  - discussion ongoing
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - commented
+- **crypto/cipher: please export xorBytes** [#53021](https://golang.org/issue/53021)
+  - commented
+- **crypto/x509: provide method for generating conformant serial numbers** [#52444](https://golang.org/issue/52444)
+  - commented
+- **crypto: implement CMAC** [#52931](https://golang.org/issue/52931)
+  - commented
+- **database/sql: add SetMaxBadConnRetries** [#52886](https://golang.org/issue/52886)
+  - cc’ed authors
+- **encoding/json: add omitzero option** [#45669](https://golang.org/issue/45669)
+  - discussion ongoing
+- **io/fs: add writable interfaces** [#45757](https://golang.org/issue/45757)
+  - discussion ongoing
+- **math/big: add Int.AddInt64, Int.CmpInt64** [#29951](https://golang.org/issue/29951)
+  - commented
+- **math/big: add Int.AddInt64, Int.CmpInt64** [#29951](https://golang.org/issue/29951)
+  - discussion ongoing
+- **net/http/httputil: replace Director with Rewrite** [#53002](https://golang.org/issue/53002)
+  - commented
+- **net/http: context based graceful server shutdown** [#52805](https://golang.org/issue/52805)
+  - commented
+- **net/netip: add To6 to wrap an IPv4 address into an IPv6 one** [#51833](https://golang.org/issue/51833)
+  - commented
+- **net/url: implement TextMarshaler/TextUnmarshaler interfaces for url.URL** [#52638](https://golang.org/issue/52638)
+  - commented
+- **reflect: add Value.SetZero** [#52376](https://golang.org/issue/52376)
+  - commented
+- **strings: add func CommonPrefixLen(x, y string) int** [#53120](https://golang.org/issue/53120)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://golang.org/issue/52751)
+  - commented
+- **text/template: add "return" action** [#53015](https://golang.org/issue/53015)
+  - commented
+- **unsafe: add StringData, String, SliceData** [#53003](https://golang.org/issue/53003)
+  - commented
+- **x/crypto/ssh: add  ServerConfig.HostKeyAlgorithms** [#52132](https://golang.org/issue/52132)
+  - commented
+

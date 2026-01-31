@@ -1,0 +1,90 @@
+**2024-12-18 / @aclements, @adonovan, @bradfitz, @cherrymui, @griesemer, @ianlancetaylor, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **x/tools/go/gcexportdata: drop experimental bundle API** [#69573](https://go.dev/issue/69573)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/go: \`-json\` flag for \`go version -m\`** [#69712](https://go.dev/issue/69712)
+  - discussion ongoing
+- **cmd/go: add go mod verify -tag** [#68669](https://go.dev/issue/68669)
+  - discussion ongoing
+- **cmd/vet: add check for sync.WaitGroup abuse** [#18022](https://go.dev/issue/18022)
+  - discussion ongoing
+- **container/unordered: a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - discussion ongoing
+- **crypto/rsa: allow hash.Hash for OAEP and MGF1 to be specified independently for encryption** [#65716](https://go.dev/issue/65716)
+  - commented
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - discussion ongoing
+- **encoding/xml: add flag for stricter XML char parsing** [#69503](https://go.dev/issue/69503)
+  - discussion ongoing
+- **go/types: add Info.ImplicitConversions mapping** [#70638](https://go.dev/issue/70638)
+  - discussion ongoing
+- **go/types: add Var.Kind method and enum** [#70250](https://go.dev/issue/70250)
+  - discussion ongoing
+- **hash: add Clone and CloneXOF** [#69521](https://go.dev/issue/69521)
+  - discussion ongoing
+- **hash: add XOF interface** [#69518](https://go.dev/issue/69518)
+  - commented
+- **hash: standardize the hash function** [#70471](https://go.dev/issue/70471)
+  - commented
+- **math: add Mean, Median, Mode, Variance, and StdDev** [#69264](https://go.dev/issue/69264)
+  - discussion ongoing
+- **os: access to ELF auxiliary vector** [#67839](https://go.dev/issue/67839)
+  - discussion ongoing
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - commented
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - commented
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **testing: structured output for test attributes** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **x/crypto/ssh: add ServerConfig.PreAuthConnCallback, ServerPreAuthConn (banner) interface** [#68688](https://go.dev/issue/68688)
+  - commented
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/tools/go/{packages/packagestest,expect}: deprecate, tag, and delete** [#70229](https://go.dev/issue/70229)
+  - discussion ongoing
+- **x/tools: tag and delete refactor/rename, refactor/importgraph, go/buildutil, cmd/gomvpkg** [#69538](https://go.dev/issue/69538)
+  - commented
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **go/types: add Hash function** [#69420](https://go.dev/issue/69420)
+  - put on hold
+- **spec: remove notion of core types** [#70128](https://go.dev/issue/70128)
+  - hold for implementation
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - hold for experience
+

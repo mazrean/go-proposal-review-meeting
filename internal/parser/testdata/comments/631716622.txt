@@ -1,0 +1,38 @@
+**2020-05-20 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #20322 **cmd/go: add \*\_unix.go recognition (and presumably unix build tag)**
+  - commented
+- #39056 **cmd/go: add flag \`go test -no-cache\`**
+  - commented
+- #39005 **cmd/go: introduce a build configurations file**
+  - discussion ongoing
+- #27889 **crypto/dsa: Implement crypto.Signer**
+  - **likely decline**; last call for comments ⏳
+- #38375 **net/http: toHTTPError should be public**
+  - no change in consensus; **declined**
+- #37255 **os/signal: add NotifyContext function**
+  - no change in consensus; **accepted** 🎉
+- #38364 **refactor platform support for easier ports.**
+  - proposal retracted by author; **declined**
+- #38831 **reflect: add a KindCount constant in Kind constants declaration**
+  - commented
+- #38248 **replace CallImport with go:wasmimport directive**
+  - **likely accept**; last call for comments ⏳
+- #37681 **runtime: support "strict mode" run-time checks analogous to "go vet"**
+  - commented
+- #8606 **spec: decide ambiguity in comparing array/structs with interface fields/elements**
+  - commented
+- #38891 **sync: Add UnlockThenRLock() to RWMutex**
+  - commented
+- #39064 **time: Duration String() should omit zero units**
+  - commented
+- #38945 **time: Timer.StopAndClear method**
+  - commented
+- #37196 **time: a Timer should not send to its channel after its Stop method returns**
+  - commented
+- #16971 **x/crypto/scrypt,x/crypto/argon2: add high-level APIs**
+  - **likely accept**; last call for comments ⏳
+- #38968 **x/lint: freeze and deprecate**
+  - commented
+- #36898 **x/website: have endpoint to query for the latest bugfix version**
+  - no change in consensus; **declined**

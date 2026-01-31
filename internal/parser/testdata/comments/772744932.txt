@@ -1,0 +1,34 @@
+**2021-02-03 / @rsc, @griesemer, @bradfitz, @andybons, @spf13**
+
+- #43931 **all: merge dev.typeparams to master during Go 1.17**
+  - comment
+- #40405 **cmd/go: detect proxy redirect loops**
+  - **likely decline**; last call for comments ⏳
+- #26535 **compress/lzw: add Resetter interface to allow encoders to be reused**
+  - no change in consensus; **accepted** 🎉
+- #26950 **crypto/x509: add functions to download certificates from windows update, and retrieve certificates from windows x509stores**
+  - no change in consensus; **declined**
+- #40483 **errors: add Close method for defer io.Closer**
+  - no change in consensus; **declined**
+- #34875 **go/doc: add ToMarkdown**
+  - **likely accept**; last call for comments ⏳
+- #43223 **io/fs, net/http: define interface for automatic ETag serving**
+  - **likely decline**; last call for comments ⏳
+- #38736 **os/exec: make LookPath not look in dot implicitly on Windows**
+  - no change in consensus; **declined**
+- #43724 **os/exec: return error when PATH lookup would use current directory**
+  - comment
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - comment
+- #43651 **spec: add generic programming using type parameters**
+  - **likely accept**; last call for comments ⏳
+- #43810 **spec: add native support for programming persistent memory in Go**
+  - **likely decline**; last call for comments ⏳
+- #44011 **syscall: add additional fields to SysProcAttr on Windows**
+  - comment
+- #44005 **syscall: allow to pass STARTUPINFOEX to StartProcess Windows API**
+  - comment
+- #36145 **time: support Colon for fractional seconds**
+  - no change in consensus; **declined**
+- #43823 **time: support Decimal Comma for fractional seconds**
+  - **likely accept**; last call for comments ⏳

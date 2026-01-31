@@ -1,0 +1,81 @@
+**2021-08-11 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #47527 **bufio: add Writer.AvailableBuffer**
+  - commented
+- #44815 **bufio: use underlying ReadFrom even when data is buffered**
+  - no change in consensus; **accepted** 🎉
+- #47373 **cmd/compile: add support for RISC-V B-extension**
+  - **likely decline**; last call for comments ⏳
+- #47529 **cmd/compile: no bound check compiler directive**
+  - **likely decline**; last call for comments ⏳
+- #46731 **cmd/compile: replace \`//go:notinheap\` with runtime/internal/sys.NotInHeap**
+  - commented
+- #47398 **cmd/cover: add flag to print total coverage number**
+  - commented
+- #47257 **cmd/dist: remove precompiled .a files from binary distributions**
+  - commented
+- #38687 **cmd/go: add 'go generate -skip'**
+  - **likely accept**; last call for comments ⏳
+- #46917 **cmd/go: add SPDX license list to go.mod file**
+  - **likely decline**; last call for comments ⏳
+- #45713 **cmd/go: add a workspace mode**
+  - discussion ongoing
+- #44550 **cmd/go: make major versions optional in import paths**
+  - no change in consensus; **declined**
+- #46533 **cmd/vet: report strings.Trim/TrimLeft/TrimRight with duplicate runes in cutset**
+  - no change in consensus; **accepted** 🎉
+- #47528 **cmd/vet: warn when errors.As target has type \*error**
+  - **likely accept**; last call for comments ⏳
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - **likely accept**; last call for comments ⏳
+- #44751 **context: add Scoped**
+  - no change in consensus; **declined**
+- #42713 **crypto/rand: use private reader, not Reader, in Read**
+  - **likely decline**; last call for comments ⏳
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #43401 **encoding/csv: add Reader.InputOffset method**
+  - no change in consensus; **accepted** 🎉
+- #47579 **fmt: Sprintf-into-bytes**
+  - added to minutes
+- #40720 **log:  wrap testlog.SetLogger() Visible to the public in package log.**
+  - no change in consensus; **declined**
+- #47164 **log: define nil \*Logger is valid, discards all output**
+  - commented
+- #47649 **maps: new package to provide generic map functions**
+  - added to minutes
+- #44394 **math: add Iter**
+  - no change in consensus; **declined**
+- #43025 **mime/multipart: access to Form.Value map**
+  - no change in consensus; **declined**
+- #38583 **net/http: NewRequest should take url.URL as target**
+  - no change in consensus; **declined**
+- #46001 **net/http: use nontransitional IDNA processing**
+  - added to minutes
+- #46518 **net/netaddr: add new IP address type, netaddr package**
+  - discussion ongoing
+- #47425 **net/url: provide AllowQuerySemicolons functionality for net/url rather than net/http**
+  - added to minutes
+- #42694 **net: report temporary/deprecated status of addresses in net.Interface**
+  - commented
+- #44254 **regexp/syntax: add Cut**
+  - commented
+- #47593 **regexp: add (\*Regexp).MustSubexpIndex**
+  - added to minutes
+- #47216 **runtime/metrics: additional metrics**
+  - cc’ed owners
+- #47567 **runtime: add GOEXE**
+  - added to minutes
+- #45955 **slices: new package to provide generic slice functions**
+  - no change in consensus; **accepted** 🎉
+- #46505 **spec: allow conversion from slice to array**
+  - **likely accept**; last call for comments ⏳
+- #47459 **spec: allow omitting type parameters in methods that don't use them**
+  - **likely decline**; last call for comments ⏳
+- #47581 **text/template: allow comments in operands**
+  - added to minutes
+  - cc’ed owners
+- #47609 **unicode/utf8: add AppendRune**
+  - added to minutes
+- #47510 **x/net/idna: add pre-defined profile for non-transitional IDNA2008**
+  - commented

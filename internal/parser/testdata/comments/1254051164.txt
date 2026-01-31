@@ -1,0 +1,73 @@
+**2022-09-21 / @rsc, @griesemer, @andybons, @aclements**
+
+**Accepted**
+
+- **errors: add support for wrapping multiple errors** [#53435](https://go.dev/issue/53435)
+  - no change in consensus; **accepted** 🎉
+- **runtime: add 'created by goroutine number' to stack traces** [#38651](https://go.dev/issue/38651)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto/cryptobyte: non allocating AddUint\*LengthPrefixed and AddASN1 API** [#54059](https://go.dev/issue/54059)
+  - no change in consensus; **accepted** 🎉
+- **x/sync/errgroup: propagate panics and Goexits through Wait** [#53757](https://go.dev/issue/53757)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **runtime/race: add const Enabled** [#36477](https://go.dev/issue/36477)
+  - no change in consensus; **declined**
+- **runtime: add parameters to recover to only return specific types** [#50424](https://go.dev/issue/50424)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **go/ast: record start and end of file in File.FileStart, File.FileEnd** [#53202](https://go.dev/issue/53202)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **crypto/cipher: detached mode AEAD Seal/Open** [#24990](https://go.dev/issue/24990)
+  - **likely decline**; last call for comments ⏳
+- **crypto/x509: expose hash algorithm for SignatureAlgorithm** [#33317](https://go.dev/issue/33317)
+  - **likely decline**; last call for comments ⏳
+- **crypto: add SignContext** [#28427](https://go.dev/issue/28427)
+  - **likely decline**; last call for comments ⏳
+- **math/rand: add Reader variable** [#16776](https://go.dev/issue/16776)
+  - **likely decline**; last call for comments ⏳
+- **runtime: add HeapMarked to MemStats** [#51966](https://go.dev/issue/51966)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **build: adopt Go 1.20 as bootstrap toolchain for Go 1.22** [#54265](https://go.dev/issue/54265)
+  - discussion ongoing
+- **cmd/compile: profile-guided optimization** [#55022](https://go.dev/issue/55022)
+  - added to minutes
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - discussion ongoing
+- **crypto: add crypto engines** [#33281](https://go.dev/issue/33281)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **math/rand: deprecate Read** [#20661](https://go.dev/issue/20661)
+  - commented
+- **math/rand: seed global generator randomly** [#54880](https://go.dev/issue/54880)
+  - commented
+- **net/http: ResponseController to manipulate per-request timeouts (and other behaviors)** [#54136](https://go.dev/issue/54136)
+  - commented
+- **net/http: add ServeFSFile** [#51971](https://go.dev/issue/51971)
+  - discussion ongoing
+- **net: UDPAddr/TCPAddr AddrPort should map 4in6 addresses to IPv4 netip.Addrs** [#53607](https://go.dev/issue/53607)
+  - commented
+- **net: add UDPMsg, (\*UDPConn).ReadUDPMsgs, (\*UDPConn).WriteUDPMsgs** [#45886](https://go.dev/issue/45886)
+  - commented
+  - still likely accept
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - commented
+- **x/text: expose MIBenum via identifier package** [#47577](https://go.dev/issue/47577)
+  - commented
+- **x/time/rate: add Sometimes type** [#54237](https://go.dev/issue/54237)
+  - commented

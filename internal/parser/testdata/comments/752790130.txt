@@ -1,0 +1,9 @@
+**2020-12-30 / @rsc, @griesemer, @ianlancetaylor** via email the past week
+
+- #43217 **embed: define String and Bytes type aliases that must be used with //go:embed**
+  - **likely accept**; last call for comments ⏳
+- #43216 **embed: remove support for embedding directives on local variables**
+  - **likely accept**; last call for comments ⏳
+- #40281 **reflect: back out multiple keys in key:value pair in struct tag**
+  - **likely accept**; last call for comments ⏳
+  - (note the retitling: the proposal now is to back out the previously accepted proposal. we should have made a new number probably, but too late now.)

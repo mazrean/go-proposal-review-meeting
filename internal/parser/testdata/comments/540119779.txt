@@ -1,0 +1,61 @@
+**2019-10-09 / @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+## Proposals
+
+- #34376 **add "Backlog" milestone**
+  - **no final comments; accepted 🎉**
+- #33848 **cmd/go: automatically check and use vendored packages**
+  - **no final comments; accepted 🎉**
+- #30058 **cmd/go: ignore directories containing `.goignore` in file scans**
+  - commented
+  - **likely decline; last call for comments**
+- #28728 **context: enable first class citizenship of third party implementations**
+  - **no final comments; declined**
+- #33323 **create contribution guidelines for technical writers**
+  - commented
+- #34069 **encoding/pem: add DecodeStrict**
+  - **no final comments; declined**
+- #33974 **make the internal lockedfile package public**
+  - put on hold
+- #33135 **meta: add milestone(s) or labels for pre-release blockers**
+  - commented
+  - put on hold
+- #34502 **net: in-memory transport**
+  - retitled
+  - **likely accept; last call for comments**
+- #33097 **net: make Resolver.PreferGo and GODEBUG=netdns=go use Go code on Windows**
+  - **no final comments; accepted 🎉**
+- #32088 **os: Create/Open/OpenFile() set FILE_SHARE_DELETE on windows**
+  - **no clear consensus; declined**
+- #33701 **runtime/pprof: add new WithLabels\* function that requires fewer allocations**
+  - ping’d conversation
+- #33762 **sync: add new Map method LoadAndDelete**
+  - **no final comments; accepted 🎉**
+- #34681 **syscall: define Windows O_ALLOW_DELETE for use in os.OpenFile**
+  - commented
+- #28592 **testing: add -shuffle and -shuffleseed to shuffle tests**
+  - commented
+- #32111 **testing: add Cleanup method**
+  - commented
+  - **likely accept; last call for comments**
+- #33328 **testing: automatically scale benchmark metrics in results output**
+  - **no final comments; declined**
+- #34129 **TestMain should not require os.Exit**
+  - commented
+  - **likely accept; last call for comments**
+- #34601 **x/website: add dark (night) theme**
+  - commented
+  - put on hold
+
+## Issues with NeedsDecision label
+
+- #34778 **bytes/hash: unfortunate import path**
+  - commented
+- #31449 **net: document that Conn.Read/Write should return error that Is(context.DeadlineExceeded) for deadline exceeded**
+  - commented
+  - retitled
+  - moved to Go1.15
+- #34684 **unsafe: clarify unsafe.Pointer rules for package syscall**
+  - commented
+- #34708 **x/mobile: Remove gomobile dependency on gobind binary**
+  - cc’d domain experts

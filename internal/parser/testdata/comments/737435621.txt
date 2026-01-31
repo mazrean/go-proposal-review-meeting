@@ -1,0 +1,76 @@
+**2020-12-02 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #42168 **add first-class Cross Site Request Forgery protection**
+  - moved to #42166
+- #42469 **cmd/cgo: unsafe FFI calls**
+  - commented
+- #42372 **cmd/compile: go:wasmexport directive**
+  - commented
+- #42088 **cmd/go: 'go run' should run executables in module mode outside a module**
+  - commented
+- #42343 **cmd/go: add project config to go.mod**
+  - commented
+- #42328 **cmd/go: avoid surprising inclusion of "hidden" files when using //go:embed**
+  - no change in consensus; **accepted** 🎉
+- #42477 **cmd/go: build tag in filename suffix for matching of syso files**
+  - proposal retracted by author; **declined**
+- #40405 **cmd/go: detect proxy redirect loops**
+  - commented
+- #41824 **cmd/go: run benchmarks for one iteration when testing**
+  - no change in consensus; **declined**
+- #42877 **context: add C as alias for Context**
+  - commented
+- #40521 **crypto/tls: support TLS 1.3 post-handshake authentication**
+  - cc’ed owners
+- #40017 **crypto/x509: implement OCSP verifier**
+  - commented
+- #42460 **database/sql: define a SQL driver unwrapper interface and helper function**
+  - commented
+- #40128 **encoding/json: garbage-free reading of tokens**
+  - put on hold
+- #40155 **flag: add Strings, a default Value**
+  - no change in consensus; **declined**
+- #41792 **flag: panic if flag name begins with - or contains =**
+  - no change in consensus; **accepted** 🎉
+- #42710 **hash/maphash: add Sum**
+  - commented
+- #42322 **io/fs: add func Sub(fsys FS, dir string) FS**
+  - no change in consensus; **accepted** 🎉
+- #42387 **io: add FileInfoToDirEntry(FileInfo)**
+  - **likely accept**; last call for comments ⏳
+- #39567 **net/http: add Server.MaxBodyBytes int64 field**
+  - **likely accept**; last call for comments ⏳
+- #42173 **net/http: handle Seek error in range request by sending entire file**
+  - **likely decline**; last call for comments ⏳
+- #42420 **os/exec: add LookPathAbs that refuses to return relative paths**
+  - commented
+- #38736 **os/exec: make LookPath not look in dot implicitly on Windows**
+  - commented
+- #42950 **os/exec: use LookPathAbs by default**
+  - commented
+- #42201 **path/filepath: add Resolve, replacing EvalSymlinks**
+  - no change in consensus; **declined**
+- #41993 **reflect: add NewAtPtr, ValueAt**
+  - no change in consensus; **declined**
+- #42782 **reflect: add VisibleFields function**
+  - commented
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #42502 **runtime/pprof: add StartCPUProfileWithRate**
+  - commented
+- #42537 **strings: add TrimPrefix2 and TrimSuffix2, variants which report whether they trimmed**
+  - put on hold
+- #42827 **testing: provide a way to more easily test test utility**
+  - closed
+- #42361 **x/crypto/acme/autocert cluster compatibility**
+  - discussion ongoing
+- #42437 **x/crypto/acme: Add support for alternative chains to support cross-signed root with Let's Encrypt**
+  - cc’ed owners
+- #42516 **x/crypto/acme: add AccountKeyRollover**
+  - cc’ed owners
+- #39683 **x/exp/mmap: expose a File-like type**
+  - **likely decline**; last call for comments ⏳
+- #42128 **x/net/dns/dnsmessage: use UnknownResource for an unrecognized DNS type**
+  - **likely accept**; last call for comments ⏳
+- #42166 **x/net/xsrftoken: add new, less error-prone API**
+  - commented

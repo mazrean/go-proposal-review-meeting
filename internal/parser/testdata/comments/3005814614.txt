@@ -1,0 +1,70 @@
+**2025-06-25 / @aclements, @adonovan, @cherrymui, @griesemer, @neild, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- none
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **encoding/xml: add omitzero option** [#69857](https://go.dev/issue/69857)
+  - **likely accept**; last call for comments ⏳
+- **go/types: add Hasher{,IgnoreTags} types** [#69420](https://go.dev/issue/69420)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/ssh: verified public key callback and arbitrary data in Permissions** [#70795](https://go.dev/issue/70795)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/fix: remove all functionality** [#73605](https://go.dev/issue/73605)
+  - skip
+- **cmd/{go,cgo,compile}: change interpretation of relative //line directives** [#70478](https://go.dev/issue/70478)
+  - commented
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - commented
+- **crypto/tls: dynamically reload root certificate authorities** [#64796](https://go.dev/issue/64796)
+  - skip
+- **crypto: ignore rand io.Reader where behavior is not specified** [#70942](https://go.dev/issue/70942)
+  - commented
+- **doc: mention "purego" build tag convention somewhere** [#23172](https://go.dev/issue/23172)
+  - commented
+- **encoding/{base32,base64}: constant-time implementations of RFC 4648 codecs for use with cryptography keys** [#73901](https://go.dev/issue/73901)
+  - skip
+- **maphash: drop purego version and establish stronger runtime boundary** [#74285](https://go.dev/issue/74285)
+  - discussion ongoing
+- **os: stop manually setting sticky bit on file creation on \*BSD, Solaris** [#68664](https://go.dev/issue/68664)
+  - skip
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - skip
+- **syscall: add O\_OVERLAPPED on Windows** [#73676](https://go.dev/issue/73676)
+  - commented
+- **x/crypto/x509roots/fallback: export certificate bundle** [#69898](https://go.dev/issue/69898)
+  - skip
+
+**Hold**
+
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **os: convenience function for one-off Root operations** [#73168](https://go.dev/issue/73168)
+  - put on hold
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **x/sys/unix: add methods to convert between time.Time and unix.PtpClockTime on Linux** [#70032](https://go.dev/issue/70032)
+  - put on hold
+
+

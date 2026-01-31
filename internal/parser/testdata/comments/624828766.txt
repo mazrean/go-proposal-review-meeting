@@ -1,0 +1,41 @@
+**2020-05-06 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+[Skipping next week. Next meeting in two weeks.]
+
+- #28591 **Go 2: language: make slices of constant strings constant if the indexes are constant**
+  - Go 2 change from https://blog.golang.org/go1.15-proposals
+  - no change in consensus; **declined**
+- #37503 **all: add bare metal ARM support**
+  - no change in consensus; **declined**
+- #37641 **cmd/go: reserve example/ and test/ as non-stdlib path prefixes**
+  - no change in consensus; **accepted** 🎉
+- #34544 **cmd/vet: detect defer rows.Close()**
+  - no change in consensus; **declined**
+- #4483 **cmd/vet: detect impossible interface-interface type assertions**
+  - Go 2 change from https://blog.golang.org/go1.15-proposals
+  - no change in consensus; **accepted** 🎉
+- #32479 **cmd/vet: warn about string(int) type conversions**
+  - Go 2 change from https://blog.golang.org/go1.15-proposals
+  - no change in consensus; **accepted** 🎉
+- #37168 **crypto: new assembly policy**
+  - no change in consensus; **accepted** 🎉
+- #38270 **net/http, net/http/httptrace: add mechanism for tracing request serving**
+  - put on hold
+- #38079 **net/http/httputil: do not add to empty X-Forwarded-For header in ReverseProxy**
+  - no change in consensus; **accepted** 🎉
+- #38375 **net/http: toHTTPError should be public**
+  - **likely decline**; last call for comments ⏳
+- #37255 **os/signal: add NotifyContext function**
+  - **likely accept**; last call for comments ⏳
+- #38248 **replace CallImport with go:wasmimport directive**
+  - discussion ongoing
+- #37681 **runtime: support "strict mode" run-time checks analogous to "go vet"**
+  - discussion ongoing
+- #8606 **spec: decide ambiguity in comparing array/structs with interface fields/elements**
+  - commented
+- #16971 **x/crypto/scrypt,x/crypto/argon2: add high-level APIs**
+  - discussion ongoing
+- #35921 **x/tools/go/packages: add module information to the Package struct**
+  - no change in consensus; **accepted** 🎉
+- #36898 **x/website: have endpoint to query for the latest bugfix version**
+  - **likely decline**; last call for comments ⏳

@@ -1,0 +1,57 @@
+**2021-06-16 / @rsc, @griesemer, @ianlancetaylor, @spf13**
+
+_The next proposal review meeting will happen four weeks from today, on July 14._
+
+Next week most of us will be at an internal Google (virtual) summit at the usual review meeting time, and the two weeks after that are [Go team quiet weeks](https://groups.google.com/g/golang-dev/c/onqurcX6pV8/m/jJ9aryiEBAAJ). 
+
+Enjoy the quiet!
+
+- #46268 **add package containing fuzz function helpers**
+  - no change in consensus; **declined**
+- #46229 **all: port to linux/loong64**
+  - **likely accept**; last call for comments ⏳
+- #45964 **all: require Linux kernel version 2.6.32**
+  - commented
+  - retitled
+- #46336 **bytes, strings: add Cut**
+  - **likely accept**; last call for comments ⏳
+- #45963 **cmd/go/internal/test: add -vet=all sentinel**
+  - **likely accept**; last call for comments ⏳
+- #45713 **cmd/go: add a workspace mode**
+  - pending implementation
+- #44435 **cmd/go: narrow 'mod download' default set**
+  - no change in consensus; **accepted** 🎉
+- #46533 **cmd/vet: report suspicious constant string arguments**
+  - commented
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - pending implementation
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #46485 **go/parser: add a SkipObjectResolution mode flag**
+  - no change in consensus; **accepted** 🎉
+- #46648 **go/types: add a Config.GoVersion field to set the target language version**
+  - **likely accept**; last call for comments ⏳
+- #46370 **net/http: add Cookie.Valid method**
+  - commented
+- #46518 **net/netaddr: add new IP address type, netaddr package**
+  - discussion ongoing
+- #46293 **reflect: add MapIter.Reset**
+  - **likely accept**; last call for comments ⏳
+- #46746 **reflect: add Value.ConvertibleTo(Value) and Value.Comparable(Value)**
+  - added to minutes
+- #46159 **regexp: support encoding.TextMarshaler**
+  - discussion ongoing
+- #45955 **slices: new package to provide generic slice functions**
+  - discussion ongoing
+- #46505 **spec: allow conversion from slice to array**
+  - discussion ongoing
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - pending implementation
+- #46385 **strings: provide ContainsOnly function**
+  - commented
+- #46552 **syscall: add SyscallN**
+  - commented
+- #46588 **text/template: allow multiple actions within \`{{}}\`**
+  - **likely decline**; last call for comments ⏳
+- #46742 **unsafe: double-check specified semantics for Slice((\*T)(nil), 0) for Go 1.17**
+  - added to minutes

@@ -1,0 +1,54 @@
+**2021-03-24 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @spf13**
+
+- #44505 **build: adopt Go 1.16 as bootstrap toolchain for Go 1.18**
+  - no change in consensus; **accepted** 🎉
+- #42681 **build: move GOEXPERIMENT knob from make.bash to cmd/go**
+  - no change in consensus; **accepted** 🎉
+- #34055 **cmd/go: allow serving module under the subdirectory of git repository**
+  - no change in consensus; **accepted** 🎉
+- #44466 **cmd/go: create manifest when building for Windows**
+  - **likely decline**; last call for comments ⏳
+- #44649 **cmd/go: introduce 'module GOPATH' to allow transition from GOPATH to modules**
+  - discussion ongoing
+- #43854 **cmd/go: opt-in for //go:embed to \*not\* ignore files and empty dirs**
+  - discussion ongoing
+- #28308 **cmd/vet: flag using %s:%d to construct network addresses**
+  - blocked on #44955
+- #43698 **cmd/vet: warn about "// go:" comments (with space)**
+  - no change in consensus; **accepted** 🎉
+- #43993 **cmd/vet: warn about using reflect.DeepEqual on reflect.Value**
+  - **likely accept**; last call for comments ⏳
+- #29257 **crypto/tls: allow access to file descriptor for tls.Conn**
+  - discussion ongoing
+- #21865 **crypto: add facility for key erasure**
+  - discussion ongoing
+- #44221 **encoding/csv: add the ability to get the line number of a record**
+  - discussion ongoing
+- #44571 **io: change Copy error to distinguish reader from writer**
+  - discussion ongoing
+- #25192 **net/url: don't parse ';' as a separator in query string**
+  - discussion ongoing
+- #44955 **net: change Dial to accept host+":"+port**
+  - added to minutes
+- #44918 **new security policy**
+  - **likely accept**; last call for comments ⏳
+- #43947 **os/exec: on Windows use NeedCurrentDirectoryForExePathW for LookPath behavior**
+  - no change in consensus; **accepted** 🎉
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - discussion ongoing
+- #44551 **testing: add fuzz test support**
+  - **likely accept**; last call for comments ⏳
+- #38627 **text/template/parse: add a Mode flag to skip functions existence check on parsing**
+  - discussion ongoing
+- #39034 **time: add Time.GoString method to help %#v**
+  - no change in consensus; **accepted** 🎉
+- #44196 **time: add Time.UnixMilli and Time.UnixMicro (like Time.UnixNano)**
+  - no change in consensus; **accepted** 🎉
+- #44226 **x/crypto/openpgp: mark as frozen and deprecated**
+  - no change in consensus; **accepted** 🎉
+- #44198 **x/crypto/ssh add sshutil.ReverseProxy: a single host reverse proxy for SSH**
+  - proposal retracted by author; **declined**
+- #27599 **x/crypto: add support for AES Key Wrap**
+  - **likely decline**; last call for comments ⏳
+- #29721 **x/sync/semaphore: make semaphore resizable**
+  - discussion ongoing

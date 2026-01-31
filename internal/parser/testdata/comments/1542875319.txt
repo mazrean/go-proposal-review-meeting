@@ -1,0 +1,87 @@
+**2023-05-10 / @aclements, @adonovan, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **cmd/compile: allow the use of go:wasmimport globally** [#59149](https://go.dev/issue/59149)
+  - no change in consensus; **accepted** 🎉
+- **html/template: expose ErrJSTemplate** [#59584](https://go.dev/issue/59584)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/go: support \`local\` directive in go.mod** [#51779](https://go.dev/issue/51779)
+  - declined as infeasible
+- **crypto/x509: decryption of PEM file failure not being caught** [#43504](https://go.dev/issue/43504)
+  - no change in consensus; **declined**
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - no change in consensus; **declined**
+- **testing/cmp: add new package** [#45200](https://go.dev/issue/45200)
+  - no change in consensus; **declined**
+- **time:  add binning** [#54392](https://go.dev/issue/54392)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- none
+
+**Likely Decline**
+
+- **spec: lazy init imports to possibly import without side effects** [#38450](https://go.dev/issue/38450)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **bufio: add Writer.UnwrittenData** [#59106](https://go.dev/issue/59106)
+  - added to minutes
+- **bytes: trim cap on Buffer.Bytes result** [#59570](https://go.dev/issue/59570)
+  - added to minutes
+- **cmd/go: add GOEXPERIMENT=gocacheprog to let a child process implement the internal action/output cache** [#59719](https://go.dev/issue/59719)
+  - commented
+- **cmd/go: add global ignore mechanism for Go tooling ecosystem** [#42965](https://go.dev/issue/42965)
+  - commented
+- **cmd/go: allow \`go list\` to return the content of the \`go-source\` meta tag** [#59566](https://go.dev/issue/59566)
+  - commented
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - commented
+- **cmp: new package with Ordered, Min, Max** [#59488](https://go.dev/issue/59488)
+  - discussion ongoing
+- **crypto/tls: QUIC 0-RTT APIs** [#60107](https://go.dev/issue/60107)
+  - added to minutes
+- **crypto/tls: advanced sessions APIs** [#60105](https://go.dev/issue/60105)
+  - added to minutes
+- **crypto/tls: implement RFC7627** [#43922](https://go.dev/issue/43922)
+  - taken off hold
+- **crypto/tls: support QUIC as a transport** [#44886](https://go.dev/issue/44886)
+  - commented
+- **html/template: refuse to parse complex JS template literals** [#60055](https://go.dev/issue/60055)
+  - added to minutes
+  - commented
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **path/filepath: add FromFS to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - commented
+- **runtime: add support for the Arm’s ArmV8.5-A Memory Tagging Extension (MTE) in Go** [#59090](https://go.dev/issue/59090)
+  - added to minutes
+- **slices: add Reverse** [#58565](https://go.dev/issue/58565)
+  - added to minutes
+- **slices: add sorting and comparison functions** [#60091](https://go.dev/issue/60091)
+  - added to minutes
+  - commented
+- **spec: less error-prone loop variable scoping** [#60078](https://go.dev/issue/60078)
+  - added to minutes
+- **strings: add new functions to deprecate strings.{Trim/TrimRight/TrimLeft} to avoid mistakes** [#50399](https://go.dev/issue/50399)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **text/template, html/template: Add ExecuteFuncMap and ExecuteTemplateFuncMap** [#54450](https://go.dev/issue/54450)
+  - discussion ongoing
+- **type inference should be more lenient about untyped numeric literals** [#58671](https://go.dev/issue/58671)
+  - added to minutes
+- **unsafe: allow conversion of \`uintptr\` to \`unsafe.Pointer\` when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - commented
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - discussion ongoing
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - discussion ongoing
+- **x/tools/go/pointer: isolate, tag, and delete the pointer analysis** [#59676](https://go.dev/issue/59676)
+  - added to minutes

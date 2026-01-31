@@ -1,0 +1,64 @@
+**2021-07-21 / @rsc, @griesemer, @ianlancetaylor, @bradfitz**
+
+- #46229 **all: port to linux/loong64**
+  - no change in consensus; **accepted** 🎉
+- #45964 **all: require Linux kernel version 2.6.32**
+  - no change in consensus; **accepted** 🎉
+- #46758 **bufio: add a new method "Handover" for Writer and Reader**
+  - added to minutes
+- #39155 **change standard library to check for io.EOF using errors.Is**
+  - added to minutes
+- #45713 **cmd/go: add a workspace mode**
+  - discussion ongoing
+- #46774 **cmd/go: add pkgspec support to -toolexec**
+  - added to minutes
+- #44936 **cmd/go: allow multiple checksum databases in GOSUMDB**
+  - **likely decline**; last call for comments ⏳
+- #37995 **cmd/go: build tag for detecting go modules usage**
+  - added to minutes
+- #38509 **cmd/go: command line flag to add icon for windows executable**
+  - added to minutes
+- #40580 **cmd/go: deprecate direct fallback in GOPROXY**
+  - added to minutes
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - opened discussion at #47319
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #39357 **encoding/xml: Unmarshal comment with tag**
+  - **likely decline**; last call for comments ⏳
+- #39167 **errors: Is(err, target) should allow err to decide even when target is nil**
+  - added to minutes
+- #37848 **gerrit: change TryBot failure score from -1 to -2**
+  - no change in consensus; **declined**
+- #44650 **go/printer: align multiple struct tags per field for readability**
+  - added to minutes
+- #46370 **net/http: add Cookie.Valid method**
+  - **likely accept**; last call for comments ⏳
+- #46518 **net/netaddr: add new IP address type, netaddr package**
+  - opened discussion at #47323
+- #46746 **reflect: add Value.CanConvert, Value.Equal, Value.Comparable**
+  - no change in consensus; **accepted** 🎉
+- #46159 **regexp: support encoding.TextMarshaler**
+  - **likely accept**; last call for comments ⏳
+- #44026 **runtime: allow programs to handle deadlock events**
+  - added to minutes
+- #45955 **slices: new package to provide generic slice functions**
+  - revised, commented, updated discussion at #47203
+- #43429 **spec: allow append(string, ...) returning \[]byte**
+  - added to minutes
+- #46505 **spec: allow conversion from slice to array**
+  - proposal retracted by author; **declined**
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - no change in consensus; **accepted** 🎉
+- #43729 **spec: make unused variables not an error**
+  - **likely decline**; last call for comments ⏳
+- #46385 **strings: provide ContainsOnly function**
+  - no change in consensus; **declined**
+- #46552 **syscall: add SyscallN**
+  - no change in consensus; **accepted** 🎉
+- #42161 **testing: add M.Cleanup**
+  - no change in consensus; **declined**
+- #40227 **testing: allow B to use real execution duration to decide N**
+  - **likely decline**; last call for comments ⏳
+- #46742 **unsafe: double-check specified semantics for Slice((\*T)(nil), 0) for Go 1.17**
+  - no change in consensus; **accepted** 🎉

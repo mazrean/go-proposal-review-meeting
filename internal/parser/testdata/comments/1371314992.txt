@@ -1,0 +1,73 @@
+[We didn't get to the last few issues in the active list today. Next week!]
+
+**2023-01-04 / @aclements, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **crypto: add ContextSigner and use in crypto/tls** [#56508](https://go.dev/issue/56508)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **cmd/go: do not download “modules” that contain no go.mod or \*.go** [#31866](https://go.dev/issue/31866)
+  - **likely accept**; last call for comments ⏳
+- **cmd/trace: support for perfetto** [#57315](https://go.dev/issue/57315)
+  - **likely accept**; last call for comments ⏳
+- **extended backwards compatibility for Go** [#56986](https://go.dev/issue/56986)
+  - **likely accept**; last call for comments ⏳
+- **reflect: add Value.Caller** [#49340](https://go.dev/issue/49340)
+  - **likely accept**; last call for comments ⏳
+- **spec: guarantee non-nil return value from recover** [#25448](https://go.dev/issue/25448)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - commented
+- **cmd/go: load $GOROOT/go.env before loading user go.env** [#57179](https://go.dev/issue/57179)
+  - commented
+- **context: add a way to detach from parent cancellation** [#40221](https://go.dev/issue/40221)
+  - commented
+- **encoding/binary: add var NativeEndian; also x/sys/cpu.IsBigEndian** [#57237](https://go.dev/issue/57237)
+  - commented
+- **encoding/json: allow limiting Decoder.Decode read size** [#56733](https://go.dev/issue/56733)
+  - discussion ongoing
+- **encoding/xml: add ability to create decoder with start element already on stack** [#49313](https://go.dev/issue/49313)
+  - discussion ongoing
+- **errors: add Errors function to undo Join** [#57358](https://go.dev/issue/57358)
+  - commented
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - commented
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **io: add ZeroReader io.Reader** [#57317](https://go.dev/issue/57317)
+  - commented
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **maps: new standard library package based on x/exp/maps** [#57436](https://go.dev/issue/57436)
+  - added to minutes
+- **math/big: add Int.Float64 conversion (was initially: {ToInt64,ToUint64,Float64})** [#56984](https://go.dev/issue/56984)
+  - added to minutes
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - commented
+- **slices: new standard library package based on x/exp/slices** [#57433](https://go.dev/issue/57433)
+  - added to minutes
+- **spec: define initialization order more precisely** [#57411](https://go.dev/issue/57411)
+  - commented
+- **spec: generics: type switch on parametric types** [#45380](https://go.dev/issue/45380)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+
+**Hold**
+
+- **net/http: Transport tracing hooks** [#56241](https://go.dev/issue/56241)
+  - hold for structured logging

@@ -1,0 +1,31 @@
+**2019-08-20** / @rsc, @griesemer, @andybons, @ianlancetaylor  
+
+- #33702 **deterministic execution**
+  - **closed** (no concrete change to evaluate)
+- #25530 **cmd/go: secure releases with transparency log**
+  - **no final comments; accepted 🎉**
+- #33388 **cmd/go: add build tags for 32-bit and 64-bit architectures**
+  - commented
+- #33203 **cmd/go: add package search functionality**
+  - commented
+- #33375 **cmd/go: introduce go.gen file for //go:generate comments**
+  - commented
+  - **likely decline; last call for comments**
+- #32405 **errors: simplified error inspection**
+  - **no final comments; declined**
+- #31572 **net/http: add constant for content type**
+  - **no final comments; declined**
+- #33498 **net/url: add (Values).AddAll(key string, values []string)**
+  - commented
+  - **likely decline; last call for comments**
+- #33670 **proposal: identify large changes & add more process**
+  - discussion ongoing
+- #33136 **reflect: add Value.SetZero**
+  - commented
+- #33508 **x/sys/cpu -- add support for ARM**
+  - commented
+  - asked owners for feedback
+- #32153 **x/sys/unix: support for all fields of Kevent_t, EpollEvent**
+  - commented
+  - reduced scope
+  - retitled

@@ -1,0 +1,90 @@
+**2022-11-09 / @rsc, @ianlancetaylor, @bradfitz, @andybons, @aclements**
+
+**Accepted**
+
+- **cmd/go: add a flag to use stdin as a cancellation side-channel** [#56163](https://go.dev/issue/56163)
+  - no change in consensus; **accepted** 🎉
+- **cmd/go: standard-library vendoring in module mode** [#30241](https://go.dev/issue/30241)
+  - no change in consensus; **accepted** 🎉
+- **go/analysis: specify that all facts are encoded in one gulp, preserving topology** [#54661](https://go.dev/issue/54661)
+  - no change in consensus; **accepted** 🎉
+- **net: add UDPMsg, (\*UDPConn).ReadUDPMsgs, (\*UDPConn).WriteUDPMsgs** [#45886](https://go.dev/issue/45886)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **function: runes.repeat** [#56434](https://go.dev/issue/56434)
+  - proposal retracted by author; **declined**
+- **net/netip: Add function Network() for netip Addr to make it support the interface of net.Addr** [#56286](https://go.dev/issue/56286)
+  - no change in consensus; **declined**
+- **time: Add time.Day constant** [#56460](https://go.dev/issue/56460)
+  - duplicate of #11473
+
+**Likely Accept**
+
+- **bufio: allow terminating Scanner early cleanly without a final token or an error** [#56381](https://go.dev/issue/56381)
+  - **likely accept**; last call for comments ⏳
+- **crypto/ecdsa: add methods to convert keys to crypto/ecdh format** [#56088](https://go.dev/issue/56088)
+  - **likely accept**; last call for comments ⏳
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - **likely accept**; last call for comments ⏳
+- **encoding: add ScalarMarshaler and ScalarUnmarshaler** [#56235](https://go.dev/issue/56235)
+  - **likely accept**; last call for comments ⏳
+- **math/rand: deprecate Seed** [#56319](https://go.dev/issue/56319)
+  - **likely accept**; last call for comments ⏳
+- **net/http: add ServeFileFS, FileServerFS, NewFileTransportFS** [#51971](https://go.dev/issue/51971)
+  - **likely accept**; last call for comments ⏳
+- **path/filepath: add Escapes** [#56219](https://go.dev/issue/56219)
+  - **likely accept**; last call for comments ⏳
+- **spec: disallow anonymous interface cycles** [#56103](https://go.dev/issue/56103)
+  - **likely accept**; last call for comments ⏳
+- **sync: add OnceFunc** [#56102](https://go.dev/issue/56102)
+  - **likely accept**; last call for comments ⏳
+- **syscall/js: add Scope function** [#56084](https://go.dev/issue/56084)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/{analysis,packages}: expose TypeErrors \[]types.Error fields** [#54619](https://go.dev/issue/54619)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **os/exec: add GODEBUG flag to print a line to STDERR for each command started** [#56301](https://go.dev/issue/56301)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **bytes, strings: add ContainsFunc** [#54386](https://go.dev/issue/54386)
+  - waiting for #53983
+- **context: add APIs for setting a cancelation cause when deadline or timer expires** [#56661](https://go.dev/issue/56661)
+  - added to minutes
+- **crypto/ecdh: provide and/or implement an interface** [#56052](https://go.dev/issue/56052)
+  - commented
+- **crypto/x509: Add support for OtherName SAN** [#55897](https://go.dev/issue/55897)
+  - commented
+- **crypto: add SignContext** [#56508](https://go.dev/issue/56508)
+  - added to minutes
+- **database/sql: Support for generics with NullTypes Interface** [#56439](https://go.dev/issue/56439)
+  - added to minutes
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **net: add support for MPTCP** [#56539](https://go.dev/issue/56539)
+  - added to minutes
+- **reflect: add (\*Value).MapClear** [#55002](https://go.dev/issue/55002)
+  - waiting for #56351
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - commented
+- **slices: Sort support sorting slices of floating-point numbers containing NaN values** [#56491](https://go.dev/issue/56491)
+  - added to minutes
+  - commented
+- **spec: allow basic interface types to instantiate comparable type parameters** [#56548](https://go.dev/issue/56548)
+  - added to minutes
+- **spec: reduce noise in return statements that contain mostly zero values** [#21182](https://go.dev/issue/21182)
+  - added to minutes
+- **x/exp/slices: add ContainsFunc** [#53983](https://go.dev/issue/53983)
+  - discussion ongoing
+- **x/net/http2: support consuming PUSH\_PROMISE streams in the client** [#18594](https://go.dev/issue/18594)
+  - added to minutes
+  - commented
+- **x/net/ipv{4,6}: adopt net/netip address types** [#54883](https://go.dev/issue/54883)
+  - commented
+- **x/time/rate: make Wait return an error that Is(DeadlineExceeded) for deadline miss** [#54541](https://go.dev/issue/54541)
+  - commented

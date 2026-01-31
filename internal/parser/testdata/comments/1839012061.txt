@@ -1,0 +1,119 @@
+[_The review meeting was November 29 but I am only getting a chance to post these now. We will leave likely declines in that state for another week to give people enough time to see them._]
+
+**2023-11-29 / @adonovan, @cherrymui, @griesemer, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/cmd/deadcode: add new command** [#63501](https://go.dev/issue/63501)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **all: add GOARCHVERSION instead of "GOARM", "GOARM64", "GOAMD" & "GOAMD64" (etc..)** [#62129](https://go.dev/issue/62129)
+  - declined as infeasible
+- **cmd/cgo: add support for pre-compiled cgo packages** [#38917](https://go.dev/issue/38917)
+  - declined as infeasible
+- **cmd/cgo: change GoStringN, GoBytes to take C.size\_t** [#61361](https://go.dev/issue/61361)
+  - declined as infeasible
+- **cmd/go: add Transparent Folders in Go** [#63745](https://go.dev/issue/63745)
+  - declined as infeasible
+- **container/list: Add PopFront() and PopBack() methods** [#63645](https://go.dev/issue/63645)
+  - duplicate of #817
+
+**Likely Accept**
+
+- none
+
+**Likely Decline**
+
+- **add package ptr provide pointer functions** [#61082](https://go.dev/issue/61082)
+  - **likely decline**; last call for comments ⏳
+- **spec: add builtin zero\[T](...T)T** [#64174](https://go.dev/issue/64174)
+  - **likely decline**; last call for comments ⏳
+- **spec: permit using var.(type) when instantiating a generic function** [#58608](https://go.dev/issue/58608)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: standardize -help behavior in go project tools** [#63659](https://go.dev/issue/63659)
+  - discussion ongoing
+- **archive/zip: support for encrypted archives** [#12081](https://go.dev/issue/12081)
+  - discussion ongoing
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - blocked on #61405
+- **bytes: add Reader methods Buffered, Peek, and Discard** [#63548](https://go.dev/issue/63548)
+  - discussion ongoing
+- **cmd/compile, cmd/cgo: support targeting arm64\_32** [#60180](https://go.dev/issue/60180)
+  - added to minutes
+- **cmd/compile: allow compile-time override of constants** [#63372](https://go.dev/issue/63372)
+  - added to minutes
+- **cmd/distpack: offer Zstandard-compressed archives in addition to gzip** [#62446](https://go.dev/issue/62446)
+  - added to minutes
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - added to minutes
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - added to minutes
+- **cmd/go: add -tests to list of vet checks run by "go test"** [#44251](https://go.dev/issue/44251)
+  - added to minutes
+- **cmd/go: add go version -json** [#55136](https://go.dev/issue/55136)
+  - added to minutes
+- **cmd/go: add go work use -r -maxdepth** [#52381](https://go.dev/issue/52381)
+  - added to minutes
+- **cmd/go: add language localization support to go doc** [#57254](https://go.dev/issue/57254)
+  - added to minutes
+- **cmd/go: go build -json** [#62067](https://go.dev/issue/62067)
+  - waiting on concrete proposal details
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **crypto/tls: on-disk configuration** [#60790](https://go.dev/issue/60790)
+  - added to minutes
+- **debug/elf: add SHT\_GNU\_VERDEF section parsing** [#63952](https://go.dev/issue/63952)
+  - added to minutes
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - discussion ongoing
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - blocked on #61405
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - blocked on #61405
+- **maps: add maps.KeysSlice and maps.ValuesSlice** [#61626](https://go.dev/issue/61626)
+  - blocked on #61405
+- **os,path/filepath: make os.Readlink and filepath.EvalSymlinks on Windows (mostly) only evaluate symlinks** [#63703](https://go.dev/issue/63703)
+  - discussion ongoing
+- **os: add CopyFS** [#62484](https://go.dev/issue/62484)
+  - discussion ongoing
+- **os: treat all non-symlink reparse points as ModeIrregular on Windows** [#61893](https://go.dev/issue/61893)
+  - discussion ongoing
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - blocked on #61405
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - discussion ongoing
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - blocked on #61405
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - blocked on #61405
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **time: handle time zones better in Parse and LoadLocation** [#63345](https://go.dev/issue/63345)
+  - discussion ongoing
+- **x/crypto/ssh: add a specific error for algorithm negotiation issues/errors** [#61536](https://go.dev/issue/61536)
+  - discussion ongoing
+- **x/crypto/ssh: export supported algorithms** [#61537](https://go.dev/issue/61537)
+  - commented
+- **x/crypto/ssh: server side multi-step authentication** [#61447](https://go.dev/issue/61447)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - blocked on #61405
+- **x/tools/go/analysis/analysisutil: publish ExtractDoc** [#61315](https://go.dev/issue/61315)
+  - discussion ongoing
+- **x/tools/txtar: add Extract function or method** [#61386](https://go.dev/issue/61386)
+  - waiting for #62484

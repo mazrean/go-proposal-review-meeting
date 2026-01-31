@@ -1,0 +1,77 @@
+**2023-05-31 / @aclements, @adonovan, @andybons, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **crypto/tls: QUIC 0-RTT APIs** [#60107](https://go.dev/issue/60107)
+  - no change in consensus; **accepted** 🎉
+- **crypto/tls: advanced sessions APIs** [#60105](https://go.dev/issue/60105)
+  - no change in consensus; **accepted** 🎉
+- **crypto/tls: implement RFC7627** [#43922](https://go.dev/issue/43922)
+  - no change in consensus; **accepted** 🎉
+- **math: remove Compare, Compare32** [#60519](https://go.dev/issue/60519)
+  - no change in consensus; **accepted** 🎉
+- **path/filepath: add Localize to safely convert a slash-separated path into an operating system path** [#57151](https://go.dev/issue/57151)
+  - no change in consensus; **accepted** 🎉
+- **text/template: add "else with" like "else if"** [#57646](https://go.dev/issue/57646)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **context: reconsider semantics for AfterFunc stop function** [#60156](https://go.dev/issue/60156)
+  - no change in consensus; **declined**
+- **net/netip: add netip.Addr.Map** [#54365](https://go.dev/issue/54365)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/vet: time.Since should not be used in defer statement** [#60048](https://go.dev/issue/60048)
+  - **likely accept**; last call for comments ⏳
+- **spec: when unifying against interface types, consider common methods** [#60353](https://go.dev/issue/60353)
+  - **likely accept**; last call for comments ⏳
+- **x/sys/unix: add Mremap** [#60409](https://go.dev/issue/60409)
+  - **likely accept**; last call for comments ⏳
+- **x/sys/windows/svc/mgr: add Service.RecoveryActionsOnNonCrashFailures and Service.SetRecoveryActionsOnNonCrashFailures** [#59016](https://go.dev/issue/59016)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/go: GOAMD64=local to compile for local machine** [#60338](https://go.dev/issue/60338)
+  - commented
+- **cmd/go: add global ignore mechanism for Go tooling ecosystem** [#42965](https://go.dev/issue/42965)
+  - commented
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://go.dev/issue/48429)
+  - discussion ongoing
+- **crypto/tls: expose SessionState extra information** [#60539](https://go.dev/issue/60539)
+  - added to minutes
+- **database/sql: add generic Null\[T]** [#60370](https://go.dev/issue/60370)
+  - cc’ed owners
+- **io/fs: add writable interfaces** [#45757](https://go.dev/issue/45757)
+  - discussion ongoing
+- **reflect:  deprecate PtrTo** [#59599](https://go.dev/issue/59599)
+  - commented
+- **reflect: add MakeType** [#60088](https://go.dev/issue/60088)
+  - discussion ongoing
+- **runtime: add support for the Arm’s ArmV8.5-A Memory Tagging Extension (MTE) in Go** [#59090](https://go.dev/issue/59090)
+  - commented
+- **slices: add Concat** [#56353](https://go.dev/issue/56353)
+  - commented
+- **spec: less error-prone loop variable scoping** [#60078](https://go.dev/issue/60078)
+  - discussion ongoing
+- **strings: add First** [#60204](https://go.dev/issue/60204)
+  - discussion ongoing
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **text/template, html/template: Add ExecuteFuncMap and ExecuteTemplateFuncMap** [#54450](https://go.dev/issue/54450)
+  - discussion ongoing
+- **unsafe: allow conversion of uintptr to unsafe.Pointer when it points to non-Go memory** [#58625](https://go.dev/issue/58625)
+  - discussion ongoing
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - commented
+- **x/net/websocket: add Config.DialContext** [#57953](https://go.dev/issue/57953)
+  - commented
+- **x/oauth2: Device authorization grant** [#58126](https://go.dev/issue/58126)
+  - discussion ongoing

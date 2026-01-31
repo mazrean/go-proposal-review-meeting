@@ -1,0 +1,75 @@
+[Posting a day late; I migrated the [proposal tracker](https://github.com/orgs/golang/projects/17) to Projects V2 yesterday and then had to update my minutes maker to add all the new GraphQL API for Projects V2...]
+
+**2022-08-10 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @aclements, @julieqiu**
+
+**Accepted**
+
+- **all: decide what can implement TextMarshaler/TextUnmarshaler** [#10275](https://go.dev/issue/10275)
+  - no change in consensus; **accepted** 🎉
+- **clarify Go support policy for secondary ports** [#53383](https://go.dev/issue/53383)
+  - no change in consensus; **accepted** 🎉
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://go.dev/issue/51365)
+  - no change in consensus; **accepted** 🎉
+- **net/http: easier access to HTTP/2 error codes** [#53896](https://go.dev/issue/53896)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **strings: add func CommonPrefixLen(x, y string) int** [#53120](https://go.dev/issue/53120)
+  - no change in consensus; **declined**
+- **x/sync/errgroup: allow manual management of cancel** [#54079](https://go.dev/issue/54079)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/go: go clean should not accept flags like -modcache with packages** [#53725](https://go.dev/issue/53725)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **compress: add AppendCompress and AppendDecompress** [#54078](https://go.dev/issue/54078)
+  - retitled
+  - commented
+- **crypto/x509: add crypto/x509/rootcerts package and rootcerts tag to embed CA root certificates in program** [#43958](https://go.dev/issue/43958)
+  - added to minutes
+- **crypto: add crypto engines** [#33281](https://go.dev/issue/33281)
+  - added to minutes
+- **errors: add support for wrapping multiple errors** [#53435](https://go.dev/issue/53435)
+  - commented
+- **net: add func(IP) Addr() net.Addr and use in AddrPort methods** [#54234](https://go.dev/issue/54234)
+  - commented
+- **net: add multiple-UDP-packet read and write** [#45886](https://go.dev/issue/45886)
+  - commented
+- **runtime: add 'created by goroutine number' to stack traces** [#38651](https://go.dev/issue/38651)
+  - added to minutes
+  - commented
+- **runtime: add parameters to recover to only return specific types** [#50424](https://go.dev/issue/50424)
+  - added to minutes
+- **testing: add Name to track file and line of test case declaration** [#52751](https://go.dev/issue/52751)
+  - discussion ongoing
+- **testing: add support for individual test function execution - expose testing.M.Tests** [#53701](https://go.dev/issue/53701)
+  - commented
+- **x/crypto/cryptobyte: non allocating AddUint\*LengthPrefixed API** [#54059](https://go.dev/issue/54059)
+  - cc’ed owners
+- **x/net/http2: distinguish no body from empty body** [#53894](https://go.dev/issue/53894)
+  - discussion ongoing
+- **x/sync/errgroup: propagate panics and Goexits through Wait** [#53757](https://go.dev/issue/53757)
+  - moved to active for more discussion of programs that never call Wait
+- **x/sys/windows: Add WSALookupService** [#54232](https://go.dev/issue/54232)
+  - commented
+  - cc’ed owners
+- **x/sys/windows: fix Accept implementation** [#54212](https://go.dev/issue/54212)
+  - does not need proposal
+- **x/text/number: provide way to query number system** [#53872](https://go.dev/issue/53872)
+  - commented
+- **x/time/rate: add Sometimes type** [#54237](https://go.dev/issue/54237)
+  - commented
+
+**Hold**
+
+- **x/tools: add package for parsing go test JSON output** [#53893](https://go.dev/issue/53893)
+  - hold for #54378

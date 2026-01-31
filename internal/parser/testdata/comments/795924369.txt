@@ -1,0 +1,46 @@
+**2021-03-10 / @rsc, @griesemer, @ianlancetaylor**
+
+The next week will be an off-week as well; the next proposal review meeting is 2021-03-24.
+
+- #44505 **build: adopt Go 1.16 as bootstrap toolchain for Go 1.18**
+  - **likely accept**; last call for comments ⏳
+- #42681 **build: move GOEXPERIMENT knob from make.bash to cmd/go**
+  - no change in consensus; **accepted** 🎉
+- #34055 **cmd/go: allow serving module under the subdirectory of git repository**
+  - **likely accept**; last call for comments ⏳
+- #44466 **cmd/go: create manifest when building for Windows**
+  - commented
+- #44649 **cmd/go: introduce 'module GOPATH' to allow transition from GOPATH to modules**
+  - added to minutes
+- #28308 **cmd/vet: flag using %s:%d to construct network addresses**
+  - commented
+- #43698 **cmd/vet: warn about "// go:" comments (with space)**
+  - **likely accept**; last call for comments ⏳
+- #29257 **crypto/tls: allow access to file descriptor for tls.Conn**
+  - commented
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #44221 **encoding/csv: add the ability to get the line number of a record**
+  - commented
+- #44447 **go/doc: add support for sections**
+  - commented
+- #44571 **io: change Copy error to distinguish reader from writer**
+  - commented
+- #25192 **net/url: don't parse ';' as a separator in query string**
+  - commented
+- #43947 **os/exec: on Windows use NeedCurrentDirectoryForExePathW for LookPath behavior**
+  - **likely accept**; last call for comments ⏳
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #44159 **sync: Allow (\*sync.Map).LoadOrStore uses closure to create new value like sync.Pool**
+  - no change in consensus; **declined**
+- #44551 **testing: add fuzz test support**
+  - **likely accept**; last call for comments ⏳
+- #39034 **time: add Time.GoString method to help %#v**
+  - **likely accept**; last call for comments ⏳
+- #44196 **time: add Time.UnixMilli and Time.UnixMicro (like Time.UnixNano)**
+  - **likely accept**; last call for comments ⏳
+- #44226 **x/crypto/openpgp: mark as frozen and deprecated**
+  - **likely accept**; last call for comments ⏳
+- #29721 **x/sync/semaphore: make semaphore resizable**
+  - commented

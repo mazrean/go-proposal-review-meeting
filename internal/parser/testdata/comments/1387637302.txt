@@ -1,0 +1,64 @@
+**2023-01-18 / @aclements, @andybons, @bradfitz, @griesemer, @ianlancetaylor, @julieqiu, @rsc**
+
+**Accepted**
+
+- **cmd/go: load $GOROOT/go.env before loading user go.env** [#57179](https://go.dev/issue/57179)
+  - no change in consensus; **accepted** 🎉
+- **encoding/binary: add var NativeEndian; also x/sys/cpu.IsBigEndian** [#57237](https://go.dev/issue/57237)
+  - no change in consensus; **accepted** 🎉
+- **extended backwards compatibility for Go** [#56986](https://go.dev/issue/56986)
+  - no change in consensus; **accepted** 🎉
+- **math/big: add Int.Float64 conversion (was initially: {ToInt64,ToUint64,Float64})** [#56984](https://go.dev/issue/56984)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **errors: add Errors function to undo Join** [#57358](https://go.dev/issue/57358)
+  - no change in consensus; **declined**
+- **io: add ZeroReader io.Reader** [#57317](https://go.dev/issue/57317)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **testing: optionally include full (or relative) path name** [#37708](https://go.dev/issue/37708)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **add a (\*go/token.File).Lines method** [#57708](https://go.dev/issue/57708)
+  - commented
+- **archive/zip: add Dir to zip a directory** [#54898](https://go.dev/issue/54898)
+  - commented
+- **cmd/doc: add example support** [#26715](https://go.dev/issue/26715)
+  - commented
+- **context: add Merge** [#36503](https://go.dev/issue/36503)
+  - commented
+- **context: add a way to detach from parent cancellation** [#40221](https://go.dev/issue/40221)
+  - commented
+- **encoding/json: allow limiting Decoder.Decode read size** [#56733](https://go.dev/issue/56733)
+  - commented
+- **extended forwards compatibility for Go** [#57001](https://go.dev/issue/57001)
+  - commented
+- **log/slog: structured, leveled logging** [#56345](https://go.dev/issue/56345)
+  - discussion ongoing
+- **maps: new standard library package based on x/exp/maps** [#57436](https://go.dev/issue/57436)
+  - commented
+- **runtime/pprof: extend profile configuration to support perf events** [#53286](https://go.dev/issue/53286)
+  - discussion ongoing
+- **slices: new standard library package based on x/exp/slices** [#57433](https://go.dev/issue/57433)
+  - commented
+- **spec: define initialization order more precisely** [#57411](https://go.dev/issue/57411)
+  - commented
+- **x/exp/slices: Allow different types for haystack/needle in BinarySearchFunc** [#57348](https://go.dev/issue/57348)
+  - commented
+- **x/tools/go/analysis: add a Diagnostic.URL field** [#57906](https://go.dev/issue/57906)
+  - added to minutes
+
+**Hold**
+
+- **spec: generics: type switch on parametric types** [#45380](https://go.dev/issue/45380)
+  - hold for later

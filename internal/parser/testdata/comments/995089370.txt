@@ -1,0 +1,86 @@
+[The next two weeks are [Go quiet weeks for the holidays](https://groups.google.com/g/golang-dev/c/wAVzevRS1LE).
+Hope you all have a happy and restful holiday season! See you in 2022.]
+
+**2021-12-15 / @rsc, @griesemer, @ianlancetaylor**
+
+**Accepted**
+
+- **cmd/compile: clarify whether "-l" and "-N" compiler flags are actually supported** [#49390](https://golang.org/issue/49390)
+  - no change in consensus; **accepted** 🎉
+- **crypto/tls: add VersionName function to return a string version of the TLS Version** [#46308](https://golang.org/issue/46308)
+  - no change in consensus; **accepted** 🎉
+- **x/sys/windows/namedpipe: new package** [#49650](https://golang.org/issue/49650)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **go test -errfuzz flag to randomize error strings** [#49358](https://golang.org/issue/49358)
+  - no change in consensus; **declined**
+- **runtime: allow N goroutines to be simultaneously locked to the same OS thread** [#49848](https://golang.org/issue/49848)
+  - no change in consensus; **declined**
+- **spec: add comparable w/o interfaces** [#49587](https://golang.org/issue/49587)
+  - no change in consensus; **declined**
+- **strings: add a Join method to Builder** [#49546](https://golang.org/issue/49546)
+  - no change in consensus; **declined**
+- **sync: add method Mutex.Locked(func())** [#49563](https://golang.org/issue/49563)
+  - no change in consensus; **declined**
+- **x/crypto/bcrypt: make compatible with OpenBSD** [#46940](https://golang.org/issue/46940)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **net: add context-aware Dialer methods DialTCP, DialUDP, DialIP, DialUnix** [#49097](https://golang.org/issue/49097)
+  - **likely accept**; last call for comments ⏳
+- **runtime: automatically bump RLIMIT\_NOFILE on Linux?** [#46279](https://golang.org/issue/46279)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **net/netip: add Unmap() to netip.Is4()** [#49970](https://golang.org/issue/49970)
+  - **likely decline**; last call for comments ⏳
+- **runtime: add block/wake function** [#46431](https://golang.org/issue/46431)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **archive/tar: add FileInfoHeaderNoNames** [#50102](https://golang.org/issue/50102)
+  - added to minutes
+  - commented
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - discussion ongoing
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - discussion ongoing
+- **crypto: include support for DTLS in stdlib or x/crypto** [#46915](https://golang.org/issue/46915)
+  - discussion ongoing
+- **io/fs: add ReadLinkFS interface** [#49580](https://golang.org/issue/49580)
+  - commented
+- **net/http: add Unregister method to ServeMux** [#50056](https://golang.org/issue/50056)
+  - added to minutes
+  - commented
+- **net: add Listen and Dial for TCP and UDP that takes an AddrPort** [#49522](https://golang.org/issue/49522)
+  - commented
+- **net: make LookupCNAME consistent between Unix and Windows, document** [#50101](https://golang.org/issue/50101)
+  - added to minutes
+- **reflect: add \`Value.CallInto\`** [#49340](https://golang.org/issue/49340)
+  - discussion ongoing
+- **runtime: enable WER dumps for Windows under certain circumstances** [#49471](https://golang.org/issue/49471)
+  - discussion ongoing
+- **spec: safe multidimensional array conversion** [#50118](https://golang.org/issue/50118)
+  - added to minutes
+- **time: export Location.lookup() as Location.Lookup()** [#50062](https://golang.org/issue/50062)
+  - added to minutes
+- **time: export zone and zoneTrans, and add a function to generate a Location** [#49951](https://golang.org/issue/49951)
+  - commented
+- **x/crypto/ssh: add NewSharedClientConn** [#32958](https://golang.org/issue/32958)
+  - discussion ongoing
+- **x/crypto: kbkdf** [#50136](https://golang.org/issue/50136)
+  - added to minutes
+- **x/crypto: yescrypt support** [#49898](https://golang.org/issue/49898)
+  - commented
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - discussion ongoing
+- **x/time/rate: expose the number of remaining tokens** [#50035](https://golang.org/issue/50035)
+  - cc’ed owners
+- **x/tools: move cmd/internal/edit to a public package** [#29824](https://golang.org/issue/29824)
+  - discussion ongoing
+

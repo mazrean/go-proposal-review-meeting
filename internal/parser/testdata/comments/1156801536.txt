@@ -1,0 +1,98 @@
+**2022-06-15 / @rsc, @griesemer, @ianlancetaylor, @andybons**
+
+**Accepted**
+
+- **net/netip: add IPv6LinkLocalAllRouters** [#51766](https://golang.org/issue/51766)
+  - no change in consensus; **accepted** 🎉
+- **net/netip: add IPv6Loopback** [#51777](https://golang.org/issue/51777)
+  - no change in consensus; **accepted** 🎉
+- **time: add DateTime, DateOnly, TimeOnly format constants** [#52746](https://golang.org/issue/52746)
+  - no change in consensus; **accepted** 🎉
+- **unicode/utf16: add AppendRune** [#51896](https://golang.org/issue/51896)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **errors: add new function Temporary(error) bool** [#37250](https://golang.org/issue/37250)
+  - no change in consensus; **declined**
+- **fmt: add flags to control printing of slices** [#52936](https://golang.org/issue/52936)
+  - no change in consensus; **declined**
+- **net/url: implement TextMarshaler/TextUnmarshaler interfaces for url.URL** [#52638](https://golang.org/issue/52638)
+  - duplicate of #10275
+- **x/net/html: Allow getting raw HTML attribute values on Tokenizer** [#52911](https://golang.org/issue/52911)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **crypto/x509: provide method for generating conformant serial numbers** [#52444](https://golang.org/issue/52444)
+  - **likely accept**; last call for comments ⏳
+- **reflect: add Value.SetZero** [#52376](https://golang.org/issue/52376)
+  - **likely accept**; last call for comments ⏳
+- **unsafe: add StringData, String, SliceData** [#53003](https://golang.org/issue/53003)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **math/big: add Int.AddInt64, Int.CmpInt64** [#29951](https://golang.org/issue/29951)
+  - **likely decline**; last call for comments ⏳
+- **net/http: context based graceful server shutdown** [#52805](https://golang.org/issue/52805)
+  - **likely decline**; last call for comments ⏳
+- **net/netip: add To6 to wrap an IPv4 address into an IPv6 one** [#51833](https://golang.org/issue/51833)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **add package for using SIMD instructions** [#53171](https://golang.org/issue/53171)
+  - added to minutes
+- **all: decide what can implement TextMarshaler/TextUnmarshaler** [#10275](https://golang.org/issue/10275)
+  - added to minutes
+- **clarify Go support policy for secondary ports** [#53383](https://golang.org/issue/53383)
+  - added to minutes
+- **cmd/go: add -reproducible flag** [#51812](https://golang.org/issue/51812)
+  - commented
+- **context: add APIs for writing and reading cancelation cause** [#51365](https://golang.org/issue/51365)
+  - discussion ongoing
+- **crypto/cipher: please export xorBytes** [#53021](https://golang.org/issue/53021)
+  - commented
+- **crypto: implement CMAC** [#52931](https://golang.org/issue/52931)
+  - discussion ongoing
+- **database/sql: add SetMaxBadConnRetries** [#52886](https://golang.org/issue/52886)
+  - discussion ongoing
+- **encoding/binary: 32-bit and 16-bit values** [#53353](https://golang.org/issue/53353)
+  - added to minutes
+  - commented
+- **encoding/json: add omitzero option** [#45669](https://golang.org/issue/45669)
+  - commented
+- **encoding/xml: Add (\*Encoder).Close() to check for unclosed elements** [#53346](https://golang.org/issue/53346)
+  - added to minutes
+- **go/token: add FileSet.RemoveFile method** [#53200](https://golang.org/issue/53200)
+  - added to minutes
+- **io/fs: add writable interfaces** [#45757](https://golang.org/issue/45757)
+  - discussion ongoing
+- **io: register close finalizers on Pipe** [#53362](https://golang.org/issue/53362)
+  - added to minutes
+  - commented
+- **net/http/httputil: replace Director with Rewrite** [#53002](https://golang.org/issue/53002)
+  - commented
+- **net/http: add ServeFSFile** [#51971](https://golang.org/issue/51971)
+  - discussion ongoing
+- **net/netip: add netip.Prefix.Range** [#53236](https://golang.org/issue/53236)
+  - added to minutes
+- **strconv: add ParseFloatPrefix** [#53340](https://golang.org/issue/53340)
+  - added to minutes
+- **strings: add func CommonPrefixLen(x, y string) int** [#53120](https://golang.org/issue/53120)
+  - commented
+- **testing: add Name to track file and line of test case declaration** [#52751](https://golang.org/issue/52751)
+  - discussion ongoing
+- **testing: add magic //go:cover ignore comment** [#53271](https://golang.org/issue/53271)
+  - added to minutes
+  - commented
+- **text/template: add "return" action** [#53015](https://golang.org/issue/53015)
+  - commented
+- **x/crypto/ssh: add  ServerConfig.HostKeyAlgorithms** [#52132](https://golang.org/issue/52132)
+  - commented
+
+**Hold**
+
+- **cmd/go: partial vendoring** [#52604](https://golang.org/issue/52604)
+  - put on hold

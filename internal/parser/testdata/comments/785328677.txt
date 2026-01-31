@@ -1,0 +1,38 @@
+**2021-02-24 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @spf13**
+
+- #44143 **all: document uses of context.Background by APIs**
+  - no change in consensus; **accepted** 🎉
+- #44505 **build: adopt Go 1.16 as bootstrap toolchain for Go 1.18**
+  - new proposal
+- #34055 **cmd/go: allow serving module under the subdirectory of git repository**
+  - commented
+- #43854 **cmd/go: opt-in for //go:embed to \*not\* ignore files and empty dirs**
+  - discussion ongoing
+- #43698 **cmd/vet: warn about "// go:" comments (with space)**
+  - retitled, commented
+- #43993 **cmd/vet: warn about using reflect.DeepEqual on reflect.Value**
+  - commented
+- #21865 **crypto: add facility for key erasure**
+  - discussion ongoing
+- #44221 **encoding/csv: add the ability to get the line number of a record**
+  - commented
+- #44571 **io: change Copy error to distinguish reader from writer**
+  - commented
+- #43947 **os/exec: on Windows use NeedCurrentDirectoryForExePathW for LookPath behavior**
+  - commented
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #44159 **sync: Allow (\*sync.Map).LoadOrStore uses closure to create new value like sync.Pool**
+  - **likely decline**; last call for comments ⏳
+- #44551 **testing: add fuzz test support**
+  - new proposal
+- #39034 **time: add Time.GoString method to help %#v**
+  - commented
+- #44196 **time: add Time.UnixMilli and Time.UnixMicro (like Time.UnixNano)**
+  - commented
+- #44226 **x/crypto/openpgp: mark as frozen and deprecated**
+  - commented
+- #44198 **x/crypto/ssh add sshutil.ReverseProxy: a single host reverse proxy for SSH**
+  - cc’ed owners
+- #29721 **x/sync/semaphore: make semaphore resizable**
+  - cc’ed owners

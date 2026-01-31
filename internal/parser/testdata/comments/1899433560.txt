@@ -1,0 +1,99 @@
+**2024-01-18 / @aclements, @bradfitz, @cherrymui, @griesemer, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **all: standardize -help behavior in go project tools** [#63659](https://go.dev/issue/63659)
+  - no change in consensus; **accepted** 🎉
+- **cmd/vet: warn when ignoring the return value of slices.Delete and friends** [#62729](https://go.dev/issue/62729)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto/ssh: add fipsonly mode** [#64769](https://go.dev/issue/64769)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/go/packages: publish DriverRequest, DriverResponse** [#64608](https://go.dev/issue/64608)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **cmd/benchstat: support optional ascii-only output** [#64210](https://go.dev/issue/64210)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **cmd/go: go build -json** [#62067](https://go.dev/issue/62067)
+  - **likely accept**; last call for comments ⏳
+- **os: add CopyFS** [#62484](https://go.dev/issue/62484)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/ssh: allow to send type specific data when accepting a channel** [#64211](https://go.dev/issue/64211)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/ssh: server side multi-step authentication** [#61447](https://go.dev/issue/61447)
+  - **likely accept**; last call for comments ⏳
+- **x/sys/unix: fsconfig system call support** [#59537](https://go.dev/issue/59537)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/analysis: include RelatedInformation in JSON output** [#64548](https://go.dev/issue/64548)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/ssa: add DomPostorder to Function** [#46941](https://go.dev/issue/46941)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmd/vet: warn about recover inside non-deferred function** [#64116](https://go.dev/issue/64116)
+  - **likely decline**; last call for comments ⏳
+- **spec: allow append(nil, arg)** [#61944](https://go.dev/issue/61944)
+  - **likely decline**; last call for comments ⏳
+- **time: handle time zones better in Parse and LoadLocation** [#63345](https://go.dev/issue/63345)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **archive/zip: support for encrypted archives** [#12081](https://go.dev/issue/12081)
+  - discussion ongoing
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - blocked on #61405
+- **cmd/go: add a way to query for non-defaults in the env** [#34208](https://go.dev/issue/34208)
+  - waiting on prototype
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **crypto/tls: on-disk configuration** [#60790](https://go.dev/issue/60790)
+  - commented
+- **debug/elf: add SHT\_GNU\_VERDEF section parsing** [#63952](https://go.dev/issue/63952)
+  - discussion ongoing
+- **go/doc: reconsider comment rewrites of \`''\` to \`”\`** [#54312](https://go.dev/issue/54312)
+  - discussion ongoing
+- **io: add ReadPeeker and implement Peek in bytes.Reader** [#63548](https://go.dev/issue/63548)
+  - commented
+- **iter: new package for iterators** [#61897](https://go.dev/issue/61897)
+  - blocked on #61405
+- **maps: add iterator-related functions** [#61900](https://go.dev/issue/61900)
+  - blocked on #61405
+- **maps: add maps.KeysSlice and maps.ValuesSlice** [#61626](https://go.dev/issue/61626)
+  - blocked on #61405
+- **os: treat all non-symlink reparse points as ModeIrregular on Windows** [#61893](https://go.dev/issue/61893)
+  - commented
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - blocked on #61405
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **slices: add Chunk function to divide \[]T into \[]\[]T chunks** [#53987](https://go.dev/issue/53987)
+  - blocked on #61405
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - blocked on #61405
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - blocked on #61405
+- **x/tools/go/analysis/analysisutil: publish ExtractDoc** [#61315](https://go.dev/issue/61315)
+  - discussion ongoing
+- **x/tools/txtar: add Extract function or method** [#61386](https://go.dev/issue/61386)
+  - waiting for #62484
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation

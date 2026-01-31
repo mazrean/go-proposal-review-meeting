@@ -1,0 +1,47 @@
+**2019-11-06 / @andybons, @bradfitz, @griesemer, @ianlancetaylor, @rsc**
+
+- #34877 **cmd/go: be consistent about not giving tests direct access to the terminal**
+  - discussion ongoing
+- #29062 **cmd/go: fail tests that invoke os.Exit(0) explicitly**
+  - commented
+- #35192 **cmd/go: default to -buildmode=pie on Windows**
+  - retitled
+  - commented
+  - **likely accept; last call for comments**
+- #34313 **create a package `runes` with functionality similar to `bytes` to work with rune slices**
+  - commented
+  - **likely decline; last call for comments**
+- #33323 **create contribution guidelines for technical writers**
+  - **closed as done**
+- #34701 **encoding/json: new MarshalAppender interface to make custom marshallers more efficient**
+  - commented
+  - **likely decline; last call for comments**
+- #34293 **go docs in diverse formats like json instead of just plain text**
+  - commented
+- #34680 **html/template: add ability to modify FuncMap after template parse**
+  - retitled
+  - commented
+- #34502 **net: add BufferedPipe (buffered Pipe)**
+  - discussion ongoing
+- #29678 **net: add MarshalText/UnmarshalText to HardwareAddr**
+  - commented
+- #35305 **net: prefer /etc/hosts over DNS when no /etc/nsswitch.conf is present**
+  - retitled
+  - commented
+- #34855 **net/url: add URL.Redacted to return password-free string**
+  - commented
+  - **likely accept; last call for comments**
+- #35150 **os, syscall: CreateFile() needs FILE_SHARE_\***
+  - commented
+- #33701 **runtime/pprof: add new WithLabels\* function that requires fewer allocations**
+  - commented
+- #6977 **spec: allow embedding overlapping interfaces**
+  - commented
+  - **likely accept; last call for comments**
+- #34681 **syscall: define Windows O_ALLOW_DELETE for use in os.OpenFile**
+  - commented
+- #28592 **testing: add -shuffle and -shuffleseed to shuffle tests**
+  - **no final comments; accepted 🥳**
+- #34684 **unsafe: clarify unsafe.Pointer rules for package syscall**
+  - retitled
+  - commented

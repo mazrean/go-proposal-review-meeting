@@ -1,0 +1,13 @@
+**2019-09-18 / @rsc, @bradfitz, @andybons, @griesemer, @ianlancetaylor, @spf13**
+
+- #28728 **context: enable first class citizenship of third party implementations**
+  - summarized
+  - suggested a way to avoid an API change
+  - asked for comments
+- #32634 **net/url: add Values.Decode**
+  - no final comments; declined
+- #32088 **syscall: windows Open() should set FILE_SHARE_DELETE**
+  - summarized
+  - asked for comments
+- #33740 **text/template: make "eq" support all comparable types**
+  - no final comments; accepted 🎉

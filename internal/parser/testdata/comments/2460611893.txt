@@ -1,0 +1,101 @@
+**2024-11-06 / @aclements, @adonovan, @bradfitz, @cherrymui, @ianlancetaylor**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+
+**Accepted**
+
+- **go/ast: add ParseDirective** [#68021](https://go.dev/issue/68021)
+  - no change in consensus; **accepted** 🎉
+- **os: safer file open functions** [#67002](https://go.dev/issue/67002)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- **all: end support for macOS 11 in Go 1.25** [#69839](https://go.dev/issue/69839)
+  - **likely accept**; last call for comments ⏳
+- **crypto/cipher: add NewGCMWithRandomNonce** [#69981](https://go.dev/issue/69981)
+  - **likely accept**; last call for comments ⏳
+- **crypto/sha3: import from x/crypto** [#69982](https://go.dev/issue/69982)
+  - **likely accept**; last call for comments ⏳
+- **crypto/tls: automatic CurvePreferences ordering** [#69393](https://go.dev/issue/69393)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/go/ssa/ssautil: Reachable: conservative approximation to reachable functions, runtime types** [#69291](https://go.dev/issue/69291)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- none
+
+**Active**
+
+- **cmd/go: add fips140 module selection mechanism** [#70200](https://go.dev/issue/70200)
+  - added to minutes
+- **cmd/go: add go mod verify -tag** [#68669](https://go.dev/issue/68669)
+  - discussion ongoing
+- **cmd/go: cache link output binaries in the build cache** [#69290](https://go.dev/issue/69290)
+  - discussion ongoing
+- **cmd/link: add wasminitmem and wasmmaxmem params** [#69018](https://go.dev/issue/69018)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd/vet: warn about structs marked json omitempty** [#51261](https://go.dev/issue/51261)
+  - discussion ongoing
+- **crypto/cipher: deprecate NewOFB, NewCFBDecrypter and NewCFBEncrypter** [#69445](https://go.dev/issue/69445)
+  - discussion ongoing
+- **crypto/hkdf: add package** [#61477](https://go.dev/issue/61477)
+  - discussion ongoing
+- **crypto/mlkem: new package** [#70122](https://go.dev/issue/70122)
+  - added to minutes
+- **crypto/pbkdf2: add package** [#69488](https://go.dev/issue/69488)
+  - commented
+- **crypto/rsa: allow hash.Hash for OAEP and MGF1 to be specified independently for encryption** [#65716](https://go.dev/issue/65716)
+  - discussion ongoing
+- **crypto/tls: SecP256r1MLKEM768 and X25519MLKEM768** [#69985](https://go.dev/issue/69985)
+  - commented
+- **crypto/x509: support Inhibit Any-policy and Policy Constraints** [#68484](https://go.dev/issue/68484)
+  - discussion ongoing
+- **crypto: mechanism to enable FIPS mode** [#70123](https://go.dev/issue/70123)
+  - added to minutes
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - discussion ongoing
+- **encoding/xml: add flag for stricter XML char parsing** [#69503](https://go.dev/issue/69503)
+  - discussion ongoing
+- **go/types: add Hash function** [#69420](https://go.dev/issue/69420)
+  - commented
+- **hash: add Clone and CloneXOF** [#69521](https://go.dev/issue/69521)
+  - added to minutes
+- **hash: add XOF interface** [#69518](https://go.dev/issue/69518)
+  - commented
+- **math: add Mean, Median, Mode, Variance, and StdDev** [#69264](https://go.dev/issue/69264)
+  - discussion ongoing
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - discussion ongoing
+- **runtime: don't enable process-wide long path support on Windows** [#66560](https://go.dev/issue/66560)
+  - discussion ongoing
+- **testing/synctest: new package for testing concurrent code** [#67434](https://go.dev/issue/67434)
+  - discussion ongoing
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **testing/synctest: experimental package for testing concurrent code** [#69687](https://go.dev/issue/69687)
+  - hold for implementation

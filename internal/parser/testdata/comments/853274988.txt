@@ -1,0 +1,62 @@
+**2021-06-02 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #46268 **add package containing fuzz function helpers**
+  - commented
+- #46229 **all: port to linux/loongarch64**
+  - commented
+- #45964 **all: raise minimum required Linux kernel version**
+  - commented
+- #46336 **bytes, strings: add Cut**
+  - added to minutes
+- #46226 **cmd/cgo: pkg-config support default pc file**
+  - no change in consensus; **declined**
+- #45963 **cmd/go/internal/test: add -vet=all sentinel**
+  - commented
+- #45713 **cmd/go: add a workspace mode**
+  - commented
+- #44435 **cmd/go: narrow 'mod download' default set**
+  - commented
+- #45458 **constraints: new package to define standard type parameter constraints**
+  - pending implementation
+- #46057 **crypto/x509: add CertPool.Equal**
+  - **likely accept**; last call for comments ⏳
+- #46287 **crypto/x509: use platform verifier on Windows, macOS and iOS**
+  - **likely accept**; last call for comments ⏳
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #45449 **encoding/json: add support of wrapped error in addErrorContext function**
+  - hold for #43126.
+- #46190 **fmt: add Printlnf, Fprintlnf, etc**
+  - no change in consensus; **declined**
+- #46485 **go/parser: add a SkipObjectResolution mode flag**
+  - added to minutes
+- #46518 **net/netaddr: add new IP address type, netaddr package**
+  - added to minutes
+- #45729 **net: deprecate Temporary error status**
+  - **likely accept**; last call for comments ⏳
+- #46293 **reflect: add MapIter.Reset**
+  - added to minutes
+- #46131 **reflect: add MapIter.SetKey, SetValue, and friends**
+  - **likely accept**; last call for comments ⏳
+- #46159 **regexp: support encoding.TextMarshaler**
+  - commented
+- #45955 **slices: new package to provide generic slice functions**
+  - discussion ongoing
+- #46505 **spec: allow conversion from slice to array**
+  - added to minutes
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - pending implementation
+- #45435 **sync: add Mutex.TryLock**
+  - no change in consensus; **accepted** 🎉
+- #46184 **syscall: ReleaseCallback for Windows**
+  - **likely decline**; last call for comments ⏳
+- #46259 **syscall: add Jail int32 to SysProcAttr on FreeBSD**
+  - **likely accept**; last call for comments ⏳
+- #46258 **syscall: add Pdeathsig to SysProcAttr for FreeBSD**
+  - no change in consensus; **accepted** 🎉
+- #36141 **time: add ExternalNow, etc for external time and timers**
+  - no change in consensus; **accepted** 🎉
+- #46232 **x/crypto/ssh: expose supported Kex algorithms**
+  - cc’ed owners
+- #46084 **x/sys/unix: add System V shared memory functions**
+  - **likely accept**; last call for comments ⏳

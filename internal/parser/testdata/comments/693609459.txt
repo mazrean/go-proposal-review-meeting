@@ -1,0 +1,56 @@
+**2020-09-16 / @rsc, @griesemer, @bradfitz, @ianlancetaylor, @andybons, @spf13**
+
+- #41385 **all: add macOS ARM64 port**
+  - **likely accept**; last call for comments ⏳
+- #40995 **all: add openbsd/mips64 port**
+  - **likely accept**; last call for comments ⏳
+- #41130 **builtin: delete returns bool**
+  - proposal retracted by author; **declined**
+- #41337 **cmd/cgo: get rid of CFType, JNI, EGL unsafe.Pointer => uintptr special cases**
+  - commented
+- #41145 **cmd/go: allow -toolexec tools to opt in to build caching**
+  - commented
+- #37519 **cmd/go: deprecate -insecure on go get**
+  - commented
+- #40323 **cmd/go: notify about newer major versions**
+  - **likely decline**; last call for comments ⏳
+- #41184 **cmd/go: start conversion to bug-resistant //go:build constraints**
+  - **likely accept**; last call for comments ⏳
+- #40701 **cmd/vet: warn about variables/values of type reflect.{Slice,String}Header**
+  - **likely accept**; last call for comments ⏳
+- #32406 **crypto/tls: add (\*tls.Conn).HandshakeContext and add context to ClientHelloInfo, CertificateRequestInfo**
+  - commented
+- #41066 **crypto/tls: export/replace errClosed**
+  - **likely accept**; last call for comments ⏳
+- #40171 **crypto: import fiat-crypto implementations**
+  - commented
+- #40511 **database/sql: ScannerContext, ValuerContext support**
+  - no change in consensus; **declined**
+- #41196 **doc: require auto-generated DO NOT EDIT comment at top of file**
+  - **likely accept**; last call for comments ⏳
+- #41191 **embed, cmd/go: add support for embedded files**
+  - **likely accept**; last call for comments ⏳
+- #41162 **encoding/json: make encoders set Content-Type**
+  - proposal retracted by author; **declined**
+- #41190 **io/fs: add file system interfaces**
+  - commented
+- #41324 **net/http/pprof: provide a mechanism to render on /debug/pprof profiles than those that invoke pprof.NewProfile**
+  - commented
+- #41048 **net/http: add Transport.GetProxyConnectHeader**
+  - commented
+- #41265 **os: fast, comprehensive directory API**
+  - commented
+- #41265 **os: fast, comprehensive directory API**
+  - commented
+- #41188 **os: make Readdir return lazy FileInfo implementations**
+  - discussion ongoing
+- #41054 **runtime: allow termination of blocked syscalls**
+  - **likely decline**; last call for comments ⏳
+- #39214 **testing: add CPU name to standard benchmark labels**
+  - commented
+- #41260 **testing: add TB.Setenv()**
+  - commented
+- #39726 **time: Duration should have .Ceil method**
+  - **likely decline**; last call for comments ⏳
+- #19367 **unsafe: add Slice(ptr \*T, len anyIntegerType) \[]T**
+  - discussion ongoing

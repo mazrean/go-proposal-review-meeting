@@ -1,0 +1,27 @@
+[_As noted last week, many of us are away. This partial review via email considered only last week's likely accepts. Two remain likely accept as discussion finalizes. The others are accepted. The next proposal review will be November 29._]
+
+**2023-11-15 / @cherrymui, @griesemer, @rsc via email**
+
+**Accepted**
+
+- **cmd/doc: support 'go doc package@version' syntax** [#63696](https://go.dev/issue/63696)
+  - no change in consensus; **accepted** 🎉
+- **go/types: API changes to support explicit Alias nodes** [#63223](https://go.dev/issue/63223)
+  - no change in consensus; **accepted** 🎉
+- **go/types: add Info.PkgName method** [#62037](https://go.dev/issue/62037)
+  - no change in consensus; **accepted** 🎉
+- **runtime: software floating point for GOARM=6, 7 (not only GOARM=5)** [#61588](https://go.dev/issue/61588)
+  - no change in consensus; **accepted** 🎉
+- **testing: annotate output text type** [#62728](https://go.dev/issue/62728)
+  - no change in consensus; **accepted** 🎉
+- **testing: report non-zero exit status in -json output** [#61839](https://go.dev/issue/61839)
+  - no change in consensus; **accepted** 🎉
+- **x/tools/txtar: implement fs.FS** [#44158](https://go.dev/issue/44158)
+  - no change in consensus; **accepted** 🎉
+
+**Likely Accept**
+
+- **x/crypto/ssh: expose negotiated algorithms** [#58523](https://go.dev/issue/58523)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/cmd/deadcode: add new command** [#63501](https://go.dev/issue/63501)
+  - **likely accept**; last call for comments ⏳

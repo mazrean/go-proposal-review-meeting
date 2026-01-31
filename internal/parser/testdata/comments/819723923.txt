@@ -1,0 +1,60 @@
+**2021-04-14 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons, @spf13**
+
+- #45038 **add bytes.Copy function**
+  - commented
+- #43854 **cmd/go: add //go:embed all:<pattern> to allow . and \_ matches**
+  - no change in consensus; **accepted** 🎉
+- #44649 **cmd/go: introduce 'module GOPATH' to allow transition from GOPATH to modules**
+  - discussion ongoing
+- #45108 **cmd/vet: diagnose marshal of field of type error**
+  - discussion ongoing
+- #28308 **cmd/vet: flag using %s:%d to construct network addresses**
+  - no change in consensus; **accepted** 🎉
+- #45051 **cmd/vet: warn about cross package struct conversion**
+  - **likely decline**; last call for comments ⏳
+- #44992 **crypto/elliptic: bake 88 kB p256Precomputed table into binary on iOS**
+  - **likely accept**; last call for comments ⏳
+- #29257 **crypto/tls: allow access to net.Conn underneath tls.Conn**
+  - commented
+- #45430 **crypto/tls: deprecate PreferServerCipherSuites and CipherSuites ordering**
+  - **likely accept**; last call for comments ⏳
+- #45428 **crypto/tls: disable client-side TLS 1.0 and TLS 1.1**
+  - commented
+- #41682 **crypto/x509: stop verifying SHA-1 signatures**
+  - commented
+- #21865 **crypto: add facility for key erasure**
+  - discussion ongoing
+- #45124 **format all shell scripts in Go repo with shfmt**
+  - **likely decline**; last call for comments ⏳
+- #44905 **go/doc: inline type alias documentation**
+  - commented
+- #44571 **io: change Copy error to distinguish reader from writer**
+  - no change in consensus; **declined**
+- #45100 **net/url: add Values.Has(key)**
+  - commented
+- #25192 **net/url: don't parse ';' as a separator in query string**
+  - discussion ongoing
+- #30999 **net: reject leading zeros in IP address parsers**
+  - commented
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - discussion ongoing
+- #36141 **runtime: "real time" timer semantics**
+  - commented
+- #45328 **runtime: add way to clear and reuse a map's working storage**
+  - **likely decline**; last call for comments ⏳
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - commented
+- #45033 **strconv: add UnquoteLeading**
+  - commented
+- #45200 **testing/cmp: add new package**
+  - discussion ongoing
+- #45403 **testing: add more support to automatically cleanup temporary resources or temporary changes to the global environment**
+  - **likely decline**; last call for comments ⏳
+- #38627 **text/template/parse: add a SkipFuncCheck Mode flag to disable function checking during parse**
+  - no change in consensus; **accepted** 🎉
+- #44940 **unicode/utf16: add RuneLen**
+  - **likely accept**; last call for comments ⏳
+- #45264 **unicode: add emoji properties**
+  - commented
+- #38978 **x/crypto/acme: support subproblems**
+  - no change in consensus; **accepted** 🎉

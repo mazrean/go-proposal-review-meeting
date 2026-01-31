@@ -1,0 +1,69 @@
+**2025-10-08 / @aclements, @adonovan, @bradfitz, @cherrymui, @griesemer, @ianlancetaylor, @neild, @rolandshoemaker**
+
+**Discussions (not yet proposals)**
+
+- **memory regions** [#70257](https://go.dev/issue/70257)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **gabyhelp feedback** [#67901](https://go.dev/issue/67901)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **x/oscar feedback** [#68490](https://go.dev/issue/68490)
+
+**Accepted**
+
+- **cmd/go: fix: apply fixes from modernizers and gofix analyzers** [#71859](https://go.dev/issue/71859)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- none
+
+**Likely Accept**
+
+- none
+
+**Likely Decline**
+
+- **runtime: expose \`goid\` and \`gopc\` in \`GoroutineProfile\`** [#59663](https://go.dev/issue/59663)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **all: add bare metal support** [#73608](https://go.dev/issue/73608)
+  - commented
+- **bytes: add Buffer.Peek** [#73794](https://go.dev/issue/73794)
+  - commented
+- **container/hash: Map, a generic hash table with custom hash function and equivalence relation** [#69559](https://go.dev/issue/69559)
+  - discussion ongoing
+- **debug/pe: add BigObj COFF support via new fields on File struct** [#75659](https://go.dev/issue/75659)
+  - commented
+- **must: Do** [#54297](https://go.dev/issue/54297)
+  - discussion ongoing
+- **runtime/mainthread: add mainthread.Do for mediating access to the main thread** [#70089](https://go.dev/issue/70089)
+  - commented
+- **simd: architecture-specific SIMD intrinsics under a GOEXPERIMENT** [#73787](https://go.dev/issue/73787)
+  - commented
+- **spec: direct reference to embedded fields in struct literals** [#9859](https://go.dev/issue/9859)
+  - discussion ongoing
+- **x/net/http2: add support for RFC 9218 priorities** [#75500](https://go.dev/issue/75500)
+  - discussion ongoing
+
+**Hold**
+
+- **cmd/{go,cgo,compile}: change interpretation of relative //line directives** [#70478](https://go.dev/issue/70478)
+  - hold for implementation
+- **crypto/tls: dynamically reload root certificate authorities** [#64796](https://go.dev/issue/64796)
+  - put on hold
+- **debug/bisect: publish x/tools/internal/bisect** [#67140](https://go.dev/issue/67140)
+  - hold for @rsc
+- **encoding/{base32,base64}: constant-time implementations of RFC 4648 codecs for use with cryptography keys** [#73901](https://go.dev/issue/73901)
+  - hold for implementation
+- **os: convenience function for one-off Root operations** [#73168](https://go.dev/issue/73168)
+  - put on hold
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - hold for @rsc
+- **x/net/http2: deprecate WriteScheduler** [#67817](https://go.dev/issue/67817)
+  - hold for #75500
+- **x/net/http3: add experimental HTTP/3 implementation** [#70914](https://go.dev/issue/70914)
+  - put on hold
+
+

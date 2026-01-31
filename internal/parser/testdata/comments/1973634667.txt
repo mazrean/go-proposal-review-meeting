@@ -1,0 +1,105 @@
+**2024-02-29 / @aclements, @adonovan, @andybons, @bradfitz, @cherrymui, @griesemer, @rolandshoemaker, @rsc**
+
+**Discussions (not yet proposals)**
+
+- **encoding/json/v2** [#63397](https://go.dev/issue/63397)
+- **gonew: templates for new modules** [#61669](https://go.dev/issue/61669)
+- **metrics for the standard library** [#61638](https://go.dev/issue/61638)
+- **net/http: move HTTP/2 into the standard library** [#60746](https://go.dev/issue/60746)
+- **codereview: should the Go project stop importing GitHub PRs?** [#61182](https://go.dev/issue/61182)
+
+**Accepted**
+
+- **bytes, strings: add iterator forms of existing functions** [#61901](https://go.dev/issue/61901)
+  - no change in consensus; **accepted** 🎉
+- **slices: add iterator-related functions** [#61899](https://go.dev/issue/61899)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **io: add ReadPeeker and implement Peek in bytes.Reader** [#63548](https://go.dev/issue/63548)
+  - no change in consensus; **declined**
+- **slices: add Divide (split into equally sized chunks)** [#65523](https://go.dev/issue/65523)
+  - no change in consensus; **declined**
+- **spec: make len(a), cap(a) const for some type parameters** [#65592](https://go.dev/issue/65592)
+  - declined as infeasible
+- **x/tools/cmd/getgo: document and possibly ship in distributions** [#27700](https://go.dev/issue/27700)
+  - duplicate of #60951
+
+**Likely Accept**
+
+- **archive/tar: add FileInfoNames interface** [#50102](https://go.dev/issue/50102)
+  - **likely accept**; last call for comments ⏳
+- **cmd/compile: add go:wasmexport directive** [#65199](https://go.dev/issue/65199)
+  - **likely accept**; last call for comments ⏳
+- **go/types: add Func.Signature method** [#65772](https://go.dev/issue/65772)
+  - **likely accept**; last call for comments ⏳
+- **net/http/httptest: add NewRequestWithContext** [#59473](https://go.dev/issue/59473)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/acme/autocert: handle short cert lifetimes** [#64997](https://go.dev/issue/64997)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto/cryptobyte: support reading implicitly-tagged values** [#64811](https://go.dev/issue/64811)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto: freeze and deprecate a few more packages** [#65250](https://go.dev/issue/65250)
+  - **likely accept**; last call for comments ⏳
+- **x/crypto: migrate packages to the standard library** [#65269](https://go.dev/issue/65269)
+  - **likely accept**; last call for comments ⏳
+- **x/tools/cmd/guru: tag and delete** [#65880](https://go.dev/issue/65880)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **runtime/debug: add SetCrashHeader function** [#64590](https://go.dev/issue/64590)
+  - **likely decline**; last call for comments ⏳
+- **spec: support int(bool) conversions** [#64825](https://go.dev/issue/64825)
+  - **likely decline**; last call for comments ⏳
+- **time: add "1136214245" as layout string for unix timestamp** [#65665](https://go.dev/issue/65665)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **build: promote windows/arm64 to first class port** [#65284](https://go.dev/issue/65284)
+  - added to minutes
+- **cmd/go: add a way to query for non-defaults in the env** [#34208](https://go.dev/issue/34208)
+  - discussion ongoing
+- **cmd/test2json: Allow Go Tests to Pass Metadata** [#43936](https://go.dev/issue/43936)
+  - discussion ongoing
+- **cmd/vet: report use of too-new standard library symbols** [#46136](https://go.dev/issue/46136)
+  - added to minutes
+- **crypto/tls: support Encrypted Client Hello in clients** [#63369](https://go.dev/issue/63369)
+  - added to minutes
+- **debug/elf: add SHT\_GNU\_VERDEF section parsing** [#63952](https://go.dev/issue/63952)
+  - commented
+- **net/http: add ParseCookie, ParseSetCookie** [#66008](https://go.dev/issue/66008)
+  - added to minutes
+- **net/http: add field Cookie.DoubleQuoted bool** [#46443](https://go.dev/issue/46443)
+  - added to minutes
+- **net/http: support partitioned cookies** [#62490](https://go.dev/issue/62490)
+  - added to minutes
+- **net: add Underlying field and Unwrap method to \*DNSError** [#63116](https://go.dev/issue/63116)
+  - added to minutes
+- **reflect: add UnsafeSlice function** [#61308](https://go.dev/issue/61308)
+  - discussion ongoing
+- **regexp: add iterator forms of matching methods** [#61902](https://go.dev/issue/61902)
+  - discussion ongoing
+- **runtime/trace: flight recording** [#63185](https://go.dev/issue/63185)
+  - waiting on implementation experience
+- **spec: range over nil function values should not panic** [#65629](https://go.dev/issue/65629)
+  - added to minutes
+- **testing: Add T.Output() etc** [#59928](https://go.dev/issue/59928)
+  - discussion ongoing
+- **x/exp/xiter: new package with iterator adapters** [#61898](https://go.dev/issue/61898)
+  - discussion ongoing
+- **x/tools/go/analysis: add field Pass.ReadFile func** [#62292](https://go.dev/issue/62292)
+  - added to minutes
+- **x/tools/go/analysis: identify test-only packages** [#65749](https://go.dev/issue/65749)
+  - added to minutes
+- **x/tools/go/cfg: add CFG.Dot method** [#65754](https://go.dev/issue/65754)
+  - added to minutes
+
+**Hold**
+
+- **cmd/fix: automate migrations for simple deprecations** [#32816](https://go.dev/issue/32816)
+  - hold for implementation
+- **cmd/go: enable GOCACHEPROG by default** [#64876](https://go.dev/issue/64876)
+  - hold for tests and docs

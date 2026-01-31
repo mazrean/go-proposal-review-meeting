@@ -1,0 +1,86 @@
+**2021-11-10 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+**Accepted**
+
+- **reflect: add reflect.Value.Grow** [#48000](https://golang.org/issue/48000)
+  - no change in consensus; **accepted** 🎉
+- **reflect: permit Value.Bytes (but not SetBytes) on addressable byte arrays** [#47066](https://golang.org/issue/47066)
+  - no change in consensus; **accepted** 🎉
+- **x/crypto/acme: delete a bunch of ACMEv1 code** [#46654](https://golang.org/issue/46654)
+  - no change in consensus; **accepted** 🎉
+
+**Declined**
+
+- **add shape package to stdlib for holding gcshape instance types** [#49268](https://golang.org/issue/49268)
+  - proposal retracted by author; **declined**
+- **errors: add Like for testing that error values appear as expected** [#49172](https://golang.org/issue/49172)
+  - no change in consensus; **declined**
+
+**Likely Accept**
+
+- **mime/multipart: add FileContentDisposition** [#46771](https://golang.org/issue/46771)
+  - **likely accept**; last call for comments ⏳
+- **net/http: define and export RequestBodyTooLargeError** [#30715](https://golang.org/issue/30715)
+  - **likely accept**; last call for comments ⏳
+- **net/url: add JoinPath, URL.JoinPath** [#47005](https://golang.org/issue/47005)
+  - **likely accept**; last call for comments ⏳
+
+**Likely Decline**
+
+- **cmd/go: make go get leave go.sum in a tidy state** [#49300](https://golang.org/issue/49300)
+  - **likely decline**; last call for comments ⏳
+- **database/sql: Add MaxRepreparedStatements and MaxRetries to DBStats** [#49078](https://golang.org/issue/49078)
+  - **likely decline**; last call for comments ⏳
+- **go/test: add a package to facilitate test tooling** [#47101](https://golang.org/issue/47101)
+  - **likely decline**; last call for comments ⏳
+- **net: customize dnsConfig** [#49096](https://golang.org/issue/49096)
+  - **likely decline**; last call for comments ⏳
+- **os/exec: allow setting Context in Cmd** [#46699](https://golang.org/issue/46699)
+  - **likely decline**; last call for comments ⏳
+- **reflect: add Overflows method on reflect.Value** [#46772](https://golang.org/issue/46772)
+  - **likely decline**; last call for comments ⏳
+- **x/net/html: add PrependChild and InsertAfter to Node** [#46960](https://golang.org/issue/46960)
+  - **likely decline**; last call for comments ⏳
+
+**Active**
+
+- **cmd/compile: clarify whether "-l" and "-N" compiler flags are actually supported** [#49390](https://golang.org/issue/49390)
+  - added to minutes
+- **cmd/go: support compiling all tests without running** [#15513](https://golang.org/issue/15513)
+  - commented
+- **cmd/go: track tool dependencies in go.mod** [#48429](https://golang.org/issue/48429)
+  - discussion ongoing
+- **context: add WithCancelReason** [#46273](https://golang.org/issue/46273)
+  - added to minutes
+- **crypto/tls: add VersionName function to return a string version of the TLS Version** [#46308](https://golang.org/issue/46308)
+  - added to minutes
+- **crypto/tls: expose all presented certs in error type on handshake failure** [#48152](https://golang.org/issue/48152)
+  - discussion ongoing
+- **crypto/tls: implement RFC7627** [#43922](https://golang.org/issue/43922)
+  - discussion ongoing
+- **include support for DTLS in stdlib or x/crypto** [#46915](https://golang.org/issue/46915)
+  - discussion ongoing
+- **mime/multipart: allow specifying content type in Writer.CreateFormFile** [#49329](https://golang.org/issue/49329)
+  - added to minutes
+- **net: add context-aware Dialer methods DialTCP, DialUDP, DialIP, DialUnix** [#49097](https://golang.org/issue/49097)
+  - commented
+- **reflect: add \`Value.CallInto\`** [#49340](https://golang.org/issue/49340)
+  - added to minutes
+- **runtime: add block/wake function** [#46431](https://golang.org/issue/46431)
+  - added to minutes
+- **runtime: automatically bump RLIMIT\_NOFILE on Linux?** [#46279](https://golang.org/issue/46279)
+  - added to minutes
+- **strings: missing mirror functions** [#46514](https://golang.org/issue/46514)
+  - added to minutes
+- **syscall: add landlock support on Linux** [#47049](https://golang.org/issue/47049)
+  - commented
+- **x/crypto/bcrypt: make compatible with OpenBSD** [#46940](https://golang.org/issue/46940)
+  - discussion ongoing
+- **x/crypto/ssh: add NewSharedClientConn** [#32958](https://golang.org/issue/32958)
+  - discussion ongoing
+- **x/net/http2: support http.Hijacker** [#46319](https://golang.org/issue/46319)
+  - added to minutes
+- **x/text: expose MIBenum via identifier package** [#47577](https://golang.org/issue/47577)
+  - discussion ongoing
+- **x/tools/go/analysis/passes/errorstringcompare: new check that warns when programmers compare against Error() strings** [#49356](https://golang.org/issue/49356)
+  - added to minutes

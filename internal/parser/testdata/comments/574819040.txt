@@ -1,0 +1,51 @@
+**2020-01-15 / @rsc, @ianlancetaylor, @griesemer, @bradfitz, @spf13**
+
+- #25348 **allow && and || operators and parentheses in build tags**
+  - changed back to active status
+  - discussion ongoing
+- #34375 **bytes: Introduce a FindFirstMultiByteChar API**
+  - no change in consensus; **declined**
+- #35008 **cmd/go: add GOMIPS64=r2 for mips64r2 code generation**
+  - no change in consensus; **declined**
+- #36266 **cmd/go: bundle GOROOT in cmd/go tool**
+  - no change in consensus; **declined**
+- #34798 **cmd/vet: magic comment to check that variable is stack allocated**
+  - **likely decline**; last call for comments ⏳
+- #14757 **crypto, hash: add WriteString support**
+  - **likely decline**; last call for comments ⏳
+- #23514 **crypto/cipher: ability to use AEAD mode as block mode**
+  - **likely decline**; last call for comments ⏳
+- #33564 **crypto/ecdsa: make PublicKey implement json.Unmarshaler and json.Marshaler**
+  - **likely accept**; last call for comments ⏳
+- #18482 **crypto/tls: add Dialer with Dial, DialContext methods**
+  - retitled
+  - **likely accept**; last call for comments ⏳
+- #35697 **database/sql: expose convertAssign functionality in an Any type**
+  - **likely decline**; last call for comments ⏳
+- #35061 **net: add LookupSOA function**
+  - **likely decline**; last call for comments ⏳
+- #33136 **reflect: add Value.SetZero**
+  - commented
+- #33060 **reflect: add mechanisms to allocate large slices only if possible**
+  - no change in consensus; **declined**
+- #32115 **runtime: KeepAlive should perhaps keep things from being moved**
+  - **likely decline**; last call for comments ⏳
+- #29982 **sizeof: new package with constants for Int, Uint, Uintptr, Int8, Float64, etc**
+  - commented
+- #36290 **strings: add (\*Reader).String()**
+  - closed by reporter
+- #36349 **sync: add (\*WaitGroup).WaitUnlock(l Locker)**
+  - no change in consensus; **declined**
+- #34681 **syscall: define Windows O\_ALLOW\_DELETE for use in os.OpenFile**
+  - no change in consensus; **declined**
+- #34306 **testing: flag show skipped**
+  - commented
+- #35852 **testing: support running examples in parallel**
+  - no change in consensus; **declined**
+- #33184 **time: add Ticker.Reset**
+  - retitled
+  - **likely accept**; last call for comments ⏳
+- #29289 **wiki: CodeReviewComments change: Discourage duplicate imports with different names**
+  - commented
+- #33629 **x/playground: allow selecting supported versions of Go**
+  - **likely accept**; last call for comments ⏳

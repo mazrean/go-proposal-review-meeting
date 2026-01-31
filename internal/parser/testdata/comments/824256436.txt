@@ -1,0 +1,76 @@
+**2021-04-21 / @rsc, @griesemer, @ianlancetaylor, @bradfitz, @andybons**
+
+- #45038 **bytes, strings: add Clone**
+  - commented
+- #45611 **cmd/go: allow GOPRIVATE to provide source repository URI**
+  - discussion ongoing
+- #44649 **cmd/go: introduce 'module GOPATH' to allow transition from GOPATH to modules**
+  - commented
+- #40356 **cmd/vet: ensure errors implement Is, As, and Unwrap anonymous interfaces**
+  - added to minutes
+- #45051 **cmd/vet: warn about cross package struct conversion**
+  - no change in consensus; **declined**
+- #44992 **crypto/elliptic: bake 88 kB p256Precomputed table into binary on iOS**
+  - no change in consensus; **accepted** 🎉
+- #29257 **crypto/tls: allow access to net.Conn underneath tls.Conn**
+  - commented
+- #45430 **crypto/tls: deprecate PreferServerCipherSuites and CipherSuites ordering**
+  - no change in consensus; **accepted** 🎉
+- #45428 **crypto/tls: disable client-side TLS 1.0 and TLS 1.1**
+  - **likely accept**; last call for comments ⏳
+- #41682 **crypto/x509: reject SHA-1 signatures in Verify**
+  - **likely accept**; last call for comments ⏳
+- #21865 **crypto: add facility for key erasure**
+  - commented
+- #45628 **encoding/xml: expose decoder line number**
+  - discussion ongoing
+- #45568 **errors: export Is and/or As in an interface**
+  - duplicate of #39539
+- #45124 **format all shell scripts in Go repo with shfmt**
+  - no change in consensus; **declined**
+- #44447 **go/doc: add support for sections**
+  - hold for #45533
+- #44905 **go/doc: inline type alias documentation**
+  - **likely decline**; last call for comments ⏳
+- #45533 **go/doc: support explicit hotlinking syntax**
+  - added to minutes
+- #44808 **image, image/draw: add interfaces for using RGBA64 directly**
+  - added to minutes
+- #45455 **math/bits: add Deposit and Extract functions**
+  - commented
+- #45469 **net/http/httputil: add a ModifyRequest method to ReverseProxy**
+  - discussion ongoing
+- #45460 **net/http: allow customizing proxy CONNECT url**
+  - commented
+- #45100 **net/url: add Values.Has(key)**
+  - **likely accept**; last call for comments ⏳
+- #25192 **net/url: don't parse ';' as a separator in query string**
+  - commented
+- #30999 **net: reject leading zeros in IP address parsers**
+  - **likely accept**; last call for comments ⏳
+- #42888 **runtime/debug: allow setting fd for crash output**
+  - commented
+- #36141 **runtime: "real time" timer semantics**
+  - commented
+- #45328 **runtime: add way to clear and reuse a map's working storage**
+  - no change in consensus; **declined**
+- #45346 **spec: generics: use type sets to remove type keyword in constraints**
+  - discussion ongoing
+- #45033 **strconv: add QuotedPrefix**
+  - **likely accept**; last call for comments ⏳
+- #45200 **testing/cmp: add new package**
+  - discussion ongoing
+- #45562 **testing: add TB.WriteFile(name string, data string) string**
+  - discussion ongoing
+- #45650 **testing: add conditional-error helpers to T and B**
+  - discussion ongoing
+- #45403 **testing: add more support to automatically cleanup temporary resources or temporary changes to the global environment**
+  - no change in consensus; **declined**
+- #45645 **time: also support 31 as day in time layout**
+  - **likely decline**; last call for comments ⏳
+- #45571 **time: context-aware time Ticker and Timer**
+  - discussion ongoing
+- #44940 **unicode/utf16: add RuneLen**
+  - no change in consensus; **accepted** 🎉
+- #45264 **unicode: add emoji properties**
+  - **likely decline**; last call for comments ⏳
