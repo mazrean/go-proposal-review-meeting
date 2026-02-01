@@ -46,14 +46,14 @@ Go Proposal Weekly Digestシステムの実装タスク。7つの要件を8つ�
   - ※ 2.1, 2.2に依存
   - _Requirements: 1.1, 1.2, 1.4, 1.5_
 
-- [ ] 2.4 Parserドメインの単体テスト
+- [x] 2.4 Parserドメインの単体テスト
   - MinutesParserの各ステータスパターンのパース検証
   - StateManagerの状態読み書き、初回実行時の挙動テスト
   - エラーケース（不正フォーマット、API失敗）のテスト
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
 
 - [ ] 3. Contentドメインの実装
-- [ ] 3.1 週次コンテンツ構造の管理
+- [x] 3.1 週次コンテンツ構造の管理
   - 週ごとのディレクトリ構造（content/YYYY/WXX/）を作成
   - 各proposalのMarkdownファイル生成
   - frontmatter形式でメタデータ（proposal番号、タイトル、ステータス、リンク）を出力
