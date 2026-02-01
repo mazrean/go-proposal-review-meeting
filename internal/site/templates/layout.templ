@@ -80,6 +80,118 @@ templ BaseLayoutWithConfig(config LayoutConfig) {
 				.link-on-blue { color: var(--text-on-blue); }
 				.link-on-blue:hover { text-decoration: underline; }
 				.header-title { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+
+				/* Prose styles for Markdown content */
+				.prose {
+					color: var(--text-secondary);
+					line-height: 1.75;
+				}
+				.prose p { margin: 0 0 1rem 0; }
+				.prose p:last-child { margin-bottom: 0; }
+				.prose h2 { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; }
+				.prose h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 1.25rem 0 0.5rem 0; }
+				.prose h4 { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin: 1rem 0 0.5rem 0; }
+				.prose ul, .prose ol { margin: 0.5rem 0 1rem 0; padding-left: 1.5rem; }
+				.prose li { margin: 0.25rem 0; }
+				.prose strong { font-weight: 600; color: var(--text-primary); }
+				.prose a { color: var(--go-blue); }
+				.prose a:hover { color: var(--go-blue-dark); text-decoration: underline; }
+				.prose blockquote {
+					border-left: 4px solid var(--go-blue);
+					padding-left: 1rem;
+					margin: 1rem 0;
+					color: var(--text-muted);
+					font-style: italic;
+				}
+
+				/* Code styles */
+				.prose code {
+					font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+					font-size: 0.875em;
+					background: var(--bg-secondary);
+					padding: 0.125rem 0.375rem;
+					border-radius: 0.25rem;
+					color: var(--text-primary);
+				}
+				.prose pre {
+					background: #f6f8fa;
+					border: 1px solid var(--border-color);
+					border-radius: 0.5rem;
+					padding: 1rem;
+					overflow-x: auto;
+					margin: 1rem 0;
+				}
+				.prose pre code {
+					background: transparent;
+					padding: 0;
+					font-size: 0.875rem;
+					line-height: 1.5;
+				}
+
+				/* Chroma syntax highlighting (github style) */
+				.chroma { background: #f6f8fa; }
+				.chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }
+				.chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+				.chroma .lntd:first-child { width: 10px; user-select: none; }
+				.chroma .lntd:last-child { width: auto; }
+				.chroma .hl { background-color: #ffffcc; display: block; width: 100%; }
+				.chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; color: #7f7f7f; }
+				.chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; color: #7f7f7f; }
+				.chroma .k { color: #d73a49; } /* Keyword */
+				.chroma .kc { color: #d73a49; } /* KeywordConstant */
+				.chroma .kd { color: #d73a49; } /* KeywordDeclaration */
+				.chroma .kn { color: #d73a49; } /* KeywordNamespace */
+				.chroma .kp { color: #d73a49; } /* KeywordPseudo */
+				.chroma .kr { color: #d73a49; } /* KeywordReserved */
+				.chroma .kt { color: #d73a49; } /* KeywordType */
+				.chroma .na { color: #005cc5; } /* NameAttribute */
+				.chroma .nb { color: #005cc5; } /* NameBuiltin */
+				.chroma .nc { color: #6f42c1; } /* NameClass */
+				.chroma .no { color: #005cc5; } /* NameConstant */
+				.chroma .nd { color: #6f42c1; } /* NameDecorator */
+				.chroma .ni { color: #24292e; } /* NameEntity */
+				.chroma .ne { color: #6f42c1; } /* NameException */
+				.chroma .nf { color: #6f42c1; } /* NameFunction */
+				.chroma .nl { color: #005cc5; } /* NameLabel */
+				.chroma .nn { color: #24292e; } /* NameNamespace */
+				.chroma .nt { color: #22863a; } /* NameTag */
+				.chroma .nv { color: #e36209; } /* NameVariable */
+				.chroma .s { color: #032f62; } /* LiteralString */
+				.chroma .sa { color: #032f62; } /* LiteralStringAffix */
+				.chroma .sb { color: #032f62; } /* LiteralStringBacktick */
+				.chroma .sc { color: #032f62; } /* LiteralStringChar */
+				.chroma .dl { color: #032f62; } /* LiteralStringDelimiter */
+				.chroma .sd { color: #6a737d; } /* LiteralStringDoc */
+				.chroma .s2 { color: #032f62; } /* LiteralStringDouble */
+				.chroma .se { color: #032f62; } /* LiteralStringEscape */
+				.chroma .sh { color: #032f62; } /* LiteralStringHeredoc */
+				.chroma .si { color: #032f62; } /* LiteralStringInterpol */
+				.chroma .sx { color: #032f62; } /* LiteralStringOther */
+				.chroma .sr { color: #032f62; } /* LiteralStringRegex */
+				.chroma .s1 { color: #032f62; } /* LiteralStringSingle */
+				.chroma .ss { color: #032f62; } /* LiteralStringSymbol */
+				.chroma .m { color: #005cc5; } /* LiteralNumber */
+				.chroma .mb { color: #005cc5; } /* LiteralNumberBin */
+				.chroma .mf { color: #005cc5; } /* LiteralNumberFloat */
+				.chroma .mh { color: #005cc5; } /* LiteralNumberHex */
+				.chroma .mi { color: #005cc5; } /* LiteralNumberInteger */
+				.chroma .il { color: #005cc5; } /* LiteralNumberIntegerLong */
+				.chroma .mo { color: #005cc5; } /* LiteralNumberOct */
+				.chroma .o { color: #d73a49; } /* Operator */
+				.chroma .ow { color: #d73a49; } /* OperatorWord */
+				.chroma .c { color: #6a737d; } /* Comment */
+				.chroma .ch { color: #6a737d; } /* CommentHashbang */
+				.chroma .cm { color: #6a737d; } /* CommentMultiline */
+				.chroma .c1 { color: #6a737d; } /* CommentSingle */
+				.chroma .cs { color: #6a737d; } /* CommentSpecial */
+				.chroma .cp { color: #d73a49; } /* CommentPreproc */
+				.chroma .cpf { color: #032f62; } /* CommentPreprocFile */
+				.chroma .gd { color: #b31d28; background-color: #ffeef0; } /* GenericDeleted */
+				.chroma .ge { font-style: italic; } /* GenericEmphasis */
+				.chroma .gi { color: #22863a; background-color: #f0fff4; } /* GenericInserted */
+				.chroma .gs { font-weight: bold; } /* GenericStrong */
+				.chroma .gu { color: #6f42c1; font-weight: bold; } /* GenericSubheading */
+				.chroma .gl { color: #586069; } /* GenericUnderline */
 			</style>
 		</head>
 		<body class="min-h-screen text-[var(--text-primary)] bg-[var(--bg-secondary)]">

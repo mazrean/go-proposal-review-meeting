@@ -261,7 +261,7 @@ func TestProposalListItem(t *testing.T) {
 			},
 			wantContains: []string{
 				"discussions",
-				"→",
+				"M13 7l5 5", // SVG arrow path
 				"accepted",
 			},
 		},
@@ -275,7 +275,7 @@ func TestProposalListItem(t *testing.T) {
 				IssueURL:       "https://github.com/golang/go/issues/12345",
 			},
 			wantNotContain: []string{
-				"→",
+				"M13 7l5 5", // SVG arrow path
 			},
 		},
 		{
@@ -288,10 +288,11 @@ func TestProposalListItem(t *testing.T) {
 			},
 			wantContains: []string{
 				"#12345",
-				"<span>#12345</span>",
+				"<span class=", // span instead of anchor
 			},
 			wantNotContain: []string{
 				"https://github.com/golang/go/issues/12345",
+				"<a href=", // should not be an anchor
 			},
 		},
 		{
@@ -575,7 +576,7 @@ func TestStatusBadge(t *testing.T) {
 		{parser.StatusLikelyAccept, "bg-emerald-100"},
 		{parser.StatusLikelyDecline, "bg-orange-100"},
 		{parser.StatusHold, "bg-yellow-100"},
-		{parser.StatusActive, "bg-blue-100"},
+		{parser.StatusActive, "bg-sky-100"},
 		{parser.StatusDiscussions, "bg-purple-100"},
 	}
 

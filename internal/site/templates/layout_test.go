@@ -127,8 +127,8 @@ func TestFooter(t *testing.T) {
 	wantContains := []string{
 		"<footer",
 		"</footer>",
-		"GitHub",
-		"golang/go",
+		"github.com/golang/go",
+		"golang/go#33502",
 	}
 
 	for _, want := range wantContains {

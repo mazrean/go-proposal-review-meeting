@@ -138,8 +138,8 @@ templ ProposalDetail(data ProposalDetailData) {
 					</svg>
 					要約
 				</h2>
-				<div class="rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm">
-					<p class="text-[var(--text-secondary)] whitespace-pre-wrap leading-relaxed">{ data.Summary }</p>
+				<div class="rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm prose prose-go">
+					@RenderMarkdown(data.Summary)
 				</div>
 			</section>
 		}
