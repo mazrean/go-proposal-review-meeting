@@ -59,7 +59,7 @@ echo "      ✓ esbuild bundled components to dist/components.js"
 
 # Step 4: Generate HTML pages
 echo "[4/4] Generating HTML pages..."
-./bin/generator -content content -dist dist
+./bin/generator -content content -dist dist -site-url https://go-proposal-weekly-digest.mazrean.com
 echo "      ✓ HTML pages generated in dist/"
 
 echo ""

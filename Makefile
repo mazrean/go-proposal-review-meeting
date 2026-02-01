@@ -22,7 +22,7 @@ build-frontend: build-go
 
 # Generate HTML pages from content (requires build-go and build-frontend)
 generate-html: build-frontend
-	./bin/generator -content content -dist dist
+	./bin/generator -content content -dist dist -site-url https://go-proposal-weekly-digest.mazrean.com
 
 # Full build orchestration: templ generate → Go build → frontend assets → HTML + RSS generation
 # Single entry point that runs the complete pipeline without duplication
