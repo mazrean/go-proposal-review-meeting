@@ -1,0 +1,11 @@
+# Cloudflare Workers Assets configuration for Go Proposal Weekly Digest
+# Reference: https://developers.cloudflare.com/workers/static-assets/
+# This configuration uses assets-only mode (no worker code needed)
+
+name = "go-proposal-weekly-digest"
+compatibility_date = "2024-01-01"
+
+# Static assets directory
+# All files in ./dist will be served as static assets
+[assets]
+directory = "./dist"
