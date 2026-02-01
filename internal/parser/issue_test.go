@@ -623,7 +623,7 @@ func TestIssueParser_FetchChanges_Pagination(t *testing.T) {
 	page2Comments := make([]mockComment, 50)
 
 	// Generate 100 comments for page 1 (none with status changes)
-	for i := 0; i < 100; i++ {
+	for i := range 100 {
 		page1Comments[i] = mockComment{
 			ID:        int64(1000 + i),
 			Body:      "Regular comment without minutes format",
