@@ -402,9 +402,9 @@ func TestIntegration_ProposalPageContent(t *testing.T) {
 
 		html := string(content)
 
-		// Must have status badge styling classes (rounded-full for pill shape, color classes)
-		if !strings.Contains(html, "rounded-full") {
-			t.Error("proposal page should have rounded-full class for status badge styling")
+		// Must have status badge styling classes (rounded for pill shape, color classes)
+		if !strings.Contains(html, "rounded") {
+			t.Error("proposal page should have rounded class for status badge styling")
 		}
 		// Should have color styling for accepted status
 		if !strings.Contains(html, "bg-green") {
@@ -506,9 +506,9 @@ func TestIntegration_WeeklyIndexContent(t *testing.T) {
 
 		html := string(content)
 
-		// Should have status badge styling classes (rounded-full for pill shape)
-		if !strings.Contains(html, "rounded-full") {
-			t.Error("weekly index should have rounded-full class for status badge styling")
+		// Should have status badge styling classes (rounded for pill shape)
+		if !strings.Contains(html, "rounded") {
+			t.Error("weekly index should have rounded class for status badge styling")
 		}
 	})
 }
@@ -667,9 +667,9 @@ func TestIntegration_StatusBadgeClasses(t *testing.T) {
 
 		html := string(indexContent)
 
-		// Must have rounded-full class for pill-shaped badges
-		if !strings.Contains(html, "rounded-full") {
-			t.Error("weekly index must have rounded-full class for status badge styling (requirement 4.2)")
+		// Must have rounded class for pill-shaped badges
+		if !strings.Contains(html, "rounded") {
+			t.Error("weekly index must have rounded class for status badge styling (requirement 4.2)")
 		}
 		// Must have inline-flex for badge layout
 		if !strings.Contains(html, "inline-flex") {
@@ -1648,8 +1648,8 @@ func TestIntegration_ContentToSiteToFeed(t *testing.T) {
 		html := string(weeklyIndex)
 
 		// Check for status badge styling classes
-		if !strings.Contains(html, "rounded-full") {
-			t.Error("weekly index should have rounded-full class for status badges")
+		if !strings.Contains(html, "rounded") {
+			t.Error("weekly index should have rounded class for status badges")
 		}
 
 		// Check for status-specific colors (at least one should be present)

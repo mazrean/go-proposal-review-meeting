@@ -15,7 +15,9 @@ func projectRoot(t *testing.T) string {
 	if err != nil {
 		t.Fatalf("failed to get module root: %v", err)
 	}
-	return strings.TrimSpace(string(out))
+	// Handle go.work case where multiple modules are returned
+	lines := strings.Split(strings.TrimSpace(string(out)), "\n")
+	return lines[0]
 }
 
 func TestProjectStructure(t *testing.T) {
