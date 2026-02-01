@@ -490,6 +490,7 @@ func (m *Manager) WriteContentWithMerge(content *WeeklyContent) error {
 
 // IntegrateSummaries integrates AI-generated summaries into the content.
 // It also extracts any GitHub issue links from the summaries and adds them to the Links.
+// The "関連リンク" section is stripped from summaries to avoid duplication with the auto-generated section.
 func (m *Manager) IntegrateSummaries(content *WeeklyContent, summaries map[int]string) error {
 	if content == nil {
 		return nil
@@ -502,14 +503,45 @@ func (m *Manager) IntegrateSummaries(content *WeeklyContent, summaries map[int]s
 			continue
 		}
 
-		content.Proposals[i].Summary = summary
-
-		// Extract links from the summary and add to Links
+		// Extract links from the summary before stripping the section
 		extractedLinks := extractLinksFromMarkdown(summary)
 		content.Proposals[i].Links = mergeLinks(content.Proposals[i].Links, extractedLinks)
+
+		// Strip the "関連リンク" section from the summary to avoid duplication
+		summary = stripRelatedLinksSection(summary)
+		content.Proposals[i].Summary = summary
 	}
 
 	return nil
+}
+
+// stripRelatedLinksSection removes the "関連リンク" section from markdown text.
+// This prevents duplication since generateMarkdown adds its own related links section.
+func stripRelatedLinksSection(text string) string {
+	// Find the "## 関連リンク" header and remove everything from there to the end
+	// or until the next ## header
+	lines := strings.Split(text, "\n")
+	var result []string
+	inRelatedLinks := false
+
+	for _, line := range lines {
+		// Check if this is the start of the related links section
+		if strings.HasPrefix(line, "## 関連リンク") {
+			inRelatedLinks = true
+			continue
+		}
+
+		// Check if we've hit another section header (exit related links section)
+		if inRelatedLinks && strings.HasPrefix(line, "## ") {
+			inRelatedLinks = false
+		}
+
+		if !inRelatedLinks {
+			result = append(result, line)
+		}
+	}
+
+	return strings.TrimSpace(strings.Join(result, "\n"))
 }
 
 // ApplyFallback applies fallback text to proposals that have no summary.
