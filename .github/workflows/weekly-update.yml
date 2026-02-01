@@ -1,0 +1,333 @@
+name: Weekly Proposal Digest Update
+
+on:
+  # Run every Thursday at 12:00 JST (03:00 UTC)
+  schedule:
+    - cron: "0 3 * * 4"
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Parse proposal changes
+        id: parse
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Build and run the parse command
+          go build -o ./bin/parse ./cmd/parse
+
+          # Run parse command and capture output
+          OUTPUT=$(./bin/parse \
+            -state content/state.json \
+            -output changes.json)
+
+          echo "$OUTPUT"
+
+          # Extract has_changes and set as step output
+          HAS_CHANGES=$(echo "$OUTPUT" | grep "has_changes=" | cut -d= -f2)
+          CHANGES_COUNT=$(echo "$OUTPUT" | grep "changes_count=" | cut -d= -f2)
+
+          echo "has_changes=$HAS_CHANGES" >> $GITHUB_OUTPUT
+          echo "changes_count=$CHANGES_COUNT" >> $GITHUB_OUTPUT
+
+          echo "::notice::Detected $CHANGES_COUNT proposal changes"
+
+      # Task 6.3: Skip control when no changes detected
+      - name: Skip notification (no changes)
+        if: steps.parse.outputs.has_changes != 'true'
+        run: |
+          echo "::notice::No proposal changes detected since last run. Skipping subsequent steps."
+          echo "Last processed state is up to date."
+
+      # Task 6.4: Generate AI summaries with Claude Code Action
+      - name: Generate AI summaries
+        id: summaries
+        if: steps.parse.outputs.has_changes == 'true'
+        continue-on-error: true
+        uses: anthropics/claude-code-action@v1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            # Go Proposal 週次ダイジェスト要約生成
+
+            ## タスク
+            changes.jsonを読み込み、各proposalのステータス変更について日本語で要約を生成してください。
+            `gh` CLIを使って、各proposalの関連issueやdiscussionを探索し、より詳細な技術的背景を把握してください。
+
+            ## 入力ファイル
+            - `changes.json`: proposalの変更データ（issue_number, title, previous_status, current_status, changed_at, comment_url, related_issues）
+
+            ## 探索ステップ
+            各proposalについて以下の情報を収集してください：
+            1. `gh issue view {issue_number} --repo golang/go --json title,body,comments,labels` でissue詳細を取得
+            2. issueのbodyとコメントから技術的な議論内容を把握
+            3. 関連するissueやPRがあれば、そのリンクも収集
+
+            ## 出力要件
+            各proposalについて、以下の要件で要約ファイルを生成してください：
+
+            1. **ファイル出力先**: `summaries/{issue_number}.md`
+            2. **文字数**: 200〜500文字程度（日本語）
+            3. **内容に必ず含めるもの**:
+               - ステータス変更の理由と技術的背景の説明
+               - なぜこの決定がなされたかの考察（issueの議論内容に基づく）
+               - 関連するGitHub issueへのリンク（`https://github.com/golang/go/issues/{issue_number}`形式）
+               - コメントURL（変更が報告されたminutes）へのリンク
+
+            ## 出力フォーマット例
+            ```markdown
+            このproposalは〇〇機能の追加を提案しており、今回のレビューで**{previous_status}**から**{current_status}**にステータスが変更されました。
+
+            変更の背景として、〇〇という技術的な理由があり...
+
+            ## 関連リンク
+            - [Proposal Issue](https://github.com/golang/go/issues/{issue_number})
+            - [Review Comment]({comment_url})
+            ```
+
+            ## 注意事項
+            - changes.jsonが存在しない場合はエラーを出力せず、空のsummariesディレクトリを作成して終了
+            - 要約は簡潔で分かりやすい日本語で記述
+            - 推測が必要な場合は「〇〇と考えられます」のように表現
+          claude_args: |
+            --max-turns 30
+            --allowedTools Read,Write,Bash
+
+      # Task 6.5: Handle summary generation failure
+      - name: Check summary generation result
+        id: summary_check
+        if: steps.parse.outputs.has_changes == 'true'
+        run: |
+          if [ "${{ steps.summaries.outcome }}" == "failure" ]; then
+            echo "summary_failed=true" >> $GITHUB_OUTPUT
+            echo "::warning::Claude Code Action failed. Fallback summaries will be generated."
+          else
+            echo "summary_failed=false" >> $GITHUB_OUTPUT
+            echo "::notice::AI summaries generated successfully."
+          fi
+
+      - name: Generate fallback summaries
+        if: steps.parse.outputs.has_changes == 'true' && steps.summary_check.outputs.summary_failed == 'true'
+        run: |
+          echo "::group::Generating fallback summaries"
+
+          # Create summaries directory if it doesn't exist
+          mkdir -p summaries
+
+          # Read changes.json and generate basic fallback summaries
+          if [ -f "changes.json" ]; then
+            # Use jq to process each change and generate fallback markdown
+            jq -c '.changes[]' changes.json | while read -r change; do
+              issue_number=$(echo "$change" | jq -r '.issue_number')
+              title=$(echo "$change" | jq -r '.title')
+              prev_status=$(echo "$change" | jq -r '.previous_status')
+              curr_status=$(echo "$change" | jq -r '.current_status')
+              comment_url=$(echo "$change" | jq -r '.comment_url')
+
+              cat > "summaries/${issue_number}.md" << EOF
+          このproposalは「${title}」として提案されており、今回のレビューで**${prev_status}**から**${curr_status}**にステータスが変更されました。
+
+          詳細な技術的背景については、関連リンクからissueの議論をご確認ください。
+
+          ## 関連リンク
+          - [Proposal Issue](https://github.com/golang/go/issues/${issue_number})
+          - [Review Comment](${comment_url})
+          EOF
+
+              echo "Generated fallback summary for issue #${issue_number}"
+            done
+          else
+            echo "::warning::changes.json not found. No fallback summaries generated."
+          fi
+
+          echo "::endgroup::"
+
+      # Task 6.6: Build static site
+      - name: Setup Node.js
+        if: steps.parse.outputs.has_changes == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install npm dependencies
+        if: steps.parse.outputs.has_changes == 'true'
+        run: npm ci
+
+      - name: Build static site
+        id: build
+        if: steps.parse.outputs.has_changes == 'true'
+        run: |
+          echo "::group::Building static site"
+
+          # Run full build pipeline: templ generate → Go build → frontend → HTML/RSS
+          make build
+
+          echo "::endgroup::"
+          echo "::notice::Static site build completed successfully"
+
+      # Task 6.7: Commit generated files to main branch
+      - name: Commit changes
+        id: commit
+        if: steps.parse.outputs.has_changes == 'true'
+        run: |
+          echo "::group::Committing generated files"
+
+          # Configure git user
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Add generated files
+          # - dist/: Generated HTML, CSS, JS, RSS files
+          # - content/: Markdown content and state.json
+          # - summaries/: AI-generated summaries (temporary, but useful for debugging)
+          git add dist/ content/ summaries/ || true
+
+          # Check if there are staged changes
+          if git diff --staged --quiet; then
+            echo "has_commits=false" >> $GITHUB_OUTPUT
+            echo "::notice::No file changes to commit."
+          else
+            # Create commit with descriptive message
+            WEEK=$(date -u +"%Y-W%V")
+            CHANGES_COUNT="${{ steps.parse.outputs.changes_count }}"
+
+            git commit -m "chore: update weekly digest ${WEEK}" \
+              -m "- Updated ${CHANGES_COUNT} proposal(s)" \
+              -m "- Generated by weekly-update workflow" \
+              -m "[skip ci]"
+
+            echo "has_commits=true" >> $GITHUB_OUTPUT
+            echo "::notice::Committed changes for ${CHANGES_COUNT} proposal(s)."
+          fi
+
+          echo "::endgroup::"
+
+      - name: Push changes
+        if: steps.parse.outputs.has_changes == 'true' && steps.commit.outputs.has_commits == 'true'
+        run: |
+          git push origin main
+
+      # Task 6.8: Deploy to Cloudflare Workers Assets
+      - name: Deploy to Cloudflare
+        id: deploy
+        if: steps.parse.outputs.has_changes == 'true' && steps.commit.outputs.has_commits == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+      - name: Output deployment URL
+        if: steps.deploy.outcome == 'success'
+        run: |
+          echo "::notice::Successfully deployed to Cloudflare Workers Assets"
+          echo "Deployment completed at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+
+      # Task 6.11: Error notification on workflow failure
+      - name: Send error notification
+        if: failure()
+        env:
+          WEBHOOK_URL: ${{ secrets.NOTIFICATION_WEBHOOK_URL }}
+        run: |
+          # Skip if webhook URL is not configured
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "::warning::NOTIFICATION_WEBHOOK_URL is not configured. Skipping notification."
+            exit 0
+          fi
+
+          # Prepare notification payload (Slack/Discord compatible)
+          WORKFLOW_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+
+          # Determine which step failed
+          FAILED_STEPS=""
+          if [ "${{ steps.parse.outcome }}" == "failure" ]; then
+            FAILED_STEPS="${FAILED_STEPS}Parse Step, "
+          fi
+          if [ "${{ steps.build.outcome }}" == "failure" ]; then
+            FAILED_STEPS="${FAILED_STEPS}Build Step, "
+          fi
+          if [ "${{ steps.commit.outcome }}" == "failure" ]; then
+            FAILED_STEPS="${FAILED_STEPS}Commit Step, "
+          fi
+          if [ "${{ steps.deploy.outcome }}" == "failure" ]; then
+            FAILED_STEPS="${FAILED_STEPS}Deploy Step, "
+          fi
+          # Remove trailing comma and space
+          FAILED_STEPS="${FAILED_STEPS%, }"
+          if [ -z "$FAILED_STEPS" ]; then
+            FAILED_STEPS="Unknown step"
+          fi
+
+          # Create JSON payload
+          PAYLOAD=$(cat <<EOF
+          {
+            "username": "GitHub Actions",
+            "icon_emoji": ":warning:",
+            "attachments": [
+              {
+                "color": "#dc3545",
+                "title": "Weekly Proposal Digest Update - Workflow Failed",
+                "title_link": "${WORKFLOW_URL}",
+                "fields": [
+                  {
+                    "title": "Repository",
+                    "value": "${{ github.repository }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Failed Step(s)",
+                    "value": "${FAILED_STEPS}",
+                    "short": true
+                  },
+                  {
+                    "title": "Triggered By",
+                    "value": "${{ github.event_name }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Run ID",
+                    "value": "#${{ github.run_id }}",
+                    "short": true
+                  }
+                ],
+                "footer": "Go Proposal Weekly Digest",
+                "ts": "$(date +%s)"
+              }
+            ]
+          }
+          EOF
+          )
+
+          # Send notification
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "$WEBHOOK_URL")
+
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "::notice::Error notification sent successfully (HTTP $HTTP_STATUS)"
+          else
+            echo "::warning::Failed to send error notification (HTTP $HTTP_STATUS)"
+          fi
