@@ -1,0 +1,258 @@
+package templates
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/mazrean/go-proposal-review-meeting/internal/content"
+	"github.com/mazrean/go-proposal-review-meeting/internal/parser"
+)
+
+// LinkData represents a related link for display in templates.
+type LinkData struct {
+	Title string
+	URL   string
+}
+
+// ProposalDetailData represents the data needed to render an individual proposal page.
+type ProposalDetailData struct {
+	IssueNumber    int
+	Title          string
+	PreviousStatus parser.Status
+	CurrentStatus  parser.Status
+	Summary        string
+	IssueURL       string
+	CommentURL     string
+	ChangedAt      time.Time
+	Links          []LinkData
+	Year           int
+	Week           int
+}
+
+// ConvertToProposalDetailData converts a content.WeeklyContent to templates.ProposalDetailData
+// for a specific proposal identified by issueNumber.
+// Returns nil if the proposal is not found or input is nil.
+func ConvertToProposalDetailData(wc *content.WeeklyContent, issueNumber int) *ProposalDetailData {
+	if wc == nil {
+		return nil
+	}
+
+	for _, p := range wc.Proposals {
+		if p.IssueNumber == issueNumber {
+			links := make([]LinkData, len(p.Links))
+			for i, link := range p.Links {
+				links[i] = LinkData{
+					Title: link.Title,
+					URL:   link.URL,
+				}
+			}
+
+			return &ProposalDetailData{
+				IssueNumber:    p.IssueNumber,
+				Title:          p.Title,
+				PreviousStatus: p.PreviousStatus,
+				CurrentStatus:  p.CurrentStatus,
+				Summary:        p.Summary,
+				IssueURL:       fmt.Sprintf("https://github.com/golang/go/issues/%d", p.IssueNumber),
+				CommentURL:     p.CommentURL,
+				ChangedAt:      p.ChangedAt,
+				Links:          links,
+				Year:           wc.Year,
+				Week:           wc.Week,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ProposalDetailPage renders a full page with the individual proposal content.
+templ ProposalDetailPage(data ProposalDetailData) {
+	@PageWithLayout(
+		fmt.Sprintf("#%d %s - Go Proposal Weekly Digest", data.IssueNumber, data.Title),
+		fmt.Sprintf("/%d/w%02d/%d.html", data.Year, data.Week, data.IssueNumber),
+		ProposalDetail(data),
+	)
+}
+
+// ProposalDetail renders the individual proposal content (without page layout).
+templ ProposalDetail(data ProposalDetailData) {
+	<article class="proposal-detail animate-fade-in-up">
+		<nav class="flex items-center gap-2 mb-6 text-sm">
+			<a href="/" class="text-[var(--go-blue)] hover:text-[var(--go-blue-dark)] transition-colors font-medium">
+				ホーム
+			</a>
+			<span class="text-[var(--text-muted)]">/</span>
+			<a href={ templ.SafeURL(fmt.Sprintf("/%d/w%02d/", data.Year, data.Week)) } class="text-[var(--go-blue)] hover:text-[var(--go-blue-dark)] transition-colors font-medium">
+				{ fmt.Sprintf("W%02d", data.Week) }
+			</a>
+			<span class="text-[var(--text-muted)]">/</span>
+			<span class="text-[var(--text-secondary)]">{ fmt.Sprintf("#%d", data.IssueNumber) }</span>
+		</nav>
+		<header class="mb-8">
+			<div class="flex items-start gap-4 mb-4">
+				<a
+					href={ templ.SafeURL(data.IssueURL) }
+					class="flex-shrink-0 inline-flex items-center gap-2 px-3 py-1.5 rounded bg-[var(--bg-secondary)] text-[var(--go-blue)] hover:bg-[var(--go-blue)] hover:text-white transition-colors font-mono text-lg"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+						<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+					</svg>
+					{ fmt.Sprintf("#%d", data.IssueNumber) }
+				</a>
+				@StatusBadge(data.CurrentStatus)
+			</div>
+			<h1 class="text-2xl font-bold text-[var(--text-primary)] leading-snug mb-4">
+				{ data.Title }
+			</h1>
+			<div class="flex flex-wrap items-center gap-4 text-sm">
+				if data.PreviousStatus != "" && data.PreviousStatus != data.CurrentStatus {
+					<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-[var(--bg-secondary)]">
+						<span class="text-[var(--text-muted)]">ステータス変更:</span>
+						<span class={ statusTextClass(data.PreviousStatus) }>{ string(data.PreviousStatus) }</span>
+						<svg class="w-4 h-4 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+						</svg>
+						<span class={ statusTextClass(data.CurrentStatus) }>{ string(data.CurrentStatus) }</span>
+					</div>
+				}
+				if !data.ChangedAt.IsZero() {
+					<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-[var(--bg-secondary)] text-[var(--text-secondary)]">
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+						</svg>
+						<time datetime={ data.ChangedAt.Format(time.RFC3339) }>
+							{ data.ChangedAt.Format("2006年1月2日") }
+						</time>
+					</div>
+				}
+			</div>
+		</header>
+		if data.Summary != "" {
+			<section class="mb-8 animate-fade-in-up animate-delay-1">
+				<h2 class="flex items-center gap-2 text-lg font-semibold text-[var(--text-primary)] mb-4">
+					<svg class="w-5 h-5 text-[var(--go-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+					</svg>
+					要約
+				</h2>
+				<div class="rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm">
+					<p class="text-[var(--text-secondary)] whitespace-pre-wrap leading-relaxed">{ data.Summary }</p>
+				</div>
+			</section>
+		}
+		<section class="mb-8 animate-fade-in-up animate-delay-2">
+			<h2 class="flex items-center gap-2 text-lg font-semibold text-[var(--text-primary)] mb-4">
+				<svg class="w-5 h-5 text-[var(--go-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+				</svg>
+				関連リンク
+			</h2>
+			<div class="rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-4 shadow-sm">
+				<ul class="space-y-2">
+					<li>
+						<a
+							href={ templ.SafeURL(data.IssueURL) }
+							class="group flex items-center gap-3 p-3 rounded hover:bg-[var(--bg-secondary)] transition-colors"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<div class="w-10 h-10 rounded bg-[var(--bg-secondary)] group-hover:bg-[var(--go-blue)] flex items-center justify-center transition-colors">
+								<svg class="w-5 h-5 text-[var(--text-muted)] group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+								</svg>
+							</div>
+							<div>
+								<span class="text-[var(--text-primary)] group-hover:text-[var(--go-blue)] transition-colors font-medium">Proposal Issue</span>
+								<span class="block text-xs text-[var(--text-muted)]">github.com/golang/go</span>
+							</div>
+							<svg class="w-4 h-4 ml-auto text-[var(--text-muted)] group-hover:text-[var(--go-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+							</svg>
+						</a>
+					</li>
+					if data.CommentURL != "" {
+						<li>
+							<a
+								href={ templ.SafeURL(data.CommentURL) }
+								class="group flex items-center gap-3 p-3 rounded hover:bg-[var(--bg-secondary)] transition-colors"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div class="w-10 h-10 rounded bg-[var(--bg-secondary)] group-hover:bg-purple-600 flex items-center justify-center transition-colors">
+									<svg class="w-5 h-5 text-[var(--text-muted)] group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+										<path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+									</svg>
+								</div>
+								<div>
+									<span class="text-[var(--text-primary)] group-hover:text-purple-600 transition-colors font-medium">Review Comment</span>
+									<span class="block text-xs text-[var(--text-muted)]">proposal review meeting</span>
+								</div>
+								<svg class="w-4 h-4 ml-auto text-[var(--text-muted)] group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+								</svg>
+							</a>
+						</li>
+					}
+					for _, link := range data.Links {
+						<li>
+							<a
+								href={ templ.SafeURL(link.URL) }
+								class="group flex items-center gap-3 p-3 rounded hover:bg-[var(--bg-secondary)] transition-colors"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div class="w-10 h-10 rounded bg-[var(--bg-secondary)] group-hover:bg-[var(--go-blue)] flex items-center justify-center transition-colors">
+									<svg class="w-5 h-5 text-[var(--text-muted)] group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+										<path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+									</svg>
+								</div>
+								<div>
+									<span class="text-[var(--text-primary)] group-hover:text-[var(--go-blue)] transition-colors font-medium">{ link.Title }</span>
+								</div>
+								<svg class="w-4 h-4 ml-auto text-[var(--text-muted)] group-hover:text-[var(--go-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+								</svg>
+							</a>
+						</li>
+					}
+				</ul>
+			</div>
+		</section>
+		<nav class="mt-10 pt-6 border-t border-[var(--border-color)] animate-fade-in-up animate-delay-3">
+			<a
+				href={ templ.SafeURL(fmt.Sprintf("/%d/w%02d/", data.Year, data.Week)) }
+				class="group inline-flex items-center gap-2 px-4 py-2 rounded text-[var(--go-blue)] hover:text-[var(--go-blue-dark)] hover:bg-[var(--bg-secondary)] font-medium transition-all"
+			>
+				<svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+				</svg>
+				{ fmt.Sprintf("%d年 第%d週の一覧に戻る", data.Year, data.Week) }
+			</a>
+		</nav>
+	</article>
+}
+
+// statusTextClass returns the CSS classes for status text based on the status.
+func statusTextClass(status parser.Status) string {
+	switch status {
+	case parser.StatusAccepted:
+		return "text-green-700 font-medium"
+	case parser.StatusDeclined:
+		return "text-red-700 font-medium"
+	case parser.StatusLikelyAccept:
+		return "text-emerald-700 font-medium"
+	case parser.StatusLikelyDecline:
+		return "text-orange-700 font-medium"
+	case parser.StatusHold:
+		return "text-yellow-700 font-medium"
+	case parser.StatusActive:
+		return "text-[var(--go-blue)] font-medium"
+	case parser.StatusDiscussions:
+		return "text-purple-700 font-medium"
+	default:
+		return "text-[var(--text-secondary)] font-medium"
+	}
+}

@@ -1,0 +1,131 @@
+package templates
+
+import "fmt"
+
+// WeekSummary represents summary data for a week in the home page.
+type WeekSummary struct {
+	Year          int
+	Week          int
+	ProposalCount int
+	URL           string
+}
+
+// HomeData represents the data needed to render the home page.
+type HomeData struct {
+	Weeks []WeekSummary
+}
+
+// ConvertToHomeData converts a slice of WeeklyData to HomeData for the home page.
+// The weeks are expected to be sorted by date (newest first).
+func ConvertToHomeData(weeks []WeeklyData) HomeData {
+	if len(weeks) == 0 {
+		return HomeData{Weeks: nil}
+	}
+
+	summaries := make([]WeekSummary, len(weeks))
+	for i, week := range weeks {
+		summaries[i] = WeekSummary{
+			Year:          week.Year,
+			Week:          week.Week,
+			ProposalCount: len(week.Proposals),
+			URL:           fmt.Sprintf("/%d/w%02d/", week.Year, week.Week),
+		}
+	}
+
+	return HomeData{Weeks: summaries}
+}
+
+// HomePage renders a full page with the home page content.
+templ HomePage(data HomeData) {
+	@PageWithLayout(
+		"Go Proposal Weekly Digest - ホーム",
+		"/",
+		HomeContent(data),
+	)
+}
+
+// HomeContent renders the home page content (without page layout).
+templ HomeContent(data HomeData) {
+	<div class="home-content animate-fade-in-up">
+		<section>
+			<h2 class="text-2xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-3">
+				<svg class="w-6 h-6 text-[var(--go-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+				</svg>
+				週次アーカイブ
+			</h2>
+			if len(data.Weeks) == 0 {
+				<div class="rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-12 text-center shadow-sm">
+					<div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center">
+						<svg class="w-8 h-8 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+						</svg>
+					</div>
+					<p class="text-[var(--text-secondary)] text-lg font-medium">まだ更新がありません</p>
+					<p class="text-[var(--text-muted)] text-sm mt-2">新しいProposalが追加されるとここに表示されます</p>
+				</div>
+			} else {
+				<div class="grid gap-4">
+					for i, week := range data.Weeks {
+						@weekCardWithLatest(week, i == 0)
+					}
+				</div>
+			}
+		</section>
+	</div>
+}
+
+// WeekCard renders a single week summary card.
+templ WeekCard(week WeekSummary) {
+	@weekCardWithLatest(week, false)
+}
+
+// weekCardWithLatest renders a single week summary card with optional latest indicator.
+templ weekCardWithLatest(week WeekSummary, isLatest bool) {
+	<article class={ weekCardClass(isLatest) }>
+		<a href={ templ.SafeURL(week.URL) } class="block p-4 sm:p-5">
+			<div class="flex items-center gap-3 sm:gap-4">
+				<div class={ weekIconClass(isLatest) }>
+					<span class="font-mono text-xs sm:text-sm font-semibold">W{ fmt.Sprintf("%02d", week.Week) }</span>
+				</div>
+				<div class="flex-1 min-w-0">
+					<h3 class="text-base sm:text-lg font-semibold text-[var(--text-primary)] flex flex-wrap items-center gap-2">
+						<span class="truncate">{ fmt.Sprintf("%d年 第%d週", week.Year, week.Week) }</span>
+						if isLatest {
+							<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[var(--go-yellow)] text-[var(--text-primary)] flex-shrink-0">
+								最新
+							</span>
+						}
+					</h3>
+					<p class="text-[var(--text-secondary)] text-xs sm:text-sm mt-0.5">
+						{ fmt.Sprintf("%d件のProposal更新", week.ProposalCount) }
+					</p>
+				</div>
+				<div class="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-[var(--go-blue)] group-hover:text-[var(--go-blue-dark)] transition-colors">
+					<span class="text-sm hidden sm:inline font-medium">詳細を見る</span>
+					<svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+					</svg>
+				</div>
+			</div>
+		</a>
+	</article>
+}
+
+// weekCardClass returns the CSS classes for a week card.
+func weekCardClass(isLatest bool) string {
+	base := "group rounded-lg border bg-[var(--bg-card)] card-hover shadow-sm"
+	if isLatest {
+		return base + " border-[var(--go-blue)] border-2"
+	}
+	return base + " border-[var(--border-color)] hover:border-[var(--go-blue)]"
+}
+
+// weekIconClass returns the CSS classes for the week icon.
+func weekIconClass(isLatest bool) string {
+	base := "w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+	if isLatest {
+		return base + " bg-[var(--go-blue)] text-white"
+	}
+	return base + " bg-[var(--bg-secondary)] text-[var(--text-secondary)]"
+}

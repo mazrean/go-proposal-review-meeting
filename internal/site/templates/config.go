@@ -1,0 +1,44 @@
+// Package templates provides templ-based templates for the static site.
+package templates
+
+// DefaultFeedURL is the default RSS feed URL used when no custom URL is specified.
+const DefaultFeedURL = "/feed.xml"
+
+// ResolveFeedURL returns the provided feed URL if non-empty, otherwise returns DefaultFeedURL.
+// This is the single source of truth for feed URL fallback logic.
+func ResolveFeedURL(feedURL string) string {
+	if feedURL == "" {
+		return DefaultFeedURL
+	}
+	return feedURL
+}
+
+// LayoutConfig holds configuration for the base layout template.
+type LayoutConfig struct {
+	// Title is the page title shown in the browser tab.
+	Title string
+	// FeedURL is the URL for the RSS feed autodiscovery link.
+	// If empty, DefaultFeedURL is used.
+	FeedURL string
+}
+
+// GetFeedURL returns the feed URL, using the default if not set.
+func (c LayoutConfig) GetFeedURL() string {
+	return ResolveFeedURL(c.FeedURL)
+}
+
+// PageConfig holds configuration for page rendering with layout.
+type PageConfig struct {
+	// Title is the page title shown in the browser tab.
+	Title string
+	// CurrentPath is the current page path for navigation highlighting.
+	CurrentPath string
+	// FeedURL is the URL for the RSS feed autodiscovery and navigation link.
+	// If empty, DefaultFeedURL is used.
+	FeedURL string
+}
+
+// GetFeedURL returns the feed URL, using the default if not set.
+func (c PageConfig) GetFeedURL() string {
+	return ResolveFeedURL(c.FeedURL)
+}

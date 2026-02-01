@@ -1,0 +1,123 @@
+package templates
+
+// BaseLayout provides the base HTML structure for all pages.
+// It includes the DOCTYPE, html, head, and body elements.
+// Uses the default feed URL (/feed.xml) for RSS autodiscovery.
+templ BaseLayout(title string) {
+	@BaseLayoutWithConfig(LayoutConfig{Title: title, FeedURL: DefaultFeedURL})
+}
+
+// BaseLayoutWithConfig provides the base HTML structure with configurable options.
+// It includes the DOCTYPE, html, head, and body elements with dynamic feed URL.
+templ BaseLayoutWithConfig(config LayoutConfig) {
+	<!DOCTYPE html>
+	<html lang="ja">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ config.Title }</title>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+			<link rel="stylesheet" href="/styles.css"/>
+			<link rel="alternate" type="application/rss+xml" title="Go Proposal Weekly Digest RSS Feed" href={ config.GetFeedURL() }/>
+			<style>
+				:root {
+					--go-blue: #00ADD8;
+					--go-blue-dark: #007d9c;
+					--go-blue-darker: #00758c;
+					--go-yellow: #FDDD00;
+					--go-yellow-hover: #e5c800;
+					--bg-primary: #ffffff;
+					--bg-secondary: #f5f5f5;
+					--bg-tertiary: #e0e0e0;
+					--bg-card: #ffffff;
+					--bg-hero: #00ADD8;
+					--bg-footer: #00ADD8;
+					--border-color: #d6d6d6;
+					--text-primary: #202224;
+					--text-secondary: #3e4042;
+					--text-muted: #6e7072;
+					--text-on-blue: #ffffff;
+					--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+					--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+					--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+				}
+				html, body {
+					max-width: 100%;
+					overflow-x: hidden;
+				}
+				body {
+					margin: 0;
+					font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+					background: var(--bg-secondary);
+					color: var(--text-primary);
+				}
+				a { text-decoration: none; }
+				a:hover { text-decoration: none; }
+				.font-mono { font-family: 'JetBrains Mono', 'Roboto Mono', monospace; }
+				.card-hover { transition: all 0.2s ease; }
+				.card-hover:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+				@keyframes fadeInUp {
+					from { opacity: 0; transform: translateY(16px); }
+					to { opacity: 1; transform: translateY(0); }
+				}
+				.animate-fade-in-up { animation: fadeInUp 0.4s ease-out forwards; }
+				.animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+				.animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+				.animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+				nav ul { list-style: none; margin: 0; padding: 0; }
+				nav li { list-style: none; }
+				.btn-yellow {
+					background: var(--go-yellow);
+					color: var(--text-primary);
+					font-weight: 600;
+					padding: 0.75rem 1.5rem;
+					border-radius: 0.5rem;
+					transition: background 0.2s;
+				}
+				.btn-yellow:hover { background: var(--go-yellow-hover); }
+				.link-on-blue { color: var(--text-on-blue); }
+				.link-on-blue:hover { text-decoration: underline; }
+				.header-title { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+			</style>
+		</head>
+		<body class="min-h-screen text-[var(--text-primary)] bg-[var(--bg-secondary)]">
+			{ children... }
+			<script type="module" src="/components.js"></script>
+		</body>
+	</html>
+}
+
+// PageWithLayout wraps content with the full page layout including header, nav, main, and footer.
+// Uses the default feed URL (/feed.xml) for RSS autodiscovery and navigation.
+templ PageWithLayout(title string, currentPath string, content templ.Component) {
+	@PageWithLayoutConfig(PageConfig{Title: title, CurrentPath: currentPath, FeedURL: DefaultFeedURL}, content)
+}
+
+// PageWithLayoutConfig wraps content with the full page layout using configurable options.
+// Allows customization of feed URL for RSS autodiscovery and navigation.
+templ PageWithLayoutConfig(config PageConfig, content templ.Component) {
+	@BaseLayoutWithConfig(LayoutConfig{Title: config.Title, FeedURL: config.GetFeedURL()}) {
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--go-blue)] focus:px-4 focus:py-2 focus:text-white focus:rounded-md focus:shadow-lg">
+			メインコンテンツへスキップ
+		</a>
+		<div class="min-h-screen flex flex-col">
+			@Header()
+			@NavigationWithFeedURL(config.CurrentPath, config.GetFeedURL())
+			<main id="main-content" class="flex-1 bg-[var(--bg-primary)]" tabindex="-1">
+				<div class="w-full box-border mx-auto px-3 sm:px-4 py-10 max-w-5xl">
+					@content
+				</div>
+			</main>
+			@Footer()
+		</div>
+	}
+}
+
+// TestContent is a helper component for testing purposes.
+templ TestContent(text string) {
+	<div class="test-content">
+		{ text }
+	</div>
+}

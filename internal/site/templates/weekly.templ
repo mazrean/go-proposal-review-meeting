@@ -1,0 +1,225 @@
+package templates
+
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/mazrean/go-proposal-review-meeting/internal/content"
+	"github.com/mazrean/go-proposal-review-meeting/internal/parser"
+)
+
+// getUniqueStatusesJSON returns a JSON array of unique status strings from proposals.
+func getUniqueStatusesJSON(proposals []ProposalData) string {
+	seen := make(map[parser.Status]bool)
+	statuses := make([]string, 0)
+	for _, p := range proposals {
+		if !seen[p.CurrentStatus] {
+			seen[p.CurrentStatus] = true
+			statuses = append(statuses, string(p.CurrentStatus))
+		}
+	}
+	data, _ := json.Marshal(statuses)
+	return string(data)
+}
+
+// ProposalData represents the data needed to render a proposal in templates.
+type ProposalData struct {
+	IssueNumber    int
+	Title          string
+	PreviousStatus parser.Status
+	CurrentStatus  parser.Status
+	Summary        string
+	IssueURL       string
+	DetailURL      string
+}
+
+// WeeklyData represents the data needed to render a weekly index page.
+type WeeklyData struct {
+	Year      int
+	Week      int
+	Proposals []ProposalData
+}
+
+// ConvertToWeeklyData converts a content.WeeklyContent to templates.WeeklyData.
+// It skips proposals with invalid issue numbers (zero or negative).
+func ConvertToWeeklyData(wc *content.WeeklyContent) WeeklyData {
+	if wc == nil {
+		return WeeklyData{}
+	}
+
+	proposals := make([]ProposalData, 0, len(wc.Proposals))
+	for _, p := range wc.Proposals {
+		// Skip proposals with invalid issue numbers
+		if p.IssueNumber <= 0 {
+			continue
+		}
+
+		var issueURL, detailURL string
+		// Only generate URLs for valid year/week/issue combinations
+		if wc.Year > 0 && wc.Week > 0 {
+			issueURL = fmt.Sprintf("https://github.com/golang/go/issues/%d", p.IssueNumber)
+			detailURL = fmt.Sprintf("/%d/w%02d/%d.html", wc.Year, wc.Week, p.IssueNumber)
+		}
+
+		proposals = append(proposals, ProposalData{
+			IssueNumber:    p.IssueNumber,
+			Title:          p.Title,
+			PreviousStatus: p.PreviousStatus,
+			CurrentStatus:  p.CurrentStatus,
+			Summary:        p.Summary,
+			IssueURL:       issueURL,
+			DetailURL:      detailURL,
+		})
+	}
+
+	return WeeklyData{
+		Year:      wc.Year,
+		Week:      wc.Week,
+		Proposals: proposals,
+	}
+}
+
+// WeeklyIndexPage renders a full page with the weekly index content.
+templ WeeklyIndexPage(data WeeklyData) {
+	@PageWithLayout(
+		fmt.Sprintf("Go Proposal Weekly Digest - %d年 第%d週", data.Year, data.Week),
+		fmt.Sprintf("/%d/w%02d/", data.Year, data.Week),
+		WeeklyIndex(data),
+	)
+}
+
+// WeeklyIndex renders the weekly index content (without page layout).
+templ WeeklyIndex(data WeeklyData) {
+	<div class="weekly-index animate-fade-in-up">
+		<nav class="flex items-center gap-2 mb-6 text-sm">
+			<a href="/" class="text-[var(--go-blue)] hover:text-[var(--go-blue-dark)] transition-colors font-medium">
+				ホーム
+			</a>
+			<span class="text-[var(--text-muted)]">/</span>
+			<span class="text-[var(--text-secondary)]">{ fmt.Sprintf("W%02d", data.Week) }</span>
+		</nav>
+		<header class="mb-8">
+			<div class="flex items-center gap-4">
+				<div class="w-14 h-14 rounded-lg bg-[var(--go-blue)] flex items-center justify-center">
+					<span class="font-mono text-lg font-bold text-white">W{ fmt.Sprintf("%02d", data.Week) }</span>
+				</div>
+				<div>
+					<h2 class="text-2xl font-bold text-[var(--text-primary)]">
+						{ fmt.Sprintf("%d年 第%d週", data.Year, data.Week) }
+					</h2>
+					<p class="text-[var(--text-secondary)] text-sm mt-1">
+						{ fmt.Sprintf("%d件のProposal更新", len(data.Proposals)) }
+					</p>
+				</div>
+			</div>
+		</header>
+		if len(data.Proposals) == 0 {
+			<div class="rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-12 text-center shadow-sm">
+				<p class="text-[var(--text-secondary)]">この週には更新がありません</p>
+			</div>
+		} else {
+			<div class="mb-6">
+				<proposal-filter statuses={ getUniqueStatusesJSON(data.Proposals) }></proposal-filter>
+			</div>
+			<div class="grid gap-4">
+				for _, proposal := range data.Proposals {
+					@ProposalListItem(proposal)
+				}
+			</div>
+		}
+	</div>
+}
+
+// ProposalListItem renders a single proposal in the list.
+templ ProposalListItem(proposal ProposalData) {
+	<article class="group rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] card-hover hover:border-[var(--go-blue)] shadow-sm" data-status={ string(proposal.CurrentStatus) }>
+		<div class="p-4 sm:p-5">
+			<div class="flex items-start justify-between gap-3 sm:gap-4">
+				<div class="flex-1 min-w-0">
+					<div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+						if proposal.IssueURL != "" {
+							<a
+								href={ templ.SafeURL(proposal.IssueURL) }
+								class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-[var(--bg-secondary)] text-[var(--go-blue)] hover:bg-[var(--go-blue)] hover:text-white transition-colors font-mono text-sm"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+								</svg>
+								{ fmt.Sprintf("#%d", proposal.IssueNumber) }
+							</a>
+						} else {
+							<span class="inline-flex items-center px-2 py-1 rounded bg-[var(--bg-secondary)] text-[var(--text-secondary)] font-mono text-sm">
+								{ fmt.Sprintf("#%d", proposal.IssueNumber) }
+							</span>
+						}
+						@StatusBadge(proposal.CurrentStatus)
+					</div>
+					<h3 class="text-[var(--text-primary)] font-medium leading-snug">
+						{ proposal.Title }
+					</h3>
+					if proposal.Summary != "" {
+						<p class="text-[var(--text-secondary)] text-sm mt-2 line-clamp-2">
+							{ proposal.Summary }
+						</p>
+					}
+				</div>
+			</div>
+			<div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-[var(--border-color)] flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
+				<div class="flex items-center gap-2 sm:gap-3">
+					if proposal.PreviousStatus != "" && proposal.PreviousStatus != proposal.CurrentStatus {
+						<span class="flex items-center gap-1.5 sm:gap-2 text-[var(--text-muted)]">
+							<span class={ statusTextClass(proposal.PreviousStatus) }>{ string(proposal.PreviousStatus) }</span>
+							<svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+							</svg>
+							<span class={ statusTextClass(proposal.CurrentStatus) }>{ string(proposal.CurrentStatus) }</span>
+						</span>
+					}
+				</div>
+				if proposal.DetailURL != "" {
+					<a
+						href={ templ.SafeURL(proposal.DetailURL) }
+						class="flex items-center gap-1 sm:gap-1.5 text-[var(--go-blue)] hover:text-[var(--go-blue-dark)] font-medium transition-colors flex-shrink-0"
+					>
+						詳細を見る
+						<svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+						</svg>
+					</a>
+				}
+			</div>
+		</div>
+	</article>
+}
+
+// StatusBadge renders a status badge with appropriate styling.
+templ StatusBadge(status parser.Status) {
+	<span class={ statusBadgeClass(status) }>
+		{ string(status) }
+	</span>
+}
+
+// statusBadgeClass returns the CSS classes for a status badge.
+func statusBadgeClass(status parser.Status) string {
+	base := "inline-flex items-center px-2 py-1 rounded text-xs font-medium"
+	switch status {
+	case parser.StatusAccepted:
+		return base + " bg-green-100 text-green-800"
+	case parser.StatusDeclined:
+		return base + " bg-red-100 text-red-800"
+	case parser.StatusLikelyAccept:
+		return base + " bg-emerald-100 text-emerald-800"
+	case parser.StatusLikelyDecline:
+		return base + " bg-orange-100 text-orange-800"
+	case parser.StatusHold:
+		return base + " bg-yellow-100 text-yellow-800"
+	case parser.StatusActive:
+		return base + " bg-sky-100 text-sky-800"
+	case parser.StatusDiscussions:
+		return base + " bg-purple-100 text-purple-800"
+	default:
+		return base + " bg-[var(--bg-secondary)] text-[var(--text-secondary)]"
+	}
+}
