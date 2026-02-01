@@ -14,3 +14,9 @@ node_modules/
 *.tmp
 changes.json
 summaries/
+
+# Playwright MCP screenshots
+.playwright-mcp/
+
+# Cloudflare Wrangler
+.wrangler/
