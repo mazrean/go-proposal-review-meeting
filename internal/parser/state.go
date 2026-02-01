@@ -12,8 +12,10 @@ const stateFileMode fs.FileMode = 0644
 
 // State は前回処理状態を表す
 type State struct {
-	LastProcessedAt time.Time `json:"lastProcessedAt"`
-	LastCommentID   string    `json:"lastCommentId"`
+	LastProcessedAt  time.Time        `json:"lastProcessedAt"`
+	LastCommentID    string           `json:"lastCommentId"`
+	ProposalStatuses map[int]Status   `json:"proposalStatuses,omitempty"` // 各proposalの最新ステータス
+	IsFresh          bool             `json:"-"`                          // true if this is a new state (no existing state file)
 }
 
 // StateManager は状態の読み書きを管理する
@@ -27,14 +29,16 @@ func NewStateManager(path string) *StateManager {
 }
 
 // LoadState はstate.jsonから状態を読み込む
-// ファイルが存在しない場合は1ヶ月前をデフォルトとする初期状態を返す
+// ファイルが存在しない場合はIsFresh=trueの初期状態を返す
 func (sm *StateManager) LoadState() (*State, error) {
 	data, err := os.ReadFile(sm.path)
 	if os.IsNotExist(err) {
-		// 初回実行時のデフォルト状態
+		// 初回実行時: IsFresh=trueで最新コメントのみ処理するようマーク
 		return &State{
-			LastProcessedAt: time.Now().AddDate(0, -1, 0),
-			LastCommentID:   "",
+			LastProcessedAt:  time.Time{}, // zero time
+			LastCommentID:    "",
+			ProposalStatuses: make(map[int]Status),
+			IsFresh:          true,
 		}, nil
 	}
 	if err != nil {
@@ -44,6 +48,11 @@ func (sm *StateManager) LoadState() (*State, error) {
 	var state State
 	if err := json.Unmarshal(data, &state); err != nil {
 		return nil, err
+	}
+
+	// Initialize map if nil (for backward compatibility with old state files)
+	if state.ProposalStatuses == nil {
+		state.ProposalStatuses = make(map[int]Status)
 	}
 
 	return &state, nil
@@ -60,10 +69,44 @@ func (sm *StateManager) SaveState(state *State) error {
 }
 
 // UpdateState は状態を更新して保存する
+// 既存の状態がある場合はProposalStatusesを保持し、processedAtとcommentIDのみ更新する
 func (sm *StateManager) UpdateState(processedAt time.Time, commentID string) error {
-	state := &State{
-		LastProcessedAt: processedAt,
-		LastCommentID:   commentID,
+	// Load existing state to preserve ProposalStatuses
+	existing, err := sm.LoadState()
+	if err != nil {
+		existing = &State{
+			ProposalStatuses: make(map[int]Status),
+		}
 	}
+
+	existing.LastProcessedAt = processedAt
+	existing.LastCommentID = commentID
+	return sm.SaveState(existing)
+}
+
+// UpdateProposalStatus は指定されたproposalのステータスを更新する
+func (sm *StateManager) UpdateProposalStatus(issueNumber int, status Status) error {
+	state, err := sm.LoadState()
+	if err != nil {
+		return err
+	}
+
+	if state.ProposalStatuses == nil {
+		state.ProposalStatuses = make(map[int]Status)
+	}
+	state.ProposalStatuses[issueNumber] = status
+
 	return sm.SaveState(state)
+}
+
+// GetProposalStatus は指定されたproposalの最新ステータスを取得する
+// 存在しない場合は空文字列とfalseを返す
+func (sm *StateManager) GetProposalStatus(issueNumber int) (Status, bool) {
+	state, err := sm.LoadState()
+	if err != nil {
+		return "", false
+	}
+
+	status, ok := state.ProposalStatuses[issueNumber]
+	return status, ok
 }

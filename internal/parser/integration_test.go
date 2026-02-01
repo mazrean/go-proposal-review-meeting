@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
@@ -295,15 +296,19 @@ func TestIntegration_MultiPageFlow(t *testing.T) {
 	t.Parallel()
 
 	now := time.Now().Truncate(time.Second)
-	var requestCount atomic.Int32
+	var paginationRequests atomic.Int32
 
 	// Create mock server that returns paginated results
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		count := requestCount.Add(1)
-
 		var comments []map[string]any
 
-		if count == 1 {
+		// Check if this is a pagination request (has page parameter)
+		pageParam := r.URL.Query().Get("page")
+		if pageParam == "" || pageParam == "1" {
+			// First page request or fetchPreviousComment request (no page param for fetchPreviousComment)
+			if pageParam == "1" {
+				paginationRequests.Add(1)
+			}
 			// First page: 100 comments (triggers pagination)
 			for i := range 100 {
 				comments = append(comments, map[string]any{
@@ -315,6 +320,7 @@ func TestIntegration_MultiPageFlow(t *testing.T) {
 				})
 			}
 		} else {
+			paginationRequests.Add(1)
 			// Second page: 1 comment with minutes format
 			comments = append(comments, map[string]any{
 				"id":         int64(2001),
@@ -332,6 +338,14 @@ func TestIntegration_MultiPageFlow(t *testing.T) {
 
 	tmpDir := t.TempDir()
 	statePath := filepath.Join(tmpDir, "state.json")
+
+	// Create existing state file so it doesn't trigger fresh state (latest-only) mode
+	oneHourAgo := now.Add(-1 * time.Hour)
+	stateContent := fmt.Sprintf(`{"lastProcessedAt":"%s","lastCommentId":"999"}`, oneHourAgo.Format(time.RFC3339))
+	if err := os.WriteFile(statePath, []byte(stateContent), 0644); err != nil {
+		t.Fatalf("failed to write state file: %v", err)
+	}
+
 	sm := NewStateManager(statePath)
 
 	ip, err := NewIssueParser(IssueParserConfig{
@@ -349,9 +363,10 @@ func TestIntegration_MultiPageFlow(t *testing.T) {
 		t.Fatalf("FetchChanges() error = %v", err)
 	}
 
-	// Should have made 2 requests (pagination)
-	if requestCount.Load() != 2 {
-		t.Errorf("expected 2 API requests for pagination, got %d", requestCount.Load())
+	// Should have made 2 pagination requests (page 1 and page 2)
+	// Note: fetchPreviousComment also makes a request but we only count pagination requests
+	if paginationRequests.Load() != 2 {
+		t.Errorf("expected 2 pagination requests, got %d", paginationRequests.Load())
 	}
 
 	// Should have found 1 change from page 2
@@ -603,10 +618,10 @@ func TestIntegration_ErrorLogging(t *testing.T) {
 	ctx := context.Background()
 	_, _ = ip.FetchChanges(ctx)
 
-	// Verify error was logged
+	// Verify error was logged (fresh state uses "failed to fetch latest comment")
 	logOutput := logBuffer.String()
-	if !strings.Contains(logOutput, "error") || !strings.Contains(logOutput, "failed to fetch comments") {
-		t.Errorf("expected error log with 'failed to fetch comments', got: %s", logOutput)
+	if !strings.Contains(logOutput, "error") || !strings.Contains(logOutput, "failed to fetch latest comment") {
+		t.Errorf("expected error log with 'failed to fetch latest comment', got: %s", logOutput)
 	}
 }
 

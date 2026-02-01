@@ -64,6 +64,22 @@ var (
 	// - **title** [#NNNNN](URL)
 	proposalRe2 = regexp.MustCompile(`^- \*\*(.+?)\*\* \[#(\d+)\]\([^)]+\)`)
 
+	// sectionHeaderPatterns maps section header patterns to their default status.
+	// Section headers are lines like "**Active**" or "**Likely Accept**" that
+	// indicate the status of all proposals listed under them.
+	sectionHeaderPatterns = []struct {
+		re     *regexp.Regexp
+		status Status
+	}{
+		{regexp.MustCompile(`(?i)^\*\*Accepted\*\*`), StatusAccepted},
+		{regexp.MustCompile(`(?i)^\*\*Declined\*\*`), StatusDeclined},
+		{regexp.MustCompile(`(?i)^\*\*Likely Accept\*\*`), StatusLikelyAccept},
+		{regexp.MustCompile(`(?i)^\*\*Likely Decline\*\*`), StatusLikelyDecline},
+		{regexp.MustCompile(`(?i)^\*\*Active\*\*`), StatusActive},
+		{regexp.MustCompile(`(?i)^\*\*Hold\*\*`), StatusHold},
+		{regexp.MustCompile(`(?i)^\*\*Discussions?\*\*`), StatusDiscussions},
+	}
+
 	// Status detection patterns ordered by specificity.
 	// More specific patterns should come before general ones.
 	statusPatterns = []struct {
@@ -91,6 +107,9 @@ var (
 		// Hold patterns
 		{regexp.MustCompile(`(?i)put on hold`), StatusHold},
 		{regexp.MustCompile(`(?i)on hold$`), StatusHold},
+
+		// Active patterns
+		{regexp.MustCompile(`(?i)\*\*active\*\*`), StatusActive},
 
 		// Discussion patterns
 		{regexp.MustCompile(`(?i)discussion ongoing`), StatusDiscussions},
@@ -160,8 +179,28 @@ func (p *MinutesParser) Parse(comment string, commentedAt time.Time) ([]Proposal
 
 	changes := []ProposalChange{}
 	var currentProposal *proposalContext
+	var currentSectionStatus Status // Track the current section's default status
 
 	for _, line := range lines {
+		// Check for section headers (e.g., "**Active**", "**Likely Accept**")
+		// These determine the default status for proposals listed under them
+		for _, sh := range sectionHeaderPatterns {
+			if sh.re.MatchString(line) {
+				// Save previous proposal before changing section
+				if currentProposal != nil && currentProposal.status != "" {
+					changes = append(changes, ProposalChange{
+						IssueNumber:   currentProposal.issueNumber,
+						Title:         currentProposal.title,
+						CurrentStatus: currentProposal.status,
+						ChangedAt:     meetingDate,
+					})
+					currentProposal = nil
+				}
+				currentSectionStatus = sh.status
+				break
+			}
+		}
+
 		// Check if this is a new proposal line
 		// Try both formats: issue number first, or title first
 		var issueNumber int
@@ -199,12 +238,16 @@ func (p *MinutesParser) Parse(comment string, commentedAt time.Time) ([]Proposal
 			currentProposal = &proposalContext{
 				issueNumber: issueNumber,
 				title:       title,
+				status:      currentSectionStatus, // Use section's default status
 			}
 			continue
 		}
 
 		// Check for status changes in the current proposal's actions
-		if currentProposal != nil {
+		// Only check indented lines (action lines under proposals), not section headers
+		// Section headers like "**Accepted**" start at column 0, while action lines
+		// are indented with "  - " prefix
+		if currentProposal != nil && (strings.HasPrefix(line, "  ") || strings.HasPrefix(line, "\t")) {
 			for _, sp := range statusPatterns {
 				if sp.re.MatchString(line) {
 					currentProposal.status = sp.status

@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -361,21 +362,30 @@ func TestIssueParser_FetchChanges(t *testing.T) {
 func TestIssueParser_FetchChanges_ETagCaching(t *testing.T) {
 	t.Parallel()
 
-	callCount := 0
+	fetchCommentsCount := 0
 	etag := "\"abc123\""
 
+	now := time.Now()
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		callCount++
+		// Check if this is a pagination request (has page parameter)
+		// fetchPreviousComment and fetchLatestComment don't have page parameter
+		pageParam := r.URL.Query().Get("page")
+		hasPagination := pageParam != ""
 
-		if ifNoneMatch := r.Header.Get("If-None-Match"); ifNoneMatch == etag {
-			w.WriteHeader(http.StatusNotModified)
-			return
+		// Count only fetchComments calls (those with page=1)
+		if hasPagination && pageParam == "1" {
+			fetchCommentsCount++
+
+			if ifNoneMatch := r.Header.Get("If-None-Match"); ifNoneMatch == etag {
+				w.WriteHeader(http.StatusNotModified)
+				return
+			}
+
+			w.Header().Set("ETag", etag)
 		}
 
-		w.Header().Set("ETag", etag)
 		w.Header().Set("Content-Type", "application/json")
 
-		now := time.Now()
 		comments := []map[string]any{
 			{
 				"id":         int64(11111),
@@ -422,8 +432,10 @@ func TestIssueParser_FetchChanges_ETagCaching(t *testing.T) {
 		})
 	}
 
-	if callCount != 2 {
-		t.Errorf("expected 2 API calls, got %d", callCount)
+	// ETag caching only applies to fetchComments (existing state path)
+	// First call is fresh state (uses fetchLatestComment), second call uses fetchComments with ETag
+	if fetchCommentsCount != 1 {
+		t.Errorf("expected 1 fetchComments call with ETag, got %d", fetchCommentsCount)
 	}
 }
 
@@ -648,14 +660,17 @@ func TestIssueParser_FetchChanges_Pagination(t *testing.T) {
 		}
 	}
 
-	requestCount := 0
+	paginationRequests := 0
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		requestCount++
-
 		var comments []map[string]any
 
-		// Determine which page to return based on request count
-		if requestCount == 1 {
+		// Check if this is a pagination request (has page parameter) or fetchPreviousComment request
+		pageParam := r.URL.Query().Get("page")
+		if pageParam == "" || pageParam == "1" {
+			// First page request or fetchPreviousComment request (no page param for fetchPreviousComment)
+			if pageParam == "1" {
+				paginationRequests++
+			}
 			for _, c := range page1Comments {
 				comments = append(comments, map[string]any{
 					"id":         c.ID,
@@ -666,6 +681,7 @@ func TestIssueParser_FetchChanges_Pagination(t *testing.T) {
 				})
 			}
 		} else {
+			paginationRequests++
 			for _, c := range page2Comments {
 				comments = append(comments, map[string]any{
 					"id":         c.ID,
@@ -684,6 +700,14 @@ func TestIssueParser_FetchChanges_Pagination(t *testing.T) {
 
 	tmpDir := t.TempDir()
 	statePath := filepath.Join(tmpDir, "state.json")
+
+	// Create existing state file so it doesn't trigger fresh state (latest-only) mode
+	oneHourAgo := now.Add(-1 * time.Hour)
+	stateContent := fmt.Sprintf(`{"lastProcessedAt":"%s","lastCommentId":"999"}`, oneHourAgo.Format(time.RFC3339))
+	if err := os.WriteFile(statePath, []byte(stateContent), 0644); err != nil {
+		t.Fatalf("failed to write state file: %v", err)
+	}
+
 	sm := parser.NewStateManager(statePath)
 
 	ip, err := parser.NewIssueParser(parser.IssueParserConfig{
@@ -700,9 +724,10 @@ func TestIssueParser_FetchChanges_Pagination(t *testing.T) {
 		t.Fatalf("FetchChanges failed: %v", err)
 	}
 
-	// Should have made 2 requests (pagination)
-	if requestCount != 2 {
-		t.Errorf("expected 2 API requests for pagination, got %d", requestCount)
+	// Should have made 2 pagination requests (page 1 and page 2)
+	// Note: fetchPreviousComment also makes a request but we only count pagination requests
+	if paginationRequests != 2 {
+		t.Errorf("expected 2 pagination requests, got %d", paginationRequests)
 	}
 
 	// Should have found 1 change from page 2

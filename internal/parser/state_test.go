@@ -26,17 +26,18 @@ func TestStateManager_LoadState(t *testing.T) {
 			wantErr:   false,
 			validateFunc: func(t *testing.T, state *parser.State) {
 				t.Helper()
-				now := time.Now()
-				oneMonthAgo := now.AddDate(0, -1, 0)
 
-				// 1日程度の誤差は許容
-				if state.LastProcessedAt.Before(oneMonthAgo.Add(-24*time.Hour)) ||
-					state.LastProcessedAt.After(oneMonthAgo.Add(24*time.Hour)) {
-					t.Errorf("LastProcessedAt should be around 1 month ago, got %v", state.LastProcessedAt)
+				// Fresh state should have zero time and IsFresh=true
+				if !state.LastProcessedAt.IsZero() {
+					t.Errorf("LastProcessedAt should be zero for fresh state, got %v", state.LastProcessedAt)
 				}
 
 				if state.LastCommentID != "" {
 					t.Errorf("LastCommentID should be empty for initial state, got %q", state.LastCommentID)
+				}
+
+				if !state.IsFresh {
+					t.Errorf("IsFresh should be true for fresh state")
 				}
 			},
 		},

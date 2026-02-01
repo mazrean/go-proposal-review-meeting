@@ -2,6 +2,7 @@ package parser_test
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -12,6 +13,8 @@ import (
 	"github.com/mazrean/go-proposal-review-meeting/internal/parser"
 )
 
+var fix = flag.Bool("fix", false, "regenerate golden file")
+
 type goldenEntry struct {
 	CommentedAt string                  `json:"commented_at"`
 	Changes     []parser.ProposalChange `json:"changes"`
@@ -19,8 +22,6 @@ type goldenEntry struct {
 }
 
 func TestMinutesParser_Golden(t *testing.T) {
-	t.Parallel()
-
 	// Load golden file
 	goldenPath := filepath.Join("testdata", "golden.json")
 	goldenData, err := os.ReadFile(goldenPath)
@@ -32,6 +33,14 @@ func TestMinutesParser_Golden(t *testing.T) {
 	if err := json.Unmarshal(goldenData, &entries); err != nil {
 		t.Fatalf("failed to parse golden file: %v", err)
 	}
+
+	// If -fix flag is set, regenerate the golden file
+	if *fix {
+		regenerateGolden(t, entries, goldenPath)
+		return
+	}
+
+	t.Parallel()
 
 	// Load comment files directory
 	commentsDir := filepath.Join("testdata", "comments")
@@ -89,6 +98,52 @@ func TestMinutesParser_Golden(t *testing.T) {
 			}
 		})
 	}
+}
+
+func regenerateGolden(t *testing.T, entries []goldenEntry, goldenPath string) {
+	t.Helper()
+
+	commentsDir := filepath.Join("testdata", "comments")
+	p := parser.NewMinutesParser()
+
+	var newEntries []goldenEntry
+	for _, entry := range entries {
+		commentPath := filepath.Join(commentsDir, fmt.Sprintf("%d.txt", entry.CommentID))
+		commentBody, err := os.ReadFile(commentPath)
+		if err != nil {
+			t.Logf("skipping comment %d: %v", entry.CommentID, err)
+			continue
+		}
+
+		commentedAt, err := time.Parse(time.RFC3339, entry.CommentedAt)
+		if err != nil {
+			t.Logf("skipping comment %d: invalid timestamp: %v", entry.CommentID, err)
+			continue
+		}
+
+		changes, err := p.Parse(string(commentBody), commentedAt)
+		if err != nil {
+			t.Logf("skipping comment %d: parse error: %v", entry.CommentID, err)
+			continue
+		}
+
+		newEntries = append(newEntries, goldenEntry{
+			CommentedAt: entry.CommentedAt,
+			Changes:     changes,
+			CommentID:   entry.CommentID,
+		})
+	}
+
+	output, err := json.MarshalIndent(newEntries, "", "  ")
+	if err != nil {
+		t.Fatalf("failed to marshal golden file: %v", err)
+	}
+
+	if err := os.WriteFile(goldenPath, output, 0644); err != nil {
+		t.Fatalf("failed to write golden file: %v", err)
+	}
+
+	t.Logf("regenerated golden.json with %d entries", len(newEntries))
 }
 
 func sortChanges(changes []parser.ProposalChange) {
