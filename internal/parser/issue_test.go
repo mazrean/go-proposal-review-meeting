@@ -614,3 +614,169 @@ func TestIssueParser_WriteChangesJSON_WriteError(t *testing.T) {
 		t.Error("expected error when writing to invalid path, got nil")
 	}
 }
+
+func TestIssueParser_FetchChanges_Pagination(t *testing.T) {
+	t.Parallel()
+
+	now := time.Now().Truncate(time.Second)
+	page1Comments := make([]mockComment, 100) // perPage = 100
+	page2Comments := make([]mockComment, 50)
+
+	// Generate 100 comments for page 1 (none with status changes)
+	for i := 0; i < 100; i++ {
+		page1Comments[i] = mockComment{
+			ID:        int64(1000 + i),
+			Body:      "Regular comment without minutes format",
+			CreatedAt: now,
+			HTMLURL:   "https://github.com/golang/go/issues/33502#issuecomment-" + string(rune(1000+i)),
+		}
+	}
+
+	// Page 2 has a valid minutes comment
+	page2Comments[0] = mockComment{
+		ID:        int64(2000),
+		Body:      "**2026-01-30** / **@rsc**\n\n- #12345 **proposal: paginated feature**\n  - **accepted**\n",
+		CreatedAt: now,
+		HTMLURL:   "https://github.com/golang/go/issues/33502#issuecomment-2000",
+	}
+	for i := 1; i < 50; i++ {
+		page2Comments[i] = mockComment{
+			ID:        int64(2000 + i),
+			Body:      "Regular comment",
+			CreatedAt: now,
+			HTMLURL:   "https://github.com/golang/go/issues/33502#issuecomment-" + string(rune(2000+i)),
+		}
+	}
+
+	requestCount := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requestCount++
+
+		var comments []map[string]any
+
+		// Determine which page to return based on request count
+		if requestCount == 1 {
+			for _, c := range page1Comments {
+				comments = append(comments, map[string]any{
+					"id":         c.ID,
+					"body":       c.Body,
+					"created_at": c.CreatedAt.Format(time.RFC3339),
+					"updated_at": c.CreatedAt.Format(time.RFC3339),
+					"html_url":   c.HTMLURL,
+				})
+			}
+		} else {
+			for _, c := range page2Comments {
+				comments = append(comments, map[string]any{
+					"id":         c.ID,
+					"body":       c.Body,
+					"created_at": c.CreatedAt.Format(time.RFC3339),
+					"updated_at": c.CreatedAt.Format(time.RFC3339),
+					"html_url":   c.HTMLURL,
+				})
+			}
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		_ = json.NewEncoder(w).Encode(comments)
+	}))
+	defer server.Close()
+
+	tmpDir := t.TempDir()
+	statePath := filepath.Join(tmpDir, "state.json")
+	sm := parser.NewStateManager(statePath)
+
+	ip, err := parser.NewIssueParser(parser.IssueParserConfig{
+		StateManager: sm,
+		BaseURL:      server.URL,
+		Token:        "test-token",
+	})
+	if err != nil {
+		t.Fatalf("failed to create IssueParser: %v", err)
+	}
+
+	changes, err := ip.FetchChanges(context.Background())
+	if err != nil {
+		t.Fatalf("FetchChanges failed: %v", err)
+	}
+
+	// Should have made 2 requests (pagination)
+	if requestCount != 2 {
+		t.Errorf("expected 2 API requests for pagination, got %d", requestCount)
+	}
+
+	// Should have found 1 change from page 2
+	if len(changes) != 1 {
+		t.Errorf("expected 1 change, got %d", len(changes))
+	}
+
+	if len(changes) > 0 && changes[0].IssueNumber != 12345 {
+		t.Errorf("expected issue number 12345, got %d", changes[0].IssueNumber)
+	}
+}
+
+func TestIssueParser_FetchChanges_ContextCancellation(t *testing.T) {
+	t.Parallel()
+
+	// Server that delays response
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		select {
+		case <-r.Context().Done():
+			return
+		case <-time.After(5 * time.Second):
+			w.Header().Set("Content-Type", "application/json")
+			_ = json.NewEncoder(w).Encode([]map[string]any{})
+		}
+	}))
+	defer server.Close()
+
+	tmpDir := t.TempDir()
+	statePath := filepath.Join(tmpDir, "state.json")
+	sm := parser.NewStateManager(statePath)
+
+	ip, err := parser.NewIssueParser(parser.IssueParserConfig{
+		StateManager: sm,
+		BaseURL:      server.URL,
+		Token:        "test-token",
+	})
+	if err != nil {
+		t.Fatalf("failed to create IssueParser: %v", err)
+	}
+
+	// Create a context that will be cancelled quickly
+	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
+	defer cancel()
+
+	_, err = ip.FetchChanges(ctx)
+	if err == nil {
+		t.Error("expected error due to context cancellation, got nil")
+	}
+}
+
+func TestIssueParser_FetchChanges_StateLoadError(t *testing.T) {
+	t.Parallel()
+
+	tmpDir := t.TempDir()
+	statePath := filepath.Join(tmpDir, "state.json")
+
+	// Write invalid JSON to state file
+	if err := os.WriteFile(statePath, []byte("invalid json{"), 0644); err != nil {
+		t.Fatalf("failed to write invalid state file: %v", err)
+	}
+
+	sm := parser.NewStateManager(statePath)
+
+	ip, err := parser.NewIssueParser(parser.IssueParserConfig{
+		StateManager: sm,
+		BaseURL:      "https://api.github.com",
+		Token:        "test-token",
+	})
+	if err != nil {
+		t.Fatalf("failed to create IssueParser: %v", err)
+	}
+
+	_, err = ip.FetchChanges(context.Background())
+	if err == nil {
+		t.Error("expected error due to invalid state file, got nil")
+	}
+}
