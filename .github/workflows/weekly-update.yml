@@ -67,50 +67,57 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
-            # Go Proposal 週次ダイジェスト要約生成
+            # Go Proposal 週次ダイジェスト生成
 
-            ## タスク
-            changes.jsonを読み込み、各proposalのステータス変更について日本語で要約を生成してください。
-            `gh` CLIを使って、各proposalの関連issueやdiscussionを探索し、より詳細な技術的背景を把握してください。
+            ## あなたの役割
+            changes.jsonに記載された各proposalについて、`proposal-researcher`サブエージェントを
+            並列起動し、詳細な日本語要約を生成するオーケストレーターです。
 
-            ## 入力ファイル
-            - `changes.json`: proposalの変更データ（issue_number, title, previous_status, current_status, changed_at, comment_url, related_issues）
+            ## 実行手順
 
-            ## 探索ステップ
-            各proposalについて以下の情報を収集してください：
-            1. `gh issue view {issue_number} --repo golang/go --json title,body,comments,labels` でissue詳細を取得
-            2. issueのbodyとコメントから技術的な議論内容を把握
-            3. 関連するissueやPRがあれば、そのリンクも収集
+            ### Step 1: 変更データの読み込み
+            `changes.json` を読み込み、変更されたproposalの一覧を取得してください。
+            ファイルが存在しない場合は、`mkdir -p summaries` を実行して終了してください。
 
-            ## 出力要件
-            各proposalについて、以下の要件で要約ファイルを生成してください：
+            ### Step 2: proposal-researcherサブエージェントの並列起動
+            **重要: 全てのproposalを1つのメッセージで同時に並列起動してください。**
 
-            1. **ファイル出力先**: `summaries/{issue_number}.md`
-            2. **文字数**: 200〜500文字程度（日本語）
-            3. **内容に必ず含めるもの**:
-               - ステータス変更の理由と技術的背景の説明
-               - なぜこの決定がなされたかの考察（issueの議論内容に基づく）
-               - 関連するGitHub issueへのリンク（`https://github.com/golang/go/issues/{issue_number}`形式）
-               - コメントURL（変更が報告されたminutes）へのリンク
+            各proposalに対して、Task toolを以下のように呼び出します:
 
-            ## 出力フォーマット例
-            ```markdown
-            このproposalは〇〇機能の追加を提案しており、今回のレビューで**{previous_status}**から**{current_status}**にステータスが変更されました。
+            ```
+            Task tool:
+              subagent_type: "proposal-researcher"
+              description: "Proposal #{issue_number} 調査"
+              prompt: |
+                以下のproposalを調査し、日本語で詳細な要約を生成してください。
 
-            変更の背景として、〇〇という技術的な理由があり...
+                ## 調査対象
+                - Issue番号: {issue_number}
+                - タイトル: {title}
+                - ステータス変更: {previous_status} → {current_status}
+                - Comment URL: {comment_url}
 
-            ## 関連リンク
-            - [Proposal Issue](https://github.com/golang/go/issues/{issue_number})
-            - [Review Comment]({comment_url})
+                調査完了後、Markdown形式の要約を返してください。
             ```
 
+            **並列実行例（3件の場合）:**
+            1つのメッセージ内で3つのTask tool呼び出しを同時に行う:
+            - Task 1: proposal-researcher for issue #12345
+            - Task 2: proposal-researcher for issue #67890
+            - Task 3: proposal-researcher for issue #11111
+
+            ### Step 3: 結果の書き出し
+            各サブエージェントからの調査結果を `summaries/{issue_number}.md` に書き出してください。
+            サブエージェントの出力をそのままファイルに保存して構いません。
+
             ## 注意事項
-            - changes.jsonが存在しない場合はエラーを出力せず、空のsummariesディレクトリを作成して終了
-            - 要約は簡潔で分かりやすい日本語で記述
-            - 推測が必要な場合は「〇〇と考えられます」のように表現
+            - changes.jsonが存在しない場合は、空のsummariesディレクトリを作成して終了
+            - **必ず全proposalを並列で調査すること**（1つのメッセージで複数のTask toolを呼び出す）
+            - 各サブエージェントの調査は独立しているため、互いの結果を待つ必要はない
+            - サブエージェントが詳細な調査（Phase 1-3）を実行するため、オーケストレーターは結果の取りまとめに集中
           claude_args: |
-            --max-turns 30
-            --allowedTools Read,Write,Bash
+            --max-turns 60
+            --allowedTools Read,Write,Bash,Task,Grep,Glob
 
       # Task 6.5: Handle summary generation failure
       - name: Check summary generation result
@@ -160,6 +167,29 @@ jobs:
           fi
 
           echo "::endgroup::"
+
+      # Task 6.5.1: Integrate changes and summaries into content files
+      - name: Integrate content
+        if: steps.parse.outputs.has_changes == 'true'
+        run: |
+          echo "::group::Integrating changes and summaries into content"
+
+          # Build the integrate command
+          go build -o ./bin/integrate ./cmd/integrate
+
+          # Run integrate to create/update content files
+          # This command:
+          # - Reads changes.json for proposal changes
+          # - Reads summaries from summaries/ directory
+          # - Tracks previous_status from existing content history
+          # - Writes merged content to content/ directory
+          ./bin/integrate \
+            -changes changes.json \
+            -content content \
+            -summaries summaries
+
+          echo "::endgroup::"
+          echo "::notice::Content integration completed successfully"
 
       # Task 6.6: Build static site
       - name: Setup Node.js
