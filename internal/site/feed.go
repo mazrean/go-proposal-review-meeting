@@ -110,10 +110,7 @@ func (fg *FeedGenerator) GenerateFeed(ctx context.Context, weeks []*content.Week
 	})
 
 	// Limit to MaxFeedItems
-	limit := len(sortedWeeks)
-	if limit > MaxFeedItems {
-		limit = MaxFeedItems
-	}
+	limit := min(len(sortedWeeks), MaxFeedItems)
 
 	items := make([]*feedhub.Item, 0, limit)
 	for i := range limit {

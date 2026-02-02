@@ -236,9 +236,9 @@ func TestIntegration_ParseToContent_StatusVariety(t *testing.T) {
 	// Create proposals with each status type that has a matching pattern
 	// StatusActive is excluded as it has no matching pattern in MinutesParser
 	statusProposals := []struct {
-		issueNumber int
 		title       string
 		status      parser.Status
+		issueNumber int
 	}{
 		{10001, "proposal: accepted feature", parser.StatusAccepted},
 		{10002, "proposal: declined feature", parser.StatusDeclined},
@@ -572,9 +572,9 @@ func TestIntegration_ParseToContent_WriteChangesJSON(t *testing.T) {
 // Helper types and functions
 
 type testProposal struct {
-	IssueNumber int
 	Title       string
 	Status      parser.Status
+	IssueNumber int
 }
 
 func generateTenProposals(baseTime time.Time) []testProposal {
@@ -594,7 +594,7 @@ func generateTenProposals(baseTime time.Time) []testProposal {
 	}
 
 	proposals := make([]testProposal, 10)
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		proposals[i] = testProposal{
 			IssueNumber: 50000 + i,
 			Title:       fmt.Sprintf("proposal: test feature %d", i+1),
