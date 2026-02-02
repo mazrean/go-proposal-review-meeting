@@ -6,113 +6,84 @@ current_status: accepted
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/76244#issuecomment-3814233279
-  - title: "all: transition ppc64/linux (big-endian) from ELFv1 to ELFv2 in Go 1.27 · Issue #76244 · golang/go"
-    url: https://github.com/golang/go/issues/76244
-  - title: "Review Comment"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3720969090
-  - title: "Review Minutes (2026-01-28)"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
-  - title: "proposal: remove linux/ppc64 (big endian) port"
+  - title: "関連Issue #34850: ppc64 BE port削除提案（クローズ済み）"
     url: https://github.com/golang/go/issues/34850
-  - title: "all: require POWER8 support for ppc64, to match ppc64le"
+  - title: "all: require POWER8 support for ppc64, to match ppc64le · Issue #19074 · golang/go"
     url: https://github.com/golang/go/issues/19074
+  - title: "all: end support for ppc64/linux (big-endian, ELFv1) in Go 1.27 · Issue #76244 · golang/go"
+    url: https://github.com/golang/go/issues/76244
+  - title: "Review Minutes（2026-01-28）"
+    url: https://github.com/golang/go/issues/33502#issuecomment-3814233279
 ---
 
 ## 要約
 
 ## 概要
-Linux上のビッグエンディアンPowerPC 64ビット環境（`linux/ppc64`）について、従来のELFv1 ABIから現代的なELFv2 ABIへの移行をGo 1.27で実施する提案が承認されました。
+Go 1.27において、linux/ppc64（ビッグエンディアン）ターゲットがELFv1 ABIからELFv2 ABIへ移行します。現在のlinux/ppc64は内部リンクのみ（CGO非対応）であるため、この変更はユーザーに対して透過的と見込まれています。
 
 ## ステータス変更
 **likely_accept** → **accepted**
 
-この決定は、2026年1月28日の週次Proposal Review Meetingで正式に承認されました。当初は`linux/ppc64`ポート自体の廃止が提案されていましたが、コミュニティからELFv2への移行要望が出されたことで、方針が大きく転換されました。議論の中で、ELFv2を使用する複数のビッグエンディアンLinuxディストリビューション（ArchPOWER、Chimera Linux、Gentoo、Adélie Linux等）が存在することが判明し、ELFv1の廃止とELFv2への移行という建設的な解決策に至りました。
+この決定は、当初のproposal（ELFv1対応の終了）から大きく方針転換されました。コミュニティメンバーからの要望により、ppc64ビッグエンディアン対応を廃止するのではなく、ELFv2への移行によってポートを維持する方向で承認されました。
 
 ## 技術的背景
 
 ### 現状の問題点
-
-Go 1.26時点で、`linux/ppc64`（ビッグエンディアン）は以下の課題を抱えています:
-
-- **ELFv1 ABIの使用**: 1990年代に設計された古いABI（Application Binary Interface）を使用
-- **ディストリビューションサポートの欠如**: ELFv1をサポートするアクティブなLinuxディストリビューションがほぼ存在しない
-- **CGOサポートの欠如**: 外部リンクが未サポートのため、CGOが利用できない
-- **メンテナンス負荷**: コミュニティビルダーの維持が困難（IBM在籍者による手動メンテナンスが必要だった）
-
-```go
-// 現状: linux/ppc64 (ELFv1) の制限
-// CGOは使えず、完全に静的リンクされたバイナリのみ生成可能
-// GOARCH=ppc64 GOOS=linux でビルドしても外部Cライブラリとのリンクは不可
-```
+- **サポート状況の不透明さ**: 当初提案では「アクティブにサポートされているpowerpc64 ELFv1 Linuxディストリビューションが存在しない」とされ、メンテナが離職したことでOSU（オレゴン州立大学）のコミュニティビルダーの継続的な更新が困難になっていました
+- **ELFv1の時代遅れ**: ELFv1は旧式のABIであり、近年のツールチェーン（LLVM、Zig等）はELFv2のみをサポートする方向に移行しています
+- **CGOの非対応**: 現在のlinux/ppc64ターゲットは内部リンクのみで、CGOや外部リンクが利用できません
 
 ### 提案された解決策
+Issue内の議論を経て、以下の技術的アプローチが採用されました:
 
-Go 1.27からELFv2 ABIに切り替えます。ELFv2はELFv1の後継として設計された現代的なABIで、以下の特徴があります:
+1. **ABI切り替え**: linux/ppc64ターゲットをELFv1からELFv2に切り替え（CL#734540で実装）
+2. **ターゲット名維持**: `GOOS=linux GOARCH=ppc64`という既存のターゲット名はそのまま維持
+3. **透過的な移行**: 現在のlinux/ppc64は静的リンクのみのため、ELFv2システム上でもバイナリは動作し、変更は透過的
+4. **ビルダーの更新**: 後続作業として、ビルダーをELFv2システムイメージに更新（ArchPOWER等のディストリビューションを検討）
 
-- **関数ディスクリプタの廃止**: ELFv1では各関数に`.opd`セクションの関数ディスクリプタ（エントリポイント、TOCベースアドレス、環境ポインタの3つの要素）が必要でしたが、ELFv2ではこれが不要になり効率が向上
-- **TOCポインタ管理の簡素化**: 呼び出し側ではなく呼び出される側がTOCポインタ（r2レジスタ）を設定する方式に変更
-- **リトルエンディアンとの統一**: `ppc64le`（リトルエンディアン）は既にELFv2を使用しており、ビッグエンディアンもELFv2にすることでエンディアンの違いのみが差異となる
+### ELFv1とELFv2の技術的差異
+- **関数呼び出し規約**: ELFv1ではTOCポインタ（r2）を呼び出し元が設定するのに対し、ELFv2では呼び出し先が設定します
+- **関数ディスクリプタ**: ELFv1では外部公開関数ごとに`.opd`セクションに関数ディスクリプタを格納しますが、ELFv2では不要
+- **モダン化**: ELFv2はmusl、FreeBSD等の最新環境で標準となっており、リトルエンディアンのppc64leも既にELFv2を使用
 
 ## これによって何ができるようになるか
 
-この変更により以下のメリットが得られます:
+### 既存機能の継続
+- ppc64ビッグエンディアン対応が維持され、ArchPOWER、Chimera Linux、Gentoo（musl）、Adélie Linux等のELFv2ディストリビューションでGoが利用可能になります
 
-1. **完全な透明性**: 現在の`linux/ppc64`は内部リンクのみのため、既存バイナリは引き続きELFv2環境で動作します
-2. **CGOサポートの道**: ELFv2移行により、将来的にCGOサポートを追加することが容易になります
-3. **コードベースの簡素化**: ELFv1固有のロジックを削除でき、`ppc64le`と実質的に同じ実装になります
-4. **現代的なディストリビューションのサポート**: musl libcやモダンなツールチェーン（LLD、Zigなど）との互換性が向上します
+### 将来的な可能性
+- **CGOサポート**: ELFv2への移行により、CGO対応が容易になる可能性があります（現時点では非対応のまま）
+- **コード簡素化**: ELFv1固有のロジックを削除でき、ppc64leとppc64の実装がエンディアンス以外ほぼ同一になります
 
 ### コード例
 
-```go
-// Before (Go 1.26まで): ELFv1
-// GOARCH=ppc64 GOOS=linux でビルド
-// - 内部リンクのみ
-// - CGO_ENABLED=0 が事実上の制約
-// - ELFv1 ABIバイナリを生成（ただしELFv2環境でも動作）
+現在のlinux/ppc64は内部リンクのみのため、ユーザーコードレベルでの変更は不要です:
 
-// After (Go 1.27以降): ELFv2
-// GOARCH=ppc64 GOOS=linux でビルド
-// - ELFv2 ABIバイナリを生成
-// - 既存コードの変更は不要（完全に透明な移行）
-// - 将来的にCGOサポートが追加される可能性
-// - ppc64leとエンディアンのみが異なる実装に
+```go
+// Go 1.26以前（ELFv1）
+// GOOS=linux GOARCH=ppc64 go build main.go
+// → ELFv1バイナリが生成されるが、外部リンク不可
+
+// Go 1.27以降（ELFv2）
+// GOOS=linux GOARCH=ppc64 go build main.go
+// → ELFv2バイナリが生成される
+// ELFv1/ELFv2どちらのLinuxカーネルでも動作（透過的）
 ```
 
-実装に関しては、CL 734540で驚くほど少ないコード変更で移行が実現されています。主な変更は`cmd/internal/obj/ppc64`パッケージ内のABI識別子の切り替えのみです。
+**重要**: POWER8以降のCPUが必須です（Go 1.9以降の要件）。POWER4系（G5など）では動作しません。
 
 ## 議論のハイライト
 
-- **当初の提案は削除**: 提案者（元IBM）は、メンテナンスの困難さとELFv1ディストリビューションの不在を理由に`linux/ppc64`の完全削除を提案していました
-- **コミュニティからの代替案**: @GelbpunktがELFv2への移行を提案し、複数の現役ディストリビューションが存在することを示しました（Zigも同様にELFv1を削除しELFv2のみサポートする方針を採用）
-- **透明性の確認**: 現在の`linux/ppc64`は内部リンクのみのため、ELFv1バイナリがELFv2環境で動作することが確認され、移行が既存ユーザーに影響しないことが判明しました
-- **ビルダーの確保**: OSUOSLでArchPOWERを使用した新しいELFv2ビルダーの立ち上げが進行中です。@Gelbpunktがメンテナンスにコミットする意向を示しました
-- **セカンダリポートとしての継続**: この変更後も`linux/ppc64`はセカンダリポートとして維持され、コミュニティによるメンテナンスとビルダー管理が必要です
-- **Go 1.26での事前告知**: Go 1.26のリリースノートにELFv2移行の予告が含まれ、ユーザーへの通知が行われています
-
-## 関連リンク
-- [Proposal Issue](https://github.com/golang/go/issues/76244)
-- [Review Minutes](https://github.com/golang/go/issues/76244#issuecomment-3814233279)
-- [関連Issue: proposal: remove linux/ppc64 (big endian) port #34850](https://github.com/golang/go/issues/34850)
-- [関連Issue: all: require POWER8 support for ppc64, to match ppc64le #19074](https://github.com/golang/go/issues/19074)
-- [実装CL 734540](https://go.dev/cl/734540)
-- [Go 1.26 Release Notes - ELFv1 Deprecation](https://go.dev/doc/go1.26)
-- [実装CL 738120: Pre-announcement in Go 1.26 release notes](https://go.dev/cl/738120)
-
-## Sources
-- [all: transition ppc64/linux (big-endian) from ELFv1 to ELFv2 in Go 1.27 · Issue #76244 · golang/go](https://github.com/golang/go/issues/76244)
-- [Linker notes on Power ISA | MaskRay](https://maskray.me/blog/2023-02-26-linker-notes-on-power-isa)
-- [Go 1.26 Release Notes - The Go Programming Language](https://go.dev/doc/go1.26)
-- [proposal: remove linux/ppc64 (big endian) port](https://github.com/golang/go/issues/34850)
-- [all: require POWER8 support for ppc64, to match ppc64le](https://github.com/golang/go/issues/19074)
+- **当初提案の変更**: 最初は「ppc64ビッグエンディアン対応の終了」が提案されたが、コミュニティメンバー（@Gelbpunkt氏）から「ELFv2へ移行して継続」という代替案が提示されました
+- **実装の容易さ**: CL#734540で示されたように、ELFv2への切り替えに必要なコード変更は非常に少なく、既存のppc64le/openbsd実装を活用できました
+- **ビルダー維持の課題**: ポート継続の条件として、コミュニティによるELFv2ビルダーの提供と保守が必要です。OSUOLとの調整が進行中
+- **後方互換性**: ELFv1システムのサポートは明示的に終了しますが、実際にはELFv1ディストリビューション自体がほぼ存在しないため影響は限定的
+- **透過性の確認**: 「現在の静的リンクのELFv1バイナリはELFv2システム上でも動作するか？」という点が議論され、Linuxカーネルは両ABI対応のため問題ないことが確認されました
+- **Go 1.26での事前通知**: リリースノートで「Go 1.27でELFv2に移行する」旨を事前告知し、ユーザーに準備期間を提供
 
 ## 関連リンク
 
-- [Review Minutes](https://github.com/golang/go/issues/76244#issuecomment-3814233279)
-- [all: transition ppc64/linux (big-endian) from ELFv1 to ELFv2 in Go 1.27 · Issue #76244 · golang/go](https://github.com/golang/go/issues/76244)
-- [Review Comment](https://github.com/golang/go/issues/33502#issuecomment-3720969090)
-- [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [proposal: remove linux/ppc64 (big endian) port](https://github.com/golang/go/issues/34850)
-- [all: require POWER8 support for ppc64, to match ppc64le](https://github.com/golang/go/issues/19074)
+- [関連Issue #34850: ppc64 BE port削除提案（クローズ済み）](https://github.com/golang/go/issues/34850)
+- [all: require POWER8 support for ppc64, to match ppc64le · Issue #19074 · golang/go](https://github.com/golang/go/issues/19074)
+- [all: end support for ppc64/linux (big-endian, ELFv1) in Go 1.27 · Issue #76244 · golang/go](https://github.com/golang/go/issues/76244)
+- [Review Minutes（2026-01-28）](https://github.com/golang/go/issues/33502#issuecomment-3814233279)

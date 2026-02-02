@@ -6,7 +6,7 @@ current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "proposal: cmd/vet: check for missing Err calls for bufio.Scanner and sql.Rows · Issue #17747 · golang/go"
+  - title: "Proposal Issue #17747"
     url: https://github.com/golang/go/issues/17747
   - title: "Review Minutes (2026-01-28)"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
@@ -15,90 +15,63 @@ related_issues:
 ## 要約
 
 ## 概要
-
-`bufio.Scanner`や`sql.Rows`を使用する際に、エラーチェック用の`Err()`メソッド呼び出しを忘れることは非常によくある誤りです。このproposalは、`go vet`がこのような見落としを検出し、警告を出すべきだという提案です。
+`bufio.Scanner`と`sql.Rows`を使用した際に、ループ終了後に必須となる`Err()`メソッドの呼び出しが欠落しているコードを検出する、新しい`go vet`チェッカーの提案です。これらのAPIは、エラー発生時も正常終了時もループが終わる設計であるため、エラーの見落としが非常に多く発生しています。
 
 ## ステータス変更
-
 **discussions** → **active**
 
-2022年2月に一度「active」になったものの、実装の精度評価のため長期間「hold」状態でした。2025年12月にholdが解除され、2026年1月の実装テストと議論を経て、再び「active」として議論が進行中です。最新の2026年1月28日のProposal Review Meetingでは、チェック対象の絞り込みについてコメントが追加され、現在も設計の詳細を調整中です。
+2026年1月28日のProposal Review Meetingで、本提案が再びactiveステータスとなりました。2025年12月にAlan Donovanが長期間のholdを解除し、実装が進められています。現在、`bufio.Scanner`向けのチェッカーが実装され（CL 730480）、大規模なコーパスでの評価が行われている段階です。
 
 ## 技術的背景
 
 ### 現状の問題点
 
-`bufio.Scanner`や`sql.Rows`は、ループ処理中にエラーが発生した場合、そのエラーを内部に保持し、最後に`Err()`メソッドを呼び出すことで取得する設計になっています。しかし、多くの開発者がこの最終的なエラーチェックを忘れてしまいます。
-
-**問題のあるコード例:**
+`bufio.Scanner`と`sql.Rows`は、イテレーションパターンを使うAPIで、以下のような共通の設計になっています:
 
 ```go
-// bufio.Scannerの場合
 scanner := bufio.NewScanner(file)
 for scanner.Scan() {
-    line := scanner.Text()
-    fmt.Println(line)
+    // scanner.Text()を処理
 }
-// scanner.Err()のチェックを忘れている!
-// I/Oエラーやトークンサイズ超過が発生しても気づかない
-
-// sql.Rowsの場合
-rows, err := db.Query("SELECT * FROM users")
-if err != nil {
-    return err
-}
-defer rows.Close()
-
-for rows.Next() {
-    var user User
-    rows.Scan(&user.ID, &user.Name)
-}
-// rows.Err()のチェックを忘れている!
-// クエリ途中のエラーを見逃す可能性
+// ここでscanner.Err()のチェックが必要だが、忘れられることが多い
 ```
 
-特に問題となるのは:
-- **バッファサイズ超過**: `bufio.Scanner`のデフォルトバッファは64KBで、これを超える行があると`ErrTooLong`エラーが発生するが、`Err()`を呼ばないと検出できない
-- **ネットワーク/I/Oエラー**: ファイル読み込み中やデータベースクエリ実行中のエラーが無視される
-- **サブプロセスからの読み込み**: `os/exec`で起動したプロセスの出力を読む場合、長い行によるエラーはプロセス自体の失敗とは別に発生する
+このAPIでは`Scan()`/`Next()`が`false`を返す理由が2つあります:
+1. データの終端に到達した（正常終了）
+2. エラーが発生した（異常終了）
+
+しかし、ループを抜けただけではどちらなのか判別できません。そのため、`Err()`メソッドを呼んでエラーの有無を確認する必要がありますが、この呼び出しが頻繁に忘れられています。
+
+**見落とされやすいエラー:**
+- `bufio.Scanner`の場合: I/Oエラーに加えて、トークンサイズが`bufio.MaxScanTokenSize`（デフォルト64KB）を超えた際の`ErrTooLong`エラー
+- `sql.Rows`の場合: データベースとの通信エラーや、カーソルの取得エラー
+
+特に`ErrTooLong`は、`strings.Reader`のような「絶対に失敗しない」入力元を使っている場合でも、入力データが長すぎると発生する可能性があるため、すべてのケースでチェックが推奨されます。
 
 ### 提案された解決策
 
-`go vet`に新しいチェッカーを追加し、以下のパターンを検出します:
+`go/analysis`フレームワークを使った新しいアナライザー（`scannererr`）を実装し、以下を検出します:
 
-1. **対象型**: `bufio.Scanner`と`sql.Rows`（将来的に拡張可能）
-2. **検出パターン**: `Scan()`や`Next()`のループ後に`Err()`メソッドが呼ばれていない場合
-3. **偽陽性の削減**: 明らかにエラーが発生しない`strings.Reader`や`bytes.Reader`からの読み込みは除外
+1. `bufio.Scanner`の`Scan()`がループで使用されている
+2. ループ終了後、`scanner.Err()`の呼び出しがない
+3. 同様のパターンを`sql.Rows`の`Next()`にも適用（予定）
 
-実装は`go/analysis/passes/scannererr`パッケージとして開発され、CL 730480で実装が進められています。
+**偽陽性の削減策:**
+- `strings.Reader`や`bytes.Reader`のような「I/Oエラーが発生しない」入力元については、診断を抑制（ただし`ErrTooLong`は依然として発生しうる）
+- `os/exec`パッケージを使った子プロセスのパイプ読み込みは、実装上の制約から偽陽性となりやすいことが判明（72%の真陽性率）
 
 ## これによって何ができるようになるか
 
-開発者が無意識に見逃していたエラーハンドリングの抜け漏れを、`go vet`が自動的に検出してくれるようになります。これにより:
+この`go vet`チェッカーにより、開発者は以下のような潜在的なバグを早期に発見できます:
 
-- **バグの早期発見**: テスト環境で問題を発見でき、本番環境での予期しないエラーを防げる
-- **コードレビューの効率化**: レビュアーが毎回チェックする必要がなくなる
-- **教育効果**: 初心者がこのパターンを学ぶ機会になる
+- ファイル読み込み中のI/Oエラーを見逃すケース
+- 大きな入力データによるバッファオーバーフロー（`ErrTooLong`）の見逃し
+- データベースクエリの途中でエラーが発生したが、一部のデータだけ処理して成功したと誤認するケース
 
 ### コード例
 
 ```go
-// Before: エラーチェック漏れ（vetで検出される）
-func readLines(filename string) []string {
-    file, _ := os.Open(filename)
-    defer file.Close()
-
-    scanner := bufio.NewScanner(file)
-    var lines []string
-    for scanner.Scan() {
-        lines = append(lines, scanner.Text())
-    }
-    return lines
-    // 問題: scanner.Err()をチェックしていない
-    // → go vetが警告を出すようになる
-}
-
-// After: 正しいエラーハンドリング
+// Before: エラーチェックが不足しているコード（問題あり）
 func readLines(filename string) ([]string, error) {
     file, err := os.Open(filename)
     if err != nil {
@@ -106,53 +79,96 @@ func readLines(filename string) ([]string, error) {
     }
     defer file.Close()
 
-    scanner := bufio.NewScanner(file)
     var lines []string
+    scanner := bufio.NewScanner(file)
     for scanner.Scan() {
         lines = append(lines, scanner.Text())
     }
+    // scanner.Err()をチェックしていない！
+    // ファイルI/Oエラーや行が長すぎるエラーを見逃す
+    return lines, nil
+}
 
-    // 最終的なエラーチェックを追加
-    if err := scanner.Err(); err != nil {
+// After: 適切なエラーチェックを追加
+func readLines(filename string) ([]string, error) {
+    file, err := os.Open(filename)
+    if err != nil {
         return nil, err
     }
+    defer file.Close()
 
+    var lines []string
+    scanner := bufio.NewScanner(file)
+    for scanner.Scan() {
+        lines = append(lines, scanner.Text())
+    }
+    // ループ終了後、必ずErr()をチェック
+    if err := scanner.Err(); err != nil {
+        return nil, fmt.Errorf("scan error: %w", err)
+    }
     return lines, nil
+}
+```
+
+```go
+// sql.Rowsの例
+// Before: エラーチェックが不足
+func getUsers(db *sql.DB) ([]User, error) {
+    rows, err := db.Query("SELECT id, name FROM users")
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    var users []User
+    for rows.Next() {
+        var u User
+        if err := rows.Scan(&u.ID, &u.Name); err != nil {
+            return nil, err
+        }
+        users = append(users, u)
+    }
+    // rows.Err()をチェックしていない！
+    return users, nil
+}
+
+// After: 適切なエラーチェックを追加
+func getUsers(db *sql.DB) ([]User, error) {
+    rows, err := db.Query("SELECT id, name FROM users")
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    var users []User
+    for rows.Next() {
+        var u User
+        if err := rows.Scan(&u.ID, &u.Name); err != nil {
+            return nil, err
+        }
+        users = append(users, u)
+    }
+    // ループ終了後、必ずErr()をチェック
+    if err := rows.Err(); err != nil {
+        return nil, fmt.Errorf("rows error: %w", err)
+    }
+    return users, nil
 }
 ```
 
 ## 議論のハイライト
 
-- **偽陽性問題の調査**: 2万モジュールでテスト実装を実行したところ、当初は2,337件の検出がありました。`strings.Reader`や`bytes.Reader`を除外した結果、1,258件に減少。その中から25件をサンプリングしたところ、真陽性率は72%（18/25）でした
+- **初期の懸念（2016年）**: Josh Arianは「`strings.Reader`のような絶対に失敗しない入力元では、偽陽性となる」と指摘。しかしAustin Clementsが「`ErrTooLong`はどんな入力元でも発生しうる」と反論し、全ケースでチェックが必要との合意形成
 
-- **「偽陽性」の再評価**: 当初偽陽性とされた7件は全て`os/exec`のパイプからの読み込みでしたが、Austin Clements氏は「サブプロセスが長い行を出力した場合、プロセス自体が失敗しなくてもScanner.Err()が発生する」と指摘。これらも実際にはチェックすべきという結論に
+- **真陽性率の調査（2026年1月）**: Alan Donovanが約22,000モジュールで実験を実施。`strings.Reader`/`bytes.Reader`を除外した場合でも、真陽性率は72%（25サンプル中18件）で、`go vet`の目標である95%に届かず。偽陽性の大半は`os/exec`の子プロセスパイプ読み込みだったが、これも「`ErrTooLong`は発生しうる」との見解でグレーゾーン扱いに
 
-- **対象の絞り込み**: 全ての`Err() error`メソッドを持つ型を対象にするのは過剰との判断。`bufio.Scanner`と`sql.Rows`に限定する方向で議論が進行
+- **実践的な証拠（2022年）**: PleasingFungusの報告では、自社コードベースの約10%で`Err()`チェックが欠落しており、そのすべてがバグだったと報告。実務での重要性が裏付けられた
 
-- **vetの実行モード別対応の提案**: Robert Griesemer氏から、`*os.File`からの読み込みは常にチェックし、より攻撃的なチェック（全てのScanner/Rows）は明示的な`go vet`実行時のみ有効にするという提案が出されました（2026年1月28日）
+- **配布方針の議論**: Robert Griescmerは「`go test`で実行される高精度チェック」と「手動実行の`go vet`での積極的チェック」の2段階導入を提案。Alan Donovanは「goplsには問題なく追加でき、`go test`には不向き。`go vet`への追加が妥当」と応答
 
-- **実装の進捗**: Alan Donovan氏が実装を担当し、分析パッケージ`scannererr`を開発中。診断メッセージとドキュメントを明確化し、トークンサイズ超過のリスクについても説明する方針
+- **API設計の根本議論**: Axel Wagnerは「`Err()`パターンではなく`Close() error`にすべきでは」と提案したが、Bryan Millsが「`Close`は書き込みの失敗を示すのに対し、`Err`は読み込みの失敗を示す」と指摘し、現行API設計が妥当と結論
 
 ## 関連リンク
 
 - [Proposal Issue #17747](https://github.com/golang/go/issues/17747)
-- [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [実装CL 730480](https://go.dev/cl/730480)
-- [bufio.Scanner公式ドキュメント](https://pkg.go.dev/bufio)
-- [database/sql公式ドキュメント](https://pkg.go.dev/database/sql)
-
-## Sources
-
-以下の情報源を参照しました:
-
-- [proposal: cmd/vet: check for missing Err calls for bufio.Scanner and sql.Rows · Issue #17747 · golang/go](https://github.com/golang/go/issues/17747)
-- [bufio package - bufio - Go Packages](https://pkg.go.dev/bufio)
-- [In-depth introduction to bufio.Scanner in Golang | by Michał Łowicki | golangspec | Medium](https://medium.com/golangspec/in-depth-introduction-to-bufio-scanner-in-golang-55483bb689b4)
-- [Handling Errors (go-database-sql.org)](http://go-database-sql.org/errors.html)
-- [sql package - database/sql - Go Packages](https://pkg.go.dev/database/sql)
-- [Eliminate error handling by eliminating errors | Dave Cheney](https://dave.cheney.net/2019/01/27/eliminate-error-handling-by-eliminating-errors)
-
-## 関連リンク
-
-- [proposal: cmd/vet: check for missing Err calls for bufio.Scanner and sql.Rows · Issue #17747 · golang/go](https://github.com/golang/go/issues/17747)
 - [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)

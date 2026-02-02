@@ -6,49 +6,50 @@ current_status: accepted
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
-  - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/76361#issuecomment-3814234826
-  - title: "関連Issue #77195: ParentEdgeKind/ParentEdgeIndex追加提案"
-    url: https://github.com/golang/go/issues/77195
-  - title: "関連Issue #70859: Cursor型の導入提案（クローズ済み）"
+  - title: "関連Issue #70859 - Cursor型の導入提案"
     url: https://github.com/golang/go/issues/70859
+  - title: "関連Issue #77195 - ParentEdge系メソッドの追加提案"
+    url: https://github.com/golang/go/issues/77195
   - title: "Proposal Issue"
     url: https://github.com/golang/go/issues/76361
+  - title: "Review Minutes"
+    url: https://github.com/golang/go/issues/76361#issuecomment-3814234826
 ---
 
 ## 要約
 
 ## 概要
-`x/tools/go/ast/inspector`パッケージの`Cursor`型に、カーソルが有効かどうかを判定する`Valid()`メソッドを追加する提案です。現在はゼロ値との比較や内部フィールドのnilチェックで判定していますが、これをより明示的で分かりやすいAPIとして提供します。
+
+`inspector.Cursor`はGo言語のAST（抽象構文木）を効率的に走査するための型ですが、カーソルが有効かどうかを判定する方法が不明瞭でした。このproposalは、カーソルの有効性を直接確認できる`Valid()`メソッドを追加することで、コードをより明確で読みやすくすることを目的としています。
 
 ## ステータス変更
 **likely_accept** → **accepted**
 
-2026年1月28日のProposal Review Meetingで、議論の余地がないと判断され正式に承認されました。提案内容がシンプルで明確であり、既存の`Cursor` APIの使い勝手を向上させるものとして評価されました。
+2026年1月21日に「likely accept」とされ、最終的に2026年1月28日に正式承認されました。議論の過程で反対意見がなく、提案の明確な有用性とシンプルさが評価されました。proposal review groupは「コンセンサスに変更なし」として承認を決定し、実装フェーズに移行しています（CL 738821で実装中）。
 
 ## 技術的背景
 
 ### 現状の問題点
-`inspector.Cursor`を使用する際、カーソルが有効（ゼロ値でない）かどうかを確認する必要がしばしば発生します。現在は以下のような回りくどい方法で判定しています。
+
+`inspector.Cursor`を使用する際、カーソルが有効かどうかを確認する必要がある場面が頻繁にあります。現在は以下のような回りくどい方法を使う必要があります。
 
 ```go
-// 方法1: ゼロ値との比較
+// 方法1: ゼロ値との比較（冗長）
 if cur != (Cursor{}) {
     use(cur)
 }
 
-// 方法2: 内部フィールドのnilチェック（意図が不明瞭）
+// 方法2: Inspectorフィールドのnil チェック（不明瞭）
 if cur.Inspector() != nil {
     use(cur)
 }
 ```
 
-特に方法2は、`Inspector()`メソッドの本来の目的が「所属するInspectorインスタンスを取得すること」であるため、有効性チェックとして使うのは意図が読み取りにくくなります。
+特に2つ目の方法は、`Inspector()`が何を表すのか、なぜnilチェックが有効性判定になるのかが直感的に理解しにくく、コードの可読性を損ないます。
 
 ### 提案された解決策
-`Cursor`型に`Valid()`メソッドを追加し、カーソルが有効かどうかを直接的に判定できるようにします。
+
+`Cursor`型に`Valid()`メソッドを追加し、カーソルの有効性を明示的に報告できるようにします。
 
 ```go
 package inspector // golang.org/x/tools/go/ast/inspector
@@ -61,59 +62,53 @@ func (Cursor) Valid() bool
 
 ## これによって何ができるようになるか
 
-AST（抽象構文木）解析ツールの開発において、カーソルの有効性チェックがより自然で読みやすくなります。特に以下のような場面で有用です。
-
-1. **オプショナルなノード探索**: `FindNode()`や`FindByPos()`など、ノードが見つからない場合にゼロ値を返すメソッドの結果チェック
-2. **条件分岐での可読性向上**: 複数の条件を組み合わせる際、意図が明確になる
-3. **エラーハンドリング**: カーソルが無効な状態での操作を防ぐガード節
+カーソルの有効性チェックがより直感的で読みやすくなります。特に、`Cursor`の多くのナビゲーションメソッド（`FindByPos`, `LastChild`, `PrevSibling`, `NextSibling`など）は見つからない場合にゼロ値のカーソルを返すため、その後の処理で有効性確認が必須です。`Valid()`メソッドにより、このパターンがシンプルになります。
 
 ### コード例
 
 ```go
-// Before: ゼロ値との比較（冗長）
-cur, ok := parentCur.FindNode(targetNode)
-if cur != (inspector.Cursor{}) {
-    // cursorを使った処理
-    processNode(cur)
+// Before: 従来の書き方（回りくどい or 不明瞭）
+cursor := parent.FindByPos(start, end)
+if cursor != (Cursor{}) {
+    process(cursor)
+}
+// または
+if cursor.Inspector() != nil {
+    process(cursor)
 }
 
-// Before: Inspector()を使った判定（意図が不明瞭）
-if cur.Inspector() != nil {
-    processNode(cur)
+// After: Valid()メソッドを使った書き方（明確で読みやすい）
+cursor := parent.FindByPos(start, end)
+if cursor.Valid() {
+    process(cursor)
+}
+```
+
+**実用例: 兄弟ノードの走査**
+
+```go
+// Before
+for sibling, ok := node.NextSibling(); ok && sibling != (Cursor{}); sibling, ok = sibling.NextSibling() {
+    process(sibling)
 }
 
-// After: Valid()メソッドを使った判定（明確で自然）
-cur, ok := parentCur.FindNode(targetNode)
-if cur.Valid() {
-    processNode(cur)
+// After
+for sibling, ok := node.NextSibling(); ok && sibling.Valid(); sibling, ok = sibling.NextSibling() {
+    process(sibling)
 }
 ```
 
 ## 議論のハイライト
 
-- **シンプルな提案**: 提案内容が非常に明確で、既存APIの自然な拡張として受け入れられました
-- **関連提案との整合性**: Issue #77195（`ParentEdge`の分解メソッド追加）と同様に、`Cursor` APIの使い勝手を向上させる一連の改善の一部
-- **実装の早さ**: likely_accept宣言後すぐに実装CL（go.dev/cl/738821）が提出されました
-- **議論不要の承認**: 提案内容に異論がなく、likely_acceptから1週間後のミーティングで即座にacceptedに移行
-
-## 関連リンク
-- [Proposal Issue](https://github.com/golang/go/issues/76361)
-- [Review Minutes](https://github.com/golang/go/issues/76361#issuecomment-3814234826)
-- [関連Issue #70859: Cursor型の導入提案（クローズ済み）](https://github.com/golang/go/issues/70859)
-- [関連Issue #77195: ParentEdgeKind/ParentEdgeIndex追加提案](https://github.com/golang/go/issues/77195)
-- [実装CL](https://go.dev/cl/738821)
-- [Inspector.Cursor 公式ドキュメント](https://pkg.go.dev/golang.org/x/tools/go/ast/inspector)
-
----
-
-**Sources:**
-- [inspector package - golang.org/x/tools/go/ast/inspector - Go Packages](https://pkg.go.dev/golang.org/x/tools/go/ast/inspector)
-- [typesinternal package - golang.org/x/tools/internal/typesinternal - Go Packages](https://pkg.go.dev/golang.org/x/tools/internal/typesinternal)
+- **シンプルさが評価された**: 提案は非常に明快で、既存の`Cursor`APIの使い勝手を改善する小さな追加として受け入れられました
+- **関連提案との連携**: issue #77195で提案されている`ParentEdgeKind()`や`ParentEdgeIndex()`メソッドと同様に、`Cursor`の利便性を向上させる一連の改善の一部として位置づけられました
+- **迅速な承認**: 提案が「active」ステータスになってからわずか1週間で「likely accept」、さらに1週間で正式承認という迅速なプロセスでした
+- **実装の進行**: 承認からわずか数日後にCL 738821として実装が開始され、コミュニティの積極的な対応が見られます
+- **Cursorの文脈**: `Cursor`型自体は比較的新しく（v0.34.0で追加）、issue #70859で導入されたAST部分走査・多段階走査を可能にする機能の一部です。`Valid()`はこの新しいAPIをより使いやすくするための自然な拡張と見なされました
 
 ## 関連リンク
 
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [Review Minutes](https://github.com/golang/go/issues/76361#issuecomment-3814234826)
-- [関連Issue #77195: ParentEdgeKind/ParentEdgeIndex追加提案](https://github.com/golang/go/issues/77195)
-- [関連Issue #70859: Cursor型の導入提案（クローズ済み）](https://github.com/golang/go/issues/70859)
+- [関連Issue #70859 - Cursor型の導入提案](https://github.com/golang/go/issues/70859)
+- [関連Issue #77195 - ParentEdge系メソッドの追加提案](https://github.com/golang/go/issues/77195)
 - [Proposal Issue](https://github.com/golang/go/issues/76361)
+- [Review Minutes](https://github.com/golang/go/issues/76361#issuecomment-3814234826)

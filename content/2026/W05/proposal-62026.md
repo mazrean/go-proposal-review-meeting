@@ -1,65 +1,58 @@
 ---
 issue_number: 62026
 title: "crypto/uuid: add API to generate and parse UUID"
-previous_status: discussions
+previous_status: 
 current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "関連提案: crypto/rand にUUIDv4/v7関数を追加"
-    url: https://github.com/golang/go/issues/76319
-  - title: "過去の却下提案 #23789 (2018年)"
+  - title: "過去の却下例 #23789 (2018年)"
     url: https://github.com/golang/go/issues/23789
-  - title: "過去の却下提案 #28324 (2018年)"
-    url: https://github.com/golang/go/issues/28324
-  - title: "Proposal Issue"
+  - title: "Proposal Issue #62026"
     url: https://github.com/golang/go/issues/62026
-  - title: "Review Minutes"
+  - title: "Review Minutes (2026-01-28)"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
+  - title: "関連提案 #76319: crypto/rand.UUIDv4/UUIDv7（より限定的なアプローチ）"
+    url: https://github.com/golang/go/issues/76319
 ---
 
 ## 要約
 
 ## 概要
 
-Go言語の標準ライブラリに`crypto/uuid`パッケージを追加し、UUIDの生成とパース機能を提供する提案です。特に広く使われているUUID version 4（ランダム）とversion 7（時刻ベース・ソート可能）の生成に焦点を当て、最小限かつ実用的なAPIを目指しています。
+Go標準ライブラリに`crypto/uuid`パッケージを追加し、UUIDの生成とパース機能を提供する提案です。特にバージョン4（ランダム）とバージョン7（タイムスタンプベース）のUUID生成をサポートします。
 
 ## ステータス変更
 
-**(新規)** → **active**
+**(未設定)** → **Active**
 
-2026年1月28日のProposal Review Meetingで、この提案がactiveステータスに移行しました。これは、長年にわたって却下されてきたUUID標準ライブラリ化の議論が、ついに実現に向けて具体的な検討段階に入ったことを意味します。activeステータスへの移行は、提案の詳細な仕様について活発な議論が進行中であり、実装に向けた合意形成が進んでいることを示しています。
+2026年1月28日のProposal Review Meetingで「Active」ステータスとして議事録に追加されました。過去に2018年（#23789）と2019年（#28324）に同様の提案が却下されていましたが、今回は標準ライブラリ入りに向けて前向きな検討が進んでいます。
 
 ## 技術的背景
 
 ### 現状の問題点
 
-現在、Go開発者はUUIDを使用する際、外部パッケージ（特に`github.com/google/uuid`）に依存せざるを得ません。このパッケージは10万以上のGoプロジェクトで使用されており、サーバー/DB系アプリケーションでは事実上の必須依存関係となっています。しかし以下の課題があります:
+Go開発者は現在、UUID生成のために`github.com/google/uuid`などのサードパーティパッケージを利用しています。このパッケージは10万以上のプロジェクトで使用される事実上の標準となっていますが、以下の課題があります:
 
-- 外部依存を毎回追加する必要がある
-- `github.com/google/uuid`パッケージがメンテナンス不足の状態にある
-- C#、Java、JavaScript、Python、Rubyなど他の主要言語は標準ライブラリでUUIDをサポートしており、Goは例外的な存在
-
-過去に2回（#23789、#28324）UUIDの標準ライブラリ化が提案されましたが、いずれも「外部パッケージで十分」として却下されていました。今回の再提案は、外部パッケージのメンテナンス問題と、UUIDが広く使われる基本的な構成要素であることが再認識されたことが背景にあります。
+1. **メンテナンス体制の不透明性**: 2025年以降、メンテナーの応答が鈍く、UUIDv8サポートのPRが半年以上放置されるなど、プロジェクトの持続可能性に懸念が生じています
+2. **他言語との差**: C#、Java、JavaScript、Python、RubyなどはUUID生成機能を標準ライブラリに含んでいますが、Goは例外的に含んでいません
+3. **RFC 9562の正式化**: 2024年5月にUUID仕様がRFC 9562として正式化され、UUIDv7が新たに標準化されました
 
 ### 提案された解決策
 
-最終的に合意に向かっているAPI仕様は、@neildによって提案された最小限の設計です:
+neildによって具体化された最小限のAPI案:
 
 ```go
 package uuid // crypto/uuid
 
 type UUID [16]byte
 
-// Parse parses the hex-and-dash form, and no other: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 func Parse[T ~string | ~[]byte](s T) (UUID, error)
 func MustParse[T ~string | ~[]byte](s T) UUID
 
-// New is an opinionated "just give me a UUID" function.
-func New() UUID { return NewV4() }
-
-func NewV4() UUID  // 完全ランダムなUUID
-func NewV7() UUID  // タイムスタンプベースでソート可能なUUID
+func New() UUID        // NewV4()のエイリアス
+func NewV4() UUID      // ランダムUUID生成
+func NewV7() UUID      // タイムスタンプベースUUID生成
 
 func (UUID) MarshalText() ([]byte, error)
 func (UUID) AppendText([]byte) ([]byte, error)
@@ -68,87 +61,69 @@ func (UUID) Compare(UUID) int
 func (UUID) String() string
 ```
 
-**重要な設計決定**:
+**設計上の重要な決定:**
 
-1. **`[16]byte`型の採用**: `github.com/google/uuid`と同じ内部表現を使用することで、型変換が簡単なキャストで済む
-2. **Version 4 と Version 7のみサポート**: 調査の結果、V4が全体の82%、V7が1.2%の利用率で、他の全バージョン合計（0.5%）を大きく上回る
-3. **パース形式は標準形式のみ**: セキュリティとプロトコル互換性の観点から、`xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`形式のみを受け付け、変則的な形式は受け付けない
-4. **database/sql対応**: `database/sql`パッケージをUUID対応にし、ドライバが独自にUUIDを処理しない場合でも標準的な文字列変換で動作するようにする
+- **型は`[16]byte`**: `github.com/google/uuid`と互換性があり、型キャストだけで変換可能
+- **V4をデフォルト**: `New()`はV4を返す。V7はホットスポット問題やプライバシー懸念があるため
+- **パース形式は厳格**: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`形式のみ受け入れ、RFC準拠を保証
+- **database/sql統合**: 標準ライブラリのUUID型として、database/sqlパッケージ側でUUID対応を追加予定
 
 ## これによって何ができるようになるか
 
-UUID生成が標準ライブラリだけで完結し、外部依存なしでユニークな識別子を扱えるようになります。特にデータベースの主キー、分散システムのID、セッショントークンなど、UUIDが必要なあらゆる場面で利用できます。
+1. **サードパーティ依存の削減**: 最も基本的なUUID生成機能を標準ライブラリで提供
+2. **長期的なメンテナンス保証**: Goチームによる公式サポートで、メンテナンス継続性を担保
+3. **データベース統合の改善**: `database/sql`がUUID型をネイティブに認識し、ドライバーごとの実装なしで基本的な機能が動作
+4. **シンプルなAPI**: 「とにかくUUIDが欲しい」というユースケースに対して`uuid.New()`一つで対応
 
 ### コード例
 
 ```go
-// Before: 外部パッケージへの依存
+// Before: サードパーティパッケージの利用
 import "github.com/google/uuid"
 
-userID := uuid.New()  // error返り値があるが常にnil
-sessionID := uuid.NewV7()
+id, err := uuid.NewRandom()
+if err != nil {
+    // 実際にはほぼ発生しないエラー処理
+    return err
+}
+idStr := id.String()
 
-// After: 標準ライブラリのみで完結
+// After: 標準ライブラリの利用
 import "crypto/uuid"
 
-userID := uuid.New()      // シンプルに取得（内部的にNewV4を呼ぶ）
-sessionID := uuid.NewV7() // ソート可能なUUID（DB挿入パフォーマンス向上）
+id := uuid.New()  // エラーなし（crypto/randの改善により）
+idStr := id.String()
 
-// パース（設定ファイルやDB読み込み時）
-const adminID = "550e8400-e29b-41d4-a716-446655440000"
-id := uuid.MustParse(adminID)  // コンパイル時定数として安全
+// パース
+parsed, err := uuid.Parse("550e8400-e29b-41d4-a716-446655440000")
 
-// データベースとの統合（database/sqlが自動対応）
-var user User
-db.QueryRow("SELECT id, name FROM users WHERE id = ?", userID).Scan(&user.ID, &user.Name)
-
-// JSON等への自動マーシャリング
-type User struct {
-    ID   uuid.UUID `json:"id"`
-    Name string    `json:"name"`
-}
-// MarshalText/UnmarshalTextが自動的に使われる
+// database/sqlでの利用（自動的に文字列変換される）
+db.Exec("INSERT INTO users (id, name) VALUES (?, ?)", uuid.New(), "Alice")
 ```
-
-**UUIDv4 vs UUIDv7の使い分け**:
-
-- **UUIDv4（ランダム）**: プライバシーが重要な場合、作成時刻を隠したい場合、分散DBでホットスポットを避けたい場合に推奨
-- **UUIDv7（時刻ベース）**: データベースでの挿入性能が重要な場合、時系列での並び替えが必要な場合に推奨（PostgreSQL 18やPercona MySQLなどが公式サポート）
 
 ## 議論のハイライト
 
-- **APIの最小化**: 当初は`github.com/google/uuid`の全機能を取り込む案もあったが、実際の利用統計分析（@rolandshoemaker）により、`UUID.String()`が35%、生成関数群が50%以上で、他の機能は1%未満と判明。最小限のAPIに絞られた
+1. **過去2回の却下理由**: 2018年のrscのコメントでは「標準ライブラリに何が必要か十分な情報がない」として却下。当時はV4だけで十分かが不明瞭でした
 
-- **New()関数の是非**: 「何も考えずにUUIDが欲しい」ユーザー向けに`New()`を用意すべきか議論。当初UUIDv7をデフォルトにする案もあったが、UUIDv7はタイムスタンプ漏洩やホットスポット問題があるため、より安全なUUIDv4を返す`New() = NewV4()`に決定
+2. **V7採用の是非**: 長時間の議論の末、`NewV7()`は提供するものの、デフォルトの`New()`はV4を返す結論に。理由はV7のホットスポット問題（Google Cloud Spannerなどで性能悪化）とタイムスタンプリークの懸念
 
-- **タイムスタンプオフセット機能の議論**: UUIDv7でタイムスタンプをずらす機能（プライバシー保護やロック競合回避）について激しい議論があったが、「オフセットを加えても完全な匿名化にはならない」「本当に必要なら外部パッケージで実装可能」として、初期実装からは除外
+3. **タイムスタンプオフセット論争**: PostgreSQL 18やPercona MySQLが実装したタイムスタンプオフセット機能（プライバシー保護）を標準で含めるべきかが議論されましたが、novelな機能として見送りに
 
-- **パース形式の厳格性**: セキュリティとプロトコル互換性のため、RFC 9562の標準形式のみを受け付ける厳格な仕様に。他言語との相互運用時の予期しない動作を防ぐため、将来的にも拡張しないことを保証
+4. **最小限のAPI方針**: 当初は`github.com/google/uuid`をそのまま標準ライブラリに含める案もありましたが、`SetNodeID`などの不要な機能を排除し、80-90%のユースケースをカバーする最小APIに収束
 
-- **database/sql統合**: UUIDはデータベースで頻繁に使用されるため、`database/sql`側を拡張してUUID型を認識させ、ドライバが未対応でも文字列として自動変換する仕組みを導入
+5. **型の選択**: `type UUID string`案も検討されましたが、(1) `github.com/google/uuid`との互換性、(2) 無効なUUIDを型レベルで防げないデメリット、(3) メモリ効率から`[16]byte`に決定
 
-- **RFC 9562の「不透明性」原則**: RFC 9562は「UUIDは可能な限り不透明な識別子として扱うべき」と推奨しているため、Version/NodeID/Timestampなどを取り出すメソッドは提供しない方針（利用率も0.07%以下）
+6. **RFC 9562の「Opacity」原則**: 仕様書は「UUIDをパースして内部情報を取り出すのは避けるべき」と推奨しているため、`UUID.Version()`や`UUID.Timestamp()`などのメソッドは意図的に除外
 
-## 関連リンク
-- [Proposal Issue](https://github.com/golang/go/issues/62026)
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [関連提案: crypto/rand にUUIDv4/v7関数を追加](https://github.com/golang/go/issues/76319)
-- [過去の却下提案 #23789 (2018年)](https://github.com/golang/go/issues/23789)
-- [過去の却下提案 #28324 (2018年)](https://github.com/golang/go/issues/28324)
+## Sources
+
 - [RFC 9562: Universally Unique IDentifiers (UUIDs)](https://www.rfc-editor.org/rfc/rfc9562.html)
-- [github.com/google/uuid パッケージ](https://pkg.go.dev/github.com/google/uuid)
-
----
-
-**Sources:**
-- [RFC 9562: Universally Unique IDentifiers (UUIDs)](https://www.rfc-editor.org/rfc/rfc9562.html)
-- [GitHub - google/uuid: Go package for UUIDs](https://github.com/google/uuid)
-- [uuid package - github.com/google/uuid - Go Packages](https://pkg.go.dev/github.com/google/uuid)
+- [GitHub - google/uuid: Go package for UUIDs based on RFC 4122 and DCE 1.1](https://github.com/google/uuid)
+- [Has the google/uuid Go library been discontinued or neglected? - Latenode Official Community](https://community.latenode.com/t/has-the-google-uuid-go-library-been-discontinued-or-neglected/20802)
 
 ## 関連リンク
 
-- [関連提案: crypto/rand にUUIDv4/v7関数を追加](https://github.com/golang/go/issues/76319)
-- [過去の却下提案 #23789 (2018年)](https://github.com/golang/go/issues/23789)
-- [過去の却下提案 #28324 (2018年)](https://github.com/golang/go/issues/28324)
-- [Proposal Issue](https://github.com/golang/go/issues/62026)
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [過去の却下例 #23789 (2018年)](https://github.com/golang/go/issues/23789)
+- [Proposal Issue #62026](https://github.com/golang/go/issues/62026)
+- [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [関連提案 #76319: crypto/rand.UUIDv4/UUIDv7（より限定的なアプローチ）](https://github.com/golang/go/issues/76319)

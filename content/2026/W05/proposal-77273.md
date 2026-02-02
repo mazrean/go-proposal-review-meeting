@@ -1,166 +1,148 @@
 ---
 issue_number: 77273
 title: "spec: generic methods for Go"
-previous_status: discussions
+previous_status: 
 current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "proposal: spec: generic methods for Go · Issue #77273 · golang/go"
-    url: https://github.com/golang/go/issues/77273
-  - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
-  - title: "関連Issue #49085: Allow type parameters in methods (2021)"
+  - title: "関連Issue #49085: Allow type parameters in methods"
     url: https://github.com/golang/go/issues/49085
-  - title: "関連Issue #50981: Add generics to methods (2022)"
+  - title: "関連Issue #50981: Add generics to method"
     url: https://github.com/golang/go/issues/50981
+  - title: "Proposal Issue"
+    url: https://github.com/golang/go/issues/77273
+  - title: "Review Minutes (2026-01-28)"
+    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 ---
 
 ## 要約
 
 ## 概要
-Goのメソッドにジェネリック型パラメータを許可する提案です。これまでGoは「メソッドの主な役割はインターフェースの実装」と考えていたため、型パラメータを持つメソッド（ジェネリックメソッド）を禁止していました。この提案は視点を変え、「メソッドは型に紐づく関数として単独で有用」という観点からジェネリックメソッドを導入します。
+このproposalは、Go言語にジェネリックメソッド（型パラメータを持つメソッド）を導入するものです。現在、ジェネリック関数は存在しますが、メソッドは独自の型パラメータを宣言できません。この制限を撤廃し、メソッドをレシーバ付きのジェネリック関数として扱えるようにすることで、コードの組織化と可読性を向上させます。
 
 ## ステータス変更
-**(新規)** → **active**
+**（なし）** → **active**
 
-2026年1月28日のProposal Review Meetingで、この提案が**active**ステータスに移行しました。提案は2026年1月22日にRobert Griesemer（Goコアチーム）により提出され、わずか6日で活発な議論対象となりました。これは、900件以上の賛同を集めた過去の関連提案（#49085、2021年10月）や、コミュニティからの長年の要望を受けてのものです。
+2026年1月28日のProposal Review Meetingにおいて、このissueが正式に議題として取り上げられ、"Active"ステータスに移行しました。これは議論が本格的に開始されたことを意味し、実装に向けた具体的な検討が始まっています。議事録では「added to minutes」とのみ記載されており、詳細な議論はこれから行われる見込みです。
 
 ## 技術的背景
 
 ### 現状の問題点
 
-現在のGoでは、関数は型パラメータを宣言できますが、メソッドは宣言できません：
+Go 1.18で導入されたジェネリクスでは、関数は型パラメータを持てますが、メソッドは独自の型パラメータを宣言できません。メソッドはレシーバ型の型パラメータを利用できるのみです。
 
 ```go
-// OK: ジェネリック関数
+// これは可能（ジェネリック関数）
 func Map[T, U any](slice []T, f func(T) U) []U { ... }
 
-// NG: メソッドに型パラメータは不可
+// これは不可能（メソッドに独自の型パラメータを追加できない）
 type Stream[T any] struct { ... }
 func (s *Stream[T]) Map[U any](f func(T) U) *Stream[U] { ... }  // コンパイルエラー
 ```
 
-この制限により、関数型スタイルのAPIやメソッドチェーン、DSL（Domain Specific Language）の実装が困難になっています。現在は回避策として、すべての型パラメータをレシーバ型に宣言する必要がありますが、これは「何回マップするか不明」な場合に実用的ではありません。
+この制限により、以下のような問題が発生しています:
 
-**なぜ今まで禁止されていたか：**
-Goではインターフェース実装が暗黙的（動的）であり、どのジェネリックメソッドのインスタンス化が必要かをコンパイル時に知る方法がありません。たとえば、`Read[T any]([]T) (int, error)`というジェネリックメソッドを持つ型が、実行時にどの`T`で呼ばれるか予測不可能です。この問題は2021年のType Parameters Proposalで詳細に議論されました。
+1. **名前空間の問題**: 同じパッケージ内に複数の類似型がある場合、パッケージレベル関数では名前の衝突を避けるため `MapHashSet`、`MapTreeSet` のように冗長な命名が必要
+2. **メソッドチェーンの不可能性**: `x.a().b().c()` のような流暢なAPIが書けない
+3. **標準ライブラリの不整合**: `math/rand/v2.Rand`型はジェネリック関数`N[T Integer](n T) T`に対応するメソッドを提供できない
 
 ### 提案された解決策
 
-提案は**視点の転換**を行います：
-- **従来**: メソッド = インターフェース実装の手段
-- **新提案**: メソッド = 型の名前空間に紐づく関数（インターフェースとは独立）
+メソッド宣言の構文を関数宣言と同様に拡張し、型パラメータを許可します:
 
-**構文変更：**
-
+**現在の構文:**
 ```ebnf
-// 旧
 MethodDecl = "func" Receiver MethodName Signature [ FunctionBody ] .
+```
 
-// 新
+**新しい構文:**
+```ebnf
 MethodDecl = "func" Receiver MethodName [ TypeParameters ] Signature [ FunctionBody ] .
 ```
 
-**重要な制約：**
-- **インターフェースメソッドには型パラメータを追加しない**（構文的に不可）
-- したがって、ジェネリックメソッドはインターフェースを実装**できない**
-- これは言語仕様の一貫性として明示される
+重要な制約として、**インターフェースメソッドは型パラメータを持てません**。つまり、ジェネリックメソッドはインターフェースを満たすことができません。
 
 ## これによって何ができるようになるか
 
-ジェネリックメソッドにより、以下のようなAPIが可能になります：
+### 1. 同一パッケージ内での名前の統一
 
-1. **メソッドチェーンを使ったストリーム処理**
-2. **型安全なDSL**（テストフレームワーク、データパイプライン構築など）
-3. **既存の関数をメソッドに昇格**（例: `math/rand/v2.Rand`に`N[T integer]()`メソッド）
+複数の集合型を同じパッケージで提供する場合、すべてに同じメソッド名を使えます:
+
+```go
+type HashSet[E comparable] struct { ... }
+func (s *HashSet[E]) Map[F any](f func(E) F) *HashSet[F] { ... }
+
+type TreeSet[E cmp.Ordered] struct { ... }
+func (s *TreeSet[E]) Map[F any](f func(E) F) *TreeSet[F] { ... }
+
+// パッケージレベル関数だと MapHashSet, MapTreeSet のように分ける必要があった
+```
+
+### 2. メソッドチェーンとメソッド値
+
+```go
+type Reader struct { ... }
+func (*Reader) Read[E any]([]E) (int, error) { ... }
+
+var r Reader
+r.Read([]int{1, 2, 3})     // 型推論で動作
+r.Read[string]([]string{})  // 明示的な型引数も可能
+
+// メソッド値も利用可能
+readFunc := r.Read[byte]  // func([]byte) (int, error) 型の関数値
+```
+
+### 3. 標準ライブラリの改善
+
+`math/rand/v2.Rand`型にジェネリック`N`メソッドを追加できます（現在は関数のみ存在）:
+
+```go
+type Rand struct { ... }
+func (r *Rand) N[T Integer](n T) T { ... }
+
+var rng Rand
+rng.N(100)        // 0-99のint
+rng.N(uint64(100)) // 0-99のuint64
+```
 
 ### コード例
 
 ```go
-// Before: ワークアラウンド（型パラメータを全て型に含める）
-type Stream[T, U any] struct { ... }
-func (s *Stream[T, U]) Map(f func(T) U) *Stream[U, ???] { ... }  // 次の型パラメータは？
-
-// After: ジェネリックメソッドを使った自然な記述
-type Stream[T any] struct { ... }
-func (s *Stream[T]) Map[U any](f func(T) U) *Stream[U] {
-    // Tから新しい型Uへ変換
-    ...
+// Before: パッケージレベル関数を使った回避策
+type Stream[T any] struct { data []T }
+func MapStream[T, U any](s *Stream[T], f func(T) U) *Stream[U] {
+    return &Stream[U]{...}
 }
 
-// メソッドチェーンが可能に
-result := stream.
-    Filter(predicate).
-    Map[string](toString).
-    Collect()
-```
+var s Stream[int]
+result := MapStream(MapStream(s, toString), toUpper) // ネストして読みにくい
 
-```go
-// 実用例: hash.Hashの改善
-type Hash struct { ... }
+// After: ジェネリックメソッドを使った自然な書き方
+func (s *Stream[T]) Map[U any](f func(T) U) *Stream[U] {
+    return &Stream[U]{...}
+}
 
-// Before: パッケージレベル関数のみ
-maphash.WriteComparable[string](h, "key")
-
-// After: メソッドとして自然に呼べる
-func (*Hash) WriteComparable[T comparable](x T) { ... }
-h.WriteComparable("key")  // 型推論が効く
-```
-
-**インターフェースとの関係：**
-
-```go
-// ジェネリックメソッドはインターフェースを実装できない
-type Reader struct{ … }
-func (*Reader) Read[E any]([]E) (int, error) { … }
-
-// io.Readerとは互換性がない
-var _ io.Reader = &Reader{}  // コンパイルエラー
-// 理由: Read[E any]([]E)とRead([]byte)は型が一致しない
+result := s.Map(toString).Map(toUpper) // 左から右に読める
 ```
 
 ## 議論のハイライト
 
-- **コアチームの懸念（Ian Lance Taylor）**: 「メソッドがインターフェースを実装するかどうかのルールが複雑になる。全てのメソッドが実装に寄与できたが、今後は一部のみになる」。ただし「それでもやる価値はあるかもしれない」とも発言
+- **インターフェース満たさない問題への懸念**: `Read[E any]([]E) (int, error)`メソッドは`io.Reader`を満たさないため、混乱を招く可能性がある。これはFAQで最も多く聞かれる質問になると予測されている（Merovius氏）
 
-- **認知的負荷の増加（Chris Hines）**: 「制限を削除する単純化に見えるが、利用者の認知的負荷は増える。どのメソッドがインターフェースを実装できるか判断が必要になる」
+- **発想の転換**: これまでGoチームは「メソッドはインターフェースを満たすためのもの」という視点からジェネリックメソッドを却下してきたが、この提案は「メソッドはコード組織化のツールでもある」という視点への転換を意味する
 
-- **Griesemerの明確化**: 「インターフェースの構文は一切変更しない。ジェネリックメソッドは関数型の同一性チェックで自然に除外される」
+- **完全な後方互換性**: 既存の制限を取り除くだけなので、既存コードは一切影響を受けない。将来的にインターフェースメソッドへの型パラメータ追加の道も閉ざさない
 
-- **実装パターンの議論**: インターフェースとの互換性が必要な場合、ラッパーメソッドを生成するパターンが提案されている
-  ```go
-  func (x X) Read[T any]([]T) (int, error) { ... }
-  func (x X) ReaderOf[T any]() Reader[T] {
-      type wrapper[T any] X
-      return wrapper[T](x)
-  }
-  ```
+- **実装の実現可能性**: メソッド呼び出しは静的に解決できるため、ジェネリック関数呼び出しに書き換え可能。技術的には実装可能だが、import/exportフォーマットの変更が必要で、ツールエコシステム全体への影響は大きい（griesemer氏）
 
-- **Rustとの比較**: 一部のユーザーはRustがtraitメソッドでジェネリクスをサポートしている点を指摘したが、Rustでも同様の動的ディスパッチ問題があることが議論された
+- **関数型identity規則の調整が必要**: 型パラメータセクションも含めて関数型の同一性を判定する必要がある。これにより、ジェネリックメソッドが誤ってインターフェースを満たすことを防ぐ
 
-- **Apache Beam Goの具体例（lostluck）**: データパイプライン構築でBeam PythonやJavaと同等の表現力が得られる
-
-- **エラーハンドリングとの相性（Ian Lance Taylor）**: メソッドチェーンはエラーを返す場合に制限がある。Goでは`(value, error)`を返すパターンが多く、純粋な関数型チェーンは限定的な領域でしか機能しない
-
-## 関連リンク
-- [Proposal Issue #77273](https://github.com/golang/go/issues/77273)
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [関連Issue #49085: Allow type parameters in methods (2021)](https://github.com/golang/go/issues/49085) - 888件の賛同、361件のコメント
-- [関連Issue #50981: Add generics to methods (2022)](https://github.com/golang/go/issues/50981)
-- [Type Parameters Proposal - No parameterized methods](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md#No-parameterized-methods)
-- [実装CL 738441](https://go.dev/cl/738441) - パーサーでジェネリックメソッド構文を有効化
-
----
-
-Sources:
-- [proposal: spec: generic methods for Go · Issue #77273 · golang/go](https://github.com/golang/go/issues/77273)
-- [A Proposal for Adding Generics to Go - The Go Programming Language](https://go.dev/blog/generics-proposal)
-- [An Introduction To Generics - The Go Programming Language](https://go.dev/blog/intro-generics)
+- **Reflectionでのアクセス不可**: `reflect`パッケージ経由ではジェネリックメソッドにアクセスできない（ジェネリック関数と同様の制限）
 
 ## 関連リンク
 
-- [proposal: spec: generic methods for Go · Issue #77273 · golang/go](https://github.com/golang/go/issues/77273)
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [関連Issue #49085: Allow type parameters in methods (2021)](https://github.com/golang/go/issues/49085)
-- [関連Issue #50981: Add generics to methods (2022)](https://github.com/golang/go/issues/50981)
+- [関連Issue #49085: Allow type parameters in methods](https://github.com/golang/go/issues/49085)
+- [関連Issue #50981: Add generics to method](https://github.com/golang/go/issues/50981)
+- [Proposal Issue](https://github.com/golang/go/issues/77273)
+- [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)

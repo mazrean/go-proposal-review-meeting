@@ -1,178 +1,201 @@
 ---
 issue_number: 74424
 title: "x/crypto/ssh: refactor signers API"
-previous_status: discussions
+previous_status: 
 current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "Proposal Issue #74424"
-    url: https://github.com/golang/go/issues/74424
-  - title: "関連: crypto.ContextSigner提案 #56508"
-    url: https://github.com/golang/go/issues/56508
-  - title: "@hslatman"
-    url: https://github.com/golang/go/issues/74424#issuecomment-3127190469
-  - title: "x/crypto: migrate packages to the standard library · Issue #65269"
-    url: https://github.com/golang/go/issues/65269
-  - title: "Review Minutes (2026-01-28)"
+  - title: "Review Minutes"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
-  - title: "@imirkin"
-    url: https://github.com/golang/go/issues/74424#issuecomment-3104941123
-  - title: "@meling"
-    url: https://github.com/golang/go/issues/74424#issuecomment-3104310815
-  - title: "proposal: x/crypto/ssh: v2 · Issue #68723"
+  - title: "標準ライブラリ移行proposal (#68723)"
     url: https://github.com/golang/go/issues/68723
-  - title: "関連: SSHSIG support #68197"
+  - title: "関連: SSHSIG形式サポート提案 (#68197)"
     url: https://github.com/golang/go/issues/68197
-  - title: "関連: ssh-rsa-sha2-256 handshake問題 #39885"
-    url: https://github.com/golang/go/issues/39885
+  - title: "関連: MultiAlgorithmSigner追加 (#52132)"
+    url: https://github.com/golang/go/issues/52132
+  - title: "crypto.Signer context対応提案 (#56508)"
+    url: https://github.com/golang/go/issues/56508
+  - title: "Proposal Issue"
+    url: https://github.com/golang/go/issues/74424
 ---
 
 ## 要約
 
 ## 概要
-`x/crypto/ssh`パッケージのSignerインターフェースを統合・刷新し、将来的に標準ライブラリへ移行するための新しいV2 APIを導入する提案です。現在3つに分かれているインターフェース（Signer、AlgorithmSigner、MultiAlgorithmSigner）を、署名アルゴリズムを選択可能な単一のSignerV2に統合します。
+
+このproposalは、`x/crypto/ssh`パッケージの標準ライブラリ移行に向けて、署名者（Signer）APIを大幅に再設計するものです。現在3つに分かれているSigner関連インターフェース（Signer、AlgorithmSigner、MultiAlgorithmSigner）を統合し、アルゴリズム選択とコンテキスト伝播に対応した`SignerV2`インターフェースに一本化します。
 
 ## ステータス変更
-**(新規)** → **active**
 
-2026年1月28日のProposal Review Meetingで、この提案が**Active**ステータスに移行されました。つまり、活発な議論・レビュー段階に入り、実装に向けた具体的な検討が始まったことを意味します。
+**(未設定)** → **active**
+
+2026年1月28日のProposal Review Meetingにおいて、本proposalが「active」ステータスに昇格しました。議事録には「added to minutes」とのみ記載されており、積極的な議論を継続するための活性化措置と見られます。この決定は、x/crypto/sshの標準ライブラリ移行（#68723）という大きな文脈の中で、重要なAPI改善として位置づけられています。
 
 ## 技術的背景
 
 ### 現状の問題点
 
-x/crypto/sshパッケージには、歴史的経緯から3つのSignerインターフェースが存在しています：
+`x/crypto/ssh`パッケージは後方互換性を保つために、RSA鍵の複数の署名アルゴリズム対応を段階的に追加してきた結果、以下の3つのインターフェースが乱立しています。
 
-- **Signer** - 基本の署名インターフェース
-- **AlgorithmSigner** - 署名アルゴリズムを指定可能
-- **MultiAlgorithmSigner** - 対応アルゴリズムのリストを返せる
+- **Signer**: 基本的な署名インターフェース
+- **AlgorithmSigner**: アルゴリズムを指定して署名できるインターフェース
+- **MultiAlgorithmSigner**: 対応アルゴリズムを列挙できるインターフェース
 
-これらは当初、RSA鍵が複数の署名アルゴリズム（`ssh-rsa`、`rsa-sha2-256`、`rsa-sha2-512`）をサポートする必要性から段階的に追加されました。しかし、この設計は複雑で一貫性に欠けており、特にOpenSSHが[SHA-1ベースのssh-rsaを非推奨化](https://www.openssh.org/txt/release-8.7)した現在、セキュアなデフォルト設定が難しくなっています。
+また、Signer作成のための関数も4つに分かれています。
 
-また、署名操作に`context.Context`を渡せないため、KMS（Key Management Service）など外部サービスを利用する場合にタイムアウトやキャンセル、ロギング情報を伝播できないという問題があります（[#56508](https://github.com/golang/go/issues/56508)で議論）。
+```go
+NewSignerFromKey(key interface{}) (Signer, error)
+NewSignerFromSigner(signer crypto.Signer) (Signer, error)
+NewCertSigner(cert *Certificate, signer Signer) (Signer, error)
+NewSignerWithAlgorithms(signer AlgorithmSigner, algorithms []string) (MultiAlgorithmSigner, error)
+```
 
-さらに、以下の関数群も重複・非一貫性があります：
-- `NewSignerFromKey` と `NewSignerFromSigner`（DSA対応のため分離されていたが、[OpenSSH 10.0でDSAは削除](https://lwn.net/Articles/958048/)）
-- PEM暗号化に非推奨の`x509.DecryptPEMBlock`を使用
+`NewSignerFromKey`が`interface{}`を受け取る理由は、DSA鍵（`*dsa.PrivateKey`）対応のためでしたが、DSAはOpenSSH 10.0（2025年4月リリース）で完全に削除されており、もはや不要な複雑さです。
+
+さらに、秘密鍵パース関数も4つあり、冗長性が見られます。
+
+```go
+ParsePrivateKey(pemBytes []byte) (Signer, error)
+ParsePrivateKeyWithPassphrase(pemBytes, passphrase []byte) (Signer, error)
+ParseRawPrivateKey(pemBytes []byte) (interface{}, error)
+ParseRawPrivateKeyWithPassphrase(pemBytes, passphrase []byte) (interface{}, error)
+```
 
 ### 提案された解決策
 
-新しい**SignerV2**インターフェースを導入し、以下の特徴を持たせます：
+新しい`SignerV2`インターフェースは、これらの複雑性を解消し、以下の機能を提供します。
 
 ```go
 type SignerV2 interface {
     PublicKey() PublicKey
+
+    // 後方互換性のための従来型メソッド
     Sign(rand io.Reader, data []byte) (*Signature, error)
+
+    // コンテキストとアルゴリズム選択に対応した新メソッド
     SignContext(ctx context.Context, rand io.Reader, data []byte, algorithm string) (*Signature, error)
+
+    // 対応アルゴリズムをリスト表示
     Algorithms() []string
+
+    // 基礎となるcrypto.Signerへのアクセス（HSM等で有用）
     Signer() (crypto.Signer, error)
 }
 ```
 
-主な改善点：
-1. **アルゴリズム選択の統合** - `SignContext`で署名アルゴリズムを直接指定可能
-2. **Context対応** - `SignContext`によりタイムアウト・キャンセル・メタデータの伝播が可能
-3. **セキュアなデフォルト** - RSA鍵ではデフォルトでSHA-1ベースの`ssh-rsa`を除外し、`rsa-sha2-256/512`のみをサポート
-4. **DSAサポート削除** - OpenSSH 10.0に合わせて廃止
-5. **レガシーPEM暗号化削除** - OpenSSH形式の暗号化のみサポート
+Signer作成関数も簡潔になります。
+
+```go
+// crypto.SignerからSignerV2を作成（RSA鍵の場合はSHA-1を除外）
+func NewSignerV2(signer crypto.Signer) (SignerV2, error)
+
+// 対応アルゴリズムを制限したSignerV2を作成
+func NewSignerV2WithAlgorithms(signer SignerV2, algorithms []string) (SignerV2, error)
+
+// 証明書付きSignerV2を作成
+func NewCertificateSignerV2(cert *Certificate, signer SignerV2) (SignerV2, error)
+```
+
+秘密鍵のパース・マーシャルは、オプション構造体を用いた統一的な設計になります。
+
+```go
+type ParsePrivateKeyV2Options struct {
+    Passphrase string
+    SignatureAlgorithms []string  // デフォルトで安全なアルゴリズムのみ許可
+}
+
+func ParsePrivateKeyV2(pemBytes []byte, options *ParsePrivateKeyV2Options) (SignerV2, error)
+
+type MarshalPrivateKeyV2Options struct {
+    Comment string
+    Passphrase string  // 設定時はOpenSSH形式で暗号化
+    SaltRounds int     // 鍵導出の反復回数（デフォルト24）
+}
+
+func MarshalPrivateKeyV2(key SignerV2, options *MarshalPrivateKeyV2Options) (*pem.Block, error)
+```
+
+重要な変更点として、RFC 1423準拠の旧式PEM暗号化（DES-CBC、AES-CBC使用）は非対応となり、OpenSSH形式の暗号化のみをサポートします。
 
 ## これによって何ができるようになるか
 
-### 1. セキュアな署名がデフォルトに
+1. **統一されたシンプルなAPI**: 3つのインターフェースと4つのコンストラクタを、1つのインターフェースと3つのコンストラクタに集約。コードの見通しが大幅に改善されます。
 
-従来はRSA鍵で脆弱なSHA-1ベースの`ssh-rsa`が使われる可能性がありましたが、新APIでは自動的にSHA-2ベース（`rsa-sha2-256/512`）が選択されます。古いシステムとの互換性が必要な場合のみ、明示的に`ssh-rsa`を有効化できます。
+2. **コンテキスト伝播のサポート**: HSMやクラウドKMS（AWS KMS、Google Cloud KMS等）を使用する際に、タイムアウト、キャンセル、トレース情報をSigner実装に伝播できるようになります。これは標準ライブラリのcrypto.Signer向け提案（#56508）と整合性があります。
 
-### 2. Context伝播によるKMS/HSM対応の改善
+3. **セキュアなデフォルト設定**: RSA鍵に対してSHA-1ベースの`ssh-rsa`アルゴリズムをデフォルトで無効化し、安全な`rsa-sha2-256`、`rsa-sha2-512`のみを許可。レガシーアルゴリズムが必要な場合は明示的に指定が必要です。
 
-AWS KMSやハードウェアセキュリティモジュール（HSM）などクラウド・外部サービスで管理された鍵を使う場合、タイムアウトやキャンセル、分散トレーシング情報を適切に伝播できるようになります。
-
-### 3. APIの一貫性向上
-
-署名者の作成が一貫したパターンに：
-
-```go
-// crypto.SignerからSignerV2を作成
-signer, err := ssh.NewSignerV2(cryptoSigner)
-
-// アルゴリズムを制限
-restrictedSigner, err := ssh.NewSignerV2WithAlgorithms(signer, []string{"rsa-sha2-256", "rsa-sha2-512"})
-
-// PEMから直接パース（アルゴリズム制御も可能）
-signer, err := ssh.ParsePrivateKeyV2(pemBytes, &ssh.ParsePrivateKeyV2Options{
-    Passphrase: passphrase,
-    SignatureAlgorithms: []string{"rsa-sha2-256", "rsa-sha2-512", "ssh-ed25519"},
-})
-```
+4. **柔軟なアルゴリズム制限**: `SignatureAlgorithms`オプションにより、鍵の種類を問わず使用可能なアルゴリズムを事前に指定可能。以下のようなコードが実現できます。
 
 ### コード例
 
 ```go
-// Before: 従来の書き方
+// Before: 従来の書き方（複雑な型アサーションが必要）
 signer, err := ssh.ParsePrivateKey(pemBytes)
 if err != nil {
     return err
 }
-// RSA鍵の場合、ssh-rsaが使われる可能性がある
-// アルゴリズムを制限するには追加のラッパーが必要
-
-// After: 新APIを使った書き方
-signer, err := ssh.ParsePrivateKeyV2(pemBytes, &ssh.ParsePrivateKeyV2Options{
-    Passphrase: password,
-    // デフォルトでセキュアなアルゴリズムのみ（ssh-rsaを除外）
-})
-if err != nil {
-    return err
+// MultiAlgorithmSignerでアルゴリズムを制限したい場合
+if algSigner, ok := signer.(ssh.AlgorithmSigner); ok {
+    signer, err = ssh.NewSignerWithAlgorithms(algSigner,
+        []string{ssh.KeyAlgoRSASHA256, ssh.KeyAlgoRSASHA512})
 }
 
-// Context対応の署名
+// After: 新APIを使った書き方（オプションでアルゴリズム制限が可能）
+signer, err := ssh.ParsePrivateKeyV2(pemBytes, &ssh.ParsePrivateKeyV2Options{
+    SignatureAlgorithms: []string{
+        ssh.KeyAlgoRSASHA256,
+        ssh.KeyAlgoRSASHA512,
+        ssh.KeyAlgoED25519,
+        // ssh-rsaは含めない（セキュア設定）
+    },
+})
+// 鍵種別に関わらず、対応するアルゴリズムのみがフィルタされる
+```
+
+```go
+// Before: コンテキストを伝播できない
+signature, err := signer.Sign(rand.Reader, data)
+
+// After: コンテキストを使ってタイムアウトやキャンセルを制御
 ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 defer cancel()
 signature, err := signer.SignContext(ctx, rand.Reader, data, "rsa-sha2-256")
 ```
 
+```go
+// Before: 暗号化された鍵のマーシャル（複雑な手順）
+block := &pem.Block{Type: "RSA PRIVATE KEY", Bytes: x509.MarshalPKCS1PrivateKey(key)}
+// パスフレーズ付き暗号化は更に複雑
+
+// After: オプション構造体でシンプルに
+block, err := ssh.MarshalPrivateKeyV2(signer, &ssh.MarshalPrivateKeyV2Options{
+    Comment: "my-key",
+    Passphrase: "secret",
+    SaltRounds: 32, // セキュリティ強化
+})
+```
+
 ## 議論のハイライト
 
-- **Context対応の必要性** - [@hslatman](https://github.com/golang/go/issues/74424#issuecomment-3127190469)の指摘により`SignContext`メソッドが提案に追加され、KMS/HSMバックエンドでのContext伝播が可能に
+- **コンテキスト対応の要請**: @hslatmanより、KMS利用時にコンテキスト伝播が必須との指摘を受け、`SignContext`メソッドが提案に追加されました（標準ライブラリの#56508提案との整合性を考慮）。
 
-- **レガシーサポートの範囲** - [@imirkin](https://github.com/golang/go/issues/74424#issuecomment-3104941123)は既存のレガシーPEM暗号化鍵・`ssh-rsa`アルゴリズムのサポート継続を懸念。議論の結果、`ParsePrivateKeyV2Options.SignatureAlgorithms`フィールドが追加され、必要に応じて古いアルゴリズムを明示的に有効化可能に
+- **旧式PEM暗号化のサポート**: @imirkinより、既存の暗号化PEM鍵の互換性喪失への懸念が示されましたが、RFC 1423の暗号化方式（DES-CBC等）は既に標準ライブラリで非推奨（`x509.DecryptPEMBlock`）であり、OpenSSH形式への移行が推奨されています。ただし、この点は他のメンテナーとの議論継続事項です。
 
-- **APIの柔軟性** - [@meling](https://github.com/golang/go/issues/74424#issuecomment-3104310815)がより柔軟なオプションベースのAPIを提案したが、現在の設計は`SignContext`の`algorithm`パラメータとオプション構造体のバランスを取った形に
+- **レガシーアルゴリズムの扱い**: `ssh-rsa`（SHA-1使用）をデフォルトで無効化する方針に対し、@imirkinより「安全でないアルゴリズムを有効化する際の簡便性」の要望があり、`ParsePrivateKeyV2Options.SignatureAlgorithms`による柔軟な制御が追加されました。これにより、鍵タイプを意識せずに許可アルゴリズムを指定可能です。
 
-- **後方互換性の保証** - SignerV2は既存のSignerインターフェースと互換性があり、既存のメソッド（`ServerConfig.AddHostKey`など）でそのまま使用可能。段階的な移行が可能
+- **`Signer()`メソッドの命名**: @hslatmanより、`PrivateKey()`よりも`Signer()`の方が返り値の型（`crypto.Signer`）に合致するとの提案があり、採用されました。
 
-- **標準ライブラリ移行への準備** - x/crypto/sshパッケージは将来的に標準ライブラリへ移行予定（[#65269](https://github.com/golang/go/issues/65269)、[#68723](https://github.com/golang/go/issues/68723)）。V2サフィックスはx/crypto内でのテスト期間中のみ使用され、標準ライブラリ移行時には削除される予定
+- **エージェントAPIのコンテキスト対応**: @arianvpより、`ServeAgent`メソッドも`SignerV2`と整合的にコンテキスト対応すべきとの要望があり、@drakkanは別proposalで対応予定と回答しています。
 
-- **セキュリティファースト** - デフォルトで安全性の低いアルゴリズムを無効化し、必要な場合のみ明示的に有効化するという設計方針が一貫して維持
-
-## 関連リンク
-- [Proposal Issue #74424](https://github.com/golang/go/issues/74424)
-- [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [実装CL 685678](https://go.dev/cl/685678)
-- [関連: SSHSIG support #68197](https://github.com/golang/go/issues/68197)
-- [関連: ssh-rsa-sha2-256 handshake問題 #39885](https://github.com/golang/go/issues/39885)
-- [関連: crypto.ContextSigner提案 #56508](https://github.com/golang/go/issues/56508)
-- [x/crypto/sshのv2設計文書](https://go.googlesource.com/proposal/+/master/design/68723-crypto-ssh-v2.md)
-- [x/crypto標準ライブラリ移行提案 #65269](https://github.com/golang/go/issues/65269)
-
-## Sources
-- [ssh package - golang.org/x/crypto/ssh - Go Packages](https://pkg.go.dev/golang.org/x/crypto/ssh)
-- [OpenSSH 8.7 Release Notes](https://www.openssh.org/txt/release-8.7)
-- [RFC 8332 - Use of RSA Keys with SHA-256 and SHA-512 in SSH](https://datatracker.ietf.org/doc/html/rfc8332)
-- [RSA keys are not deprecated; SHA-1 signature scheme is!](https://ikarus.sg/rsa-is-not-dead/)
-- [OpenSSH announces DSA-removal timeline [LWN.net]](https://lwn.net/Articles/958048/)
-- [x/crypto: migrate packages to the standard library · Issue #65269](https://github.com/golang/go/issues/65269)
-- [proposal: x/crypto/ssh: v2 · Issue #68723](https://github.com/golang/go/issues/68723)
+- **V2接尾辞の理由**: `x/crypto/ssh`での移行期間中の新旧API共存のために`V2`接尾辞を使用。標準ライブラリ移行後は接尾辞を削除する計画です。
 
 ## 関連リンク
 
-- [Proposal Issue #74424](https://github.com/golang/go/issues/74424)
-- [関連: crypto.ContextSigner提案 #56508](https://github.com/golang/go/issues/56508)
-- [@hslatman](https://github.com/golang/go/issues/74424#issuecomment-3127190469)
-- [x/crypto: migrate packages to the standard library · Issue #65269](https://github.com/golang/go/issues/65269)
-- [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [@imirkin](https://github.com/golang/go/issues/74424#issuecomment-3104941123)
-- [@meling](https://github.com/golang/go/issues/74424#issuecomment-3104310815)
-- [proposal: x/crypto/ssh: v2 · Issue #68723](https://github.com/golang/go/issues/68723)
-- [関連: SSHSIG support #68197](https://github.com/golang/go/issues/68197)
-- [関連: ssh-rsa-sha2-256 handshake問題 #39885](https://github.com/golang/go/issues/39885)
+- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [標準ライブラリ移行proposal (#68723)](https://github.com/golang/go/issues/68723)
+- [関連: SSHSIG形式サポート提案 (#68197)](https://github.com/golang/go/issues/68197)
+- [関連: MultiAlgorithmSigner追加 (#52132)](https://github.com/golang/go/issues/52132)
+- [crypto.Signer context対応提案 (#56508)](https://github.com/golang/go/issues/56508)
+- [Proposal Issue](https://github.com/golang/go/issues/74424)

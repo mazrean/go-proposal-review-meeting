@@ -6,104 +6,106 @@ current_status: accepted
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3814234502
-  - title: "関連: go/constant.Kind.String提案"
+  - title: "参考: go/constant.Kind String()提案（却下）"
     url: https://github.com/golang/go/issues/46211
-  - title: "関連: regexp/syntax.Op.String提案"
-    url: https://github.com/golang/go/issues/22684
   - title: "Proposal Issue"
     url: https://github.com/golang/go/issues/77006
   - title: "Review Minutes"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
+  - title: "関連: regexp/syntax.Op String()メソッド提案"
+    url: https://github.com/golang/go/issues/22684
 ---
 
 ## 要約
 
 ## 概要
-`x/net/html`パッケージの`NodeType`型にデバッグを容易にするための`String()`メソッドを追加する提案です。`NodeType`は単なる整数型の列挙値であり、現在は値を出力しても数値しか表示されないため、`stringer`ツールを使用して人間が読める文字列表現を返すメソッドを自動生成します。
+x/net/htmlパッケージのNodeType型にString()メソッドを追加し、デバッグ時にノードタイプを人間が読める形式（"TextNode", "ElementNode"など）で出力できるようにする提案です。
 
 ## ステータス変更
 **likely_accept** → **accepted**
 
-2026年1月28日の提案レビュー会議で、1週間前の「likely accept」判定から特に異論がなかったため正式に承認されました。既に実装CL（go.dev/cl/738100）が提出されており、レビュー待ちの状態です。
+2026年1月28日のProposal Review Meetingにおいて、「コンセンサスに変更なし」として正式に承認されました。この提案は2026年1月21日に「likely accept」とされており、1週間の最終意見募集期間を経て異議が出なかったため、スムーズに承認に至りました。
 
 ## 技術的背景
 
 ### 現状の問題点
-`x/net/html`パッケージで定義されている`NodeType`は、HTML文書のノード種別を表す列挙型です。以下の定数が定義されています。
+x/net/htmlパッケージのNodeType型は列挙型（enum）として定義されていますが、String()メソッドが実装されていません。そのため、デバッグ時にNodeTypeをPrintfで出力すると、以下のように数値のみが表示されます。
 
 ```go
-const (
-    ErrorNode NodeType = iota
-    TextNode
-    DocumentNode
-    ElementNode
-    CommentNode
-    DoctypeNode
-    RawNode
-)
+// 現在の動作
+var nt html.NodeType = html.ElementNode
+fmt.Println(nt) // 出力: 3（数値のみで意味が不明瞭）
 ```
 
-現在、`NodeType`の値をデバッグ出力すると単なる整数（0, 1, 2...）として表示されます。開発者はこれらの数値がどのノード種別に対応するのかを記憶するか、ドキュメントを確認する必要があり、デバッグ効率が低下しています。
+NodeTypeは以下の7つの定数で構成されています:
+- ErrorNode (0): エラーノード
+- TextNode (1): テキストコンテンツ
+- DocumentNode (2): ドキュメントルート
+- ElementNode (3): HTML要素（タグ）
+- CommentNode (4): HTMLコメント
+- DoctypeNode (5): DOCTYPE宣言
+- RawNode (6): エスケープなしの生HTML（パーサは返さないが、Renderに渡せる）
 
-同じパッケージ内の`TokenType`には既に手動で実装された`String()`メソッドがあり、この実装は16年前のオリジナルコミットから存在していますが、`NodeType`には同様のメソッドがありませんでした。
+どの定数がどの数値に対応するかを記憶しておくのは困難で、デバッグ効率が低下していました。
 
 ### 提案された解決策
-`NodeType`に対して、[stringer](https://pkg.go.dev/golang.org/x/tools/cmd/stringer)ツールを使用して`String()`メソッドを自動生成します。`stringer`は、整数型の列挙値に対して`fmt.Stringer`インターフェースを満たす`String()`メソッドを自動生成するGo公式ツールです。
+Go標準の`stringer`ツールを使用して、NodeType.String()メソッドを自動生成します。これにより、列挙値が自動的に対応する定数名の文字列表現に変換されます。
 
-生成されるメソッドは、各`NodeType`の値を対応する定数名（"ErrorNode", "TextNode", "ElementNode"など）の文字列として返します。
+なお、同じパッケージ内のTokenType型は既に手書きのString()メソッドを持っており（16年前の最初のコミットから存在）、switch文で各ケースを処理していますが、今回は保守性向上のためstringerによる自動生成が採用されました。
 
 ## これによって何ができるようになるか
 
-HTMLパーサーのデバッグ時に、`NodeType`の値が人間が読める形式で出力されるようになります。これにより、ログやデバッガ上で即座にノードの種別を理解でき、開発効率が大幅に向上します。
+デバッグ時にNodeTypeの値を直感的に理解できるようになり、開発効率が向上します。特にcmd/compileやgo/typesに関連する複雑な問題をデバッグする際、ノードの種類を即座に識別できることは大きな利点です。
 
 ### コード例
 
 ```go
-// Before: 従来の出力（数値のみ）
-node := &html.Node{Type: html.ElementNode}
-fmt.Printf("Node type: %v\n", node.Type)
-// 出力: Node type: 3  （どのノード種別か不明瞭）
+// Before: 数値のみが出力される
+package main
 
-// After: String()メソッド追加後
-node := &html.Node{Type: html.ElementNode}
-fmt.Printf("Node type: %v\n", node.Type)
-// 出力: Node type: ElementNode  （明確で読みやすい）
+import (
+    "fmt"
+    "golang.org/x/net/html"
+)
 
-// デバッグログの例
-for n := doc.FirstChild; n != nil; n = n.NextSibling {
-    fmt.Printf("Processing %s node\n", n.Type)
-    // 出力: Processing DocumentNode node
-    // 出力: Processing ElementNode node
-    // など、一目でノード種別が分かる
+func main() {
+    node := &html.Node{Type: html.ElementNode}
+    fmt.Printf("Node type: %v\n", node.Type)
+    // 出力: Node type: 3
+}
+
+// After: 人間が読める形式で出力される
+package main
+
+import (
+    "fmt"
+    "golang.org/x/net/html"
+)
+
+func main() {
+    node := &html.Node{Type: html.ElementNode}
+    fmt.Printf("Node type: %v\n", node.Type)
+    // 出力: Node type: ElementNode
+
+    // デバッグログでの活用例
+    fmt.Printf("Processing %s with data: %s\n", node.Type, node.Data)
+    // 出力: Processing ElementNode with data: div
 }
 ```
 
 ## 議論のハイライト
 
-- **既存パターンとの一貫性**: 同じパッケージ内の`TokenType`が16年前から`String()`メソッドを持っていることが指摘され、`NodeType`にも同様のメソッドを追加することに説得力がありました
-- **類似提案の存在**: 関連issueとして`go/constant.Kind.String`（#46211）や`regexp/syntax.Op.String`（#22684）など、標準ライブラリの他の列挙型にも同様の機能追加が提案されており、デバッグ時の可読性向上は共通のニーズであることが示されています
-- **実装の簡潔性**: `stringer`ツールを使用した自動生成により、実装とメンテナンスが容易であることが評価されました
-- **迅速な承認**: 提案から2週間弱で「likely accept」となり、さらに1週間で正式承認という速いペースで進行しました。これは提案内容が明確でリスクが低く、開発者にとって明らかに有益であると判断されたためです
+- **類似ケースの参照**: 同様の提案は過去にも複数受理されています。例えば、regexp/syntax.Op型のString()メソッド追加（#22684）や、go/constant.Kind型への同様の機能追加提案（#46211、ただし却下）など、列挙型への可読性向上機能は一貫して評価されています。
 
-## 関連リンク
-- [Proposal Issue](https://github.com/golang/go/issues/77006)
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [実装CL](https://go.dev/cl/738100)
-- [関連: go/constant.Kind.String提案](https://github.com/golang/go/issues/46211)
-- [関連: regexp/syntax.Op.String提案](https://github.com/golang/go/issues/22684)
+- **既存実装との一貫性**: earthboundkid氏が指摘したように、同パッケージのTokenType型は手書きのString()メソッドを持っています。今後はstringerツールによる自動生成に統一することで、保守性が向上します。
 
-## Sources
-- [stringer command - golang.org/x/tools/cmd/stringer - Go Packages](https://pkg.go.dev/golang.org/x/tools/cmd/stringer)
-- [html package - golang.org/x/net/html - Go Packages](https://pkg.go.dev/golang.org/x/net/html)
-- [net/html/node.go at master · golang/net](https://github.com/golang/net/blob/master/html/node.go)
-- [net/html/token.go at master · golang/net](https://github.com/golang/net/blob/master/html/token.go)
+- **迅速な実装**: 提案が「likely accept」とされた翌日（2026年1月22日）には、既に実装CL（go.dev/cl/738100）が提出されており、コミュニティの積極的な対応が見られました。
+
+- **議論の簡潔性**: この提案は技術的に明確で論争の余地が少なかったため、2週間以内という短期間で承認に至りました。標準的な列挙型改善として、異議なく受け入れられています。
 
 ## 関連リンク
 
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814234502)
-- [関連: go/constant.Kind.String提案](https://github.com/golang/go/issues/46211)
-- [関連: regexp/syntax.Op.String提案](https://github.com/golang/go/issues/22684)
+- [参考: go/constant.Kind String()提案（却下）](https://github.com/golang/go/issues/46211)
 - [Proposal Issue](https://github.com/golang/go/issues/77006)
 - [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [関連: regexp/syntax.Op String()メソッド提案](https://github.com/golang/go/issues/22684)

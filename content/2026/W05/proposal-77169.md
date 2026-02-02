@@ -6,65 +6,74 @@ current_status: accepted
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "関連Issue: synctestのシンタックス改善提案"
+  - title: "関連提案: synctestの構文オーバーヘッド削減"
     url: https://github.com/golang/go/issues/76607
-  - title: "Wait/race detector改善 #74352"
-    url: https://github.com/golang/go/issues/74352
   - title: "Proposal Issue"
     url: https://github.com/golang/go/issues/77169
-  - title: "Review Comment"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
   - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/77169#issuecomment-3814233803
-  - title: "元のsynctestプロポーザル #67434"
+    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
+  - title: "関連提案: testing/synctest新パッケージ"
     url: https://github.com/golang/go/issues/67434
 ---
 
 ## 要約
 
 ## 概要
-`testing/synctest`パッケージに`synctest.Sleep(d time.Duration)`関数を追加する提案。この関数は`time.Sleep(d)`と`synctest.Wait()`を連続して呼び出すだけのシンプルなヘルパーですが、synctestを使ったテストで非常によく使われるパターンをカプセル化し、`time.Sleep`だけを呼んで`Wait`を忘れる頻出ミスを防ぎます。
+`testing/synctest`パッケージに、仮想時計を指定時間進めた後にgoroutineの待機状態を確認する`Sleep`関数を追加する提案。この関数は`time.Sleep(d)`と`synctest.Wait()`を組み合わせた便利関数であり、テストコードで頻繁に使われるパターンを標準化します。
 
 ## ステータス変更
 **likely_accept** → **accepted**
 
-Proposal Review Committee（2026年1月28日）で承認されました。議論では当初「あまりに単純な関数なので不要では」という意見もありましたが、最終的に「この関数が捉えるパターンは非常に重要で、テストコードと被テストコードの競合を防ぐ上で不可欠」との結論に至りました。提案者のneild氏は「synctestを使うほぼ全てのテストでこの関数を書いてきた」と報告しています。
+この決定は、提案委員会での議論を経て承認されました。主な理由として以下が挙げられています：
+
+- 関数自体は極めてシンプルだが、synctestを使う**ほぼすべてのテスト**で必要とされる重要なパターンを表現している
+- synctest開発者の@neildが「synctestを使うほぼすべてのテストでこの関数を書いている」と証言
+- `time.Sleep()`だけを呼び出して`Wait()`を忘れるミスが頻繁に発生し、テストが競合状態に陥る問題がある
+- 関数として明示的にパターンを提供することで、コードの意図が明確になり、ミスを防げる
 
 ## 技術的背景
 
 ### 現状の問題点
-`testing/synctest`は並行コードのテストを支援するパッケージで、仮想時計（fake clock）と「durably blocked」の概念を使って決定的なテストを可能にします。このパッケージを使ったテストでは、以下のパターンが非常に頻繁に必要になります:
+
+`testing/synctest`は並行コードのテストを支援するパッケージで、仮想時計と制御されたgoroutine実行環境（「バブル」と呼ばれる）を提供します。バブル内では以下の特徴があります：
+
+- 時間は実際には経過せず、すべてのgoroutineがブロックされたときにのみ進む
+- `time.Sleep()`は仮想時計上で動作し、実際の待機は発生しない
+
+**現在の典型的な使い方では、2つの呼び出しが必要です**：
 
 ```go
-time.Sleep(5 * time.Second)  // 仮想時計を進める
-synctest.Wait()              // 全goroutineが安定してブロックするまで待つ
+synctest.Test(t, func(t *testing.T) {
+    time.Sleep(5 * time.Second)  // 仮想時計を5秒進める
+    synctest.Wait()              // すべてのgoroutineがブロックされるまで待つ
+})
 ```
 
-しかし、`time.Sleep`だけを呼んで`synctest.Wait()`を忘れると、テストコードと被テストコードの間で競合状態（race）が発生します。例えば、両方が同じ時間sleepすると、どちらが先に起きるかは予測不可能です。テストコードは通常、被テストコードが「落ち着く」まで待ちたいため、`Wait()`の呼び出しが必須です。
+しかし、開発者は`time.Sleep()`だけを呼んで`Wait()`を忘れることが多く、これによりテストコードとテスト対象コードが同時に実行され、競合状態が発生します。
 
-### synctestの「durably blocked」とは
-goroutineが「durably blocked」とは、**同じbubble内の他のgoroutineによってのみブロック解除できる状態でブロックされている**ことを意味します。`time.Sleep`、bubble内のチャネル操作、`sync.Cond.Wait`などが該当します。`synctest.Wait()`は、現在のgoroutine以外の全goroutineがdurably blockedになるまで待機します。
+### なぜWaitが必要なのか
+
+テストコード自体とテスト対象のシステムコードの両方が同じ時間だけSleepした場合、どちらが先に実行されるかは予測不可能です。テストコードは通常、システムコードがSleep後に「落ち着く」のを待ちたいため、`Wait()`によって他のgoroutineが完全にブロックされたことを確認する必要があります。
 
 ### 提案された解決策
-以下のシンプルな関数を`testing/synctest`パッケージに追加します:
+
+以下の新しい関数を`testing/synctest`パッケージに追加：
 
 ```go
-// Sleep advances the virtual clock by d,
-// allowing other goroutines in this synctest bubble to run,
-// and then waits until all goroutines in this bubble
-// are durably blocked.
+// Sleep は仮想時計をdだけ進め、
+// このsynctestバブル内の他のgoroutineを実行させた後、
+// バブル内のすべてのgoroutineが持続的にブロックされるまで待機します。
 //
-// This is exactly equivalent to
+// これは以下と完全に等価です：
 //
 //     time.Sleep(d)
 //     synctest.Wait()
 //
-// In tests, this is often preferable to calling only [time.Sleep].
-// If the test itself and another goroutine running the system under test
-// sleeps for the exact same amount of time, it's unpredictable which
-// of the two goroutines will run first. The test itself usually wants
-// to wait for the system under test to "settle" after sleeping.
-// This is what Sleep accomplishes.
+// テストにおいて、time.Sleepだけを呼ぶよりもこちらが望ましいことが多いです。
+// テスト自身とテスト対象システムを実行する別のgoroutineが
+// 全く同じ時間Sleepする場合、どちらが先に実行されるかは予測不可能です。
+// テスト自身は通常、Sleep後にテスト対象システムが「落ち着く」のを待ちたいため、
+// Sleepがこれを実現します。
 func Sleep(d time.Duration) {
     time.Sleep(d)
     Wait()
@@ -73,81 +82,62 @@ func Sleep(d time.Duration) {
 
 ## これによって何ができるようになるか
 
-テストコードがより安全で読みやすくなります。特に`context.WithTimeout`などの時間ベースの機能をテストする際、競合状態を防ぎながらシンプルに書けます。
+テストコードがより簡潔になり、よくあるミスを防げます。特に、タイムアウト付きコンテキストのテストなど、時間ベースの動作を検証する場面で有用です。
 
 ### コード例
 
 ```go
-// Before: 従来の書き方（Waitを忘れると競合状態が発生）
-func TestContextWithTimeout(t *testing.T) {
-    synctest.Test(t, func(t *testing.T) {
-        ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
-        defer cancel()
+// Before: 従来の書き方（2つの呼び出しが必要）
+synctest.Test(t, func(t *testing.T) {
+    ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+    defer cancel()
 
-        time.Sleep(5*time.Second - time.Nanosecond)
-        synctest.Wait()  // これを忘れるとrace!
-        if err := ctx.Err(); err != nil {
-            t.Fatal("timeout前にエラー")
-        }
+    // タイムアウト直前まで待機
+    time.Sleep(5*time.Second - time.Nanosecond)
+    synctest.Wait()  // 忘れがち！
+    if err := ctx.Err(); err != nil {
+        t.Fatalf("タイムアウト前にエラー: %v", err)
+    }
 
-        time.Sleep(time.Nanosecond)
-        synctest.Wait()  // これも忘れるとrace!
-        if err := ctx.Err(); err != context.DeadlineExceeded {
-            t.Fatal("timeoutが発生しなかった")
-        }
-    })
-}
+    // 残りの時間を待機
+    time.Sleep(time.Nanosecond)
+    synctest.Wait()  // これも忘れがち！
+    if err := ctx.Err(); err != context.DeadlineExceeded {
+        t.Fatalf("タイムアウト後のエラーが期待と異なる: %v", err)
+    }
+})
 
-// After: 新APIを使った書き方（より安全で明確）
-func TestContextWithTimeout(t *testing.T) {
-    synctest.Test(t, func(t *testing.T) {
-        ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
-        defer cancel()
+// After: 新APIを使った書き方（1回の呼び出しで済む）
+synctest.Test(t, func(t *testing.T) {
+    ctx, cancel := context.WithTimeout(t.Context(), 5*time.Second)
+    defer cancel()
 
-        synctest.Sleep(5*time.Second - time.Nanosecond)  // 1行で完結、忘れにくい
-        if err := ctx.Err(); err != nil {
-            t.Fatal("timeout前にエラー")
-        }
+    // タイムアウト直前まで待機
+    synctest.Sleep(5*time.Second - time.Nanosecond)
+    if err := ctx.Err(); err != nil {
+        t.Fatalf("タイムアウト前にエラー: %v", err)
+    }
 
-        synctest.Sleep(time.Nanosecond)
-        if err := ctx.Err(); err != context.DeadlineExceeded {
-            t.Fatal("timeoutが発生しなかった")
-        }
-    })
-}
+    // 残りの時間を待機
+    synctest.Sleep(time.Nanosecond)
+    if err := ctx.Err(); err != context.DeadlineExceeded {
+        t.Fatalf("タイムアウト後のエラーが期待と異なる: %v", err)
+    }
+})
 ```
-
-さらに、`synctest.Sleep`という名前を見るだけで「これはsynctest特有の仮想時計を進める操作だ」とコードの意図が明確になる効果もあります。
 
 ## 議論のハイライト
 
-- **「あまりに単純すぎる」vs「だからこそ必要」**: 当初この関数は元のsynctestプロポーザルから「あまりに単純」という理由で除外されましたが、実際に使ってみると「ほぼ全てのテストで書いている」（neild氏）ことが判明
-- **自動Wait化の検討と却下**: 「rootのgoroutineだけ自動的にSleep後にWaitできないか」という提案が出ましたが、「synctestではどのgoroutineも特別扱いしない」という設計方針、および「テストコードと被テストコードを区別できない」という技術的理由で却下されました
-- **パターンの可視化**: この関数は技術的には単純ですが、「重要で一般的なパターンを捉える」ことで、テストコードの意図を明確にし、バグを防ぐ効果があると評価されました
-- **ドキュメントの重要性**: この関数に「マジックは一切ない」ことをドキュメントで明示することが重要と指摘されました（他のsynctest機能と異なり、単なるショートカット関数）
-- **関連パターン**: `synctest.Test`のネスト問題を解決する`synctestSubtest`のような他の便利関数も議論されましたが、まずは`Sleep`から始める方針となりました
-
-## 関連リンク
-- [Proposal Issue](https://github.com/golang/go/issues/77169)
-- [実装CL](https://go.dev/cl/740066)
-- [testing/synctest公式ドキュメント](https://pkg.go.dev/testing/synctest)
-- [synctest紹介ブログ](https://go.dev/blog/synctest)
-- [元のsynctestプロポーザル #67434](https://github.com/golang/go/issues/67434)
-- [Wait/race detector改善 #74352](https://github.com/golang/go/issues/74352)
-
----
-
-**Sources:**
-- [synctest package - testing/synctest - Go Packages](https://pkg.go.dev/testing/synctest)
-- [Testing concurrent code with testing/synctest - The Go Programming Language](https://go.dev/blog/synctest)
-- [Go: The Testing/Synctest Package Explained | HackerNoon](https://hackernoon.com/go-the-testingsynctest-package-explained)
-- [go/src/testing/synctest/synctest.go at master · golang/go](https://github.com/golang/go/blob/master/src/testing/synctest/synctest.go)
+- **極めてシンプルだが極めて重要**: 委員会は「一方では信じられないほど些細、他方では信じられないほど些細」とコメント。機能は単純だが、頻繁に使われる重要なパターンを捉えている
+- **自動化は困難**: `time.Sleep`に自動的に`Wait`を含める案も検討されたが、複数のgoroutineが同時に`Wait`を呼べない制約があり、実装が困難
+- **ルートgoroutineのみ特別扱い**: ルートgoroutineだけで自動的に`Wait`する案も却下。synctestはどのgoroutineも特別扱いしない設計を維持
+- **ドキュメントの明確化**: この関数には「魔法」は一切なく、単に2つの呼び出しを組み合わせただけであることをドキュメントで明示する必要がある
+- **視認性の向上**: `time.Sleep`の代わりに`synctest.Sleep`を使うことで、仮想時計を使っていることがコード上で明確になり、理解しやすくなる（@apparentlymartのコメント）
+- **実装済み**: 提案承認後、すぐに実装CL（go.dev/cl/740066）が提出された
 
 ## 関連リンク
 
-- [関連Issue: synctestのシンタックス改善提案](https://github.com/golang/go/issues/76607)
-- [Wait/race detector改善 #74352](https://github.com/golang/go/issues/74352)
+- [関連提案: synctestの構文オーバーヘッド削減](https://github.com/golang/go/issues/76607)
 - [Proposal Issue](https://github.com/golang/go/issues/77169)
-- [Review Comment](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [Review Minutes](https://github.com/golang/go/issues/77169#issuecomment-3814233803)
-- [元のsynctestプロポーザル #67434](https://github.com/golang/go/issues/67434)
+- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [関連提案: testing/synctest新パッケージ](https://github.com/golang/go/issues/67434)

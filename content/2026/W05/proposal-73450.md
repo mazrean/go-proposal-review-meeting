@@ -1,48 +1,74 @@
 ---
 issue_number: 73450
 title: "net/url: URL.Clone, Values.Clone"
-previous_status: discussions
+previous_status: 
 current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "関連Issue #38351: URL deep-copyingの安全性確認"
-    url: https://github.com/golang/go/issues/38351
-  - title: "関連Issue #41733: 前回のURL.Clone提案（2020年、却下）"
-    url: https://github.com/golang/go/issues/41733
-  - title: "Proposal Issue"
+  - title: "proposal: net/url: URL.Clone, Values.Clone · Issue #73450"
     url: https://github.com/golang/go/issues/73450
-  - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
+  - title: "Review Minutes (Active指定)"
+    url: https://github.com/golang/go/issues/33502#issuecomment-3814236325
+  - title: "proposal: net/url: add URL.Clone method · Issue #41733"
+    url: https://github.com/golang/go/issues/41733
+  - title: "net/url: clarify safe way to do URL deep-copying · Issue #38351"
+    url: https://github.com/golang/go/issues/38351
+  - title: "new(*expr)構文提案 #45624"
+    url: https://github.com/golang/go/issues/45624
 ---
 
 ## 要約
 
 ## 概要
-`net/url`パッケージの`URL`と`Values`型にそれぞれ`Clone()`メソッドを追加するproposalです。現在、URLを安全かつ効率的にコピーする方法が明確でないため、多くの開発者が非効率なString/Parseのround-tripパターンを使用している問題を解決します。
+`net/url`パッケージに`URL.Clone()`と`Values.Clone()`メソッドを追加する提案です。現状、URLの安全なコピー方法が明確でないため、多くの開発者が非効率な`Parse(url.String())`パターンを使用しています。この提案は、標準ライブラリに明示的で効率的なクローン機能を追加することで、開発者の混乱を解消し、パフォーマンスを向上させることを目指しています。
 
 ## ステータス変更
-**(新規)** → **active**
+**(提案なし)** → **active**
 
-2026年1月28日のProposal Review Meetingで、このproposalは議論対象として正式にactive columnに追加されました（"added to minutes"）。過去に同様のproposal #41733が提案されたものの、使用頻度への疑問から却下されていましたが、今回は実際のコード検索データ（GitHub上で21,200件のshallow copy、3,300件のString/Parse pattern）を示すことで、問題の実在性を証明しています。
+2026年1月28日、proposal review groupによって「active」ステータスに移行されました。これは、過去の提案（#41733）が「Clone は必要ない」として却下された経緯がある中で、今回は実データに基づく証拠（GitHubコード検索で21,200件のシンプルコピー、3,300件の非効率なParse/Stringパターン）を提示したことが評価されたためです。
 
 ## 技術的背景
 
 ### 現状の問題点
 
-`net/url.URL`をコピーする際、以下の混乱が生じています:
+`net/url.URL`をコピーする際、以下の混乱が存在します:
 
-1. **安全かつ効率的な方法が不明瞭**: `url2 := *url1`が正しい方法ですが、`User *Userinfo`フィールドがポインタであることから、deep copyが必要かどうか判断に迷う開発者が多数います。
-
-2. **非効率なパターンの蔓延**: 約1/8の開発者が不必要にシリアライズ/デシリアライズを行っています:
+1. **シンプルなコピーが本当に安全か不明瞭**
    ```go
-   url2, _ := url.Parse(url1.String())
+   u1, _ := url.Parse("https://example.com/")
+   u2 := *u1  // これは安全？
    ```
-   このパターンは、常に`nil`であるべきエラーを処理する必要があり、パフォーマンスも劣ります。
 
-3. **net/http内部との乖離**: `net/http`パッケージ内部では、`cloneURL`という関数が存在し、`*Userinfo`まで含めてdeep copyを行っています。しかしこれは公開APIではなく、一般の開発者は利用できません。
+   `URL`構造体には`User *Userinfo`というポインタフィールドがあるため、シャローコピーで問題ないか判断に迷います。実際には`Userinfo`は不変型（immutable）と文書化されているため安全ですが、これを知らない開発者も多くいます。
 
-4. **Values型の深いコピーの困難さ**: `Values`は`map[string][]string`という入れ子構造のため、単純な代入では浅いコピーになり、スライスの要素が共有されてしまいます。現在は148件のコードが`ParseQuery(v.Encode())`パターンを使用しています。
+2. **結果として非効率なワークアラウンドが蔓延**
+   ```go
+   // 1/8の開発者がこのような非効率な方法を使用
+   u2, _ := url.Parse(u1.String())  // シリアライズ→パース
+   ```
+
+   GitHubコード検索によると、約3,300件のコードがこのパターンを使用しており、不要な文字列変換とパースのコストを支払っています。
+
+3. **`net/http`内部には既に実装が存在**
+
+   標準ライブラリの`net/http`パッケージは内部的に`cloneURL`関数を持っています:
+   ```go
+   func cloneURL(u *url.URL) *url.URL {
+       if u == nil {
+           return nil
+       }
+       u2 := new(url.URL)
+       *u2 = *u
+       if u.User != nil {
+           u2.User = new(url.Userinfo)
+           *u2.User = *u.User
+       }
+       return u2
+   }
+   ```
+
+   この実装は`Request.Clone()`などで使用されていますが、公開APIではないため、一部のパッケージは`//go:linkname`を使ってアクセスしている状況です。
 
 ### 提案された解決策
 
@@ -56,74 +82,111 @@ func (u *URL) Clone() *URL
 func (v Values) Clone() Values
 ```
 
-`URL.Clone()`の実装は、`net/http.cloneURL`と同様に、`*Userinfo`フィールドも含めた完全なコピーを行います。これにより、「Userinfoは不変だからshallow copyで良い」という微妙な前提知識に依存せず、確実に安全なコピーが得られます。
+**`URL.Clone()`の実装方針:**
+- 基本的には構造体のシャローコピー
+- ただし`User`フィールドが存在する場合は、それも新しくアロケートしてコピー
+- これにより「一方のクローンへの変更が他方に影響しない」ことを保証
+
+**`Values.Clone()`の必要性:**
+- `url.Values`は`map[string][]string`という入れ子構造
+- シンプルなコピーでは内部のスライスが共有されてしまう
+- `http.Header`には既に`.Clone()`メソッドが存在
+- 実は`url.Values`と`http.Header`は同じ型表現（`map[string][]string`）なので、内部実装では`Header`の`Clone`を利用可能
 
 ## これによって何ができるようになるか
 
-ベースURLを使った複数リクエストの生成パターンが、明瞭かつ効率的になります。このパターンは、設定から取得したベースURLに対して、個別のパスやクエリパラメータを追加してリクエストを送る場合によく使われます。
+この提案により、以下のような「ベースURLから派生URLを作成する」パターンが明確かつ効率的に書けるようになります:
 
 ### コード例
 
 ```go
-// Before: 従来の書き方（非効率なString/Parseパターン）
-base, _ := url.Parse("http://api.example.com/v1")
+// Before: 従来の書き方（混乱を招く or 非効率）
 
-func DoRequest() error {
-  u, err := url.Parse(base.String()) // 不要なエラーハンドリング
-  if err != nil {
-    return err // 実際には発生しないエラー
-  }
-  u.Path = path.Join(u.Path, "users")
-  // uを使ってリクエスト
-}
+// パターン1: シャローコピー（これが正解だが自信が持てない）
+base, _ := url.Parse("https://api.example.com/v1")
+u1 := *base
+u1.Path = path.Join(u1.Path, "users")
+
+// パターン2: 非効率なシリアライズ/パース
+u2, _ := url.Parse(base.String())
+u2.Path = path.Join(u2.Path, "posts")
+
+// パターン3: ResolveReferenceを使う（冗長）
+u3 := base.ResolveReference(&url.URL{Path: "comments"})
+// ただしベースURLに末尾スラッシュが必要など、直感的でない
+
 
 // After: 新APIを使った書き方
-base, _ := url.Parse("http://api.example.com/v1")
+base, _ := url.Parse("https://api.example.com/v1")
 
-func DoRequest() error {
-  u := base.Clone() // 明確かつ効率的
-  u.Path = path.Join(u.Path, "users")
-  // uを使ってリクエスト
-}
+u1 := base.Clone()
+u1.Path = path.Join(u1.Path, "users")
+
+u2 := base.Clone()
+u2.Path = path.Join(u2.Path, "posts")
+
+// 明確で効率的、かつ安全
 ```
-
-`Values`についても同様に、クエリパラメータのベースセットから派生パターンを作る際に便利です:
 
 ```go
-// Before: Encode/ParseQueryのround-trip
-baseParams, _ := url.ParseQuery("limit=10&sort=asc")
-derivedParams, _ := url.ParseQuery(baseParams.Encode())
-derivedParams.Set("offset", "20")
+// url.Valuesのクローン例
 
-// After: 明瞭なClone
-baseParams, _ := url.ParseQuery("limit=10&sort=asc")
-derivedParams := baseParams.Clone()
-derivedParams.Set("offset", "20")
+// Before: 非効率な方法
+origQuery := url.Values{"page": []string{"1"}, "limit": []string{"10"}}
+queryStr := origQuery.Encode()
+newQuery, _ := url.ParseQuery(queryStr)
+newQuery.Set("page", "2")
+
+// After: 効率的な方法
+origQuery := url.Values{"page": []string{"1"}, "limit": []string{"10"}}
+newQuery := origQuery.Clone()
+newQuery.Set("page", "2")
 ```
+
+### 典型的なユースケース
+
+1. **API クライアントライブラリ**: 設定からベースURLを読み込み、各リクエストで異なるパスやクエリパラメータを設定
+2. **HTTP ミドルウェア/プロキシ**: リクエストURLを加工する際、元のURLを保持しながら新しいURLを作成
+3. **テストコード**: 同じベースから複数のテストケース用URLを生成
+4. **データベース接続文字列の構築**: ベースとなる接続URLから、異なるデータベース名やパラメータを持つURLを複数生成
 
 ## 議論のハイライト
 
-- **過去の拒否理由と今回の違い**: 2020年の#41733では、Russ Cox氏が「使用頻度が不明」「`u2 := *u`で十分」という理由で反対しましたが、今回は具体的な使用データ（21,200件 vs 3,300件）により実需を証明しています。
+- **過去の提案（#41733）では却下されていた**: 2020年の提案では「Clone は多くの型に必要になるが、URL は特別ではない」として却下。しかし今回は実データ（GitHubコード検索）で需要の高さを証明。
 
-- **Userinfoのコピー戦略**: Damien Neil氏（@neild）は、「`*Userinfo`は不変だが、理論上は`*u2.User = *url.User("username")`で変更可能。確実性のためdeep copyすべき」という立場を明確にしました。`http.Header.Clone()`との一貫性も考慮されています。
+- **`UserInfo`のコピーについて**: 初期の議論では「`u2 := *u`で十分では？」という意見があったが、最終的には「`UserInfo`も念のためコピーする実装が望ましい」という結論に。理由は、ほとんどのURLには`UserInfo`が含まれないため追加コストは無視でき、含まれる場合でもクローン間の独立性が保証される方が安全。
 
-- **`http.Header`との並行性**: `http.Header`（実質的に`map[string][]string`）は既に`Clone()`メソッドを持ち、`url.Values`も同じ構造であるため、APIの一貫性の観点からも`Values.Clone()`は妥当です。
+- **`url.Values.Clone()`の自然さ**: `http.Header`に既に`.Clone()`が存在し、`url.Values`は同じ型構造を持つため、対称性の観点からも追加が自然。コメントでは「これは実質2つの提案だが、どちらも理にかなっている」との評価。
 
-- **新しい`new(expr)`構文との関係**: Issue #45624で提案されている`new(*u)`構文が実装されれば、`Clone()`の実装がより簡潔になります（`u2 := new(*u)`）。ただし、`Userinfo`のコピーは依然として必要です。
+- **`new(*expr)`構文との相性**: Go 1.24で予定されている`new(*expr)`構文（#45624）により、実装がさらにシンプルになる見込み:
+  ```go
+  func (u *URL) Clone() *URL {
+      if u == nil { return nil }
+      u2 := new(*u)
+      if u.User != nil {
+          u2.User = new(*u.User)
+      }
+      return u2
+  }
+  ```
 
-- **ドキュメントvs API**: 「ドキュメントで説明するだけで十分」という意見もありましたが、GitHubの実データは明確にAPIレベルのサポートが必要であることを示しています。
+- **なぜ今承認されたか**:
+  1. 実データによる需要の証明（21,200件のコピーパターン、3,300件の非効率パターン）
+  2. net/httpに既に同等の内部実装が存在し、一部パッケージが非公式にアクセスしている実態
+  3. Damian Neil（@neild）による詳細な技術的分析コメントが、実装の正当性を裏付けた
+
+## Sources:
+- [go/src/net/http/clone.go at master · golang/go](https://github.com/golang/go/blob/master/src/net/http/clone.go)
+- [proposal: net/url: add URL.Clone method · Issue #41733](https://github.com/golang/go/issues/41733)
+- [proposal: net/url: URL.Clone, Values.Clone · Issue #73450](https://github.com/golang/go/issues/73450)
+- [net/url: clarify safe way to do URL deep-copying · Issue #38351](https://github.com/golang/go/issues/38351)
+- [http package - net/http - Go Packages](https://pkg.go.dev/net/http)
+- [url package - net/url - Go Packages](https://pkg.go.dev/net/url)
 
 ## 関連リンク
-- [Proposal Issue](https://github.com/golang/go/issues/73450)
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [関連Issue #38351: URL deep-copyingの安全性確認](https://github.com/golang/go/issues/38351)
-- [関連Issue #41733: 前回のURL.Clone提案（2020年、却下）](https://github.com/golang/go/issues/41733)
-- [net/http内部のcloneURL実装](https://github.com/golang/go/blob/go1.19/src/net/http/clone.go#L22)
-- [http.Header.Clone() documentation](https://pkg.go.dev/net/http)
 
-## 関連リンク
-
-- [関連Issue #38351: URL deep-copyingの安全性確認](https://github.com/golang/go/issues/38351)
-- [関連Issue #41733: 前回のURL.Clone提案（2020年、却下）](https://github.com/golang/go/issues/41733)
-- [Proposal Issue](https://github.com/golang/go/issues/73450)
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [proposal: net/url: URL.Clone, Values.Clone · Issue #73450](https://github.com/golang/go/issues/73450)
+- [Review Minutes (Active指定)](https://github.com/golang/go/issues/33502#issuecomment-3814236325)
+- [proposal: net/url: add URL.Clone method · Issue #41733](https://github.com/golang/go/issues/41733)
+- [net/url: clarify safe way to do URL deep-copying · Issue #38351](https://github.com/golang/go/issues/38351)
+- [new(*expr)構文提案 #45624](https://github.com/golang/go/issues/45624)
