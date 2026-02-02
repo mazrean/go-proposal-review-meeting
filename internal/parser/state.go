@@ -12,10 +12,10 @@ const stateFileMode fs.FileMode = 0644
 
 // State は前回処理状態を表す
 type State struct {
-	LastProcessedAt  time.Time        `json:"lastProcessedAt"`
-	LastCommentID    string           `json:"lastCommentId"`
-	ProposalStatuses map[int]Status   `json:"proposalStatuses,omitempty"` // 各proposalの最新ステータス
-	IsFresh          bool             `json:"-"`                          // true if this is a new state (no existing state file)
+	LastProcessedAt  time.Time      `json:"lastProcessedAt"`
+	ProposalStatuses map[int]Status `json:"proposalStatuses,omitempty"`
+	LastCommentID    string         `json:"lastCommentId"`
+	IsFresh          bool           `json:"-"`
 }
 
 // StateManager は状態の読み書きを管理する

@@ -25,8 +25,8 @@ func workflowProjectRoot(t *testing.T) string {
 
 // WorkflowTrigger represents the 'on' section of a GitHub Actions workflow
 type WorkflowTrigger struct {
-	Schedule         []ScheduleItem         `yaml:"schedule"`
 	WorkflowDispatch map[string]interface{} `yaml:"workflow_dispatch"`
+	Schedule         []ScheduleItem         `yaml:"schedule"`
 }
 
 // ScheduleItem represents a single cron schedule
@@ -36,9 +36,9 @@ type ScheduleItem struct {
 
 // Workflow represents a GitHub Actions workflow file structure
 type Workflow struct {
-	Name string          `yaml:"name"`
 	On   WorkflowTrigger `yaml:"on"`
 	Jobs map[string]Job  `yaml:"jobs"`
+	Name string          `yaml:"name"`
 }
 
 // Job represents a job in the workflow

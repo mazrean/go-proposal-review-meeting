@@ -51,11 +51,11 @@ func run() error {
 
 // parseConfig holds configuration for the parse operation.
 type parseConfig struct {
+	stdout      io.Writer
 	statePath   string
 	changesPath string
 	baseURL     string
 	token       string
-	stdout      io.Writer
 }
 
 // runParse executes the parse operation and writes results.

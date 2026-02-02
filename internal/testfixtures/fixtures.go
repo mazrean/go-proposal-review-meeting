@@ -41,10 +41,10 @@ func TenProposalChangesAt(baseTime time.Time) []parser.ProposalChange {
 	// Use a variety of statuses that are parseable by MinutesParser
 	// StatusActive is excluded as it has no matching pattern in the parser
 	proposals := []struct {
-		issueNumber    int
 		title          string
 		currentStatus  parser.Status
 		previousStatus parser.Status
+		issueNumber    int
 	}{
 		{60001, "proposal: add structured concurrency", parser.StatusAccepted, parser.StatusLikelyAccept},
 		{60002, "proposal: generic type aliases", parser.StatusDeclined, parser.StatusDiscussions},
@@ -217,8 +217,8 @@ type ParserTestSetup struct {
 	Server       *httptest.Server
 	StateManager *parser.StateManager
 	IssueParser  *parser.IssueParser
-	StatePath    string
 	Cleanup      func()
+	StatePath    string
 }
 
 // SetupParserTest creates a complete test setup for Parser domain tests.
@@ -260,9 +260,9 @@ func SetupParserTest(t TestingT, changes []parser.ProposalChange) *ParserTestSet
 // ContentTestSetup contains all components needed for Content domain tests.
 type ContentTestSetup struct {
 	Manager      *content.Manager
+	Cleanup      func()
 	ContentDir   string
 	SummariesDir string
-	Cleanup      func()
 }
 
 // SetupContentTest creates a complete test setup for Content domain tests.
@@ -308,8 +308,8 @@ func SetupContentTest(t TestingT, changes []parser.ProposalChange, withSummaries
 // SiteTestSetup contains all components needed for Site domain tests.
 type SiteTestSetup struct {
 	Generator *site.Generator
-	DistDir   string
 	Cleanup   func()
+	DistDir   string
 }
 
 // SetupSiteTest creates a complete test setup for Site domain tests.
