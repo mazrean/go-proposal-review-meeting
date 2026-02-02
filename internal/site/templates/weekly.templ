@@ -160,9 +160,9 @@ templ ProposalListItem(proposal ProposalData) {
 						{ proposal.Title }
 					</h3>
 					if proposal.Summary != "" {
-						<p class="text-[var(--text-secondary)] text-sm mt-2 line-clamp-2">
-							{ proposal.Summary }
-						</p>
+						<div class="text-[var(--text-secondary)] text-sm mt-2 line-clamp-2 prose prose-go max-w-none [&>*]:my-0 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+							@RenderMarkdown(proposal.Summary)
+						</div>
 					}
 				</div>
 			</div>

@@ -40,7 +40,8 @@ type ProposalContent struct {
 	PreviousStatus parser.Status `yaml:"previous_status"`
 	CurrentStatus  parser.Status `yaml:"current_status"`
 	CommentURL     string        `yaml:"comment_url"`
-	Summary        string        `yaml:"-"`
+	Summary        string        `yaml:"-"` // For weekly index pages (only ## 概要 section)
+	FullContent    string        `yaml:"-"` // For detail pages (all sections except ## 関連リンク)
 	Links          []Link        `yaml:"related_issues"`
 	IssueNumber    int           `yaml:"issue_number"`
 }
@@ -198,7 +199,6 @@ func generateMarkdown(p ProposalContent) string {
 	b.WriteString("---\n")
 
 	// Body section
-	b.WriteString("\n## 要約\n\n")
 	if p.Summary != "" {
 		b.WriteString(p.Summary)
 		b.WriteString("\n")
@@ -361,7 +361,9 @@ func parseProposalFile(filePath string) (proposal *ProposalContent, err error) {
 	var p ProposalContent
 	var inFrontmatter bool
 	var inBody bool
-	var bodyBuilder strings.Builder
+	var inSummarySection bool
+	var summaryBuilder strings.Builder
+	var fullContentBuilder strings.Builder
 	var currentLinkTitle string
 
 	issueRe := regexp.MustCompile(`^issue_number:\s*(\d+)`)
@@ -423,23 +425,47 @@ func parseProposalFile(filePath string) (proposal *ProposalContent, err error) {
 				currentLinkTitle = ""
 			}
 		} else if inBody {
-			// Extract summary from body (between ## 要約 and ## 関連リンク)
-			if strings.HasPrefix(line, "## 要約") {
-				continue
-			}
+			// Stop when we hit the related links section
 			if strings.HasPrefix(line, "## 関連リンク") {
 				break
 			}
-			if strings.TrimSpace(line) != "" {
-				if bodyBuilder.Len() > 0 {
-					bodyBuilder.WriteString("\n")
+
+			// Track if we're in the summary (概要) section
+			if strings.HasPrefix(line, "## 概要") {
+				inSummarySection = true
+				// Add to full content
+				if fullContentBuilder.Len() > 0 {
+					fullContentBuilder.WriteString("\n")
 				}
-				bodyBuilder.WriteString(line)
+				fullContentBuilder.WriteString(line)
+				continue
+			}
+
+			// Stop collecting summary when we hit another section header
+			if inSummarySection && strings.HasPrefix(line, "## ") {
+				inSummarySection = false
+			}
+
+			// Collect lines for full content (everything from ## 要約 to ## 関連リンク)
+			if strings.TrimSpace(line) != "" {
+				if fullContentBuilder.Len() > 0 {
+					fullContentBuilder.WriteString("\n")
+				}
+				fullContentBuilder.WriteString(line)
+			}
+
+			// Collect lines for summary (only ## 概要 section)
+			if inSummarySection && strings.TrimSpace(line) != "" {
+				if summaryBuilder.Len() > 0 {
+					summaryBuilder.WriteString("\n")
+				}
+				summaryBuilder.WriteString(line)
 			}
 		}
 	}
 
-	p.Summary = strings.TrimSpace(bodyBuilder.String())
+	p.Summary = strings.TrimSpace(summaryBuilder.String())
+	p.FullContent = strings.TrimSpace(fullContentBuilder.String())
 
 	if scanErr := scanner.Err(); scanErr != nil {
 		return nil, scanErr

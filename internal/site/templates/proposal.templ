@@ -21,6 +21,7 @@ type ProposalDetailData struct {
 	PreviousStatus parser.Status
 	CurrentStatus  parser.Status
 	Summary        string
+	FullContent    string
 	IssueURL       string
 	CommentURL     string
 	ChangedAt      time.Time
@@ -59,6 +60,7 @@ func ConvertToProposalDetailData(wc *content.WeeklyContent, issueNumber int) *Pr
 				Links:          links,
 				Year:           wc.Year,
 				Week:           wc.Week,
+				FullContent:    p.FullContent,
 			}
 		}
 	}
@@ -146,7 +148,7 @@ templ ProposalDetail(data ProposalDetailData) {
 					要約
 				</h2>
 				<div class="rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm prose prose-go max-w-none">
-					@RenderMarkdown(data.Summary)
+					@RenderMarkdown(data.FullContent)
 				</div>
 			</section>
 		}
