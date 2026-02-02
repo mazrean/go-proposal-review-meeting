@@ -218,7 +218,7 @@ func WeeklyIndex(data WeeklyData) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\"></proposal-filter></div><div class=\"grid gap-4\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\"></proposal-filter></div><div class=\"grid grid-cols-1 gap-4 w-full max-w-full\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -263,20 +263,20 @@ func ProposalListItem(proposal ProposalData) templ.Component {
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<article class=\"group rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] card-hover hover:border-[var(--go-blue)] shadow-sm\" data-status=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<article class=\"group rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] card-hover hover:border-[var(--go-blue)] shadow-sm w-full max-w-full\" data-status=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(string(proposal.CurrentStatus))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/weekly.templ`, Line: 135, Col: 186}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/weekly.templ`, Line: 135, Col: 204}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\"><div class=\"p-4 sm:p-5\"><div class=\"flex items-start justify-between gap-3 sm:gap-4\"><div class=\"flex-1 min-w-0\"><div class=\"flex flex-wrap items-center gap-2 sm:gap-3 mb-2\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\"><div class=\"p-4 sm:p-5 w-full max-w-full\"><div class=\"flex items-start justify-between gap-3 sm:gap-4 w-full max-w-full\"><div class=\"flex-1 min-w-0 max-w-full overflow-hidden\"><div class=\"flex flex-wrap items-center gap-2 sm:gap-3 mb-2\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -334,7 +334,7 @@ func ProposalListItem(proposal ProposalData) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div><h3 class=\"text-[var(--text-primary)] font-medium leading-snug\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div><h3 class=\"text-[var(--text-primary)] font-medium leading-snug break-words overflow-wrap-anywhere\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -370,7 +370,7 @@ func ProposalListItem(proposal ProposalData) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</div></div><div class=\"mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-[var(--border-color)] flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm\"><div class=\"flex items-center gap-2 sm:gap-3\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</div></div><div class=\"mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-[var(--border-color)] flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm w-full max-w-full\"><div class=\"flex items-center gap-2 sm:gap-3 overflow-hidden\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

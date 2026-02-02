@@ -333,7 +333,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		if data.Summary != "" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<section class=\"mb-8 animate-fade-in-up animate-delay-1\"><h2 class=\"flex items-center gap-2 text-lg font-semibold text-[var(--text-primary)] mb-4\"><svg class=\"w-5 h-5 text-[var(--go-blue)]\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg> 要約</h2><div class=\"rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm prose prose-go\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<section class=\"mb-8 animate-fade-in-up animate-delay-1\"><h2 class=\"flex items-center gap-2 text-lg font-semibold text-[var(--text-primary)] mb-4\"><svg class=\"w-5 h-5 text-[var(--go-blue)]\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg> 要約</h2><div class=\"rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm prose prose-go max-w-none\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

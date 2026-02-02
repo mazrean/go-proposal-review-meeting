@@ -22,6 +22,9 @@ templ BaseLayoutWithConfig(config LayoutConfig) {
 			<link rel="stylesheet" href="/styles.css"/>
 			<link rel="alternate" type="application/rss+xml" title="Go Proposal Weekly Digest RSS Feed" href={ config.GetFeedURL() }/>
 			<style>
+				*, *::before, *::after {
+					box-sizing: border-box;
+				}
 				:root {
 					--go-blue: #00ADD8;
 					--go-blue-dark: #007d9c;
