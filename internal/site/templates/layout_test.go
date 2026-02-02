@@ -67,7 +67,6 @@ func TestBaseLayout(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt // capture loop variable for parallel test
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -180,7 +179,6 @@ func TestNavigation(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt // capture loop variable for parallel test
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -224,9 +222,9 @@ func TestPageWithLayout(t *testing.T) {
 		"<footer",
 		"</html>",
 		// Accessibility features
-		"href=\"#main-content\"",     // Skip link
-		"id=\"main-content\"",        // Main content target
-		"メインコンテンツへスキップ", // Skip link text
+		"href=\"#main-content\"", // Skip link
+		"id=\"main-content\"",    // Main content target
+		"メインコンテンツへスキップ",          // Skip link text
 	}
 
 	for _, want := range wantContains {
@@ -278,7 +276,6 @@ func TestBaseLayoutWithConfig(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt // capture range variable for parallel test
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -328,7 +325,6 @@ func TestNavigationWithFeedURL(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt // capture range variable for parallel test
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -353,10 +349,10 @@ func TestPageWithLayoutConfig(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
-		name              string
-		config            templates.PageConfig
-		wantContains      []string
-		wantFeedURLCount  int // expected occurrences of the feed URL (head + nav)
+		name             string
+		config           templates.PageConfig
+		wantContains     []string
+		wantFeedURLCount int // expected occurrences of the feed URL (head + nav)
 	}{
 		{
 			name: "uses custom feed URL in both head and navigation",
@@ -389,7 +385,6 @@ func TestPageWithLayoutConfig(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt // capture range variable for parallel test
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 

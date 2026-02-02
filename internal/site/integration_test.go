@@ -749,9 +749,9 @@ func TestIntegration_StatusBadgeClasses(t *testing.T) {
 		// - LikelyAccept: bg-emerald-100
 		// - Hold: bg-yellow-100
 		tests := []struct {
-			issueNum      int
 			status        string
 			expectedColor string
+			issueNum      int
 		}{
 			{1, "accepted", "bg-green-100"},
 			{2, "declined", "bg-red-100"},
@@ -760,7 +760,6 @@ func TestIntegration_StatusBadgeClasses(t *testing.T) {
 		}
 
 		for _, tc := range tests {
-			tc := tc // capture loop variable
 			filePath := filepath.Join(distDir, "2026", "w05", fmt.Sprintf("%d.html", tc.issueNum))
 			content, err := os.ReadFile(filePath)
 			if err != nil {
@@ -1256,7 +1255,8 @@ func TestIntegration_MarkdownToHTMLPipeline(t *testing.T) {
 // 5. Verifies all 10 proposals are correctly rendered
 //
 // Requirements: 2.1 (週ごとディレクトリ), 2.2 (proposal別MDファイル), 2.3 (MDメタデータ),
-//               4.1 (HTML生成), 4.3 (ページ生成), 5.1 (RSS生成)
+//
+//	4.1 (HTML生成), 4.3 (ページ生成), 5.1 (RSS生成)
 func TestIntegration_ContentToSiteToFeed(t *testing.T) {
 	t.Parallel()
 
