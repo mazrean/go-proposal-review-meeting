@@ -6,18 +6,15 @@ current_status: hold
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "関連Issue #49085: メソッドへの型パラメータ許可"
-    url: https://github.com/golang/go/issues/49085
-  - title: "proposal: must: Do · Issue #54297 · golang/go"
-    url: https://github.com/golang/go/issues/54297
   - title: "Proposal review meeting minutes · Issue #33502 · golang/go"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
   - title: "proposal: spec: generic methods for Go · Issue #77273 · golang/go"
     url: https://github.com/golang/go/issues/77273
+  - title: "関連Issue #49085: メソッドへの型パラメータ許可"
+    url: https://github.com/golang/go/issues/49085
+  - title: "proposal: must: Do · Issue #54297 · golang/go"
+    url: https://github.com/golang/go/issues/54297
 ---
-
-## 要約
-
 ## 概要
 
 proposal #54297は、エラーが発生した場合にpanicする汎用ヘルパー関数`must.Do`を標準ライブラリに追加する提案です。元々は`url.MustParse`の追加提案でしたが、より汎用的な`must`パッケージへと議論が発展しました。
@@ -135,7 +132,7 @@ func packData() []byte {
 
 ## 関連リンク
 
-- [関連Issue #49085: メソッドへの型パラメータ許可](https://github.com/golang/go/issues/49085)
-- [proposal: must: Do · Issue #54297 · golang/go](https://github.com/golang/go/issues/54297)
 - [Proposal review meeting minutes · Issue #33502 · golang/go](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
 - [proposal: spec: generic methods for Go · Issue #77273 · golang/go](https://github.com/golang/go/issues/77273)
+- [関連Issue #49085: メソッドへの型パラメータ許可](https://github.com/golang/go/issues/49085)
+- [proposal: must: Do · Issue #54297 · golang/go](https://github.com/golang/go/issues/54297)

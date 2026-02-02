@@ -6,18 +6,15 @@ current_status: accepted
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "関連提案: synctestの構文オーバーヘッド削減"
-    url: https://github.com/golang/go/issues/76607
-  - title: "Proposal Issue"
-    url: https://github.com/golang/go/issues/77169
   - title: "Review Minutes"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
   - title: "関連提案: testing/synctest新パッケージ"
     url: https://github.com/golang/go/issues/67434
+  - title: "関連提案: synctestの構文オーバーヘッド削減"
+    url: https://github.com/golang/go/issues/76607
+  - title: "Proposal Issue"
+    url: https://github.com/golang/go/issues/77169
 ---
-
-## 要約
-
 ## 概要
 `testing/synctest`パッケージに、仮想時計を指定時間進めた後にgoroutineの待機状態を確認する`Sleep`関数を追加する提案。この関数は`time.Sleep(d)`と`synctest.Wait()`を組み合わせた便利関数であり、テストコードで頻繁に使われるパターンを標準化します。
 
@@ -137,7 +134,7 @@ synctest.Test(t, func(t *testing.T) {
 
 ## 関連リンク
 
-- [関連提案: synctestの構文オーバーヘッド削減](https://github.com/golang/go/issues/76607)
-- [Proposal Issue](https://github.com/golang/go/issues/77169)
 - [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
 - [関連提案: testing/synctest新パッケージ](https://github.com/golang/go/issues/67434)
+- [関連提案: synctestの構文オーバーヘッド削減](https://github.com/golang/go/issues/76607)
+- [Proposal Issue](https://github.com/golang/go/issues/77169)

@@ -17,9 +17,6 @@ related_issues:
   - title: "Proposal Issue"
     url: https://github.com/golang/go/issues/73608
 ---
-
-## 要約
-
 ## 概要
 このproposalは、Go言語に新しい`GOOS`ターゲット（`GOOS=none`または`GOOS=tamago`）を追加し、OSの直接的なサポートなしにベアメタル上でGoランタイムを実行可能にすることを提案しています。現在TamaGoプロジェクトで実装されている機能の上流への統合を目指しており、AMDx64、ARM、RISC-V上でOS無しに純粋なGoアプリケーションを実行できるようにします。
 

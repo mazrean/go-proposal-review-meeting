@@ -6,20 +6,17 @@ current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "Review Minutes"
-    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
-  - title: "proposal: x/net/http2: add support for RFC 9218 priorities · Issue #75500"
-    url: https://github.com/golang/go/issues/75500
   - title: "net/http: Stream starvation in http2 priority write scheduler · Issue #58804"
     url: https://github.com/golang/go/issues/58804
   - title: "関連 Issue #67810 - HTTP/2 を標準ライブラリに移行"
     url: https://github.com/golang/go/issues/67810
   - title: "Proposal Issue #67817"
     url: https://github.com/golang/go/issues/67817
+  - title: "Review Minutes"
+    url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
+  - title: "proposal: x/net/http2: add support for RFC 9218 priorities · Issue #75500"
+    url: https://github.com/golang/go/issues/75500
 ---
-
-## 要約
-
 ## 概要
 `x/net/http2.WriteScheduler`は、HTTP/2ストリームへのデータ書き込み順序を制御するインターフェースです。本proposalは、このAPIを非推奨（deprecated）にすることを提案しています。理由は、現在の優先度ベーススケジューラーがバグを含み、実装している RFC 7540 の優先度機能が RFC 9113 で非推奨となったためです。
 
@@ -90,8 +87,8 @@ related_issues:
 
 ## 関連リンク
 
-- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
-- [proposal: x/net/http2: add support for RFC 9218 priorities · Issue #75500](https://github.com/golang/go/issues/75500)
 - [net/http: Stream starvation in http2 priority write scheduler · Issue #58804](https://github.com/golang/go/issues/58804)
 - [関連 Issue #67810 - HTTP/2 を標準ライブラリに移行](https://github.com/golang/go/issues/67810)
 - [Proposal Issue #67817](https://github.com/golang/go/issues/67817)
+- [Review Minutes](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [proposal: x/net/http2: add support for RFC 9218 priorities · Issue #75500](https://github.com/golang/go/issues/75500)

@@ -15,9 +15,6 @@ related_issues:
   - title: "関連提案 #76319: crypto/rand.UUIDv4/UUIDv7（より限定的なアプローチ）"
     url: https://github.com/golang/go/issues/76319
 ---
-
-## 要約
-
 ## 概要
 
 Go標準ライブラリに`crypto/uuid`パッケージを追加し、UUIDの生成とパース機能を提供する提案です。特にバージョン4（ランダム）とバージョン7（タイムスタンプベース）のUUID生成をサポートします。

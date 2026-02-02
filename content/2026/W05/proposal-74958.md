@@ -15,9 +15,6 @@ related_issues:
   - title: "関連Issue #54941: セミコロンとコメントの順序問題"
     url: https://github.com/golang/go/issues/54941
 ---
-
-## 要約
-
 ## 概要
 `go/scanner`パッケージに`Scanner.End()`メソッドを追加する提案です。このメソッドは、直前にスキャンしたトークンの終了位置を`token.Pos`として返すことで、トークンの正確な終了位置を簡単かつ確実に取得できるようにします。
 

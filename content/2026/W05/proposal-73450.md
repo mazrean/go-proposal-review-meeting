@@ -6,20 +6,17 @@ current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
+  - title: "net/url: clarify safe way to do URL deep-copying · Issue #38351"
+    url: https://github.com/golang/go/issues/38351
+  - title: "new(*expr)構文提案 #45624"
+    url: https://github.com/golang/go/issues/45624
   - title: "proposal: net/url: URL.Clone, Values.Clone · Issue #73450"
     url: https://github.com/golang/go/issues/73450
   - title: "Review Minutes (Active指定)"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236325
   - title: "proposal: net/url: add URL.Clone method · Issue #41733"
     url: https://github.com/golang/go/issues/41733
-  - title: "net/url: clarify safe way to do URL deep-copying · Issue #38351"
-    url: https://github.com/golang/go/issues/38351
-  - title: "new(*expr)構文提案 #45624"
-    url: https://github.com/golang/go/issues/45624
 ---
-
-## 要約
-
 ## 概要
 `net/url`パッケージに`URL.Clone()`と`Values.Clone()`メソッドを追加する提案です。現状、URLの安全なコピー方法が明確でないため、多くの開発者が非効率な`Parse(url.String())`パターンを使用しています。この提案は、標準ライブラリに明示的で効率的なクローン機能を追加することで、開発者の混乱を解消し、パフォーマンスを向上させることを目指しています。
 
@@ -185,8 +182,8 @@ newQuery.Set("page", "2")
 
 ## 関連リンク
 
+- [net/url: clarify safe way to do URL deep-copying · Issue #38351](https://github.com/golang/go/issues/38351)
+- [new(*expr)構文提案 #45624](https://github.com/golang/go/issues/45624)
 - [proposal: net/url: URL.Clone, Values.Clone · Issue #73450](https://github.com/golang/go/issues/73450)
 - [Review Minutes (Active指定)](https://github.com/golang/go/issues/33502#issuecomment-3814236325)
 - [proposal: net/url: add URL.Clone method · Issue #41733](https://github.com/golang/go/issues/41733)
-- [net/url: clarify safe way to do URL deep-copying · Issue #38351](https://github.com/golang/go/issues/38351)
-- [new(*expr)構文提案 #45624](https://github.com/golang/go/issues/45624)

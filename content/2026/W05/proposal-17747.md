@@ -6,14 +6,11 @@ current_status: active
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "Proposal Issue #17747"
-    url: https://github.com/golang/go/issues/17747
   - title: "Review Minutes (2026-01-28)"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
+  - title: "Proposal Issue #17747"
+    url: https://github.com/golang/go/issues/17747
 ---
-
-## 要約
-
 ## 概要
 `bufio.Scanner`と`sql.Rows`を使用した際に、ループ終了後に必須となる`Err()`メソッドの呼び出しが欠落しているコードを検出する、新しい`go vet`チェッカーの提案です。これらのAPIは、エラー発生時も正常終了時もループが終わる設計であるため、エラーの見落としが非常に多く発生しています。
 
@@ -170,5 +167,5 @@ func getUsers(db *sql.DB) ([]User, error) {
 
 ## 関連リンク
 
-- [Proposal Issue #17747](https://github.com/golang/go/issues/17747)
 - [Review Minutes (2026-01-28)](https://github.com/golang/go/issues/33502#issuecomment-3814236717)
+- [Proposal Issue #17747](https://github.com/golang/go/issues/17747)

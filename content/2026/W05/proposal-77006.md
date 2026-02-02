@@ -15,9 +15,6 @@ related_issues:
   - title: "関連: regexp/syntax.Op String()メソッド提案"
     url: https://github.com/golang/go/issues/22684
 ---
-
-## 要約
-
 ## 概要
 x/net/htmlパッケージのNodeType型にString()メソッドを追加し、デバッグ時にノードタイプを人間が読める形式（"TextNode", "ElementNode"など）で出力できるようにする提案です。
 

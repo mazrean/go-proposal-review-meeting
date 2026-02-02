@@ -17,9 +17,6 @@ related_issues:
   - title: "Proposal Issue #76146"
     url: https://github.com/golang/go/issues/76146
 ---
-
-## 要約
-
 ## 概要
 
 `x/crypto/ssh`パッケージのクライアント認証において、実行時に認証方法を動的に選択できる`AuthCallback`フィールドを`ClientConfig`に追加する提案です。これにより、サーバーから返されるメタデータや部分成功（partial success）の情報に基づいて、認証戦略を柔軟に変更できるようになります。

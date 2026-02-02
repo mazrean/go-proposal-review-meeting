@@ -6,18 +6,15 @@ current_status: accepted
 changed_at: 2026-01-28T00:00:00Z
 comment_url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 related_issues:
-  - title: "関連Issue #70859 - Cursor型の導入提案"
-    url: https://github.com/golang/go/issues/70859
-  - title: "関連Issue #77195 - ParentEdge系メソッドの追加提案"
-    url: https://github.com/golang/go/issues/77195
   - title: "Proposal Issue"
     url: https://github.com/golang/go/issues/76361
   - title: "Review Minutes"
     url: https://github.com/golang/go/issues/76361#issuecomment-3814234826
+  - title: "関連Issue #70859 - Cursor型の導入提案"
+    url: https://github.com/golang/go/issues/70859
+  - title: "関連Issue #77195 - ParentEdge系メソッドの追加提案"
+    url: https://github.com/golang/go/issues/77195
 ---
-
-## 要約
-
 ## 概要
 
 `inspector.Cursor`はGo言語のAST（抽象構文木）を効率的に走査するための型ですが、カーソルが有効かどうかを判定する方法が不明瞭でした。このproposalは、カーソルの有効性を直接確認できる`Valid()`メソッドを追加することで、コードをより明確で読みやすくすることを目的としています。
@@ -108,7 +105,7 @@ for sibling, ok := node.NextSibling(); ok && sibling.Valid(); sibling, ok = sibl
 
 ## 関連リンク
 
-- [関連Issue #70859 - Cursor型の導入提案](https://github.com/golang/go/issues/70859)
-- [関連Issue #77195 - ParentEdge系メソッドの追加提案](https://github.com/golang/go/issues/77195)
 - [Proposal Issue](https://github.com/golang/go/issues/76361)
 - [Review Minutes](https://github.com/golang/go/issues/76361#issuecomment-3814234826)
+- [関連Issue #70859 - Cursor型の導入提案](https://github.com/golang/go/issues/70859)
+- [関連Issue #77195 - ParentEdge系メソッドの追加提案](https://github.com/golang/go/issues/77195)

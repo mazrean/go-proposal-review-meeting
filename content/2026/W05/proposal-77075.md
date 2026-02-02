@@ -15,9 +15,6 @@ related_issues:
   - title: "Proposal Issue #77075"
     url: https://github.com/golang/go/issues/77075
 ---
-
-## 要約
-
 ## 概要
 `os/exec.Cmd`に対して`Clone`メソッドを追加する提案です。このメソッドは、`Cmd`の設定をすべてコピーした新しい`Cmd`インスタンスを返すもので、`Start`を複数回呼び出す際の問題を安全に解決します。
 

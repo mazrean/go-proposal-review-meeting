@@ -15,9 +15,6 @@ related_issues:
   - title: "Review Minutes（2026-01-28）"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814233279
 ---
-
-## 要約
-
 ## 概要
 Go 1.27において、linux/ppc64（ビッグエンディアン）ターゲットがELFv1 ABIからELFv2 ABIへ移行します。現在のlinux/ppc64は内部リンクのみ（CGO非対応）であるため、この変更はユーザーに対して透過的と見込まれています。
 

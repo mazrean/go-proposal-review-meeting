@@ -11,9 +11,6 @@ related_issues:
   - title: "Review Minutes #33502"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 ---
-
-## 要約
-
 ## 概要
 TLS接続において、リモート側の証明書（`PeerCertificates`）は取得できるのに対し、ローカル側が使用した証明書の情報を取得する方法がなかったため、`ConnectionState`に`LocalCertificate`フィールドを追加する提案です。この情報は接続のデバッグや証明書の使用統計収集に役立ちます。
 

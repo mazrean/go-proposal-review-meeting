@@ -17,9 +17,6 @@ related_issues:
   - title: "Review Minutes"
     url: https://github.com/golang/go/issues/33502#issuecomment-3814236717
 ---
-
-## 要約
-
 ## 概要
 `x/tools/go/ast/inspector`パッケージの`Cursor`型に、`ParentEdge()`メソッドが返す2つの値（edge.KindとIndex）を個別に取得できる便利メソッド`ParentEdgeKind()`と`ParentEdgeIndex()`を追加する提案です。これにより、親ノードとの関係性を判定する際のコードが簡潔になります。
 

@@ -19,9 +19,6 @@ related_issues:
   - title: "Proposal Issue"
     url: https://github.com/golang/go/issues/74424
 ---
-
-## 要約
-
 ## 概要
 
 このproposalは、`x/crypto/ssh`パッケージの標準ライブラリ移行に向けて、署名者（Signer）APIを大幅に再設計するものです。現在3つに分かれているSigner関連インターフェース（Signer、AlgorithmSigner、MultiAlgorithmSigner）を統合し、アルゴリズム選択とコンテキスト伝播に対応した`SignerV2`インターフェースに一本化します。
