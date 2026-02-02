@@ -3,7 +3,6 @@ package parser
 
 import (
 	"log/slog"
-	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -13,14 +12,6 @@ import (
 const (
 	// commentPreviewLength is the maximum length of comment preview in logs.
 	commentPreviewLength = 100
-
-	// proposalRe1MatchGroups is the expected number of match groups for proposalRe1.
-	// Groups: full match, issue number (link), issue number (plain), title
-	proposalRe1MatchGroups = 4
-
-	// proposalRe2MatchGroups is the expected number of match groups for proposalRe2.
-	// Groups: full match, title, issue number
-	proposalRe2MatchGroups = 3
 )
 
 // Status represents the status of a Go proposal.
@@ -47,74 +38,59 @@ type ProposalChange struct {
 	IssueNumber    int       `json:"issue_number"`
 }
 
-// Pre-compiled regular expressions for parsing.
-var (
-	// dateHeaderRe matches date header formats:
-	// - **YYYY-MM-DD** or **YYYY-MM-DD /
-	// - YYYY-MM-DD / **@name (without leading **)
-	dateHeaderRe1 = regexp.MustCompile(`^\*\*(\d{4}-\d{2}-\d{2})`)
-	dateHeaderRe2 = regexp.MustCompile(`^(\d{4}-\d{2}-\d{2})\s*/`)
+// sectionHeaderPatterns maps section header keywords to their status.
+// Section headers are lines like "**Active**" or "**Likely Accept**" that
+// indicate the status of all proposals listed under them.
+var sectionHeaderPatterns = []struct {
+	keyword string
+	status  Status
+}{
+	{"**accepted**", StatusAccepted},
+	{"**declined**", StatusDeclined},
+	{"**likely accept**", StatusLikelyAccept},
+	{"**likely decline**", StatusLikelyDecline},
+	{"**active**", StatusActive},
+	{"**hold**", StatusHold},
+	{"**discussions**", StatusDiscussions},
+	{"**discussion**", StatusDiscussions},
+}
 
-	// proposalRe1 matches proposal lines with issue number first:
-	// - #NNNNN **title**
-	// - [#NNNNN](URL) **title**
-	proposalRe1 = regexp.MustCompile(`^- (?:\[#(\d+)\]\([^)]+\)|#(\d+)) \*\*(.+?)\*\*`)
+// statusPatterns defines keywords for detecting status in indented action lines.
+// These are used as fallback when no section header is present.
+// Patterns are ordered by specificity - more specific patterns come first.
+var statusPatterns = []struct {
+	keywords       []string
+	status         Status
+	requiresEndPos bool // true if the last keyword must be at the end of the line
+}{
+	// Accepted patterns
+	{[]string{"**no final comments; accepted"}, StatusAccepted, false},
+	{[]string{"; **accepted**"}, StatusAccepted, false},
+	{[]string{"**accepted** 🎉"}, StatusAccepted, false},
+	{[]string{"**accepted**"}, StatusAccepted, false},
+	{[]string{"accepted 🎉"}, StatusAccepted, false},
 
-	// proposalRe2 matches proposal lines with title first:
-	// - **title** [#NNNNN](URL)
-	proposalRe2 = regexp.MustCompile(`^- \*\*(.+?)\*\* \[#(\d+)\]\([^)]+\)`)
+	// Declined patterns
+	{[]string{"**no final comments; declined"}, StatusDeclined, false},
+	{[]string{"; **declined**"}, StatusDeclined, false},
+	{[]string{"**declined**"}, StatusDeclined, false},
+	{[]string{"retracted", "**declined**"}, StatusDeclined, false},
+	{[]string{"**closed**"}, StatusDeclined, false},
 
-	// sectionHeaderPatterns maps section header patterns to their default status.
-	// Section headers are lines like "**Active**" or "**Likely Accept**" that
-	// indicate the status of all proposals listed under them.
-	sectionHeaderPatterns = []struct {
-		re     *regexp.Regexp
-		status Status
-	}{
-		{regexp.MustCompile(`(?i)^\*\*Accepted\*\*`), StatusAccepted},
-		{regexp.MustCompile(`(?i)^\*\*Declined\*\*`), StatusDeclined},
-		{regexp.MustCompile(`(?i)^\*\*Likely Accept\*\*`), StatusLikelyAccept},
-		{regexp.MustCompile(`(?i)^\*\*Likely Decline\*\*`), StatusLikelyDecline},
-		{regexp.MustCompile(`(?i)^\*\*Active\*\*`), StatusActive},
-		{regexp.MustCompile(`(?i)^\*\*Hold\*\*`), StatusHold},
-		{regexp.MustCompile(`(?i)^\*\*Discussions?\*\*`), StatusDiscussions},
-	}
+	// Likely accept/decline patterns
+	{[]string{"**likely accept"}, StatusLikelyAccept, false},
+	{[]string{"**likely decline"}, StatusLikelyDecline, false},
 
-	// Status detection patterns ordered by specificity.
-	// More specific patterns should come before general ones.
-	statusPatterns = []struct {
-		re     *regexp.Regexp
-		status Status
-	}{
-		// Accepted patterns
-		{regexp.MustCompile(`(?i)\*\*no final comments; accepted`), StatusAccepted},
-		{regexp.MustCompile(`(?i);\s*\*\*accepted\*\*`), StatusAccepted},
-		{regexp.MustCompile(`(?i)\*\*accepted\*\*\s*🎉`), StatusAccepted},
-		{regexp.MustCompile(`(?i)\*\*accepted\*\*`), StatusAccepted},
-		{regexp.MustCompile(`(?i)accepted\s*🎉`), StatusAccepted},
+	// Hold patterns
+	{[]string{"put on hold"}, StatusHold, false},
+	{[]string{"on hold"}, StatusHold, true}, // Must be at end of line
 
-		// Declined patterns
-		{regexp.MustCompile(`(?i)\*\*no final comments; declined`), StatusDeclined},
-		{regexp.MustCompile(`(?i);\s*\*\*declined\*\*`), StatusDeclined},
-		{regexp.MustCompile(`(?i)\*\*declined\*\*`), StatusDeclined},
-		{regexp.MustCompile(`(?i)retracted.*\*\*declined\*\*`), StatusDeclined},
-		{regexp.MustCompile(`(?i)\*\*closed\*\*`), StatusDeclined},
+	// Active patterns
+	{[]string{"**active**"}, StatusActive, false},
 
-		// Likely accept/decline patterns (may or may not have closing **)
-		{regexp.MustCompile(`(?i)\*\*likely accept`), StatusLikelyAccept},
-		{regexp.MustCompile(`(?i)\*\*likely decline`), StatusLikelyDecline},
-
-		// Hold patterns
-		{regexp.MustCompile(`(?i)put on hold`), StatusHold},
-		{regexp.MustCompile(`(?i)on hold$`), StatusHold},
-
-		// Active patterns
-		{regexp.MustCompile(`(?i)\*\*active\*\*`), StatusActive},
-
-		// Discussion patterns
-		{regexp.MustCompile(`(?i)discussion ongoing`), StatusDiscussions},
-	}
-)
+	// Discussion patterns
+	{[]string{"discussion ongoing"}, StatusDiscussions, false},
+}
 
 // MinutesParser parses proposal review meeting minutes.
 type MinutesParser struct {
@@ -144,19 +120,10 @@ func (p *MinutesParser) Parse(comment string, commentedAt time.Time) ([]Proposal
 
 	lines := strings.Split(comment, "\n")
 
-	// Find date header (try both formats)
+	// Find date header
 	var meetingDate time.Time
 	for _, line := range lines {
-		var dateStr string
-
-		// Try format: **YYYY-MM-DD...
-		if matches := dateHeaderRe1.FindStringSubmatch(line); len(matches) > 1 {
-			dateStr = matches[1]
-		} else if matches := dateHeaderRe2.FindStringSubmatch(line); len(matches) > 1 {
-			// Try format: YYYY-MM-DD / **@name
-			dateStr = matches[1]
-		}
-
+		dateStr := extractDateFromLine(line)
 		if dateStr != "" {
 			var err error
 			meetingDate, err = time.Parse("2006-01-02", dateStr)
@@ -184,47 +151,23 @@ func (p *MinutesParser) Parse(comment string, commentedAt time.Time) ([]Proposal
 	for _, line := range lines {
 		// Check for section headers (e.g., "**Active**", "**Likely Accept**")
 		// These determine the default status for proposals listed under them
-		for _, sh := range sectionHeaderPatterns {
-			if sh.re.MatchString(line) {
-				// Save previous proposal before changing section
-				if currentProposal != nil && currentProposal.status != "" {
-					changes = append(changes, ProposalChange{
-						IssueNumber:   currentProposal.issueNumber,
-						Title:         currentProposal.title,
-						CurrentStatus: currentProposal.status,
-						ChangedAt:     meetingDate,
-					})
-					currentProposal = nil
-				}
-				currentSectionStatus = sh.status
-				break
+		if status, ok := detectSectionHeader(line); ok {
+			// Save previous proposal before changing section
+			if currentProposal != nil && currentProposal.status != "" {
+				changes = append(changes, ProposalChange{
+					IssueNumber:   currentProposal.issueNumber,
+					Title:         currentProposal.title,
+					CurrentStatus: currentProposal.status,
+					ChangedAt:     meetingDate,
+				})
+				currentProposal = nil
 			}
+			currentSectionStatus = status
+			continue
 		}
 
 		// Check if this is a new proposal line
-		// Try both formats: issue number first, or title first
-		var issueNumber int
-		var title string
-		var matched bool
-
-		if matches := proposalRe1.FindStringSubmatch(line); len(matches) >= proposalRe1MatchGroups {
-			// Format: - [#NNNNN](URL) **title** or - #NNNNN **title**
-			// Issue number is in group 1 (link format) or group 2 (plain format)
-			issueNumStr := matches[1]
-			if issueNumStr == "" {
-				issueNumStr = matches[2]
-			}
-			issueNumber, _ = strconv.Atoi(issueNumStr)
-			title = matches[3]
-			matched = true
-		} else if matches := proposalRe2.FindStringSubmatch(line); len(matches) >= proposalRe2MatchGroups {
-			// Format: - **title** [#NNNNN](URL)
-			title = matches[1]
-			issueNumber, _ = strconv.Atoi(matches[2])
-			matched = true
-		}
-
-		if matched {
+		if issueNumber, title, ok := parseProposalLine(line); ok {
 			// Save previous proposal if it had a status change
 			if currentProposal != nil && currentProposal.status != "" {
 				changes = append(changes, ProposalChange{
@@ -243,16 +186,13 @@ func (p *MinutesParser) Parse(comment string, commentedAt time.Time) ([]Proposal
 			continue
 		}
 
-		// Check for status changes in the current proposal's actions
-		// Only check indented lines (action lines under proposals), not section headers
+		// Fallback: Check for status keywords in indented lines when no section header exists
+		// Only check indented lines (action lines under proposals)
 		// Section headers like "**Accepted**" start at column 0, while action lines
 		// are indented with "  - " prefix
-		if currentProposal != nil && (strings.HasPrefix(line, "  ") || strings.HasPrefix(line, "\t")) {
-			for _, sp := range statusPatterns {
-				if sp.re.MatchString(line) {
-					currentProposal.status = sp.status
-					break
-				}
+		if currentProposal != nil && currentSectionStatus == "" && (strings.HasPrefix(line, "  ") || strings.HasPrefix(line, "\t")) {
+			if status, ok := detectStatusInLine(line); ok {
+				currentProposal.status = status
 			}
 		}
 	}
@@ -282,4 +222,197 @@ type proposalContext struct {
 	title       string
 	status      Status
 	issueNumber int
+}
+
+// extractDateFromLine extracts a date string (YYYY-MM-DD format) from a line.
+// Supports two formats:
+// - **YYYY-MM-DD** or **YYYY-MM-DD /
+// - YYYY-MM-DD / **@name (without leading **)
+func extractDateFromLine(line string) string {
+	line = strings.TrimSpace(line)
+
+	// Try format: **YYYY-MM-DD
+	if strings.HasPrefix(line, "**") {
+		line = strings.TrimPrefix(line, "**")
+		if len(line) >= 10 && isDateFormat(line[:10]) {
+			return line[:10]
+		}
+	}
+
+	// Try format: YYYY-MM-DD /
+	if len(line) >= 10 && isDateFormat(line[:10]) {
+		if len(line) == 10 || (len(line) > 10 && strings.HasPrefix(line[10:], " /")) {
+			return line[:10]
+		}
+	}
+
+	return ""
+}
+
+// isDateFormat checks if a string matches YYYY-MM-DD format.
+func isDateFormat(s string) bool {
+	if len(s) != 10 {
+		return false
+	}
+	if s[4] != '-' || s[7] != '-' {
+		return false
+	}
+	for i, c := range s {
+		if i == 4 || i == 7 {
+			continue
+		}
+		if c < '0' || c > '9' {
+			return false
+		}
+	}
+	return true
+}
+
+// detectSectionHeader checks if a line is a section header and returns its status.
+// Section headers are lines like "**Active**" or "**Likely Accept**".
+func detectSectionHeader(line string) (Status, bool) {
+	line = strings.TrimSpace(line)
+	lineLower := strings.ToLower(line)
+
+	// Section headers should start with ** and not be indented
+	if !strings.HasPrefix(lineLower, "**") {
+		return "", false
+	}
+
+	for _, sh := range sectionHeaderPatterns {
+		if strings.HasPrefix(lineLower, sh.keyword) {
+			return sh.status, true
+		}
+	}
+
+	return "", false
+}
+
+// parseProposalLine parses a proposal line and extracts the issue number and title.
+// Supports multiple formats:
+// - [#NNNNN](URL) **title**
+// - #NNNNN **title**
+// - **title** [#NNNNN](URL)
+func parseProposalLine(line string) (issueNumber int, title string, ok bool) {
+	line = strings.TrimSpace(line)
+
+	// Must start with "- "
+	if !strings.HasPrefix(line, "- ") {
+		return 0, "", false
+	}
+	line = strings.TrimPrefix(line, "- ")
+
+	// Try format: [#NNNNN](URL) **title** or #NNNNN **title**
+	if strings.HasPrefix(line, "[#") || strings.HasPrefix(line, "#") {
+		var numStr string
+		var rest string
+
+		if strings.HasPrefix(line, "[#") {
+			// Format: [#NNNNN](URL) **title**
+			line = strings.TrimPrefix(line, "[#")
+			closeBracketIdx := strings.Index(line, "]")
+			if closeBracketIdx == -1 {
+				return 0, "", false
+			}
+			numStr = line[:closeBracketIdx]
+
+			// Skip the (URL) part
+			parenIdx := strings.Index(line[closeBracketIdx:], ")")
+			if parenIdx == -1 {
+				return 0, "", false
+			}
+			rest = strings.TrimSpace(line[closeBracketIdx+parenIdx+1:])
+		} else {
+			// Format: #NNNNN **title**
+			line = strings.TrimPrefix(line, "#")
+			spaceIdx := strings.Index(line, " ")
+			if spaceIdx == -1 {
+				return 0, "", false
+			}
+			numStr = line[:spaceIdx]
+			rest = strings.TrimSpace(line[spaceIdx+1:])
+		}
+
+		// Extract title from **title**
+		if !strings.HasPrefix(rest, "**") {
+			return 0, "", false
+		}
+		rest = strings.TrimPrefix(rest, "**")
+		endIdx := strings.Index(rest, "**")
+		if endIdx == -1 {
+			return 0, "", false
+		}
+		title = rest[:endIdx]
+
+		issueNumber, err := strconv.Atoi(numStr)
+		if err != nil {
+			return 0, "", false
+		}
+
+		return issueNumber, title, true
+	}
+
+	// Try format: **title** [#NNNNN](URL)
+	if after, ok0 := strings.CutPrefix(line, "**"); ok0 {
+		line = after
+		before, after0, ok1 := strings.Cut(line, "**")
+		if !ok1 {
+			return 0, "", false
+		}
+		title = before
+		rest := strings.TrimSpace(after0)
+
+		// Extract issue number from [#NNNNN](URL)
+		if !strings.HasPrefix(rest, "[#") {
+			return 0, "", false
+		}
+		rest = strings.TrimPrefix(rest, "[#")
+		closeBracketIdx := strings.Index(rest, "]")
+		if closeBracketIdx == -1 {
+			return 0, "", false
+		}
+		numStr := rest[:closeBracketIdx]
+
+		issueNumber, err := strconv.Atoi(numStr)
+		if err != nil {
+			return 0, "", false
+		}
+
+		return issueNumber, title, true
+	}
+
+	return 0, "", false
+}
+
+// detectStatusInLine detects status keywords in an indented line.
+// This is used as fallback when no section header is present.
+// Returns the detected status and true if found, otherwise returns empty status and false.
+func detectStatusInLine(line string) (Status, bool) {
+	lineLower := strings.ToLower(strings.TrimSpace(line))
+
+	// Check patterns in order (most specific first)
+	for _, sp := range statusPatterns {
+		allMatch := true
+		for _, keyword := range sp.keywords {
+			if !strings.Contains(lineLower, strings.ToLower(keyword)) {
+				allMatch = false
+				break
+			}
+		}
+		if !allMatch {
+			continue
+		}
+
+		// If the pattern requires end position, check that the last keyword is at the end
+		if sp.requiresEndPos && len(sp.keywords) > 0 {
+			lastKeyword := strings.ToLower(sp.keywords[len(sp.keywords)-1])
+			if !strings.HasSuffix(lineLower, lastKeyword) {
+				continue
+			}
+		}
+
+		return sp.status, true
+	}
+
+	return "", false
 }
