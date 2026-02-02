@@ -236,9 +236,9 @@ func TestIntegration_ParseToContent_StatusVariety(t *testing.T) {
 	// Create proposals with each status type that has a matching pattern
 	// StatusActive is excluded as it has no matching pattern in MinutesParser
 	statusProposals := []struct {
+		issueNumber int
 		title       string
 		status      parser.Status
-		issueNumber int
 	}{
 		{10001, "proposal: accepted feature", parser.StatusAccepted},
 		{10002, "proposal: declined feature", parser.StatusDeclined},

@@ -740,9 +740,9 @@ func TestManager_WriteContentWithMerge(t *testing.T) {
 		t.Error("File should contain updated status: accepted")
 	}
 
-	// Should preserve original previous_status from first update (discussions, not likely_accept)
-	if !strings.Contains(fileContent, "previous_status: discussions") {
-		t.Error("File should contain original previous_status: discussions")
+	// Should use new previous_status from second update (likely_accept, not discussions)
+	if !strings.Contains(fileContent, "previous_status: likely_accept") {
+		t.Error("File should contain new previous_status: likely_accept")
 	}
 
 	// Should preserve first summary
@@ -1860,18 +1860,7 @@ comment_url: https://example.com
 `,
 			wantErrContain: "title",
 		},
-		{
-			name: "missing previous_status",
-			content: `---
-issue_number: 12345
-title: "test proposal"
-current_status: accepted
-changed_at: 2026-01-30T12:00:00Z
-comment_url: https://example.com
----
-`,
-			wantErrContain: "previous_status",
-		},
+		// Note: previous_status can be empty for new proposals, so we don't test for it as a required field
 		{
 			name: "missing current_status",
 			content: `---

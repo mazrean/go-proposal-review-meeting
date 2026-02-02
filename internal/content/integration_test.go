@@ -497,12 +497,12 @@ func TestIntegration_ContentMergeWorkflow(t *testing.T) {
 		t.Fatal("New proposal (77777) not found")
 	}
 
-	// Verify merged proposal has updated status but preserved original previous_status
+	// Verify merged proposal has updated status and new previous_status
 	if mergedProposal.CurrentStatus != parser.StatusAccepted {
 		t.Errorf("Merged proposal CurrentStatus = %q, want %q", mergedProposal.CurrentStatus, parser.StatusAccepted)
 	}
-	if mergedProposal.PreviousStatus != parser.StatusDiscussions {
-		t.Errorf("Merged proposal PreviousStatus = %q, want %q (original)", mergedProposal.PreviousStatus, parser.StatusDiscussions)
+	if mergedProposal.PreviousStatus != parser.StatusLikelyAccept {
+		t.Errorf("Merged proposal PreviousStatus = %q, want %q (new)", mergedProposal.PreviousStatus, parser.StatusLikelyAccept)
 	}
 
 	// Verify summary was preserved from first batch

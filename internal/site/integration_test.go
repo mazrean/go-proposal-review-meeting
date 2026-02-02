@@ -749,9 +749,9 @@ func TestIntegration_StatusBadgeClasses(t *testing.T) {
 		// - LikelyAccept: bg-emerald-100
 		// - Hold: bg-yellow-100
 		tests := []struct {
+			issueNum      int
 			status        string
 			expectedColor string
-			issueNum      int
 		}{
 			{1, "accepted", "bg-green-100"},
 			{2, "declined", "bg-red-100"},

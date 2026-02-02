@@ -214,8 +214,8 @@ func generateMarkdown(p ProposalContent) string {
 
 // MergeContent merges new content into existing content for the same week.
 // If existing is nil, returns the new content as-is.
-// For proposals that exist in both, it updates the status while preserving
-// the original previous_status and summary (if new summary is empty).
+// For proposals that exist in both, it updates the status and previous_status
+// while preserving the summary (if new summary is empty).
 func (m *Manager) MergeContent(existing, newContent *WeeklyContent) *WeeklyContent {
 	if newContent == nil {
 		return existing
@@ -257,13 +257,13 @@ func (m *Manager) MergeContent(existing, newContent *WeeklyContent) *WeeklyConte
 }
 
 // mergeProposal merges two proposals for the same issue.
-// Preserves original previous_status and summary (if new is empty).
+// Uses new previous_status (even if empty) and preserves summary (if new is empty).
 // Updates current_status and merges links.
 func mergeProposal(existing, newProposal ProposalContent) ProposalContent {
 	merged := ProposalContent{
 		IssueNumber:    newProposal.IssueNumber,
 		Title:          newProposal.Title,
-		PreviousStatus: existing.PreviousStatus, // Preserve original previous status
+		PreviousStatus: newProposal.PreviousStatus, // Use new previous_status (including empty)
 		CurrentStatus:  newProposal.CurrentStatus,
 		ChangedAt:      newProposal.ChangedAt,
 		CommentURL:     newProposal.CommentURL,
@@ -452,9 +452,7 @@ func parseProposalFile(filePath string) (proposal *ProposalContent, err error) {
 	if p.Title == "" {
 		return nil, fmt.Errorf("missing required field: title")
 	}
-	if p.PreviousStatus == "" {
-		return nil, fmt.Errorf("missing required field: previous_status")
-	}
+	// previous_status can be empty for new proposals
 	if p.CurrentStatus == "" {
 		return nil, fmt.Errorf("missing required field: current_status")
 	}
@@ -630,6 +628,14 @@ func extractLinksFromMarkdown(text string) []Link {
 
 // generateFallbackSummary generates a fallback summary when AI summary is not available.
 func generateFallbackSummary(p ProposalContent) string {
+	if p.PreviousStatus == "" {
+		return fmt.Sprintf(
+			"Proposal #%d「%s」が新規に提案されました。現在のステータスは %s です。",
+			p.IssueNumber,
+			p.Title,
+			p.CurrentStatus,
+		)
+	}
 	return fmt.Sprintf(
 		"Proposal #%d「%s」のステータスが %s から %s に変更されました。",
 		p.IssueNumber,

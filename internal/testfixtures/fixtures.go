@@ -41,10 +41,10 @@ func TenProposalChangesAt(baseTime time.Time) []parser.ProposalChange {
 	// Use a variety of statuses that are parseable by MinutesParser
 	// StatusActive is excluded as it has no matching pattern in the parser
 	proposals := []struct {
+		issueNumber    int
 		title          string
 		currentStatus  parser.Status
 		previousStatus parser.Status
-		issueNumber    int
 	}{
 		{60001, "proposal: add structured concurrency", parser.StatusAccepted, parser.StatusLikelyAccept},
 		{60002, "proposal: generic type aliases", parser.StatusDeclined, parser.StatusDiscussions},

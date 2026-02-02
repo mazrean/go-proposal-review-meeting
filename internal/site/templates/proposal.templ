@@ -108,7 +108,14 @@ templ ProposalDetail(data ProposalDetailData) {
 				{ data.Title }
 			</h1>
 			<div class="flex flex-wrap items-center gap-4 text-sm">
-				if data.PreviousStatus != "" && data.PreviousStatus != data.CurrentStatus {
+				if data.PreviousStatus == "" {
+					<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50">
+						<svg class="w-4 h-4 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+						</svg>
+						<span class="text-blue-700 font-medium">新規提案</span>
+					</div>
+				} else if data.PreviousStatus != data.CurrentStatus {
 					<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-[var(--bg-secondary)]">
 						<span class="text-[var(--text-muted)]">ステータス変更:</span>
 						<span class={ statusTextClass(data.PreviousStatus) }>{ string(data.PreviousStatus) }</span>
