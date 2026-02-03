@@ -127,9 +127,10 @@ templ WeeklyIndexPage(data WeeklyData) {
 			Title:       fmt.Sprintf("Go Proposal Weekly Digest - %d年 第%d週", data.Year, data.Week),
 			CurrentPath: fmt.Sprintf("/%d/w%02d/", data.Year, data.Week),
 			FeedURL:     DefaultFeedURL,
-			OGP: NewOGPConfig(
+			OGP: NewOGPConfigWithImage(
 				data.SiteURL,
 				fmt.Sprintf("/%d/w%02d/", data.Year, data.Week),
+				fmt.Sprintf("/%d/w%02d/ogp.png", data.Year, data.Week),
 				fmt.Sprintf("%d年 第%d週 - Go Proposal Weekly Digest", data.Year, data.Week),
 				fmt.Sprintf("%d年第%d週のGo言語プロポーザル更新情報。%d件のProposalの最新動向をお届けします。", data.Year, data.Week, len(data.Proposals)),
 			),

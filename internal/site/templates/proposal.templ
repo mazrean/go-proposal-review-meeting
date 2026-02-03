@@ -76,9 +76,10 @@ templ ProposalDetailPage(data ProposalDetailData) {
 			Title:       fmt.Sprintf("#%d %s - Go Proposal Weekly Digest", data.IssueNumber, data.Title),
 			CurrentPath: fmt.Sprintf("/%d/w%02d/%d.html", data.Year, data.Week, data.IssueNumber),
 			FeedURL:     DefaultFeedURL,
-			OGP: NewOGPConfig(
+			OGP: NewOGPConfigWithImage(
 				data.SiteURL,
 				fmt.Sprintf("/%d/w%02d/%d.html", data.Year, data.Week, data.IssueNumber),
+				fmt.Sprintf("/%d/w%02d/%d-ogp.png", data.Year, data.Week, data.IssueNumber),
 				fmt.Sprintf("#%d %s", data.IssueNumber, data.Title),
 				data.Summary,
 			),

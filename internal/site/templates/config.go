@@ -97,3 +97,18 @@ func NewOGPConfig(siteURL, path, title, description string) OGPConfig {
 		Type:        "website",
 	}
 }
+
+// NewOGPConfigWithImage creates an OGP configuration with a custom image path.
+// imagePath should be an absolute path (e.g., "/2026/w05/ogp.png").
+func NewOGPConfigWithImage(siteURL, path, imagePath, title, description string) OGPConfig {
+	imageURL := siteURL + imagePath
+	pageURL := siteURL + path
+
+	return OGPConfig{
+		Title:       title,
+		Description: description,
+		ImageURL:    imageURL,
+		URL:         pageURL,
+		Type:        "website",
+	}
+}
