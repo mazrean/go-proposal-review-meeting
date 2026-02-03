@@ -18,41 +18,50 @@ describe('ProposalFilter', () => {
     expect(customElements.get('proposal-filter')).toBeDefined();
   });
 
-  it('should render filter buttons for provided statuses', async () => {
+  it('should render dropdown with menu items for provided statuses', async () => {
     container.innerHTML = `
       <proposal-filter statuses='["accepted", "declined", "discussions"]'></proposal-filter>
     `;
     const element = container.querySelector('proposal-filter');
     await element?.updateComplete;
 
-    const buttons = element?.shadowRoot?.querySelectorAll('button');
-    // Should have "All" + 3 status buttons = 4 buttons
-    expect(buttons?.length).toBe(4);
+    const dropdownButton = element?.shadowRoot?.querySelector('.dropdown-button');
+    const menuItems = element?.shadowRoot?.querySelectorAll('.menu-item');
+
+    // Should have 1 dropdown button
+    expect(dropdownButton).toBeDefined();
+    // Should have "All" + 3 status menu items = 4 menu items
+    expect(menuItems?.length).toBe(4);
   });
 
-  it('should render "All" button as the first button', async () => {
+  it('should display "All" as the first menu item', async () => {
     container.innerHTML = `
       <proposal-filter statuses='["accepted", "declined"]'></proposal-filter>
     `;
     const element = container.querySelector('proposal-filter');
     await element?.updateComplete;
 
-    const buttons = element?.shadowRoot?.querySelectorAll('button');
-    expect(buttons?.[0]?.textContent?.trim()).toBe('すべて');
+    const menuItems = element?.shadowRoot?.querySelectorAll('.menu-item');
+    const firstItemText = menuItems?.[0]?.textContent?.trim();
+    expect(firstItemText).toContain('すべて');
   });
 
-  it('should have "All" button active by default', async () => {
+  it('should have "All" selected by default', async () => {
     container.innerHTML = `
       <proposal-filter statuses='["accepted"]'></proposal-filter>
     `;
     const element = container.querySelector('proposal-filter');
     await element?.updateComplete;
 
-    const allButton = element?.shadowRoot?.querySelector('button[data-status="all"]');
-    expect(allButton?.getAttribute('aria-pressed')).toBe('true');
+    const allMenuItem = element?.shadowRoot?.querySelector('.menu-item[data-status="all"]');
+    expect(allMenuItem?.getAttribute('aria-selected')).toBe('true');
+
+    // Dropdown button should show "すべて"
+    const dropdownButton = element?.shadowRoot?.querySelector('.dropdown-button');
+    expect(dropdownButton?.textContent).toContain('すべて');
   });
 
-  it('should emit filter-change event when a status button is clicked', async () => {
+  it('should emit filter-change event when a menu item is clicked', async () => {
     container.innerHTML = `
       <proposal-filter statuses='["accepted", "declined"]'></proposal-filter>
     `;
@@ -64,31 +73,35 @@ describe('ProposalFilter', () => {
       eventDetail = e.detail.status;
     }) as EventListener);
 
-    const acceptedButton = element?.shadowRoot?.querySelector('button[data-status="accepted"]');
-    acceptedButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    const acceptedMenuItem = element?.shadowRoot?.querySelector('.menu-item[data-status="accepted"]');
+    acceptedMenuItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await element?.updateComplete;
 
     expect(eventDetail).toBe('accepted');
   });
 
-  it('should update active button when clicked', async () => {
+  it('should update selected menu item when clicked', async () => {
     container.innerHTML = `
       <proposal-filter statuses='["accepted", "declined"]'></proposal-filter>
     `;
     const element = container.querySelector('proposal-filter');
     await element?.updateComplete;
 
-    const acceptedButton = element?.shadowRoot?.querySelector('button[data-status="accepted"]');
-    acceptedButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    const acceptedMenuItem = element?.shadowRoot?.querySelector('.menu-item[data-status="accepted"]');
+    acceptedMenuItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await element?.updateComplete;
 
-    expect(acceptedButton?.getAttribute('aria-pressed')).toBe('true');
+    expect(acceptedMenuItem?.getAttribute('aria-selected')).toBe('true');
 
-    const allButton = element?.shadowRoot?.querySelector('button[data-status="all"]');
-    expect(allButton?.getAttribute('aria-pressed')).toBe('false');
+    const allMenuItem = element?.shadowRoot?.querySelector('.menu-item[data-status="all"]');
+    expect(allMenuItem?.getAttribute('aria-selected')).toBe('false');
+
+    // Dropdown button should show "Accepted"
+    const dropdownButton = element?.shadowRoot?.querySelector('.dropdown-button');
+    expect(dropdownButton?.textContent).toContain('Accepted');
   });
 
-  it('should emit filter-change with "all" when All button is clicked', async () => {
+  it('should emit filter-change with "all" when All menu item is clicked', async () => {
     container.innerHTML = `
       <proposal-filter statuses='["accepted"]'></proposal-filter>
     `;
@@ -96,8 +109,8 @@ describe('ProposalFilter', () => {
     await element?.updateComplete;
 
     // First click on accepted
-    const acceptedButton = element?.shadowRoot?.querySelector('button[data-status="accepted"]');
-    acceptedButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    const acceptedMenuItem = element?.shadowRoot?.querySelector('.menu-item[data-status="accepted"]');
+    acceptedMenuItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await element?.updateComplete;
 
     // Then click on all
@@ -106,25 +119,78 @@ describe('ProposalFilter', () => {
       eventDetail = e.detail.status;
     }) as EventListener);
 
-    const allButton = element?.shadowRoot?.querySelector('button[data-status="all"]');
-    allButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    const allMenuItem = element?.shadowRoot?.querySelector('.menu-item[data-status="all"]');
+    allMenuItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await element?.updateComplete;
 
     expect(eventDetail).toBe('all');
   });
 
-  it('should display translated status labels', async () => {
+  it('should display translated status labels in menu items', async () => {
     container.innerHTML = `
       <proposal-filter statuses='["accepted", "declined", "likely_accept"]'></proposal-filter>
     `;
     const element = container.querySelector('proposal-filter');
     await element?.updateComplete;
 
-    const buttons = element?.shadowRoot?.querySelectorAll('button');
-    const buttonTexts = Array.from(buttons || []).map((b) => b.textContent?.trim());
+    const menuItems = element?.shadowRoot?.querySelectorAll('.menu-item');
+    const menuTexts = Array.from(menuItems || []).map((item) => item.textContent?.trim());
 
-    expect(buttonTexts).toContain('Accepted');
-    expect(buttonTexts).toContain('Declined');
-    expect(buttonTexts).toContain('Likely Accept');
+    expect(menuTexts).toContain('Accepted');
+    expect(menuTexts).toContain('Declined');
+    expect(menuTexts).toContain('Likely Accept');
+  });
+
+  it('should toggle dropdown when button is clicked', async () => {
+    container.innerHTML = `
+      <proposal-filter statuses='["accepted"]'></proposal-filter>
+    `;
+    const element = container.querySelector('proposal-filter');
+    await element?.updateComplete;
+
+    const dropdownButton = element?.shadowRoot?.querySelector('.dropdown-button');
+    const dropdownMenu = element?.shadowRoot?.querySelector('.dropdown-menu');
+
+    // Initially closed
+    expect(dropdownButton?.getAttribute('aria-expanded')).toBe('false');
+    expect(dropdownMenu?.getAttribute('data-open')).toBe('false');
+
+    // Click to open
+    dropdownButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    await element?.updateComplete;
+
+    expect(dropdownButton?.getAttribute('aria-expanded')).toBe('true');
+    expect(dropdownMenu?.getAttribute('data-open')).toBe('true');
+
+    // Click to close
+    dropdownButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    await element?.updateComplete;
+
+    expect(dropdownButton?.getAttribute('aria-expanded')).toBe('false');
+    expect(dropdownMenu?.getAttribute('data-open')).toBe('false');
+  });
+
+  it('should close dropdown after selecting a menu item', async () => {
+    container.innerHTML = `
+      <proposal-filter statuses='["accepted"]'></proposal-filter>
+    `;
+    const element = container.querySelector('proposal-filter');
+    await element?.updateComplete;
+
+    const dropdownButton = element?.shadowRoot?.querySelector('.dropdown-button');
+    const acceptedMenuItem = element?.shadowRoot?.querySelector('.menu-item[data-status="accepted"]');
+
+    // Open dropdown
+    dropdownButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    await element?.updateComplete;
+
+    expect(dropdownButton?.getAttribute('aria-expanded')).toBe('true');
+
+    // Select menu item
+    acceptedMenuItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    await element?.updateComplete;
+
+    // Should be closed
+    expect(dropdownButton?.getAttribute('aria-expanded')).toBe('false');
   });
 });
