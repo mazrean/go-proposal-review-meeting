@@ -28,6 +28,7 @@ type ProposalDetailData struct {
 	Links          []LinkData
 	Year           int
 	Week           int
+	SiteURL        string
 }
 
 // ConvertToProposalDetailData converts a content.WeeklyContent to templates.ProposalDetailData
@@ -70,9 +71,18 @@ func ConvertToProposalDetailData(wc *content.WeeklyContent, issueNumber int) *Pr
 
 // ProposalDetailPage renders a full page with the individual proposal content.
 templ ProposalDetailPage(data ProposalDetailData) {
-	@PageWithLayout(
-		fmt.Sprintf("#%d %s - Go Proposal Weekly Digest", data.IssueNumber, data.Title),
-		fmt.Sprintf("/%d/w%02d/%d.html", data.Year, data.Week, data.IssueNumber),
+	@PageWithLayoutConfig(
+		PageConfig{
+			Title:       fmt.Sprintf("#%d %s - Go Proposal Weekly Digest", data.IssueNumber, data.Title),
+			CurrentPath: fmt.Sprintf("/%d/w%02d/%d.html", data.Year, data.Week, data.IssueNumber),
+			FeedURL:     DefaultFeedURL,
+			OGP: NewOGPConfig(
+				data.SiteURL,
+				fmt.Sprintf("/%d/w%02d/%d.html", data.Year, data.Week, data.IssueNumber),
+				fmt.Sprintf("#%d %s", data.IssueNumber, data.Title),
+				data.Summary,
+			),
+		},
 		ProposalDetail(data),
 	)
 }

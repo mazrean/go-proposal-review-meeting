@@ -62,6 +62,7 @@ type WeeklyData struct {
 	Year      int
 	Week      int
 	Proposals []ProposalData
+	SiteURL   string
 }
 
 // ConvertToWeeklyData converts a content.WeeklyContent to templates.WeeklyData.
@@ -115,14 +116,24 @@ func ConvertToWeeklyData(wc *content.WeeklyContent) WeeklyData {
 		Year:      wc.Year,
 		Week:      wc.Week,
 		Proposals: proposals,
+		SiteURL:   "", // Will be set by the generator
 	}
 }
 
 // WeeklyIndexPage renders a full page with the weekly index content.
 templ WeeklyIndexPage(data WeeklyData) {
-	@PageWithLayout(
-		fmt.Sprintf("Go Proposal Weekly Digest - %d年 第%d週", data.Year, data.Week),
-		fmt.Sprintf("/%d/w%02d/", data.Year, data.Week),
+	@PageWithLayoutConfig(
+		PageConfig{
+			Title:       fmt.Sprintf("Go Proposal Weekly Digest - %d年 第%d週", data.Year, data.Week),
+			CurrentPath: fmt.Sprintf("/%d/w%02d/", data.Year, data.Week),
+			FeedURL:     DefaultFeedURL,
+			OGP: NewOGPConfig(
+				data.SiteURL,
+				fmt.Sprintf("/%d/w%02d/", data.Year, data.Week),
+				fmt.Sprintf("%d年 第%d週 - Go Proposal Weekly Digest", data.Year, data.Week),
+				fmt.Sprintf("%d年第%d週のGo言語プロポーザル更新情報。%d件のProposalの最新動向をお届けします。", data.Year, data.Week, len(data.Proposals)),
+			),
+		},
 		WeeklyIndex(data),
 	)
 }

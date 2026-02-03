@@ -76,20 +76,193 @@ func BaseLayoutWithConfig(config LayoutConfig) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600;700&display=swap\" rel=\"stylesheet\"><link rel=\"stylesheet\" href=\"/styles.css\"><link rel=\"alternate\" type=\"application/rss+xml\" title=\"Go Proposal Weekly Digest RSS Feed\" href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 templ.SafeURL
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinURLErrs(config.GetFeedURL())
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 24, Col: 121}
+		if config.OGP.Description != "" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<meta name=\"description\" content=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var4 string
+			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.Description)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 20, Col: 61}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<!-- Open Graph Protocol --><meta property=\"og:title\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"><style>\n\t\t\t\t*, *::before, *::after {\n\t\t\t\t\tbox-sizing: border-box;\n\t\t\t\t}\n\t\t\t\t:root {\n\t\t\t\t\t--go-blue: #00ADD8;\n\t\t\t\t\t--go-blue-dark: #007d9c;\n\t\t\t\t\t--go-blue-darker: #00758c;\n\t\t\t\t\t--go-yellow: #FDDD00;\n\t\t\t\t\t--go-yellow-hover: #e5c800;\n\t\t\t\t\t--bg-primary: #ffffff;\n\t\t\t\t\t--bg-secondary: #f5f5f5;\n\t\t\t\t\t--bg-tertiary: #e0e0e0;\n\t\t\t\t\t--bg-card: #ffffff;\n\t\t\t\t\t--bg-hero: #00ADD8;\n\t\t\t\t\t--bg-footer: #00ADD8;\n\t\t\t\t\t--border-color: #d6d6d6;\n\t\t\t\t\t--text-primary: #202224;\n\t\t\t\t\t--text-secondary: #3e4042;\n\t\t\t\t\t--text-muted: #6e7072;\n\t\t\t\t\t--text-on-blue: #ffffff;\n\t\t\t\t\t--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);\n\t\t\t\t\t--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);\n\t\t\t\t\t--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);\n\t\t\t\t}\n\t\t\t\thtml, body {\n\t\t\t\t\tmax-width: 100%;\n\t\t\t\t\toverflow-x: hidden;\n\t\t\t\t}\n\t\t\t\tbody {\n\t\t\t\t\tmargin: 0;\n\t\t\t\t\tfont-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n\t\t\t\t\tbackground: var(--bg-secondary);\n\t\t\t\t\tcolor: var(--text-primary);\n\t\t\t\t}\n\t\t\t\ta { text-decoration: none; }\n\t\t\t\ta:hover { text-decoration: none; }\n\t\t\t\t.font-mono { font-family: 'JetBrains Mono', 'Roboto Mono', monospace; }\n\t\t\t\t.card-hover { transition: all 0.2s ease; }\n\t\t\t\t.card-hover:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }\n\t\t\t\t@keyframes fadeInUp {\n\t\t\t\t\tfrom { opacity: 0; transform: translateY(16px); }\n\t\t\t\t\tto { opacity: 1; transform: translateY(0); }\n\t\t\t\t}\n\t\t\t\t.animate-fade-in-up { animation: fadeInUp 0.4s ease-out forwards; }\n\t\t\t\t.animate-delay-1 { animation-delay: 0.1s; opacity: 0; }\n\t\t\t\t.animate-delay-2 { animation-delay: 0.2s; opacity: 0; }\n\t\t\t\t.animate-delay-3 { animation-delay: 0.3s; opacity: 0; }\n\t\t\t\tnav ul { list-style: none; margin: 0; padding: 0; }\n\t\t\t\tnav li { list-style: none; }\n\t\t\t\t.btn-yellow {\n\t\t\t\t\tbackground: var(--go-yellow);\n\t\t\t\t\tcolor: var(--text-primary);\n\t\t\t\t\tfont-weight: 600;\n\t\t\t\t\tpadding: 0.75rem 1.5rem;\n\t\t\t\t\tborder-radius: 0.5rem;\n\t\t\t\t\ttransition: background 0.2s;\n\t\t\t\t}\n\t\t\t\t.btn-yellow:hover { background: var(--go-yellow-hover); }\n\t\t\t\t.link-on-blue { color: var(--text-on-blue); }\n\t\t\t\t.link-on-blue:hover { text-decoration: underline; }\n\t\t\t\t.header-title { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }\n\n\t\t\t\t/* Prose styles for Markdown content */\n\t\t\t\t.prose {\n\t\t\t\t\tcolor: var(--text-secondary);\n\t\t\t\t\tline-height: 1.75;\n\t\t\t\t}\n\t\t\t\t.prose p { margin: 0 0 1rem 0; }\n\t\t\t\t.prose p:last-child { margin-bottom: 0; }\n\t\t\t\t.prose h2 { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; }\n\t\t\t\t.prose h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 1.25rem 0 0.5rem 0; }\n\t\t\t\t.prose h4 { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin: 1rem 0 0.5rem 0; }\n\t\t\t\t.prose ul, .prose ol { margin: 0.5rem 0 1rem 0; padding-left: 1.5rem; }\n\t\t\t\t.prose li { margin: 0.25rem 0; }\n\t\t\t\t.prose strong { font-weight: 600; color: var(--text-primary); }\n\t\t\t\t.prose a { color: var(--go-blue); }\n\t\t\t\t.prose a:hover { color: var(--go-blue-dark); text-decoration: underline; }\n\t\t\t\t.prose blockquote {\n\t\t\t\t\tborder-left: 4px solid var(--go-blue);\n\t\t\t\t\tpadding-left: 1rem;\n\t\t\t\t\tmargin: 1rem 0;\n\t\t\t\t\tcolor: var(--text-muted);\n\t\t\t\t\tfont-style: italic;\n\t\t\t\t}\n\n\t\t\t\t/* Code styles */\n\t\t\t\t.prose code {\n\t\t\t\t\tfont-family: 'JetBrains Mono', 'Roboto Mono', monospace;\n\t\t\t\t\tfont-size: 0.875em;\n\t\t\t\t\tbackground: var(--bg-secondary);\n\t\t\t\t\tpadding: 0.125rem 0.375rem;\n\t\t\t\t\tborder-radius: 0.25rem;\n\t\t\t\t\tcolor: var(--text-primary);\n\t\t\t\t}\n\t\t\t\t.prose pre {\n\t\t\t\t\tbackground: #f6f8fa;\n\t\t\t\t\tborder: 1px solid var(--border-color);\n\t\t\t\t\tborder-radius: 0.5rem;\n\t\t\t\t\tpadding: 1rem;\n\t\t\t\t\toverflow-x: auto;\n\t\t\t\t\tmargin: 1rem 0;\n\t\t\t\t}\n\t\t\t\t.prose pre code {\n\t\t\t\t\tbackground: transparent;\n\t\t\t\t\tpadding: 0;\n\t\t\t\t\tfont-size: 0.875rem;\n\t\t\t\t\tline-height: 1.5;\n\t\t\t\t}\n\n\t\t\t\t/* Chroma syntax highlighting (github style) */\n\t\t\t\t.chroma { background: #f6f8fa; }\n\t\t\t\t.chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }\n\t\t\t\t.chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }\n\t\t\t\t.chroma .lntd:first-child { width: 10px; user-select: none; }\n\t\t\t\t.chroma .lntd:last-child { width: auto; }\n\t\t\t\t.chroma .hl { background-color: #ffffcc; display: block; width: 100%; }\n\t\t\t\t.chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; color: #7f7f7f; }\n\t\t\t\t.chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; color: #7f7f7f; }\n\t\t\t\t.chroma .k { color: #d73a49; } /* Keyword */\n\t\t\t\t.chroma .kc { color: #d73a49; } /* KeywordConstant */\n\t\t\t\t.chroma .kd { color: #d73a49; } /* KeywordDeclaration */\n\t\t\t\t.chroma .kn { color: #d73a49; } /* KeywordNamespace */\n\t\t\t\t.chroma .kp { color: #d73a49; } /* KeywordPseudo */\n\t\t\t\t.chroma .kr { color: #d73a49; } /* KeywordReserved */\n\t\t\t\t.chroma .kt { color: #d73a49; } /* KeywordType */\n\t\t\t\t.chroma .na { color: #005cc5; } /* NameAttribute */\n\t\t\t\t.chroma .nb { color: #005cc5; } /* NameBuiltin */\n\t\t\t\t.chroma .nc { color: #6f42c1; } /* NameClass */\n\t\t\t\t.chroma .no { color: #005cc5; } /* NameConstant */\n\t\t\t\t.chroma .nd { color: #6f42c1; } /* NameDecorator */\n\t\t\t\t.chroma .ni { color: #24292e; } /* NameEntity */\n\t\t\t\t.chroma .ne { color: #6f42c1; } /* NameException */\n\t\t\t\t.chroma .nf { color: #6f42c1; } /* NameFunction */\n\t\t\t\t.chroma .nl { color: #005cc5; } /* NameLabel */\n\t\t\t\t.chroma .nn { color: #24292e; } /* NameNamespace */\n\t\t\t\t.chroma .nt { color: #22863a; } /* NameTag */\n\t\t\t\t.chroma .nv { color: #e36209; } /* NameVariable */\n\t\t\t\t.chroma .s { color: #032f62; } /* LiteralString */\n\t\t\t\t.chroma .sa { color: #032f62; } /* LiteralStringAffix */\n\t\t\t\t.chroma .sb { color: #032f62; } /* LiteralStringBacktick */\n\t\t\t\t.chroma .sc { color: #032f62; } /* LiteralStringChar */\n\t\t\t\t.chroma .dl { color: #032f62; } /* LiteralStringDelimiter */\n\t\t\t\t.chroma .sd { color: #6a737d; } /* LiteralStringDoc */\n\t\t\t\t.chroma .s2 { color: #032f62; } /* LiteralStringDouble */\n\t\t\t\t.chroma .se { color: #032f62; } /* LiteralStringEscape */\n\t\t\t\t.chroma .sh { color: #032f62; } /* LiteralStringHeredoc */\n\t\t\t\t.chroma .si { color: #032f62; } /* LiteralStringInterpol */\n\t\t\t\t.chroma .sx { color: #032f62; } /* LiteralStringOther */\n\t\t\t\t.chroma .sr { color: #032f62; } /* LiteralStringRegex */\n\t\t\t\t.chroma .s1 { color: #032f62; } /* LiteralStringSingle */\n\t\t\t\t.chroma .ss { color: #032f62; } /* LiteralStringSymbol */\n\t\t\t\t.chroma .m { color: #005cc5; } /* LiteralNumber */\n\t\t\t\t.chroma .mb { color: #005cc5; } /* LiteralNumberBin */\n\t\t\t\t.chroma .mf { color: #005cc5; } /* LiteralNumberFloat */\n\t\t\t\t.chroma .mh { color: #005cc5; } /* LiteralNumberHex */\n\t\t\t\t.chroma .mi { color: #005cc5; } /* LiteralNumberInteger */\n\t\t\t\t.chroma .il { color: #005cc5; } /* LiteralNumberIntegerLong */\n\t\t\t\t.chroma .mo { color: #005cc5; } /* LiteralNumberOct */\n\t\t\t\t.chroma .o { color: #d73a49; } /* Operator */\n\t\t\t\t.chroma .ow { color: #d73a49; } /* OperatorWord */\n\t\t\t\t.chroma .c { color: #6a737d; } /* Comment */\n\t\t\t\t.chroma .ch { color: #6a737d; } /* CommentHashbang */\n\t\t\t\t.chroma .cm { color: #6a737d; } /* CommentMultiline */\n\t\t\t\t.chroma .c1 { color: #6a737d; } /* CommentSingle */\n\t\t\t\t.chroma .cs { color: #6a737d; } /* CommentSpecial */\n\t\t\t\t.chroma .cp { color: #d73a49; } /* CommentPreproc */\n\t\t\t\t.chroma .cpf { color: #032f62; } /* CommentPreprocFile */\n\t\t\t\t.chroma .gd { color: #b31d28; background-color: #ffeef0; } /* GenericDeleted */\n\t\t\t\t.chroma .ge { font-style: italic; } /* GenericEmphasis */\n\t\t\t\t.chroma .gi { color: #22863a; background-color: #f0fff4; } /* GenericInserted */\n\t\t\t\t.chroma .gs { font-weight: bold; } /* GenericStrong */\n\t\t\t\t.chroma .gu { color: #6f42c1; font-weight: bold; } /* GenericSubheading */\n\t\t\t\t.chroma .gl { color: #586069; } /* GenericUnderline */\n\t\t\t</style></head><body class=\"min-h-screen text-[var(--text-primary)] bg-[var(--bg-secondary)]\">")
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.GetOGPTitle(config.Title))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 23, Col: 75}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if config.OGP.Description != "" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<meta property=\"og:description\" content=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var6 string
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.Description)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 25, Col: 68}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<meta property=\"og:type\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.GetOGPType())
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 27, Col: 61}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if config.OGP.URL != "" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<meta property=\"og:url\" content=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var8 string
+			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.URL)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 29, Col: 52}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		if config.OGP.ImageURL != "" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<meta property=\"og:image\" content=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var9 string
+			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.ImageURL)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 32, Col: 59}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\"><meta property=\"og:image:width\" content=\"1200\"><meta property=\"og:image:height\" content=\"630\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<meta property=\"og:site_name\" content=\"Go Proposal Weekly Digest\"><!-- Twitter Card --><meta name=\"twitter:card\" content=\"summary_large_image\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if config.OGP.ImageURL != "" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<meta name=\"twitter:image\" content=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var10 string
+			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.ImageURL)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 40, Col: 60}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<meta name=\"twitter:title\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var11 string
+		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.GetOGPTitle(config.Title))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 42, Col: 76}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if config.OGP.Description != "" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<meta name=\"twitter:description\" content=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var12 string
+			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(config.OGP.Description)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 44, Col: 69}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600;700&display=swap\" rel=\"stylesheet\"><link rel=\"stylesheet\" href=\"/styles.css\"><link rel=\"alternate\" type=\"application/rss+xml\" title=\"Go Proposal Weekly Digest RSS Feed\" href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var13 templ.SafeURL
+		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinURLErrs(config.GetFeedURL())
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 51, Col: 121}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "\"><style>\n\t\t\t\t*, *::before, *::after {\n\t\t\t\t\tbox-sizing: border-box;\n\t\t\t\t}\n\t\t\t\t:root {\n\t\t\t\t\t--go-blue: #00ADD8;\n\t\t\t\t\t--go-blue-dark: #007d9c;\n\t\t\t\t\t--go-blue-darker: #00758c;\n\t\t\t\t\t--go-yellow: #FDDD00;\n\t\t\t\t\t--go-yellow-hover: #e5c800;\n\t\t\t\t\t--bg-primary: #ffffff;\n\t\t\t\t\t--bg-secondary: #f5f5f5;\n\t\t\t\t\t--bg-tertiary: #e0e0e0;\n\t\t\t\t\t--bg-card: #ffffff;\n\t\t\t\t\t--bg-hero: #00ADD8;\n\t\t\t\t\t--bg-footer: #00ADD8;\n\t\t\t\t\t--border-color: #d6d6d6;\n\t\t\t\t\t--text-primary: #202224;\n\t\t\t\t\t--text-secondary: #3e4042;\n\t\t\t\t\t--text-muted: #6e7072;\n\t\t\t\t\t--text-on-blue: #ffffff;\n\t\t\t\t\t--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);\n\t\t\t\t\t--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);\n\t\t\t\t\t--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);\n\t\t\t\t}\n\t\t\t\thtml, body {\n\t\t\t\t\tmax-width: 100%;\n\t\t\t\t\toverflow-x: hidden;\n\t\t\t\t}\n\t\t\t\tbody {\n\t\t\t\t\tmargin: 0;\n\t\t\t\t\tfont-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n\t\t\t\t\tbackground: var(--bg-secondary);\n\t\t\t\t\tcolor: var(--text-primary);\n\t\t\t\t}\n\t\t\t\ta { text-decoration: none; }\n\t\t\t\ta:hover { text-decoration: none; }\n\t\t\t\t.font-mono { font-family: 'JetBrains Mono', 'Roboto Mono', monospace; }\n\t\t\t\t.card-hover { transition: all 0.2s ease; }\n\t\t\t\t.card-hover:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }\n\t\t\t\t@keyframes fadeInUp {\n\t\t\t\t\tfrom { opacity: 0; transform: translateY(16px); }\n\t\t\t\t\tto { opacity: 1; transform: translateY(0); }\n\t\t\t\t}\n\t\t\t\t.animate-fade-in-up { animation: fadeInUp 0.4s ease-out forwards; }\n\t\t\t\t.animate-delay-1 { animation-delay: 0.1s; opacity: 0; }\n\t\t\t\t.animate-delay-2 { animation-delay: 0.2s; opacity: 0; }\n\t\t\t\t.animate-delay-3 { animation-delay: 0.3s; opacity: 0; }\n\t\t\t\tnav ul { list-style: none; margin: 0; padding: 0; }\n\t\t\t\tnav li { list-style: none; }\n\t\t\t\t.btn-yellow {\n\t\t\t\t\tbackground: var(--go-yellow);\n\t\t\t\t\tcolor: var(--text-primary);\n\t\t\t\t\tfont-weight: 600;\n\t\t\t\t\tpadding: 0.75rem 1.5rem;\n\t\t\t\t\tborder-radius: 0.5rem;\n\t\t\t\t\ttransition: background 0.2s;\n\t\t\t\t}\n\t\t\t\t.btn-yellow:hover { background: var(--go-yellow-hover); }\n\t\t\t\t.link-on-blue { color: var(--text-on-blue); }\n\t\t\t\t.link-on-blue:hover { text-decoration: underline; }\n\t\t\t\t.header-title { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }\n\n\t\t\t\t/* Prose styles for Markdown content */\n\t\t\t\t.prose {\n\t\t\t\t\tcolor: var(--text-secondary);\n\t\t\t\t\tline-height: 1.75;\n\t\t\t\t}\n\t\t\t\t.prose p { margin: 0 0 1rem 0; }\n\t\t\t\t.prose p:last-child { margin-bottom: 0; }\n\t\t\t\t.prose h2 { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; }\n\t\t\t\t.prose h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 1.25rem 0 0.5rem 0; }\n\t\t\t\t.prose h4 { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin: 1rem 0 0.5rem 0; }\n\t\t\t\t.prose ul, .prose ol { margin: 0.5rem 0 1rem 0; padding-left: 1.5rem; }\n\t\t\t\t.prose li { margin: 0.25rem 0; }\n\t\t\t\t.prose strong { font-weight: 600; color: var(--text-primary); }\n\t\t\t\t.prose a { color: var(--go-blue); }\n\t\t\t\t.prose a:hover { color: var(--go-blue-dark); text-decoration: underline; }\n\t\t\t\t.prose blockquote {\n\t\t\t\t\tborder-left: 4px solid var(--go-blue);\n\t\t\t\t\tpadding-left: 1rem;\n\t\t\t\t\tmargin: 1rem 0;\n\t\t\t\t\tcolor: var(--text-muted);\n\t\t\t\t\tfont-style: italic;\n\t\t\t\t}\n\n\t\t\t\t/* Code styles */\n\t\t\t\t.prose code {\n\t\t\t\t\tfont-family: 'JetBrains Mono', 'Roboto Mono', monospace;\n\t\t\t\t\tfont-size: 0.875em;\n\t\t\t\t\tbackground: var(--bg-secondary);\n\t\t\t\t\tpadding: 0.125rem 0.375rem;\n\t\t\t\t\tborder-radius: 0.25rem;\n\t\t\t\t\tcolor: var(--text-primary);\n\t\t\t\t}\n\t\t\t\t.prose pre {\n\t\t\t\t\tbackground: #f6f8fa;\n\t\t\t\t\tborder: 1px solid var(--border-color);\n\t\t\t\t\tborder-radius: 0.5rem;\n\t\t\t\t\tpadding: 1rem;\n\t\t\t\t\toverflow-x: auto;\n\t\t\t\t\tmargin: 1rem 0;\n\t\t\t\t}\n\t\t\t\t.prose pre code {\n\t\t\t\t\tbackground: transparent;\n\t\t\t\t\tpadding: 0;\n\t\t\t\t\tfont-size: 0.875rem;\n\t\t\t\t\tline-height: 1.5;\n\t\t\t\t}\n\n\t\t\t\t/* Chroma syntax highlighting (github style) */\n\t\t\t\t.chroma { background: #f6f8fa; }\n\t\t\t\t.chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }\n\t\t\t\t.chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }\n\t\t\t\t.chroma .lntd:first-child { width: 10px; user-select: none; }\n\t\t\t\t.chroma .lntd:last-child { width: auto; }\n\t\t\t\t.chroma .hl { background-color: #ffffcc; display: block; width: 100%; }\n\t\t\t\t.chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; color: #7f7f7f; }\n\t\t\t\t.chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; color: #7f7f7f; }\n\t\t\t\t.chroma .k { color: #d73a49; } /* Keyword */\n\t\t\t\t.chroma .kc { color: #d73a49; } /* KeywordConstant */\n\t\t\t\t.chroma .kd { color: #d73a49; } /* KeywordDeclaration */\n\t\t\t\t.chroma .kn { color: #d73a49; } /* KeywordNamespace */\n\t\t\t\t.chroma .kp { color: #d73a49; } /* KeywordPseudo */\n\t\t\t\t.chroma .kr { color: #d73a49; } /* KeywordReserved */\n\t\t\t\t.chroma .kt { color: #d73a49; } /* KeywordType */\n\t\t\t\t.chroma .na { color: #005cc5; } /* NameAttribute */\n\t\t\t\t.chroma .nb { color: #005cc5; } /* NameBuiltin */\n\t\t\t\t.chroma .nc { color: #6f42c1; } /* NameClass */\n\t\t\t\t.chroma .no { color: #005cc5; } /* NameConstant */\n\t\t\t\t.chroma .nd { color: #6f42c1; } /* NameDecorator */\n\t\t\t\t.chroma .ni { color: #24292e; } /* NameEntity */\n\t\t\t\t.chroma .ne { color: #6f42c1; } /* NameException */\n\t\t\t\t.chroma .nf { color: #6f42c1; } /* NameFunction */\n\t\t\t\t.chroma .nl { color: #005cc5; } /* NameLabel */\n\t\t\t\t.chroma .nn { color: #24292e; } /* NameNamespace */\n\t\t\t\t.chroma .nt { color: #22863a; } /* NameTag */\n\t\t\t\t.chroma .nv { color: #e36209; } /* NameVariable */\n\t\t\t\t.chroma .s { color: #032f62; } /* LiteralString */\n\t\t\t\t.chroma .sa { color: #032f62; } /* LiteralStringAffix */\n\t\t\t\t.chroma .sb { color: #032f62; } /* LiteralStringBacktick */\n\t\t\t\t.chroma .sc { color: #032f62; } /* LiteralStringChar */\n\t\t\t\t.chroma .dl { color: #032f62; } /* LiteralStringDelimiter */\n\t\t\t\t.chroma .sd { color: #6a737d; } /* LiteralStringDoc */\n\t\t\t\t.chroma .s2 { color: #032f62; } /* LiteralStringDouble */\n\t\t\t\t.chroma .se { color: #032f62; } /* LiteralStringEscape */\n\t\t\t\t.chroma .sh { color: #032f62; } /* LiteralStringHeredoc */\n\t\t\t\t.chroma .si { color: #032f62; } /* LiteralStringInterpol */\n\t\t\t\t.chroma .sx { color: #032f62; } /* LiteralStringOther */\n\t\t\t\t.chroma .sr { color: #032f62; } /* LiteralStringRegex */\n\t\t\t\t.chroma .s1 { color: #032f62; } /* LiteralStringSingle */\n\t\t\t\t.chroma .ss { color: #032f62; } /* LiteralStringSymbol */\n\t\t\t\t.chroma .m { color: #005cc5; } /* LiteralNumber */\n\t\t\t\t.chroma .mb { color: #005cc5; } /* LiteralNumberBin */\n\t\t\t\t.chroma .mf { color: #005cc5; } /* LiteralNumberFloat */\n\t\t\t\t.chroma .mh { color: #005cc5; } /* LiteralNumberHex */\n\t\t\t\t.chroma .mi { color: #005cc5; } /* LiteralNumberInteger */\n\t\t\t\t.chroma .il { color: #005cc5; } /* LiteralNumberIntegerLong */\n\t\t\t\t.chroma .mo { color: #005cc5; } /* LiteralNumberOct */\n\t\t\t\t.chroma .o { color: #d73a49; } /* Operator */\n\t\t\t\t.chroma .ow { color: #d73a49; } /* OperatorWord */\n\t\t\t\t.chroma .c { color: #6a737d; } /* Comment */\n\t\t\t\t.chroma .ch { color: #6a737d; } /* CommentHashbang */\n\t\t\t\t.chroma .cm { color: #6a737d; } /* CommentMultiline */\n\t\t\t\t.chroma .c1 { color: #6a737d; } /* CommentSingle */\n\t\t\t\t.chroma .cs { color: #6a737d; } /* CommentSpecial */\n\t\t\t\t.chroma .cp { color: #d73a49; } /* CommentPreproc */\n\t\t\t\t.chroma .cpf { color: #032f62; } /* CommentPreprocFile */\n\t\t\t\t.chroma .gd { color: #b31d28; background-color: #ffeef0; } /* GenericDeleted */\n\t\t\t\t.chroma .ge { font-style: italic; } /* GenericEmphasis */\n\t\t\t\t.chroma .gi { color: #22863a; background-color: #f0fff4; } /* GenericInserted */\n\t\t\t\t.chroma .gs { font-weight: bold; } /* GenericStrong */\n\t\t\t\t.chroma .gu { color: #6f42c1; font-weight: bold; } /* GenericSubheading */\n\t\t\t\t.chroma .gl { color: #586069; } /* GenericUnderline */\n\t\t\t</style></head><body class=\"min-h-screen text-[var(--text-primary)] bg-[var(--bg-secondary)]\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -97,7 +270,7 @@ func BaseLayoutWithConfig(config LayoutConfig) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<script type=\"module\" src=\"/components.js\"></script></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<script type=\"module\" src=\"/components.js\"></script></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -123,9 +296,9 @@ func PageWithLayout(title string, currentPath string, content templ.Component) t
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var5 == nil {
-			templ_7745c5c3_Var5 = templ.NopComponent
+		templ_7745c5c3_Var14 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var14 == nil {
+			templ_7745c5c3_Var14 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = PageWithLayoutConfig(PageConfig{Title: title, CurrentPath: currentPath, FeedURL: DefaultFeedURL}, content).Render(ctx, templ_7745c5c3_Buffer)
@@ -154,12 +327,12 @@ func PageWithLayoutConfig(config PageConfig, content templ.Component) templ.Comp
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var6 == nil {
-			templ_7745c5c3_Var6 = templ.NopComponent
+		templ_7745c5c3_Var15 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var15 == nil {
+			templ_7745c5c3_Var15 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Var7 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Var16 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 			if !templ_7745c5c3_IsBuffer {
@@ -171,7 +344,7 @@ func PageWithLayoutConfig(config PageConfig, content templ.Component) templ.Comp
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<a href=\"#main-content\" class=\"sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--go-blue)] focus:px-4 focus:py-2 focus:text-white focus:rounded-md focus:shadow-lg\">メインコンテンツへスキップ</a><div class=\"min-h-screen flex flex-col\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "<a href=\"#main-content\" class=\"sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--go-blue)] focus:px-4 focus:py-2 focus:text-white focus:rounded-md focus:shadow-lg\">メインコンテンツへスキップ</a><div class=\"min-h-screen flex flex-col\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -183,7 +356,7 @@ func PageWithLayoutConfig(config PageConfig, content templ.Component) templ.Comp
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<main id=\"main-content\" class=\"flex-1 bg-[var(--bg-primary)]\" tabindex=\"-1\"><div class=\"w-full box-border mx-auto px-3 sm:px-4 py-10 max-w-5xl\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<main id=\"main-content\" class=\"flex-1 bg-[var(--bg-primary)]\" tabindex=\"-1\"><div class=\"w-full box-border mx-auto px-3 sm:px-4 py-10 max-w-5xl\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -191,7 +364,7 @@ func PageWithLayoutConfig(config PageConfig, content templ.Component) templ.Comp
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div></main>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "</div></main>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -199,13 +372,13 @@ func PageWithLayoutConfig(config PageConfig, content templ.Component) templ.Comp
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = BaseLayoutWithConfig(LayoutConfig{Title: config.Title, FeedURL: config.GetFeedURL()}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var7), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = BaseLayoutWithConfig(LayoutConfig{Title: config.Title, FeedURL: config.GetFeedURL(), OGP: config.OGP}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var16), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -230,25 +403,25 @@ func TestContent(text string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var8 == nil {
-			templ_7745c5c3_Var8 = templ.NopComponent
+		templ_7745c5c3_Var17 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var17 == nil {
+			templ_7745c5c3_Var17 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"test-content\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "<div class=\"test-content\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var9 string
-		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(text)
+		var templ_7745c5c3_Var18 string
+		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(text)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 237, Col: 8}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/layout.templ`, Line: 264, Col: 8}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

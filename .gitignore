@@ -20,3 +20,4 @@ summaries/
 
 # Cloudflare Wrangler
 .wrangler/
+web/fonts/

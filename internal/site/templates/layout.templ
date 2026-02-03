@@ -16,6 +16,33 @@ templ BaseLayoutWithConfig(config LayoutConfig) {
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<title>{ config.Title }</title>
+			if config.OGP.Description != "" {
+				<meta name="description" content={ config.OGP.Description }/>
+			}
+			<!-- Open Graph Protocol -->
+			<meta property="og:title" content={ config.OGP.GetOGPTitle(config.Title) }/>
+			if config.OGP.Description != "" {
+				<meta property="og:description" content={ config.OGP.Description }/>
+			}
+			<meta property="og:type" content={ config.OGP.GetOGPType() }/>
+			if config.OGP.URL != "" {
+				<meta property="og:url" content={ config.OGP.URL }/>
+			}
+			if config.OGP.ImageURL != "" {
+				<meta property="og:image" content={ config.OGP.ImageURL }/>
+				<meta property="og:image:width" content="1200"/>
+				<meta property="og:image:height" content="630"/>
+			}
+			<meta property="og:site_name" content="Go Proposal Weekly Digest"/>
+			<!-- Twitter Card -->
+			<meta name="twitter:card" content="summary_large_image"/>
+			if config.OGP.ImageURL != "" {
+				<meta name="twitter:image" content={ config.OGP.ImageURL }/>
+			}
+			<meta name="twitter:title" content={ config.OGP.GetOGPTitle(config.Title) }/>
+			if config.OGP.Description != "" {
+				<meta name="twitter:description" content={ config.OGP.Description }/>
+			}
 			<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 			<link rel="preconnect" href="https://fonts.googleapis.com"/>
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -214,7 +241,7 @@ templ PageWithLayout(title string, currentPath string, content templ.Component) 
 // PageWithLayoutConfig wraps content with the full page layout using configurable options.
 // Allows customization of feed URL for RSS autodiscovery and navigation.
 templ PageWithLayoutConfig(config PageConfig, content templ.Component) {
-	@BaseLayoutWithConfig(LayoutConfig{Title: config.Title, FeedURL: config.GetFeedURL()}) {
+	@BaseLayoutWithConfig(LayoutConfig{Title: config.Title, FeedURL: config.GetFeedURL(), OGP: config.OGP}) {
 		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--go-blue)] focus:px-4 focus:py-2 focus:text-white focus:rounded-md focus:shadow-lg">
 			メインコンテンツへスキップ
 		</a>

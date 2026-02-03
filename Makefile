@@ -1,4 +1,4 @@
-.PHONY: all build generate test clean install-deps build-frontend build-go generate-html html-build
+.PHONY: all build generate test clean install-deps build-frontend build-go generate-html html-build generate-ogp-image
 
 # Default target
 all: build
@@ -6,6 +6,10 @@ all: build
 # Install frontend dependencies
 install-deps:
 	npm install
+
+# Generate OGP image (auto-downloads font if needed)
+generate-ogp-image:
+	node scripts/generate-ogp-image.js
 
 # Generate templ templates
 generate:
@@ -17,19 +21,20 @@ build-go: generate
 	go build -o bin/generator ./cmd/generator
 
 # Build frontend assets (CSS and JS) - runs after build-go for consistent ordering
-build-frontend: build-go
+build-frontend: build-go generate-ogp-image
 	npm run build
 
 # Generate HTML pages from content (requires build-go and build-frontend)
 generate-html: build-frontend
 	./bin/generator -content content -dist dist -site-url https://go-proposal-weekly-digest.mazrean.com
 
-# Full build orchestration: templ generate → Go build → frontend assets → HTML + RSS generation
+# Full build orchestration: templ generate → Go build → OGP image → frontend assets → HTML + RSS generation
 # Single entry point that runs the complete pipeline without duplication
 html-build: generate-html
 	@echo "Full build completed successfully"
 	@echo "  - templ templates generated"
 	@echo "  - Go generator binary built"
+	@echo "  - OGP image generated (web/public/ogp.png)"
 	@echo "  - UnoCSS styles extracted to dist/styles.css"
 	@echo "  - esbuild bundled components to dist/components.js"
 	@echo "  - HTML pages generated in dist/"

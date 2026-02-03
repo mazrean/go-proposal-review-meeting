@@ -12,14 +12,15 @@ type WeekSummary struct {
 
 // HomeData represents the data needed to render the home page.
 type HomeData struct {
-	Weeks []WeekSummary
+	Weeks   []WeekSummary
+	SiteURL string
 }
 
 // ConvertToHomeData converts a slice of WeeklyData to HomeData for the home page.
 // The weeks are expected to be sorted by date (newest first).
-func ConvertToHomeData(weeks []WeeklyData) HomeData {
+func ConvertToHomeData(weeks []WeeklyData, siteURL string) HomeData {
 	if len(weeks) == 0 {
-		return HomeData{Weeks: nil}
+		return HomeData{Weeks: nil, SiteURL: siteURL}
 	}
 
 	summaries := make([]WeekSummary, len(weeks))
@@ -32,14 +33,23 @@ func ConvertToHomeData(weeks []WeeklyData) HomeData {
 		}
 	}
 
-	return HomeData{Weeks: summaries}
+	return HomeData{Weeks: summaries, SiteURL: siteURL}
 }
 
 // HomePage renders a full page with the home page content.
 templ HomePage(data HomeData) {
-	@PageWithLayout(
-		"Go Proposal Weekly Digest - ホーム",
-		"/",
+	@PageWithLayoutConfig(
+		PageConfig{
+			Title:       "Go Proposal Weekly Digest",
+			CurrentPath: "/",
+			FeedURL:     DefaultFeedURL,
+			OGP: NewOGPConfig(
+				data.SiteURL,
+				"/",
+				"Go Proposal Weekly Digest",
+				"最新のGo言語プロポーザルを週次でまとめてお届けします。golang/goリポジトリの重要な提案を見逃さずチェックしましょう。",
+			),
+		},
 		HomeContent(data),
 	)
 }

@@ -149,7 +149,7 @@ func (g *Generator) Generate(ctx context.Context, weeks []*content.WeeklyContent
 
 // generateHomePage generates the home page (index.html).
 func (g *Generator) generateHomePage(ctx context.Context, weeks []templates.WeeklyData) error {
-	homeData := templates.ConvertToHomeData(weeks)
+	homeData := templates.ConvertToHomeData(weeks, g.siteURL)
 	component := templates.HomePage(homeData)
 
 	filePath := filepath.Join(g.distDir, "index.html")
@@ -158,6 +158,8 @@ func (g *Generator) generateHomePage(ctx context.Context, weeks []templates.Week
 
 // generateWeeklyIndexPage generates a weekly index page.
 func (g *Generator) generateWeeklyIndexPage(ctx context.Context, data templates.WeeklyData) error {
+	// Set the site URL for OGP tags
+	data.SiteURL = g.siteURL
 	component := templates.WeeklyIndexPage(data)
 
 	// Create directory path: dist/YYYY/wWW/
@@ -172,6 +174,8 @@ func (g *Generator) generateWeeklyIndexPage(ctx context.Context, data templates.
 
 // generateProposalPage generates an individual proposal page.
 func (g *Generator) generateProposalPage(ctx context.Context, data templates.ProposalDetailData) error {
+	// Set the site URL for OGP tags
+	data.SiteURL = g.siteURL
 	component := templates.ProposalDetailPage(data)
 
 	// Create directory path: dist/YYYY/wWW/
