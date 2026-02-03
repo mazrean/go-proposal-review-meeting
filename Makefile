@@ -7,9 +7,13 @@ all: build
 install-deps:
 	npm install
 
-# Generate OGP image (auto-downloads font if needed)
-generate-ogp-image:
+# Generate home page OGP image (auto-downloads font if needed)
+generate-home-ogp:
 	node scripts/generate-ogp-image.js
+
+# Generate all OGP images (home, weekly, proposal)
+generate-all-ogp:
+	node scripts/generate-all-ogp-images.js
 
 # Generate templ templates
 generate:
@@ -21,24 +25,26 @@ build-go: generate
 	go build -o bin/generator ./cmd/generator
 
 # Build frontend assets (CSS and JS) - runs after build-go for consistent ordering
-build-frontend: build-go generate-ogp-image
+build-frontend: build-go generate-home-ogp
 	npm run build
 
 # Generate HTML pages from content (requires build-go and build-frontend)
 generate-html: build-frontend
 	./bin/generator -content content -dist dist -site-url https://go-proposal-weekly-digest.mazrean.com
 
-# Full build orchestration: templ generate → Go build → OGP image → frontend assets → HTML + RSS generation
+# Full build orchestration: templ generate → Go build → home OGP → frontend assets → HTML + RSS generation → all OGP images
 # Single entry point that runs the complete pipeline without duplication
 html-build: generate-html
+	$(MAKE) generate-all-ogp
 	@echo "Full build completed successfully"
 	@echo "  - templ templates generated"
 	@echo "  - Go generator binary built"
-	@echo "  - OGP image generated (web/public/ogp.png)"
+	@echo "  - Home OGP image generated (web/public/ogp.png)"
 	@echo "  - UnoCSS styles extracted to dist/styles.css"
 	@echo "  - esbuild bundled components to dist/components.js"
 	@echo "  - HTML pages generated in dist/"
 	@echo "  - RSS feed generated (dist/feed.xml)"
+	@echo "  - All OGP images generated (weekly + proposal)"
 
 # Build everything (alias for html-build)
 build: html-build
