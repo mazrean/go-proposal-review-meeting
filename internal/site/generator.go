@@ -14,6 +14,9 @@ import (
 	"github.com/mazrean/go-proposal-review-meeting/internal/site/templates"
 )
 
+// publicDir is the directory containing static files to be copied to dist.
+const publicDir = "web/public"
+
 // dirPerm is the permission mode for created directories.
 const dirPerm = 0o755
 
@@ -61,6 +64,7 @@ func NewGenerator(opts ...Option) *Generator {
 // - YYYY/wWW/index.html (weekly index pages)
 // - YYYY/wWW/NNNNN.html (individual proposal pages)
 // - feed.xml (RSS 2.0 feed)
+// - Static files copied from web/public/ to dist/
 func (g *Generator) Generate(ctx context.Context, weeks []*content.WeeklyContent) error {
 	// Check for context cancellation at the start
 	if err := ctx.Err(); err != nil {
@@ -70,6 +74,11 @@ func (g *Generator) Generate(ctx context.Context, weeks []*content.WeeklyContent
 	// Create the dist directory
 	if err := os.MkdirAll(g.distDir, dirPerm); err != nil {
 		return fmt.Errorf("failed to create dist directory: %w", err)
+	}
+
+	// Copy static files from web/public/ to dist/
+	if err := g.copyPublicFiles(ctx); err != nil {
+		return fmt.Errorf("failed to copy static files: %w", err)
 	}
 
 	// Convert weeks to template data
@@ -214,6 +223,91 @@ func (g *Generator) generateRSSFeed(ctx context.Context, weeks []*content.Weekly
 		// Remove partial file on error
 		_ = os.Remove(feedPath)
 		return fmt.Errorf("failed to write feed.xml: %w", err)
+	}
+
+	return nil
+}
+
+// copyPublicFiles copies static files from web/public/ to dist/.
+// If the public directory doesn't exist, it returns without error.
+func (g *Generator) copyPublicFiles(ctx context.Context) error {
+	// Check if public directory exists
+	if _, err := os.Stat(publicDir); os.IsNotExist(err) {
+		return nil // No public directory, skip
+	} else if err != nil {
+		return fmt.Errorf("failed to stat public directory: %w", err)
+	}
+
+	// Walk through the public directory
+	return filepath.Walk(publicDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		// Check for context cancellation
+		if err := ctx.Err(); err != nil {
+			return err
+		}
+
+		// Skip the root directory itself
+		if path == publicDir {
+			return nil
+		}
+
+		// Get relative path from public directory
+		relPath, err := filepath.Rel(publicDir, path)
+		if err != nil {
+			return fmt.Errorf("failed to get relative path: %w", err)
+		}
+
+		destPath := filepath.Join(g.distDir, relPath)
+
+		if info.IsDir() {
+			// Create directory in dist
+			if err := os.MkdirAll(destPath, dirPerm); err != nil {
+				return fmt.Errorf("failed to create directory %s: %w", destPath, err)
+			}
+			return nil
+		}
+
+		// Copy file
+		return copyFile(path, destPath)
+	})
+}
+
+// copyFile copies a file from src to dst.
+func copyFile(src, dst string) error {
+	sourceFile, err := os.Open(src)
+	if err != nil {
+		return fmt.Errorf("failed to open source file: %w", err)
+	}
+	defer sourceFile.Close()
+
+	destFile, err := os.Create(dst)
+	if err != nil {
+		return fmt.Errorf("failed to create destination file: %w", err)
+	}
+	defer func() {
+		if closeErr := destFile.Close(); closeErr != nil && err == nil {
+			err = fmt.Errorf("failed to close destination file: %w", closeErr)
+		}
+		// Remove partial file on error
+		if err != nil {
+			_ = os.Remove(dst)
+		}
+	}()
+
+	if _, err := io.Copy(destFile, sourceFile); err != nil {
+		return fmt.Errorf("failed to copy file: %w", err)
+	}
+
+	// Copy file permissions
+	sourceInfo, err := os.Stat(src)
+	if err != nil {
+		return fmt.Errorf("failed to stat source file: %w", err)
+	}
+	if err := os.Chmod(dst, sourceInfo.Mode()); err != nil {
+		return fmt.Errorf("failed to set file permissions: %w", err)
 	}
 
 	return nil
