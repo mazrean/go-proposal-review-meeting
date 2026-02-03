@@ -3,10 +3,34 @@ package templates
 import (
 	"encoding/json"
 	"fmt"
+	"sort"
 
 	"github.com/mazrean/go-proposal-review-meeting/internal/content"
 	"github.com/mazrean/go-proposal-review-meeting/internal/parser"
 )
+
+// statusPriority returns the sorting priority for a status.
+// Lower values come first.
+func statusPriority(status parser.Status) int {
+	switch status {
+	case parser.StatusDiscussions:
+		return 0
+	case parser.StatusAccepted:
+		return 1
+	case parser.StatusDeclined:
+		return 2
+	case parser.StatusLikelyAccept:
+		return 3
+	case parser.StatusLikelyDecline:
+		return 4
+	case parser.StatusActive:
+		return 5
+	case parser.StatusHold:
+		return 6
+	default:
+		return 999
+	}
+}
 
 // getUniqueStatusesJSON returns a JSON array of unique status strings from proposals.
 func getUniqueStatusesJSON(proposals []ProposalData) string {
@@ -71,6 +95,21 @@ func ConvertToWeeklyData(wc *content.WeeklyContent) WeeklyData {
 			DetailURL:      detailURL,
 		})
 	}
+
+	// Sort proposals: new proposals first, then others
+	// Within each group, sort by status priority
+	sort.SliceStable(proposals, func(i, j int) bool {
+		isNewI := proposals[i].PreviousStatus == ""
+		isNewJ := proposals[j].PreviousStatus == ""
+
+		// New proposals come first
+		if isNewI != isNewJ {
+			return isNewI
+		}
+
+		// Within the same group, sort by status priority
+		return statusPriority(proposals[i].CurrentStatus) < statusPriority(proposals[j].CurrentStatus)
+	})
 
 	return WeeklyData{
 		Year:      wc.Year,

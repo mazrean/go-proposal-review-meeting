@@ -537,6 +537,80 @@ func TestConvertToWeeklyData(t *testing.T) {
 				}
 			},
 		},
+		{
+			name: "sorts proposals with new proposals first",
+			input: &content.WeeklyContent{
+				Year: 2026,
+				Week: 5,
+				Proposals: []content.ProposalContent{
+					{IssueNumber: 1, Title: "old active", PreviousStatus: parser.StatusDiscussions, CurrentStatus: parser.StatusActive},
+					{IssueNumber: 2, Title: "new discussions", PreviousStatus: "", CurrentStatus: parser.StatusDiscussions},
+					{IssueNumber: 3, Title: "old discussions", PreviousStatus: parser.StatusActive, CurrentStatus: parser.StatusDiscussions},
+					{IssueNumber: 4, Title: "new hold", PreviousStatus: "", CurrentStatus: parser.StatusHold},
+				},
+			},
+			wantYear:      2026,
+			wantWeek:      5,
+			wantProposals: 4,
+			checkProposals: func(t *testing.T, proposals []templates.ProposalData) {
+				t.Helper()
+				// New proposals should come first
+				if proposals[0].IssueNumber != 2 {
+					t.Errorf("expected first proposal to be #2 (new discussions), got #%d", proposals[0].IssueNumber)
+				}
+				if proposals[1].IssueNumber != 4 {
+					t.Errorf("expected second proposal to be #4 (new hold), got #%d", proposals[1].IssueNumber)
+				}
+				// Old proposals should come after
+				if proposals[2].IssueNumber != 3 {
+					t.Errorf("expected third proposal to be #3 (old discussions), got #%d", proposals[2].IssueNumber)
+				}
+				if proposals[3].IssueNumber != 1 {
+					t.Errorf("expected fourth proposal to be #1 (old active), got #%d", proposals[3].IssueNumber)
+				}
+			},
+		},
+		{
+			name: "sorts proposals by status priority within each group",
+			input: &content.WeeklyContent{
+				Year: 2026,
+				Week: 5,
+				Proposals: []content.ProposalContent{
+					{IssueNumber: 1, Title: "old hold", PreviousStatus: parser.StatusActive, CurrentStatus: parser.StatusHold},
+					{IssueNumber: 2, Title: "old discussions", PreviousStatus: parser.StatusActive, CurrentStatus: parser.StatusDiscussions},
+					{IssueNumber: 3, Title: "old accepted", PreviousStatus: parser.StatusDiscussions, CurrentStatus: parser.StatusAccepted},
+					{IssueNumber: 4, Title: "new hold", PreviousStatus: "", CurrentStatus: parser.StatusHold},
+					{IssueNumber: 5, Title: "new discussions", PreviousStatus: "", CurrentStatus: parser.StatusDiscussions},
+					{IssueNumber: 6, Title: "new accepted", PreviousStatus: "", CurrentStatus: parser.StatusAccepted},
+				},
+			},
+			wantYear:      2026,
+			wantWeek:      5,
+			wantProposals: 6,
+			checkProposals: func(t *testing.T, proposals []templates.ProposalData) {
+				t.Helper()
+				// New proposals sorted by status priority: discussions, accepted, hold
+				if proposals[0].IssueNumber != 5 {
+					t.Errorf("expected first proposal to be #5 (new discussions), got #%d", proposals[0].IssueNumber)
+				}
+				if proposals[1].IssueNumber != 6 {
+					t.Errorf("expected second proposal to be #6 (new accepted), got #%d", proposals[1].IssueNumber)
+				}
+				if proposals[2].IssueNumber != 4 {
+					t.Errorf("expected third proposal to be #4 (new hold), got #%d", proposals[2].IssueNumber)
+				}
+				// Old proposals sorted by status priority: discussions, accepted, hold
+				if proposals[3].IssueNumber != 2 {
+					t.Errorf("expected fourth proposal to be #2 (old discussions), got #%d", proposals[3].IssueNumber)
+				}
+				if proposals[4].IssueNumber != 3 {
+					t.Errorf("expected fifth proposal to be #3 (old accepted), got #%d", proposals[4].IssueNumber)
+				}
+				if proposals[5].IssueNumber != 1 {
+					t.Errorf("expected sixth proposal to be #1 (old hold), got #%d", proposals[5].IssueNumber)
+				}
+			},
+		},
 	}
 
 	for _, tt := range tests {
