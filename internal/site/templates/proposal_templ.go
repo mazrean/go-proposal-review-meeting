@@ -351,7 +351,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		if data.Summary != "" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<section class=\"mb-8 animate-fade-in-up animate-delay-1\"><h2 class=\"flex items-center gap-2 text-lg font-semibold text-[var(--text-primary)] mb-4\"><svg class=\"w-5 h-5 text-[var(--go-blue)]\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg> 要約</h2><div class=\"rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm prose prose-go max-w-none\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<section class=\"mb-8 animate-fade-in-up animate-delay-1\"><h2 class=\"flex items-center gap-2 text-lg font-semibold text-[var(--text-primary)] mb-4\"><svg class=\"w-5 h-5 text-[var(--go-blue)]\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg> 要約</h2><div class=\"rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] p-6 shadow-sm prose prose-go max-w-none\"><div class=\"flex items-start gap-2 px-3 py-2 mb-4 rounded bg-amber-50 border border-amber-200 not-prose\"><svg class=\"w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z\"></path></svg> <span class=\"text-sm text-amber-800\">AIによる要約であり、誤りを含む場合があります。</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -371,7 +371,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 		var templ_7745c5c3_Var17 templ.SafeURL
 		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(data.IssueURL))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 177, Col: 42}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 183, Col: 42}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 		if templ_7745c5c3_Err != nil {
@@ -389,7 +389,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 			var templ_7745c5c3_Var18 templ.SafeURL
 			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(data.CommentURL))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 199, Col: 45}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 205, Col: 45}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
@@ -408,7 +408,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 			var templ_7745c5c3_Var19 templ.SafeURL
 			templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(link.URL))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 222, Col: 38}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 228, Col: 38}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 			if templ_7745c5c3_Err != nil {
@@ -421,7 +421,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 			var templ_7745c5c3_Var20 string
 			templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(link.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 233, Col: 126}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 239, Col: 126}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 			if templ_7745c5c3_Err != nil {
@@ -439,7 +439,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 		var templ_7745c5c3_Var21 templ.SafeURL
 		templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("/%d/w%02d/", data.Year, data.Week)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 246, Col: 73}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 252, Col: 73}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 		if templ_7745c5c3_Err != nil {
@@ -452,7 +452,7 @@ func ProposalDetail(data ProposalDetailData) templ.Component {
 		var templ_7745c5c3_Var22 string
 		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d年 第%d週の一覧に戻る", data.Year, data.Week))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 252, Col: 75}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/site/templates/proposal.templ`, Line: 258, Col: 75}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 		if templ_7745c5c3_Err != nil {
