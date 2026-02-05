@@ -125,7 +125,6 @@ jobs:
             - 各サブエージェントの調査は独立しているため、互いの結果を待つ必要はない
             - サブエージェントが詳細な調査（Phase 1-3）を実行するため、オーケストレーターは結果の取りまとめに集中
           claude_args: |
-            --max-turns 60
             --allowedTools Read,Write,Bash,Task,Grep,Glob,WebSearch,WebFetch
 
       # Task 6.5: Handle summary generation failure
