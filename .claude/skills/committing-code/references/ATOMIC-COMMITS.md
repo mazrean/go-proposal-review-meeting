@@ -63,7 +63,7 @@ Each commit tells a clear story.
 ### Mixed Concerns
 
 **Bad:**
-```
+```text
 Add authentication, fix typo, update deps
 ```
 
@@ -75,7 +75,7 @@ This commit:
 If auth has a bug, reverting also removes the typo fix.
 
 **Good:**
-```
+```text
 feat(auth): add OAuth2 authentication
 docs: fix typo in README
 deps: update lodash to 4.17.21
@@ -98,7 +98,7 @@ deps: update lodash to 4.17.21
 Reviewers can't distinguish formatting from logic changes.
 
 **Good (two commits):**
-```
+```text
 style: apply consistent formatting to calculate function
 feat: add debug logging to calculate function
 ```
@@ -106,7 +106,7 @@ feat: add debug logging to calculate function
 ### WIP Commits
 
 **Bad:**
-```
+```text
 WIP
 more WIP
 fix stuff
@@ -244,7 +244,7 @@ git rebase -i HEAD~N
 ```
 
 In editor:
-```
+```text
 pick abc1234 feat: add feature
 fixup def5678 fix typo
 squash ghi9012 add tests

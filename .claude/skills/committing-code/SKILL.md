@@ -23,7 +23,7 @@ git commit -m "feat(parser): add support for array parsing"
 
 ## Commit Message Format
 
-```
+```text
 <type>[optional scope]: <description>
 
 [optional body]
@@ -78,12 +78,12 @@ Each commit should be:
 - **Reversible**: Can be reverted independently
 
 **Bad (mixed concerns):**
-```
+```text
 Add user authentication and fix typo in README and update deps
 ```
 
 **Good (separate commits):**
-```
+```text
 feat(auth): add user authentication
 docs: fix typo in README
 deps: update lodash to 4.17.21
@@ -108,7 +108,7 @@ git add -p
 ## Step 4: Write Commit Message
 
 **Format:**
-```
+```text
 <type>(<scope>): <imperative description>
 
 <body explaining why, not what>
@@ -119,12 +119,12 @@ git add -p
 **Examples:**
 
 Simple fix:
-```
+```text
 fix(api): handle null response from payment gateway
 ```
 
 Feature with body:
-```
+```text
 feat(search): add fuzzy matching for product names
 
 Users frequently misspell product names. Fuzzy matching
@@ -134,7 +134,7 @@ Closes #234
 ```
 
 Breaking change:
-```
+```text
 feat(api)!: change authentication to OAuth2
 
 BREAKING CHANGE: API now requires OAuth2 tokens instead of
@@ -196,7 +196,7 @@ git rebase -i HEAD~N
 - Keep subject line under **50 characters**
 - Wrap body at **72 characters**
 - Reference issues in footer: `Closes #123`, `Fixes #456`
-- Breaking changes require `!` or `BREAKING CHANGE:` footer
+- Breaking changes require exclamation mark (!) or BREAKING CHANGE: footer
 - When unsure about scope, omit it: `feat: add new feature`
 
 ## Resources

@@ -4,7 +4,7 @@ Detailed reference for Conventional Commits v1.0.0.
 
 ## Message Structure
 
-```
+```text
 <type>[optional scope]: <description>
 
 [optional body]
@@ -34,7 +34,7 @@ Indicates the kind of change:
 
 Noun describing the section of codebase:
 
-```
+```text
 feat(parser): add ability to parse arrays
 fix(api): handle null response
 docs(readme): update installation steps
@@ -53,13 +53,13 @@ Common scopes:
 - Max 50 characters recommended
 
 **Good:**
-```
+```text
 feat: add user authentication
 fix: prevent race condition in worker
 ```
 
 **Bad:**
-```
+```text
 feat: Added user authentication.
 fix: Fixes the race condition bug in worker threads
 ```
@@ -71,7 +71,7 @@ fix: Fixes the race condition bug in worker threads
 - Wrap at 72 characters
 - Can have multiple paragraphs
 
-```
+```text
 fix(api): handle null response from payment gateway
 
 The payment gateway occasionally returns null instead of
@@ -88,7 +88,7 @@ Used for:
 2. **Issue references**
 3. **Co-authors**
 
-```
+```text
 feat(api)!: change response format to JSON:API
 
 BREAKING CHANGE: Response format changed from custom JSON
@@ -106,14 +106,14 @@ Two ways to indicate breaking changes:
 
 ### 1. Exclamation Mark
 
-```
+```text
 feat!: remove deprecated endpoints
 feat(api)!: change authentication method
 ```
 
 ### 2. Footer
 
-```
+```text
 feat: change authentication method
 
 BREAKING CHANGE: API now uses OAuth2 instead of API keys.
@@ -126,7 +126,7 @@ Both trigger MAJOR version bump in SemVer.
 
 ### feat
 
-```
+```text
 feat: add email notifications for orders
 feat(auth): implement OAuth2 login
 feat(search)!: change search API response format
@@ -136,7 +136,7 @@ BREAKING CHANGE: search results now return paginated format
 
 ### fix
 
-```
+```text
 fix: correct calculation of shipping costs
 fix(parser): handle escaped quotes in strings
 fix(db): prevent connection leak on error
@@ -144,7 +144,7 @@ fix(db): prevent connection leak on error
 
 ### docs
 
-```
+```text
 docs: add API documentation
 docs(readme): update installation instructions
 docs(contributing): add code style guidelines
@@ -152,7 +152,7 @@ docs(contributing): add code style guidelines
 
 ### refactor
 
-```
+```text
 refactor: extract validation logic to separate module
 refactor(auth): simplify token refresh logic
 refactor!: rename User to Account across codebase
@@ -162,28 +162,28 @@ BREAKING CHANGE: User class renamed to Account
 
 ### perf
 
-```
+```text
 perf: cache database queries for product list
 perf(images): lazy load images below fold
 ```
 
 ### test
 
-```
+```text
 test: add unit tests for order service
 test(e2e): add checkout flow tests
 ```
 
 ### chore
 
-```
+```text
 chore: update dependencies
 chore(release): bump version to 2.0.0
 ```
 
 ### ci
 
-```
+```text
 ci: add GitHub Actions workflow
 ci: configure automated releases
 ```
@@ -196,7 +196,7 @@ Conventional Commits maps directly to SemVer:
 |-------------|--------------|---------|
 | `fix:` | PATCH (0.0.X) | 1.2.3 -> 1.2.4 |
 | `feat:` | MINOR (0.X.0) | 1.2.3 -> 1.3.0 |
-| `BREAKING CHANGE` or `!` | MAJOR (X.0.0) | 1.2.3 -> 2.0.0 |
+| BREAKING CHANGE or ! | MAJOR (X.0.0) | 1.2.3 -> 2.0.0 |
 
 ## Commit Message Template
 
@@ -208,7 +208,7 @@ git config --global commit.template ~/.gitmessage
 
 Create `~/.gitmessage`:
 
-```
+```text
 # <type>(<scope>): <description>
 # |<----  Using a Maximum Of 50 Characters  ---->|
 
