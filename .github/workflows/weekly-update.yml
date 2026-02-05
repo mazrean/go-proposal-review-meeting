@@ -255,4 +255,6 @@ jobs:
       - name: Push changes
         if: steps.parse.outputs.has_changes == 'true' && steps.commit.outputs.has_commits == 'true'
         run: |
-          git push origin main
+          # Push to main for scheduled runs, to the triggering branch for manual runs
+          TARGET_BRANCH="${{ github.event_name == 'workflow_dispatch' && github.ref_name || 'main' }}"
+          git push origin "$TARGET_BRANCH"
