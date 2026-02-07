@@ -228,6 +228,9 @@ templ BaseLayoutWithConfig(config LayoutConfig) {
 		<body class="min-h-screen text-[var(--text-primary)] bg-[var(--bg-secondary)]">
 			{ children... }
 			<script type="module" src="/components.js"></script>
+			<!-- Cloudflare Web Analytics -->
+			<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={ "{\"token\": \"689c29de7b524c608454bc6666202d18\"}" }></script>
+			<!-- End Cloudflare Web Analytics -->
 		</body>
 	</html>
 }
