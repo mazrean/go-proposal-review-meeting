@@ -6,14 +6,12 @@
   "scripts": {
     "build:css": "unocss 'internal/**/*.templ' -c uno.config.mjs -o dist/styles.css",
     "build:js": "esbuild web/components/index.ts --bundle --outfile=dist/components.js --format=esm --minify --sourcemap",
-    "build:ogp": "node scripts/generate-ogp-image.js",
-    "build": "npm run build:css && npm run build:js",
-    "watch:css": "unocss 'internal/**/*.templ' -c uno.config.mjs -o dist/styles.css --watch",
-    "watch:js": "esbuild web/components/index.ts --bundle --outfile=dist/components.js --format=esm --sourcemap --watch",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "update:ogp": "tsx scripts/generate-ogp.ts",
+    "build": "pnpm run build:css && pnpm run build:js",
+    "test": "vitest run"
   },
   "devDependencies": {
+    "@types/node": "^25.2.3",
     "@unocss/cli": "^0.60.0",
     "@unocss/core": "^0.60.0",
     "@unocss/preset-icons": "^0.60.0",
@@ -22,6 +20,7 @@
     "@unocss/transformer-directives": "^0.60.0",
     "esbuild": "^0.24.0",
     "jsdom": "^26.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.0",
     "unocss": "^0.60.0",
     "vitest": "^3.0.0"

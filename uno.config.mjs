@@ -5,34 +5,6 @@ import {
   presetIcons,
   transformerDirectives,
 } from 'unocss';
-import { extractorSplit } from '@unocss/core';
-
-/**
- * Custom extractor for templ files
- * Extracts class names from templ template syntax:
- * - class="..." attributes
- * - templ.Attributes with class values
- */
-const templExtractor = {
-  name: 'templ',
-  order: 0,
-  extract({ code }) {
-    const classMatches = code.matchAll(/class=["']([^"']+)["']/g);
-    const classes = [];
-
-    for (const match of classMatches) {
-      classes.push(...match[1].split(/\s+/).filter(Boolean));
-    }
-
-    // Also extract from templ.Attributes patterns
-    const attrMatches = code.matchAll(/templ\.Attributes\{[^}]*"class":\s*"([^"]+)"/g);
-    for (const match of attrMatches) {
-      classes.push(...match[1].split(/\s+/).filter(Boolean));
-    }
-
-    return new Set(classes);
-  },
-};
 
 export default defineConfig({
   presets: [
@@ -46,13 +18,9 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
   ],
-  extractors: [
-    extractorSplit,
-    templExtractor,
-  ],
   content: {
     filesystem: [
-      'internal/**/*.templ',
+      'dist/**/*.html',
       'web/components/**/*.ts',
     ],
   },

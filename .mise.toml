@@ -1,36 +1,83 @@
 [tools]
 node = "24.12.0"
-"npm:@anthropic-ai/claude-code" = "2.1.3"
-"npm:@openai/codex" = "0.80.0"
+pnpm = "10.29.3"
 "npm:@playwright/mcp" = "0.0.55"
 "npm:chrome-devtools-mcp" = "0.12.1"
-"npm:cc-sdd" = "2.0.5"
-"npm:skills" = "1.0.18"
-
-python = "3.14.2"
-uv = "0.9.24"
-"pipx:oraios/serena" = "v0.1.4"
 
 go = "1.25.5"
 "go:golang.org/x/tools/gopls" = "0.21.0"
 
-[tasks.worktree]
-run = '''
-create_worktree() {
-    local branch_name=$1
-    
-    # メインリポジトリのディレクトリを取得
-    local git_common=$(git rev-parse --git-common-dir)
-    local main_repo=$(dirname "$git_common")
-    
-    # worktreesディレクトリを作成
-    local new_worktree="${main_repo}/.worktrees/${branch_name}"
-    mkdir -p "$new_worktree"
-    
-    git worktree add -b "$branch_name" "$new_worktree"
-    echo "✓ worktreeを作成しました: $new_worktree"
-    code "$new_worktree"
-}
-create_worktree $1
-'''
-description = "Create and checkout a new git worktree"
+[tasks.init]
+description = "Initialize"
+depends = ["init:pnpm", "init:go:module"]
+
+[tasks."init:pnpm"]
+description = "Install frontend dependencies"
+run = "pnpm install"
+sources = ["package.json", "pnpm-lock.yaml"]
+outputs = ['node_modules/.pnpm/lock.yaml']
+
+[tasks."init:go:module"]
+description = "Go module download"
+run = "go mod download"
+sources = ["go.mod", "go.sum", "go.work", "go.work.sum"]
+
+[tasks.build]
+description = "Full build pipeline: frontend assets + content + HTML"
+depends = ["build:html", "build:frontend", "update:ogp"]
+
+[tasks."build:template"]
+description = "Generate templ templates"
+run = "go generate ./..."
+sources = ["internal/site/templates/*.templ"]
+outputs = ["internal/site/templates/*_templ.go"]
+
+[tasks."build:html"]
+description = "Generate HTML pages from content"
+depends = ["build:template"]
+run = "go tool generator -content content -dist dist -site-url https://go-proposal-weekly-digest.mazrean.com"
+sources = ["content/**/*.md", "internal/**/*.go", "cmd/generator/**/*.go"]
+outputs = ["dist/**/*.html", "dist/feed.xml", "dist/favicon.svg"]
+
+[tasks."build:frontend"]
+description = "Build frontend assets (CSS and JS only)"
+depends = ["build:html", "init:pnpm"]
+run = "pnpm run build"
+sources = [
+    "dist/**/*.html",
+    "web/components/**/*.ts",
+    "uno.config.mjs",
+    "package.json",
+]
+outputs = ["dist/styles.css", "dist/components.js", "dist/components.js.map"]
+
+[tasks."update:ogp"]
+description = "Generate all OGP images (home, weekly, proposal)"
+depends = ["init:pnpm"]
+run = "pnpm run update:ogp"
+sources = ["scripts/generate-ogp.ts", "content/**/*.md", "content/state.json"]
+outputs = ["dist/**/*.png"]
+
+[tasks.test]
+description = "Run tests"
+depends = ["test:go", "test:frontend"]
+
+[tasks."test:go"]
+description = "Run Go tests"
+run = "go test -v -race ./..."
+sources = ["**/*.go", "!**/*_templ.go", "go.mod", "go.sum"]
+
+[tasks."test:frontend"]
+description = "Run frontend test"
+depends = ["init:pnpm"]
+run = "pnpm run test"
+sources = [
+    "web/**/*.ts",
+    "web/**/*.test.ts",
+    "vitest.config.ts",
+    "package.json",
+]
+
+[tasks.clean]
+description = "Clean build artifacts"
+run = "rm -rf dist/"
