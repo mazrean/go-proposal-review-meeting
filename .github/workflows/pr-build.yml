@@ -9,32 +9,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Go
-        uses: actions/setup-go@v5
+      - name: Setup mise
+        uses: jdx/mise-action@v2
         with:
-          go-version-file: go.mod
-          cache: true
+          install: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Cache Go build and modules
+        uses: actions/cache@v4
         with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install npm dependencies
-        run: npm ci
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('go.mod', 'go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
       - name: Build static site
-        run: |
-          echo "::group::Building static site"
-          make build
-          echo "::endgroup::"
-          echo "::notice::Static site build completed successfully"
+        run: mise run build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -44,7 +43,6 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
-      # Task 6.10: Preview deployment to Cloudflare
       - name: Deploy preview to Cloudflare
         id: preview-deploy
         uses: cloudflare/wrangler-action@v3
@@ -78,109 +76,24 @@ jobs:
           echo "url=${PREVIEW_URL}" >> $GITHUB_OUTPUT
           echo "::notice::Preview URL: ${PREVIEW_URL}"
 
-      - name: Find existing preview comment
-        id: find-comment
-        uses: peter-evans/find-comment@v3
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: github-actions[bot]
-          body-includes: "## 📦 Preview Deployment"
-
       - name: Create or update preview comment
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## 📦 Preview Deployment
-
-            | Status | URL |
-            |--------|-----|
-            | ✅ Deployed | [${{ steps.preview-url.outputs.url }}](${{ steps.preview-url.outputs.url }}) |
-
-            **Commit:** ${{ github.sha }}
-            **Updated:** ${{ github.event.pull_request.updated_at }}
-
-            ---
-            _This comment is automatically updated on each push to this PR._
-          edit-mode: replace
-
-      # Task 6.11: Error notification on workflow failure
-      - name: Send error notification
-        if: failure()
         env:
-          WEBHOOK_URL: ${{ secrets.NOTIFICATION_WEBHOOK_URL }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          # Skip if webhook URL is not configured
-          if [ -z "$WEBHOOK_URL" ]; then
-            echo "::warning::NOTIFICATION_WEBHOOK_URL is not configured. Skipping notification."
-            exit 0
-          fi
+          cat << EOF > ./body.txt
+          ## 📦 Preview Deployment
 
-          # Prepare notification payload (Slack/Discord compatible)
-          WORKFLOW_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          PR_URL="https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}"
+          | Status | URL |
+          |--------|-----|
+          | ✅ Deployed | [${{ steps.preview-url.outputs.url }}](${{ steps.preview-url.outputs.url }}) |
 
-          # Determine which step failed
-          FAILED_STEPS=""
-          if [ "${{ steps.preview-deploy.outcome }}" == "failure" ]; then
-            FAILED_STEPS="${FAILED_STEPS}Preview Deploy, "
-          fi
-          # Remove trailing comma and space
-          FAILED_STEPS="${FAILED_STEPS%, }"
-          if [ -z "$FAILED_STEPS" ]; then
-            FAILED_STEPS="Build or earlier step"
-          fi
+          **Commit:** ${{ github.sha }}
+          **Updated:** ${{ github.event.pull_request.updated_at }}
 
-          # Create JSON payload
-          PAYLOAD=$(cat <<EOF
-          {
-            "username": "GitHub Actions",
-            "icon_emoji": ":warning:",
-            "attachments": [
-              {
-                "color": "#dc3545",
-                "title": "PR Build - Workflow Failed",
-                "title_link": "${WORKFLOW_URL}",
-                "fields": [
-                  {
-                    "title": "Repository",
-                    "value": "${{ github.repository }}",
-                    "short": true
-                  },
-                  {
-                    "title": "Pull Request",
-                    "value": "<${PR_URL}|#${{ github.event.pull_request.number }}>",
-                    "short": true
-                  },
-                  {
-                    "title": "Failed Step(s)",
-                    "value": "${FAILED_STEPS}",
-                    "short": true
-                  },
-                  {
-                    "title": "Author",
-                    "value": "${{ github.event.pull_request.user.login }}",
-                    "short": true
-                  }
-                ],
-                "footer": "Go Proposal Weekly Digest",
-                "ts": "$(date +%s)"
-              }
-            ]
-          }
+          ---
+          _This comment is automatically updated on each push to this PR._
           EOF
-          )
 
-          # Send notification
-          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            -X POST \
-            -H "Content-Type: application/json" \
-            -d "$PAYLOAD" \
-            "$WEBHOOK_URL")
-
-          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
-            echo "::notice::Error notification sent successfully (HTTP $HTTP_STATUS)"
-          else
-            echo "::warning::Failed to send error notification (HTTP $HTTP_STATUS)"
-          fi
+          # Try to edit the last comment, create new one if it fails
+          gh pr comment ${{ github.event.pull_request.number }} --edit-last -F ./body.txt 2>/dev/null || \
+            gh pr comment ${{ github.event.pull_request.number }} -F ./body.txt

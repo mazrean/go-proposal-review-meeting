@@ -18,30 +18,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Go
-        uses: actions/setup-go@v5
+      - name: Setup mise
+        uses: jdx/mise-action@v2
         with:
-          go-version-file: go.mod
-          cache: true
+          install: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Cache Go build and modules
+        uses: actions/cache@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('go.mod', 'go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
-      - name: Install npm dependencies
-        run: npm ci
+      - name: Install pnpm dependencies
+        run: mise run init:pnpm
 
       - name: Build static site
-        run: |
-          echo "::group::Building static site"
-
-          # Run full build pipeline: templ generate → Go build → frontend → HTML/RSS
-          make build
-
-          echo "::endgroup::"
-          echo "::notice::Static site build completed successfully"
+        run: mise run build
 
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
@@ -49,8 +45,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy
-
-      - name: Output deployment URL
-        run: |
-          echo "::notice::Successfully deployed to Cloudflare Workers Assets"
-          echo "Deployment completed at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
