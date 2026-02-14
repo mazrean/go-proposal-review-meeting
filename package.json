@@ -28,5 +28,8 @@
   "dependencies": {
     "canvas": "^3.2.1",
     "lit": "^3.2.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["canvas", "esbuild"]
   }
 }
