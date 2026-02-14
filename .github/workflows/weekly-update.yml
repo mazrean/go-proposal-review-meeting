@@ -21,22 +21,28 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Go
-        uses: actions/setup-go@v5
+      - name: Setup mise
+        uses: jdx/mise-action@v2
         with:
-          go-version-file: go.mod
-          cache: true
+          install: true
+
+      - name: Cache Go build and modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('go.mod', 'go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
       - name: Parse proposal changes
         id: parse
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Build and run the parse command
-          go build -o ./bin/parse ./cmd/parse
-
           # Run parse command and capture output
-          OUTPUT=$(./bin/parse \
+          OUTPUT=$(go tool parse \
             -state content/state.json \
             -output changes.json)
 
@@ -178,69 +184,21 @@ jobs:
 
           echo "::endgroup::"
 
-      # Task 6.5.1: Integrate changes and summaries into content files
       - name: Integrate content
         if: steps.parse.outputs.has_changes == 'true'
-        run: |
-          echo "::group::Integrating changes and summaries into content"
+        run: go tool integrate -changes changes.json -content content -summaries summaries
 
-          # Build the integrate command
-          go build -o ./bin/integrate ./cmd/integrate
-
-          # Run integrate to create/update content files
-          # This command:
-          # - Reads changes.json for proposal changes
-          # - Reads summaries from summaries/ directory
-          # - Tracks previous_status from existing content history
-          # - Writes merged content to content/ directory
-          ./bin/integrate \
-            -changes changes.json \
-            -content content \
-            -summaries summaries
-
-          echo "::endgroup::"
-          echo "::notice::Content integration completed successfully"
-
-      # Task 6.6: Build static site
-      - name: Setup Node.js
-        if: steps.parse.outputs.has_changes == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install npm dependencies
-        if: steps.parse.outputs.has_changes == 'true'
-        run: npm ci
-
-      - name: Build static site
-        id: build
-        if: steps.parse.outputs.has_changes == 'true'
-        run: |
-          echo "::group::Building static site"
-
-          # Run full build pipeline: templ generate → Go build → frontend → HTML/RSS
-          make build
-
-          echo "::endgroup::"
-          echo "::notice::Static site build completed successfully"
-
-      # Task 6.7: Commit generated files to main branch
       - name: Commit changes
         id: commit
         if: steps.parse.outputs.has_changes == 'true'
         run: |
-          echo "::group::Committing generated files"
-
           # Configure git user
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           # Add generated files
-          # - dist/: Generated HTML, CSS, JS, RSS files
           # - content/: Markdown content and state.json
-          # - summaries/: AI-generated summaries (temporary, but useful for debugging)
-          git add dist/ content/ summaries/ || true
+          git add content/
 
           # Check if there are staged changes
           if git diff --staged --quiet; then
@@ -264,7 +222,4 @@ jobs:
 
       - name: Push changes
         if: steps.parse.outputs.has_changes == 'true' && steps.commit.outputs.has_commits == 'true'
-        run: |
-          # Push to main for scheduled runs, to the triggering branch for manual runs
-          TARGET_BRANCH="${{ github.event_name == 'workflow_dispatch' && github.ref_name || 'main' }}"
-          git push origin "$TARGET_BRANCH"
+        run: git push origin "${{ github.event_name == 'workflow_dispatch' && github.ref_name || 'main' }}"
